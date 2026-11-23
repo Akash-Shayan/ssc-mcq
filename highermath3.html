@@ -1,0 +1,1120 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>অধ্যায় ৩: জ্যামিতি MCQ এক্সাম | Instructor: AKASH</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  />
+  <style>
+    * { box-sizing: border-box; }
+    html, body {
+      margin: 0;
+      padding: 0;
+      background-color: #f1f5f9;
+      color: #0f172a;
+      font-family: "Hind Siliguri", "Inter", sans-serif;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+      min-height: 100vh;
+    }
+    .mono-num { font-variant-numeric: tabular-nums; }
+    .card-box {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 1rem;
+      box-shadow: 0 2px 10px rgba(15, 23, 42, 0.04);
+    }
+    .gradient-header {
+      background: linear-gradient(120deg, #1e293b 0%, #312e81 55%, #0f766e 100%);
+    }
+    .option-row {
+      border: 1.5px solid #e2e8f0;
+      background: #ffffff;
+      border-radius: 0.75rem;
+      transition: all 0.14s ease;
+    }
+    .option-row:hover {
+      border-color: #6366f1;
+      background: #f8fafc;
+    }
+    .option-row.selected {
+      border-color: #4f46e5;
+      background: #eef2ff;
+      color: #1e1b4b;
+      box-shadow: 0 2px 8px rgba(79, 70, 229, 0.14);
+    }
+    .option-row.selected .opt-badge {
+      background: #4f46e5;
+      color: #ffffff;
+      border-color: #4f46e5;
+    }
+    .opt-badge {
+      border: 1.5px solid #cbd5e1;
+      background: #f8fafc;
+      color: #334155;
+      border-radius: 0.5rem;
+      transition: all 0.14s ease;
+    }
+    input, select, textarea {
+      font-size: 16px !important;
+      line-height: 1.4;
+      transform: none !important;
+      zoom: 1 !important;
+    }
+    @media print {
+      .no-print { display: none !important; }
+      body { background: #ffffff !important; }
+    }
+  </style>
+</head>
+<body class="text-slate-800">
+  <!-- Sticky Header -->
+  <header class="gradient-header text-white sticky top-0 z-30 shadow-md no-print">
+    <div class="max-w-4xl mx-auto px-3 sm:px-6 py-3 flex items-center justify-between gap-2">
+      <div class="flex items-center gap-2.5 sm:gap-3 min-w-0">
+        <div class="w-10 h-10 rounded-xl bg-white/15 border border-white/25 flex items-center justify-center shrink-0 font-bold text-sm sm:text-base">
+          △ABC
+        </div>
+        <div class="min-w-0">
+          <div class="flex items-center gap-2 flex-wrap">
+            <h1 class="text-sm sm:text-lg font-bold tracking-tight text-white truncate">
+              অধ্যায় ৩: জ্যামিতি (উচ্চতর গণিত)
+            </h1>
+            <span class="text-[11px] sm:text-xs font-bold px-2.5 py-0.5 rounded-full bg-amber-300 text-slate-900 mono-num">
+              মোট ৩৪টি প্রশ্ন
+            </span>
+          </div>
+          <p class="text-xs sm:text-sm text-slate-200 font-medium">
+            Instructor: <span class="font-bold text-white">AKASH</span>
+          </p>
+        </div>
+      </div>
+
+      <div id="headerTimerBadge" class="hidden shrink-0">
+        <div class="px-3 py-1.5 rounded-xl bg-white text-slate-900 font-bold text-xs sm:text-sm mono-num shadow flex items-center gap-1.5">
+          <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+          <span id="liveTimerDisplay">00:00</span>
+        </div>
+      </div>
+    </div>
+
+    <div id="examProgressBarWrap" class="hidden bg-slate-950/35 border-t border-white/10">
+      <div class="max-w-4xl mx-auto px-3 sm:px-6 py-2 flex flex-wrap items-center justify-between gap-2 text-xs sm:text-sm text-white">
+        <div class="font-medium truncate max-w-[62%] sm:max-w-none" id="headerStudentInfo"></div>
+        <div class="flex items-center gap-2.5 mono-num ml-auto">
+          <span>উত্তর: <strong id="answeredCountText" class="text-amber-300">0</strong>/34</span>
+          <div class="w-20 sm:w-28 h-2 rounded-full bg-white/20 overflow-hidden">
+            <div id="progressFill" class="h-full bg-emerald-400 transition-all duration-200" style="width: 0%;"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-4xl mx-auto px-3 sm:px-6 py-5 sm:py-7">
+    <div id="globalNotice" class="hidden mb-4 rounded-xl border border-indigo-200 bg-indigo-50 p-3.5 text-xs sm:text-sm font-medium text-indigo-950 flex items-start justify-between gap-3">
+      <div id="globalNoticeText"></div>
+      <button type="button" id="closeNoticeBtn" class="text-xs font-bold text-indigo-700 underline shrink-0 cursor-pointer">বন্ধ করুন</button>
+    </div>
+
+    <!-- SCREEN 1: STUDENT ENTRY SCREEN -->
+    <section id="entryScreen" class="max-w-xl mx-auto">
+      <div class="card-box p-5 sm:p-7">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 mb-5 border-b border-slate-100">
+          <div>
+            <span class="inline-block text-[11px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800">
+              Online MCQ Exam Portal
+            </span>
+            <h2 class="text-xl sm:text-2xl font-bold text-slate-900 mt-1.5">
+              অধ্যায় ৩: জ্যামিতি
+            </h2>
+            <p class="text-xs sm:text-sm text-slate-600 mt-0.5">
+              Instructor: <strong class="text-indigo-700">AKASH</strong> • মোট ৩৪টি প্রশ্ন • পূর্ণমান: ৩৪
+            </p>
+          </div>
+          <div id="previousAttemptBadge" class="hidden text-xs font-bold px-3 py-1.5 rounded-lg bg-slate-100 text-slate-700 border border-slate-200 shrink-0"></div>
+        </div>
+
+        <div class="rounded-xl bg-slate-50 border border-slate-200 p-3.5 mb-5 text-xs sm:text-sm text-slate-700 space-y-1">
+          <div class="font-bold text-slate-900">📌 পরীক্ষার্থীদের জন্য নির্দেশনা:</div>
+          <p>১. আপনার <strong>শিক্ষার্থীর নাম</strong> ও <strong>রোল / আইডি</strong> দিয়ে পরীক্ষা শুরু করুন।</p>
+          <p>২. পরীক্ষা চলাকালীন পেজ রিলোড, উত্তর পরিবর্তন ও ব্যয়িত সময় স্বয়ংক্রিয়ভাবে ট্র্যাক হবে।</p>
+          <p>৩. <strong>পরীক্ষা জমা দিন (Submit)</strong> বাটনে ক্লিক করলে প্রাপ্ত নম্বর, বিস্তারিত ব্যাখ্যা দেখতে পাবেন এবং সম্পূর্ণ রিপোর্ট <strong>akashtalukder1998@gmail.com</strong> মেইলে চলে যাবে।</p>
+        </div>
+
+        <form id="studentEntryForm" class="space-y-4" novalidate>
+          <div>
+            <label for="studentName" class="block text-sm font-bold text-slate-800 mb-1">
+              শিক্ষার্থীর নাম <span class="text-rose-600">*</span>
+            </label>
+            <input type="text" id="studentName" required placeholder="আপনার নাম লিখুন"
+              class="w-full px-3.5 py-2.5 text-base rounded-xl border border-slate-300 bg-white text-slate-900 focus:outline-none focus:border-indigo-600 focus:ring-2 focus:ring-indigo-100" />
+            <p id="nameError" class="hidden text-xs font-semibold text-rose-600 mt-1">অনুগ্রহ করে শিক্ষার্থীর নাম লিখুন।</p>
+          </div>
+
+          <div>
+            <label for="studentRoll" class="block text-sm font-bold text-slate-800 mb-1">
+              রোল / আইডি <span class="text-rose-600">*</span>
+            </label>
+            <input type="text" id="studentRoll" required placeholder="আপনার রোল বা আইডি লিখুন"
+              class="w-full px-3.5 py-2.5 text-base rounded-xl border border-slate-300 bg-white text-slate-900 focus:outline-none focus:border-indigo-600 focus:ring-2 focus:ring-indigo-100 mono-num" />
+            <p id="rollError" class="hidden text-xs font-semibold text-rose-600 mt-1">অনুগ্রহ করে রোল / আইডি লিখুন।</p>
+          </div>
+
+          <div>
+            <label for="examDurationSelect" class="block text-sm font-bold text-slate-800 mb-1">সময় নির্ধারণ</label>
+            <select id="examDurationSelect"
+              class="w-full px-3.5 py-2.5 text-base rounded-xl border border-slate-300 bg-white text-slate-900 focus:outline-none focus:border-indigo-600">
+              <option value="0" selected>সময়সীমাহীন (Stopwatch চালু থাকবে)</option>
+              <option value="34">৩৪ মিনিট (প্রতি প্রশ্নে ১ মিনিট)</option>
+              <option value="25">২৫ মিনিট</option>
+              <option value="20">২০ মিনিট</option>
+            </select>
+          </div>
+
+          <button type="submit"
+            class="w-full py-3 px-5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-base shadow-sm transition cursor-pointer">
+            পরীক্ষা শুরু করুন →
+          </button>
+        </form>
+      </div>
+    </section>
+
+    <!-- SCREEN 2: ACTIVE EXAM SCREEN -->
+    <section id="examScreen" class="hidden space-y-4">
+      <div class="card-box p-4">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+          <div>
+            <div class="text-xs font-bold text-emerald-700">● লাইভ পরীক্ষা চলছে • Instructor: AKASH</div>
+            <div class="text-sm sm:text-base font-bold text-slate-900 mt-0.5" id="examCandidateMeta"></div>
+          </div>
+          <button type="button" id="topSubmitExamBtn"
+            class="px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs sm:text-sm font-bold cursor-pointer self-start sm:self-auto">
+            পরীক্ষা জমা দিন (Submit Exam)
+          </button>
+        </div>
+      </div>
+
+      <div id="questionsContainer"></div>
+
+      <div class="card-box p-4 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-2.5">
+        <button type="button" id="prevQuestionBtn"
+          class="px-4 py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 disabled:opacity-45 disabled:pointer-events-none text-slate-800 font-bold text-sm cursor-pointer transition">
+          ← পূর্ববর্তী প্রশ্ন
+        </button>
+
+        <div class="text-center text-xs sm:text-sm font-bold text-slate-700 mono-num self-center">
+          প্রশ্ন <span id="currentQIndicator" class="text-indigo-700">১</span> / ৩৪ • উত্তর: <span id="bottomAnsweredCount" class="text-emerald-700">0</span>/৩৪
+        </div>
+
+        <div class="flex items-center gap-2">
+          <button type="button" id="nextQuestionBtn"
+            class="flex-1 sm:flex-initial px-4 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-sm cursor-pointer transition">
+            পরবর্তী প্রশ্ন →
+          </button>
+          <button type="button" id="bottomSubmitExamBtn"
+            class="px-4 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs sm:text-sm cursor-pointer transition">
+            পরীক্ষা জমা দিন (Submit Exam)
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- SCREEN 3: POST-SUBMISSION VERIFICATION & REVIEW -->
+    <section id="resultScreen" class="hidden space-y-5">
+      <div class="rounded-2xl border-2 border-emerald-500 bg-white overflow-hidden shadow-sm">
+        <div class="bg-[#059669] text-white px-4 sm:px-6 py-3.5 flex items-center justify-between gap-2">
+          <div class="flex items-center gap-2 font-bold text-xs sm:text-sm">
+            <span class="inline-flex items-center justify-center w-6 h-6 rounded-md bg-white/20 text-white">🛡️</span>
+            <span>• অটো-ট্র্যাকিং ও চেষ্টা যাচাইকরণ By mail</span>
+          </div>
+          <span id="attemptTopPill" class="px-3 py-1 rounded-full bg-white text-[#047857] text-xs font-extrabold shadow-xs shrink-0">
+            ১ম বার চেষ্টা ✓
+          </span>
+        </div>
+
+        <div class="p-4 sm:p-6 space-y-4">
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+            <div class="rounded-xl border border-slate-200 bg-slate-50/70 p-3.5">
+              <div class="text-xs text-slate-500 font-medium">শিক্ষার্থীর নাম</div>
+              <div id="trkStudentName" class="text-sm sm:text-base font-bold text-slate-900 mt-0.5 break-words">-</div>
+            </div>
+            <div class="rounded-xl border border-slate-200 bg-slate-50/70 p-3.5">
+              <div class="text-xs text-slate-500 font-medium">রোল / আইডি</div>
+              <div id="trkStudentRoll" class="text-sm sm:text-base font-bold text-slate-900 mt-0.5 mono-num">-</div>
+            </div>
+            <div class="rounded-xl border border-slate-200 bg-slate-50/70 p-3.5">
+              <div class="text-xs text-slate-500 font-medium">মোট চেষ্টার সংখ্যা</div>
+              <div id="trkAttemptText" class="text-sm sm:text-base font-bold text-[#059669] mt-0.5">১ম বার (1st Attempt)</div>
+            </div>
+            <div class="rounded-xl border border-slate-200 bg-slate-50/70 p-3.5">
+              <div class="text-xs text-slate-500 font-medium">পেজ রিলোড / রিফ্রেশ</div>
+              <div id="trkReloadCount" class="text-sm sm:text-base font-bold text-slate-900 mt-0.5 mono-num">০ বার</div>
+            </div>
+            <div class="rounded-xl border border-slate-200 bg-slate-50/70 p-3.5">
+              <div class="text-xs text-slate-500 font-medium">উত্তর পরিবর্তন</div>
+              <div id="trkChangeCount" class="text-sm sm:text-base font-bold text-slate-900 mt-0.5 mono-num">০ বার</div>
+            </div>
+            <div class="rounded-xl border border-slate-200 bg-slate-50/70 p-3.5">
+              <div class="text-xs text-slate-500 font-medium">ব্যয়িত সময়</div>
+              <div id="trkTimeTaken" class="text-sm sm:text-base font-bold text-slate-900 mt-0.5 mono-num">০ মিনিট ০ সেকেন্ড</div>
+            </div>
+          </div>
+
+          <div class="rounded-xl bg-[#0f172a] text-white p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+            <div class="space-y-1 text-xs sm:text-sm mono-num">
+              <div><span class="text-slate-400">শুরু:</span> <strong id="trkStartTime" class="text-white">-</strong></div>
+              <div><span class="text-slate-400">জমা:</span> <strong id="trkEndTime" class="text-white">-</strong></div>
+            </div>
+            <div class="sm:text-right">
+              <div class="text-[10px] uppercase tracking-widest text-slate-400 font-semibold">VERIFICATION CODE</div>
+              <div id="trkVerificationCode" class="text-sm sm:text-base font-extrabold text-amber-400 tracking-wider mono-num mt-0.5">
+                EXAM-ATT1-SC00-0000
+              </div>
+            </div>
+          </div>
+
+          <div class="h-3.5 w-full rounded-full bg-indigo-600"></div>
+
+          <div class="rounded-xl border border-emerald-200 bg-emerald-50/80 p-3.5 sm:p-4 space-y-3">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+              <div class="text-xs sm:text-sm text-emerald-950 leading-relaxed" id="emailStatusMessage">
+                ✅ <strong>akashtalukder1998@gmail.com</strong> মেইলে সম্পূর্ণ ফলাফল ও তথ্য পাঠানো হচ্ছে...
+              </div>
+              <a id="mailtoDirectBtn" href="#"
+                class="px-3.5 py-2 rounded-lg bg-white border border-slate-300 hover:bg-slate-50 text-indigo-700 font-bold text-xs inline-flex items-center justify-center gap-1.5 shrink-0 shadow-2xs">
+                <span>✉️ সরাসরি মেইল করুন</span>
+              </a>
+            </div>
+
+            <div class="pt-2.5 border-t border-emerald-200/70 flex flex-col sm:flex-row items-stretch sm:items-center gap-2">
+              <label for="instructorMailDisplay" class="text-xs font-semibold text-slate-600 shrink-0">Instructor Mail:</label>
+              <input type="email" id="instructorMailDisplay" value="akashtalukder1998@gmail.com" readonly
+                class="flex-1 px-3 py-1.5 text-base rounded-lg border border-slate-300 bg-white text-slate-800 font-medium focus:outline-none" />
+              <button type="button" id="resendEmailBtn"
+                class="px-4 py-2 rounded-lg bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold cursor-pointer shrink-0">
+                পুনরায় পাঠান
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card-box p-4 sm:p-6 space-y-4">
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-center mono-num">
+          <div class="rounded-xl bg-indigo-50/90 border border-indigo-100 p-4">
+            <div class="text-xs font-bold text-indigo-600">প্রাপ্ত নম্বর</div>
+            <div id="sumScoreText" class="text-2xl sm:text-3xl font-extrabold text-indigo-950 mt-1">০/৩৪</div>
+          </div>
+          <div class="rounded-xl bg-emerald-50/90 border border-emerald-100 p-4">
+            <div class="text-xs font-bold text-emerald-700">সঠিক উত্তর</div>
+            <div id="sumCorrectText" class="text-2xl sm:text-3xl font-extrabold text-emerald-800 mt-1">০</div>
+          </div>
+          <div class="rounded-xl bg-rose-50/90 border border-rose-100 p-4">
+            <div class="text-xs font-bold text-rose-600">ভুল উত্তর</div>
+            <div id="sumWrongText" class="text-2xl sm:text-3xl font-extrabold text-rose-800 mt-1">০</div>
+          </div>
+          <div class="rounded-xl bg-slate-100/90 border border-slate-200 p-4">
+            <div class="text-xs font-bold text-slate-600">উত্তর দেননি</div>
+            <div id="sumUnansweredText" class="text-2xl sm:text-3xl font-extrabold text-slate-800 mt-1">৩৪</div>
+          </div>
+        </div>
+
+        <div id="performanceFeedbackBox" class="rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-center text-xs sm:text-sm font-medium text-slate-700">
+          এই অধ্যায়ের জ্যামিতি অংশগুলো পুনরায় পড়ে আবার চেষ্টা করুন।
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 no-print">
+          <button type="button" id="retakeExamBtn"
+            class="py-3 px-4 rounded-xl bg-[#111827] hover:bg-slate-800 text-white font-bold text-xs sm:text-sm cursor-pointer transition">
+            পুনরায় পরীক্ষা দিন (নতুন চেষ্টা হিসেবে গণ্য হবে)
+          </button>
+          <button type="button" id="scrollToReviewBtn"
+            class="py-3 px-4 rounded-xl bg-white hover:bg-slate-50 text-slate-800 border border-slate-300 font-bold text-xs sm:text-sm cursor-pointer transition">
+            সব উত্তর পর্যালোচনা করুন
+          </button>
+        </div>
+      </div>
+
+      <div id="reviewSectionAnchor" class="space-y-4 pt-1">
+        <div class="flex flex-wrap items-center gap-2 no-print" role="group" aria-label="উত্তর ফিল্টার">
+          <button type="button" data-review-filter="all"
+            class="review-filter-btn px-4 py-2 rounded-full text-xs sm:text-sm font-bold bg-indigo-600 text-white shadow-xs cursor-pointer">
+            সব প্রশ্ন (<span id="tabAllCount">৩৪</span>)
+          </button>
+          <button type="button" data-review-filter="wrong"
+            class="review-filter-btn px-4 py-2 rounded-full text-xs sm:text-sm font-bold bg-white text-slate-700 border border-slate-200 hover:bg-slate-50 cursor-pointer">
+            ভুল উত্তর (<span id="tabWrongCount">০</span>)
+          </button>
+          <button type="button" data-review-filter="unanswered"
+            class="review-filter-btn px-4 py-2 rounded-full text-xs sm:text-sm font-bold bg-white text-slate-700 border border-slate-200 hover:bg-slate-50 cursor-pointer">
+            উত্তরহীন (<span id="tabUnansweredCount">৩৪</span>)
+          </button>
+          <button type="button" data-review-filter="correct"
+            class="review-filter-btn px-4 py-2 rounded-full text-xs sm:text-sm font-bold bg-white text-slate-700 border border-slate-200 hover:bg-slate-50 cursor-pointer">
+            সঠিক উত্তর (<span id="tabCorrectCount">০</span>)
+          </button>
+        </div>
+
+        <div id="reviewContainer" class="space-y-4"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="border-t border-slate-200 bg-white mt-10 py-4 px-3 sm:px-6 text-center text-xs text-slate-500 no-print">
+    <div class="max-w-4xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-1">
+      <span>অধ্যায় ৩: জ্যামিতি (মোট ৩৪টি প্রশ্ন) • Instructor: <strong class="text-slate-700">AKASH</strong></span>
+      <span>akashtalukder1998@gmail.com</span>
+    </div>
+  </footer>
+
+  <!-- Submit Confirmation Modal -->
+  <div id="confirmSubmitModal" class="fixed inset-0 z-50 hidden bg-slate-950/60 flex items-center justify-center p-4">
+    <div class="card-box max-w-md w-full p-5 sm:p-6 bg-white">
+      <h3 class="text-lg font-bold text-slate-900">পরীক্ষা জমা দেওয়ার নিশ্চিতকরণ</h3>
+      <p id="confirmSubmitStats" class="text-sm text-slate-700 mt-2"></p>
+      <p class="text-xs text-slate-500 mt-2">
+        জমা দেওয়ার পর আপনার প্রাপ্ত নম্বর, অটো-ট্র্যাকিং রিপোর্ট ও প্রতিটি প্রশ্নের বিস্তারিত ব্যাখ্যা দেখতে পাবেন এবং ফলাফল <strong>akashtalukder1998@gmail.com</strong> মেইলে পাঠানো হবে।
+      </p>
+      <div class="mt-5 flex items-center justify-end gap-2">
+        <button type="button" id="cancelSubmitModalBtn"
+          class="px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-slate-100 text-slate-700 hover:bg-slate-200 cursor-pointer">
+          ফিরে যান
+        </button>
+        <button type="button" id="confirmSubmitActionBtn"
+          class="px-5 py-2 rounded-xl text-xs sm:text-sm font-bold bg-emerald-600 hover:bg-emerald-700 text-white cursor-pointer">
+          হ্যাঁ, জমা দিন ✓
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const QUESTIONS = [
+      { id: 1, q: "চিত্রে BN এর উপর AB এর লম্ব অভিক্ষেপ কোনটি?", options: { a: "AC", b: "BC", c: "MN", d: "CN" }, ans: "b", exp: "A বিন্দু থেকে BN এর উপর লম্ব টানলে পাদবিন্দু C হয় (AC⊥BN)।<br>B বিন্দুটি BN এর উপরেই আছে, তাই তার পাদবিন্দু B।<br>সুতরাং BN এর উপর AB এর লম্ব অভিক্ষেপ = BC।" },
+      { id: 2, q: "চিত্রে AB এর উপর CD এর লম্ব অভিক্ষেপ নিচের কোনটি?", options: { a: "AD", b: "BD", c: "AC", d: "BC" }, ans: "b", exp: "∠B=90°, অর্থাৎ CB⊥AB; তাই C এর পাদবিন্দু B।<br>D বিন্দুটি AB এর উপরেই আছে, তাই তার পাদবিন্দু D।<br>সুতরাং অভিক্ষেপ = DB = BD।" },
+      { id: 3, q: "চিত্রে AB এর উপর BC এর লম্ব অভিক্ষেপ কত?", options: { a: "0 একক", b: "3 একক", c: "4 একক", d: "5 একক" }, ans: "a", exp: "∠B=90° হওয়ায় BC⊥AB।<br>B ও C উভয়ের পাদবিন্দু AB এর উপর একই বিন্দু B।<br>পাদবিন্দু দুইটি একই বিন্দু হলে অভিক্ষেপ একটি বিন্দু, যার দৈর্ঘ্য শূন্য (0 একক)।" },
+      { id: 4, q: "AD=5 সে.মি., CD=3 সে.মি.। BC এর ওপর AB এর লম্ব অভিক্ষেপের মান কত?", options: { a: "1 সে.মি.", b: "3 সে.মি.", c: "4 সে.মি.", d: "7 সে.মি." }, ans: "c", exp: "△ACD এ ∠C=90°, তাই AC²=AD²−CD²=25−9=16 ⇒ AC=4 সে.মি.।<br>△ABC এ tan45°=(AC/BC) ⇒ 1=(4/BC) ⇒ BC=4 সে.মি.।<br>A থেকে BC এর উপর লম্বের পাদবিন্দু C, তাই BC এর উপর AB এর অভিক্ষেপ = CB = 4 সে.মি.।" },
+      { id: 5, q: "চিত্রে XY রেখাংশের উপর AB এর লম্ব অভিক্ষেপের মান কত?", options: { a: "2√3 একক", b: "3 একক", c: "2 একক", d: "√3 একক" }, ans: "b", exp: "AC⊥XY এবং AC=√3 একক, ∠BAC=60°। AB এর অভিক্ষেপ = BC।<br>tan60°=(BC/AC) ⇒ √3=(BC/√3) ⇒ BC=3 একক।" },
+      { id: 6, q: "চিত্রে PQ=QR=4 একক। RQ এর উপর PQ এর লম্ব অভিক্ষেপের দৈর্ঘ্য কত?", options: { a: "2 একক", b: "2√3 একক", c: "4 একক", d: "8 একক" }, ans: "a", exp: "∠PQR=120°, তাই ∠PQS=180°−120°=60°।<br>△PQS এ cos60°=(QS/PQ) ⇒ (1/2)=(QS/4) ⇒ QS=2।<br>QS ই RQ (বর্ধিত) এর উপর PQ এর লম্ব অভিক্ষেপ, তাই মান 2 একক।" },
+      { id: 7, q: "চিত্রে BC ও AB এর মধ্যবিন্দু যথাক্রমে P ও M। BP=BM=8 সেমি। BC এর উপর AP ও AC এর লম্ব অভিক্ষেপের দৈর্ঘ্যের সমষ্টি কত সেমি?", options: { a: "8", b: "16", c: "24", d: "32" }, ans: "c", exp: "∠B=90°, তাই AB⊥BC; A এর পাদবিন্দু B।<br>BP=8 এবং P মধ্যবিন্দু হওয়ায় BC=16।<br>AP এর অভিক্ষেপ = BP = 8 এবং AC এর অভিক্ষেপ = BC = 16।<br>সমষ্টি = 8 + 16 = 24 সেমি।" },
+      { id: 8, q: "চিত্রে BD এর মান কত?", options: { a: "√(149)", b: "√(135)", c: "√(131)", d: "√(125)" }, ans: "b", exp: "AD⊥BC, △ABD এ পিথাগোরাসের উপপাদ্য অনুযায়ী AB²=AD²+BD²।<br>BD²=AB²−AD²=12²−3²=144−9=135<br>BD=√(135)।" },
+      { id: 9, q: "ত্রিভুজের তিনটি বাহুর দৈর্ঘ্য (সে.মি.) দেওয়া থাকলে কোন ক্ষেত্রে সমকোণী ত্রিভুজ আঁকা যায়?", options: { a: "12, 15, 19", b: "6, 7, 8", c: "3, 4, 5", d: "5, 6, 7" }, ans: "c", exp: "সমকোণী ত্রিভুজে বৃহত্তম বাহুর বর্গ = অপর দুই বাহুর বর্গের সমষ্টি।<br>3, 4, 5: 3²+4²=9+16=25=5² ✓<br>12, 15, 19: 144+225=369≠361; 6, 7, 8: 36+49=85≠64; 5, 6, 7: 25+36=61≠49। তাই এগুলো সমকোণী নয়।" },
+      { id: 10, q: "ত্রিভুজের তিনটি বাহুর দৈর্ঘ্য (এককে) দেওয়া থাকলে কোন ক্ষেত্রে স্থূলকোণী ত্রিভুজ আঁকা সম্ভব?", options: { a: "3, 3, 4", b: "3, 4, 4", c: "3, 4, 5", d: "3, 4, 6" }, ans: "d", exp: "স্থূলকোণী হলে বৃহত্তম বাহুর বর্গ &gt; অপর দুই বাহুর বর্গের সমষ্টি।<br>3, 4, 6: 6²=36&gt;3²+4²=25 ✓ ⇒ স্থূলকোণী।<br>3, 3, 4: 16&lt;18 ও 3, 4, 4: 16&lt;25 ⇒ সূক্ষ্মকোণী; 3, 4, 5: 25=25 ⇒ সমকোণী।" },
+      { id: 11, q: "△PQR এ PQ²>QR²+PR² হলে-\ni. ∠PRQ স্থূলকোণ\nii. ∠QPR সমকোণ\niii. ∠QPR= সূক্ষ্মকোণ\nনিচের কোনটি সঠিক?", options: { a: "i ও ii", b: "i ও iii", c: "ii ও iii", d: "i, ii ও iii" }, ans: "b", exp: "PQ বাহুর বিপরীত কোণ ∠PRQ। PQ²&gt;QR²+PR² হলে ঐ কোণটি স্থূলকোণ ⇒ i সত্য।<br>ত্রিভুজে একটি কোণ স্থূলকোণ হলে বাকি দুইটি কোণ সূক্ষ্মকোণ। তাই ∠QPR সমকোণ নয় ⇒ ii মিথ্যা, সূক্ষ্মকোণ ⇒ iii সত্য।" },
+      { id: 12, q: "সমবাহু ত্রিভুজের বাহুর দৈর্ঘ্য 5 সে.মি. হলে, তার মধ্যমার দৈর্ঘ্য কত?", options: { a: "2.50 সে.মি.", b: "4.33 সে.মি.", c: "5 সে.মি.", d: "8.66 সে.মি." }, ans: "b", exp: "সমবাহু ত্রিভুজে 3a²=4d² (তিনটি মধ্যমাই সমান)।<br>3×5²=4d² ⇒ d²=(75/4) ⇒ d=(5√3/2)≈4.33 সে.মি." },
+      { id: 13, q: "একটি সমবাহু ত্রিভুজের প্রতিটি মধ্যমার দৈর্ঘ্য 6 cm হলে ঐ ত্রিভুজের প্রতিটি বাহুর দৈর্ঘ্য কত সে. মিটার?", options: { a: "6√2", b: "6", c: "4√3", d: "3√3" }, ans: "c", exp: "3a²=4d² ⇒ 3a²=4×6²=144<br>a²=48 ⇒ a=√(48)=4√3।" },
+      { id: 14, q: "2 একক বাহুবিশিষ্ট সমবাহু ত্রিভুজের মধ্যমাত্রয়ের বর্গের সমষ্টি কত একক?", options: { a: "4", b: "9", c: "16", d: "36" }, ans: "b", exp: "3a²=4d² ⇒ 3×2²=4d² ⇒ d²=3 (প্রতিটি মধ্যমার বর্গ)।<br>তিনটি মধ্যমার বর্গের সমষ্টি = 3×3 = 9।" },
+      { id: 15, q: "সমকোণী ত্রিভুজের মধ্যমাত্রয় 6, 7, 8 একক হলে অতিভুজের দৈর্ঘ্য কত একক?", options: { a: "99.33", b: "9.97", c: "3.157", d: "12.207" }, ans: "b", exp: "সমকোণী ত্রিভুজে 3c²=2(d²+e²+f²) (এখানে c অতিভুজ)।<br>3c²=2(6²+7²+8²)=2×149=298 ⇒ c²=(298/3)≈99.33<br>c=√(99.33)≈9.97।" },
+      { id: 16, q: "ABC ত্রিভুজটির মধ্যমাত্রয়ের বর্গের সমষ্টি কত বর্গ সে.মি.? [দি.বো. ২০১৭]", options: { a: "507", b: "253.5", c: "169", d: "112.67" }, ans: "b", exp: "ত্রিভুজটি সমকোণী (∠A=90°), অতিভুজ BC=13 সে.মি.।<br>2(d²+e²+f²)=3c² ⇒ d²+e²+f²=(3c²/2)=(3×169/2)=253.5 বর্গ সে.মি." },
+      { id: 17, q: "a=20 একক, b=25 একক এবং c=15 একক হলে, d² এর মান কত?", options: { a: "25 একক", b: "225 একক", c: "325 একক", d: "650 একক" }, ans: "c", exp: "এ্যাপোলোনিয়াসের উপপাদ্য: b²+c²=2{d²+((a/2))²} ⇒ b²+c²−(a²/2)=2d²<br>625+225−(400/2)=2d² ⇒ 650=2d² ⇒ d²=325।" },
+      { id: 18, q: "△ABC এর মধ্যমাত্রয় AD=6 সে.মি., BE=5 সে.মি., CF=4.5 সে.মি. পরস্পর O বিন্দুতে ছেদ করেছে। AB, BC এবং AC বাহুর বর্গের সমষ্টি কত?", options: { a: "27.08 বর্গ সে.মি.", b: "60.94 বর্গ সে.মি.", c: "81.25 বর্গ সে.মি.", d: "108.33 বর্গ সে.মি." }, ans: "d", exp: "সূত্র: 3(a²+b²+c²)=4(d²+e²+f²)<br>d²+e²+f²=36+25+20.25=81.25<br>a²+b²+c²=(4×81.25/3)=(325/3)≈108.33 বর্গ সে.মি." },
+      { id: 19, q: "কোনো ত্রিভুজের বাহুত্রয় যথাক্রমে 3 সে.মি., 4 সে.মি. ও 5 সে.মি. হলে, মধ্যমাত্রয়ের বর্গের সমষ্টি কত? [চ.বো. ২০২২]", options: { a: "75 বর্গ সে.মি.", b: "66.67 বর্গ সে.মি. (প্রায়)", c: "37.5 বর্গ সে.মি.", d: "33.33 বর্গ সে.মি. (প্রায়)" }, ans: "c", exp: "3²+4²=5², তাই ত্রিভুজটি সমকোণী এবং অতিভুজ c=5।<br>3c²=2(d²+e²+f²) ⇒ 75=2(d²+e²+f²) ⇒ d²+e²+f²=37.5 বর্গ সে.মি." },
+      { id: 20, q: "△PQR এর মধ্যমাত্রয় পরস্পরকে যে বিন্দুতে ছেদ করে সে বিন্দুকে বলা হয়-", options: { a: "লম্ববিন্দু", b: "পরিকেন্দ্র", c: "ভরকেন্দ্র", d: "শীর্ষবিন্দু" }, ans: "c", exp: "ত্রিভুজের তিনটি মধ্যমা যে বিন্দুতে ছেদ করে, সেই বিন্দুকে ত্রিভুজের ভরকেন্দ্র বলা হয়।" },
+      { id: 21, q: "চিত্রে P বিন্দুর নাম কী? [কু.বো. ২০২৪]", options: { a: "ভরকেন্দ্র", b: "লম্ববিন্দু", c: "অন্তঃকেন্দ্র", d: "পরিকেন্দ্র" }, ans: "b", exp: "চিত্রে AD, BE, CF প্রতিটিই শীর্ষ থেকে বিপরীত বাহুর উপর অঙ্কিত লম্ব।<br>ত্রিভুজের শীর্ষবিন্দুগুলো থেকে বিপরীত বাহুর উপর অঙ্কিত লম্বগুলো যে বিন্দুতে ছেদ করে তাকে লম্ববিন্দু বলে।" },
+      { id: 22, q: "একটি ত্রিভুজের পরিকেন্দ্র, ভরকেন্দ্র ও লম্ববিন্দু যোগ করলে কোনটি গঠিত হয়? [ঢা.বো. ২০২৪]", options: { a: "সরলরেখা", b: "বৃত্ত", c: "ত্রিভুজ", d: "কোণক" }, ans: "a", exp: "যেকোনো ত্রিভুজের পরিকেন্দ্র, ভরকেন্দ্র ও লম্ববিন্দু সমরেখ (একই সরলরেখায় অবস্থিত)।<br>তাই এদের যোগ করলে একটি সরলরেখা পাওয়া যায়।" },
+      { id: 23, q: "চিত্রে AD মধ্যমার DO:OA= কত?", options: { a: "1:2", b: "1:3", c: "2:1", d: "3:1" }, ans: "a", exp: "O ভরকেন্দ্র; ভরকেন্দ্র প্রতিটি মধ্যমাকে শীর্ষের দিক থেকে 2:1 অনুপাতে বিভক্ত করে।<br>AO:OD=2:1 ⇒ DO:OA=1:2।" },
+      { id: 24, q: "চিত্রে △ABC এর মধ্যমাত্রয় AD, BE ও CF পরস্পর G বিন্দুতে ছেদ করেছে এবং DG 6 সে.মি. হলে AG এর মান কত?", options: { a: "12 সে.মি.", b: "4 সে.মি.", c: "3 সে.মি.", d: "2 সে.মি." }, ans: "a", exp: "G ভরকেন্দ্র, তাই AG:GD=2:1।<br>AG=2×GD=2×6=12 সে.মি." },
+      { id: 25, q: "চিত্রে, BE মধ্যমার দৈর্ঘ্য 4 সে.মি. হলে BP এর দৈর্ঘ্য কত সে.মি.?", options: { a: "(4/3) সে.মি", b: "(4/2) সে.মি", c: "(8/3) সে.মি", d: "(10/3) সে.মি" }, ans: "c", exp: "P ভরকেন্দ্র, তাই BP:PE=2:1 অর্থাৎ (BP/BE)=(2/3)।<br>BP=(2/3)×BE=(2/3)×4=(8/3) সে.মি." },
+      { id: 26, q: "সমবাহু ত্রিভুজের বাহুর দৈর্ঘ্য 1 সে.মি. হলে এর পরিব্যাসার্ধ কত সে.মি.?", options: { a: "(√3/4) সে.মি.", b: "(1/√3) সে.মি.", c: "(√3/2) সে.মি.", d: "√3 সে.মি." }, ans: "b", exp: "সমবাহু ত্রিভুজে মধ্যমা d হলে 3a²=4d² ⇒ 3=4d² ⇒ d=(√3/2)।<br>সমবাহু ত্রিভুজে পরিকেন্দ্র ও ভরকেন্দ্র একই বিন্দু, তাই পরিব্যাসার্ধ =(2/3)×d=(2/3)×(√3/2)=(√3/3)=(1/√3) সে.মি." },
+      { id: 27, q: "দুইটি সদৃশ ত্রিভুজের ক্ষেত্রে- [য.বো. ২০১৫]\ni. অনুরূপ কোণগুলো সমান\nii. অনুরূপ বাহুগুলো সমানুপাতিক\niii. ত্রিভুজদ্বয় সর্বদা সর্বসম\nনিচের কোনটি সঠিক?", options: { a: "i ও ii", b: "i ও iii", c: "ii ও iii", d: "i, ii ও iii" }, ans: "a", exp: "i সত্য: সদৃশ ত্রিভুজে অনুরূপ কোণগুলো পরস্পর সমান।<br>ii সত্য: অনুরূপ বাহুগুলো সমানুপাতিক।<br>iii মিথ্যা: সদৃশ ত্রিভুজ সর্বদা সর্বসম হয় না (আকার ভিন্ন হতে পারে)।" },
+      { id: 28, q: "কোনো ত্রিভুজের লম্ববিন্দু থেকে কোনো শীর্ষের দূরত্ব 6 সে.মি. হলে পরিকেন্দ্র থেকে ঐ শীর্ষের বিপরীত বাহুর মধ্যবিন্দুর দূরত্ব কত? [ময়মনসিংহ বো. ২০২৩]", options: { a: "12 সে.মি.", b: "9 সে.মি.", c: "6 সে.মি.", d: "3 সে.মি." }, ans: "d", exp: "উপপাদ্য: ত্রিভুজের লম্ববিন্দু থেকে শীর্ষের দূরত্ব, পরিকেন্দ্র থেকে ঐ শীর্ষের বিপরীত বাহুর উপর লম্ব দূরত্বের দ্বিগুণ, অর্থাৎ OA=2×SP।<br>6=2×SP ⇒ SP=3 সে.মি.<br>পরিকেন্দ্র থেকে বাহুর উপর লম্ব ঐ বাহুর মধ্যবিন্দুতে পড়ে, তাই দূরত্ব 3 সে.মি." },
+      { id: 29, q: "কোনো ত্রিভুজের পরিবৃত্তের ক্ষেত্রফল 64π বর্গ সে.মি. হলে, এর নববিন্দু বৃত্তের ব্যাসার্ধ কত? [যশোর বো. ২০২৩]", options: { a: "64 সে.মি.", b: "16 সে.মি.", c: "8 সে.মি.", d: "4 সে.মি." }, ans: "d", exp: "পরিবৃত্তের ব্যাসার্ধ R হলে πR²=64π ⇒ R²=64 ⇒ R=8 সে.মি.<br>নববিন্দু বৃত্তের ব্যাসার্ধ ত্রিভুজের পরিব্যাসার্ধের অর্ধেক, অর্থাৎ (8/2)=4 সে.মি." },
+      { id: 30, q: "নববিন্দু বৃত্তের ব্যাসার্ধ 10 একক হলে, ঐ ত্রিভুজের পরিবৃত্তের ক্ষেত্রফল কত বর্গ একক? [ঢা. বো. ২০২৩]", options: { a: "25π", b: "100π", c: "200π", d: "400π" }, ans: "d", exp: "নববিন্দু বৃত্তের ব্যাসার্ধ =(R/2)=10 ⇒ পরিব্যাসার্ধ R=20।<br>পরিবৃত্তের ক্ষেত্রফল =πR²=π×20²=400π বর্গ একক।" },
+      { id: 31, q: "নববিন্দু বৃত্তের ক্ষেত্রে- [সি.বো. ২০১৬]\ni. ভরকেন্দ্র মধ্যমাকে 2:1 অনুপাতে বিভক্ত করে\nii. ত্রিভুজের লম্ববিন্দু ও পরিকেন্দ্র সংযোজন করে উৎপন্ন রেখাংশের মধ্যবিন্দু নববিন্দু বৃত্তের কেন্দ্র\niii. নববিন্দু বৃত্তের ব্যাসার্ধ ত্রিভুজের পরিব্যাসার্ধের অর্ধেকের সমান\nনিচের কোনটি সঠিক?", options: { a: "i ও ii", b: "i ও iii", c: "ii ও iii", d: "i, ii ও iii" }, ans: "d", exp: "i সত্য: ভরকেন্দ্র প্রতিটি মধ্যমাকে 2:1 অনুপাতে বিভক্ত করে।<br>ii সত্য: লম্ববিন্দু ও পরিকেন্দ্র সংযোজক রেখাংশের মধ্যবিন্দুই নববিন্দু বৃত্তের কেন্দ্র।<br>iii সত্য: নববিন্দু বৃত্তের ব্যাসার্ধ পরিব্যাসার্ধের অর্ধেক।<br>সুতরাং i, ii ও iii সবই সঠিক।" },
+      { id: 32, q: "‘বৃত্তস্থ চতুর্ভুজের কর্ণদ্বয়ের অন্তর্গত আয়তক্ষেত্র ঐ চতুর্ভুজের বিপরীত বাহুর অন্তর্গত আয়তক্ষেত্রের সমষ্টির সমান’ – এই উপপাদ্যটিকে বলা হয়? [য.বো. ২০১৬]", options: { a: "পিথাগোরাসের উপপাদ্য", b: "অ্যাপোলোনিয়াসের উপপাদ্য", c: "টলেমির উপপাদ্য", d: "ব্রহ্মগুপ্তের উপপাদ্য" }, ans: "c", exp: "বৃত্তস্থ চতুর্ভুজ ABCD এর ক্ষেত্রে AC·BD=AB·CD+BC·AD — এটিই টলেমির উপপাদ্য।<br>পিথাগোরাস সমকোণী ত্রিভুজের, অ্যাপোলোনিয়াস মধ্যমার এবং ব্রহ্মগুপ্ত লম্ব কর্ণবিশিষ্ট বৃত্তস্থ চতুর্ভুজের উপপাদ্য।" },
+      { id: 33, q: "LK এর মান কত?", options: { a: "36 cm", b: "13 cm", c: "6 cm", d: "5 cm" }, ans: "c", exp: "সমকোণী ত্রিভুজ MLC এর সমকোণ L বিন্দুতে এবং LK⊥MC।<br>সূত্র: LK²=MK·KC=9×4=36<br>LK=√(36)=6 cm।" },
+      { id: 34, q: "QR=25 cm, SR=6 cm, TR=5 cm হলে, PR= কত?", options: { a: "30 cm", b: "36 cm", c: "125 cm", d: "150 cm" }, ans: "a", exp: "PS⊥QR এবং QT⊥PR হওয়ায় △PSR ও △QTR সদৃশ, ফলে QR·SR=PR·TR।<br>25×6=PR×5 ⇒ PR=(150/5)=30 cm।" }
+    ];
+
+    const TARGET_EMAIL = "akashtalukder1998@gmail.com";
+    const INSTRUCTOR_NAME = "AKASH";
+    const OPT_LABELS_BN = { a: "ক", b: "খ", c: "গ", d: "ঘ" };
+    const STORAGE_ATTEMPTS_KEY = "akash_hm_ch3_geometry_34_attempts_v1";
+    const SESSION_ACTIVE_KEY = "akash_hm_ch3_geometry_34_active_session_v1";
+
+    const state = {
+      student: { name: "", roll: "" },
+      answers: {},
+      currentIndex: 0,
+      reviewFilter: "all",
+      attemptNumber: 1,
+      reloadCount: 0,
+      answerChangeCount: 0,
+      startTimeObj: null,
+      startTimeFormatted: "",
+      durationLimitSec: 0,
+      elapsedSeconds: 0,
+      timerInterval: null,
+      lastResult: null
+    };
+
+    const BN_DIGITS = ["০", "১", "২", "৩", "৪", "৫", "৬", "৭", "৮", "৯"];
+    function escHtml(t) {
+      return String(t).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+    }
+    function toBnNum(val) {
+      return String(val).replace(/\d/g, (d) => BN_DIGITS[Number(d)]);
+    }
+    function getAttemptOrdinalBn(n) {
+      if (n === 1) return "১ম বার";
+      if (n === 2) return "২য় বার";
+      if (n === 3) return "৩য় বার";
+      if (n === 4) return "৪র্থ বার";
+      if (n === 5) return "৫ম বার";
+      return `${toBnNum(n)}তম বার`;
+    }
+    function getAttemptOrdinalEn(n) {
+      const mod100 = n % 100;
+      if (mod100 >= 11 && mod100 <= 13) return `${n}th Attempt`;
+      const mod10 = n % 10;
+      if (mod10 === 1) return `${n}st Attempt`;
+      if (mod10 === 2) return `${n}nd Attempt`;
+      if (mod10 === 3) return `${n}rd Attempt`;
+      return `${n}th Attempt`;
+    }
+    function formatBnTimestamp(dateObj) {
+      const monthsBn = ["জানু", "ফেব্রু", "মার্চ", "এপ্রিল", "মে", "জুন", "জুলাই", "আগস্ট", "সেপ্টে", "অক্টো", "নভে", "ডিসে"];
+      const day = toBnNum(String(dateObj.getDate()).padStart(2, "0"));
+      const month = monthsBn[dateObj.getMonth()];
+      const year = toBnNum(dateObj.getFullYear());
+      let hours = dateObj.getHours();
+      const ampm = hours >= 12 ? "PM" : "AM";
+      hours = hours % 12 || 12;
+      const hh = toBnNum(String(hours).padStart(2, "0"));
+      const mm = toBnNum(String(dateObj.getMinutes()).padStart(2, "0"));
+      const ss = toBnNum(String(dateObj.getSeconds()).padStart(2, "0"));
+      return `${day} ${month}, ${year}, ${hh}:${mm}:${ss} ${ampm}`;
+    }
+    function formatDurationBn(totalSec) {
+      const mins = Math.floor(totalSec / 60);
+      const secs = totalSec % 60;
+      return `${toBnNum(mins)} মিনিট ${toBnNum(secs)} সেকেন্ড`;
+    }
+    function formatTimerDigital(totalSec) {
+      const mins = Math.floor(totalSec / 60);
+      const secs = totalSec % 60;
+      return `${String(mins).padStart(2, "0")}:${String(secs).padStart(2, "0")}`;
+    }
+    function generateVerificationCode(attemptNum, score, name, roll) {
+      const attPart = `ATT${attemptNum}`;
+      const scPart = `SC${String(score).padStart(2, "0")}`;
+      const seed = `${name}|${roll}|${attemptNum}|${score}|${Date.now()}`;
+      let hash = 2166136261;
+      for (let i = 0; i < seed.length; i++) {
+        hash ^= seed.charCodeAt(i);
+        hash = Math.imul(hash, 16777619);
+      }
+      const hex = (hash >>> 0).toString(16).toUpperCase().padStart(8, "0").slice(0, 4);
+      return `EXAM-${attPart}-${scPart}-${hex}`;
+    }
+
+    function getStoredAttemptCount() {
+      try { return Number(localStorage.getItem(STORAGE_ATTEMPTS_KEY) || "0"); } catch (e) { return 0; }
+    }
+    function incrementStoredAttemptCount() {
+      try {
+        const next = getStoredAttemptCount() + 1;
+        localStorage.setItem(STORAGE_ATTEMPTS_KEY, String(next));
+        return next;
+      } catch (e) { return state.attemptNumber; }
+    }
+    function saveActiveSession() {
+      try {
+        sessionStorage.setItem(SESSION_ACTIVE_KEY, JSON.stringify({
+          active: true,
+          student: state.student,
+          answers: state.answers,
+          currentIndex: state.currentIndex,
+          attemptNumber: state.attemptNumber,
+          reloadCount: state.reloadCount,
+          answerChangeCount: state.answerChangeCount,
+          startTimeMs: state.startTimeObj ? state.startTimeObj.getTime() : Date.now(),
+          startTimeFormatted: state.startTimeFormatted,
+          durationLimitSec: state.durationLimitSec
+        }));
+      } catch (e) {}
+    }
+    function clearActiveSession() {
+      try { sessionStorage.removeItem(SESSION_ACTIVE_KEY); } catch (e) {}
+    }
+
+    const entryScreen = document.getElementById("entryScreen");
+    const examScreen = document.getElementById("examScreen");
+    const resultScreen = document.getElementById("resultScreen");
+    const examProgressBarWrap = document.getElementById("examProgressBarWrap");
+    const headerTimerBadge = document.getElementById("headerTimerBadge");
+    const questionsContainer = document.getElementById("questionsContainer");
+    const reviewContainer = document.getElementById("reviewContainer");
+
+    function showNotice(msg) {
+      const box = document.getElementById("globalNotice");
+      document.getElementById("globalNoticeText").innerHTML = msg;
+      box.classList.remove("hidden");
+    }
+    function hideNotice() {
+      document.getElementById("globalNotice").classList.add("hidden");
+    }
+    document.getElementById("closeNoticeBtn").addEventListener("click", hideNotice);
+
+    function stopExamTimer() {
+      if (state.timerInterval) {
+        clearInterval(state.timerInterval);
+        state.timerInterval = null;
+      }
+    }
+
+    function startExamTimer(limitSeconds, initialElapsed = 0) {
+      stopExamTimer();
+      state.durationLimitSec = limitSeconds;
+      state.elapsedSeconds = initialElapsed;
+      const timerEl = document.getElementById("liveTimerDisplay");
+      timerEl.textContent = state.durationLimitSec > 0
+        ? formatTimerDigital(Math.max(0, state.durationLimitSec - state.elapsedSeconds))
+        : formatTimerDigital(state.elapsedSeconds);
+
+      state.timerInterval = setInterval(() => {
+        state.elapsedSeconds = Math.max(0, Math.floor((Date.now() - state.startTimeObj.getTime()) / 1000));
+        if (state.durationLimitSec > 0) {
+          const remaining = Math.max(0, state.durationLimitSec - state.elapsedSeconds);
+          timerEl.textContent = formatTimerDigital(remaining);
+          if (remaining === 0) {
+            stopExamTimer();
+            showNotice("⏰ নির্ধারিত সময় শেষ হয়েছে! আপনার পরীক্ষা স্বয়ংক্রিয়ভাবে জমা হচ্ছে...");
+            finalizeAndSubmitExam();
+          }
+        } else {
+          timerEl.textContent = formatTimerDigital(state.elapsedSeconds);
+        }
+      }, 1000);
+    }
+
+    function getAnsweredCount() {
+      return Object.keys(state.answers).length;
+    }
+
+    function updateProgressUI() {
+      const ansCount = getAnsweredCount();
+      const total = QUESTIONS.length;
+      const pct = Math.round((ansCount / total) * 100);
+      document.getElementById("answeredCountText").textContent = ansCount;
+      document.getElementById("bottomAnsweredCount").textContent = toBnNum(ansCount);
+      document.getElementById("currentQIndicator").textContent = toBnNum(state.currentIndex + 1);
+      document.getElementById("progressFill").style.width = `${pct}%`;
+
+      const prevBtn = document.getElementById("prevQuestionBtn");
+      const nextBtn = document.getElementById("nextQuestionBtn");
+      prevBtn.disabled = state.currentIndex <= 0;
+      nextBtn.textContent = state.currentIndex >= total - 1 ? "শেষ প্রশ্ন ✓" : "পরবর্তী প্রশ্ন →";
+    }
+
+    function goToQuestion(idx) {
+      state.currentIndex = Math.max(0, Math.min(QUESTIONS.length - 1, idx));
+      saveActiveSession();
+      renderExamQuestion();
+    }
+
+    function renderExamQuestion() {
+      questionsContainer.innerHTML = "";
+      const idx = state.currentIndex;
+      const qObj = QUESTIONS[idx];
+      if (!qObj) return;
+
+      const selectedOpt = state.answers[idx] || null;
+      const isAnswered = Boolean(selectedOpt);
+
+      const card = document.createElement("article");
+      card.id = `exam-q-${idx}`;
+      card.className = "card-box p-5 sm:p-6";
+
+      const headerRow = document.createElement("div");
+      headerRow.className = "flex items-center justify-between gap-2 mb-3";
+
+      const qStepTag = document.createElement("span");
+      qStepTag.className = "text-xs sm:text-sm font-bold text-indigo-600 mono-num";
+      qStepTag.textContent = `প্রশ্ন ${toBnNum(qObj.id)} / ৩৪`;
+
+      const badge = document.createElement("span");
+      badge.className = isAnswered
+        ? "text-xs font-bold px-3 py-1 rounded-full bg-indigo-100 text-indigo-800 shrink-0"
+        : "text-xs font-semibold px-3 py-1 rounded-full bg-slate-100 text-slate-600 shrink-0";
+      badge.textContent = isAnswered ? `উত্তর দেওয়া হয়েছে: ${OPT_LABELS_BN[selectedOpt]}` : "উত্তর দেওয়া হয়নি";
+
+      headerRow.appendChild(qStepTag);
+      headerRow.appendChild(badge);
+      card.appendChild(headerRow);
+
+      const qTitle = document.createElement("h3");
+      qTitle.className = "text-base sm:text-lg font-bold text-slate-900 leading-relaxed whitespace-pre-line mb-4";
+      qTitle.textContent = `${toBnNum(qObj.id)}। ${qObj.q}`;
+      card.appendChild(qTitle);
+
+      if (qObj.img) {
+        const im = document.createElement("img");
+        im.src = qObj.img;
+        im.alt = "chitro";
+        im.className = "block mx-auto mb-4 rounded-lg border border-slate-200 w-full max-w-[260px]";
+        card.appendChild(im);
+      }
+
+      const optsGrid = document.createElement("div");
+      optsGrid.className = "grid grid-cols-1 gap-2.5";
+
+      ["a", "b", "c", "d"].forEach((optKey) => {
+        const optText = qObj.options[optKey];
+        const isSelected = selectedOpt === optKey;
+
+        const optBtn = document.createElement("button");
+        optBtn.type = "button";
+        optBtn.className = `option-row w-full text-left p-3.5 flex items-center gap-3 cursor-pointer ${isSelected ? "selected" : ""}`;
+        optBtn.setAttribute("aria-pressed", isSelected ? "true" : "false");
+
+        const optBadge = document.createElement("span");
+        optBadge.className = "opt-badge w-8 h-8 text-sm font-bold flex items-center justify-center shrink-0";
+        optBadge.textContent = OPT_LABELS_BN[optKey];
+
+        const optLabel = document.createElement("span");
+        optLabel.className = "text-sm sm:text-base font-medium leading-snug break-words";
+        optLabel.textContent = optText;
+
+        optBtn.appendChild(optBadge);
+        optBtn.appendChild(optLabel);
+
+        optBtn.addEventListener("click", () => {
+          const prevChoice = state.answers[idx] || null;
+          if (prevChoice === optKey) {
+            delete state.answers[idx];
+            state.answerChangeCount += 1;
+          } else {
+            if (prevChoice !== null && prevChoice !== optKey) state.answerChangeCount += 1;
+            state.answers[idx] = optKey;
+          }
+          saveActiveSession();
+          updateProgressUI();
+
+          const nowSelected = state.answers[idx] || null;
+          badge.className = nowSelected
+            ? "text-xs font-bold px-3 py-1 rounded-full bg-indigo-100 text-indigo-800 shrink-0"
+            : "text-xs font-semibold px-3 py-1 rounded-full bg-slate-100 text-slate-600 shrink-0";
+          badge.textContent = nowSelected ? `উত্তর দেওয়া হয়েছে: ${OPT_LABELS_BN[nowSelected]}` : "উত্তর দেওয়া হয়নি";
+
+          optsGrid.querySelectorAll("button").forEach((b, bIdx) => {
+            const key = ["a", "b", "c", "d"][bIdx];
+            const active = nowSelected === key;
+            b.className = `option-row w-full text-left p-3.5 flex items-center gap-3 cursor-pointer ${active ? "selected" : ""}`;
+            b.setAttribute("aria-pressed", active ? "true" : "false");
+          });
+        });
+
+        optsGrid.appendChild(optBtn);
+      });
+
+      card.appendChild(optsGrid);
+      questionsContainer.appendChild(card);
+      updateProgressUI();
+    }
+
+    function launchExamSession(isResume = false) {
+      entryScreen.classList.add("hidden");
+      resultScreen.classList.add("hidden");
+      examScreen.classList.remove("hidden");
+      examProgressBarWrap.classList.remove("hidden");
+      headerTimerBadge.classList.remove("hidden");
+
+      const metaText = `${state.student.name} (রোল: ${state.student.roll}) • ${getAttemptOrdinalBn(state.attemptNumber)} চেষ্টা`;
+      document.getElementById("headerStudentInfo").textContent = metaText;
+      document.getElementById("examCandidateMeta").textContent = metaText;
+
+      renderExamQuestion();
+      const elapsedSoFar = isResume ? Math.max(0, Math.floor((Date.now() - state.startTimeObj.getTime()) / 1000)) : 0;
+      startExamTimer(state.durationLimitSec, elapsedSoFar);
+    }
+
+    (function initAppOnLoad() {
+      const prevAttempts = getStoredAttemptCount();
+      if (prevAttempts > 0) {
+        const badge = document.getElementById("previousAttemptBadge");
+        badge.textContent = `পূর্ববর্তী চেষ্টা: ${toBnNum(prevAttempts)} বার`;
+        badge.classList.remove("hidden");
+      }
+      try {
+        const savedRaw = sessionStorage.getItem(SESSION_ACTIVE_KEY);
+        if (savedRaw) {
+          const parsed = JSON.parse(savedRaw);
+          if (parsed && parsed.active && parsed.student && parsed.student.name) {
+            state.student = parsed.student;
+            state.answers = parsed.answers || {};
+            state.currentIndex = Number.isInteger(parsed.currentIndex) ? Math.max(0, Math.min(QUESTIONS.length - 1, parsed.currentIndex)) : 0;
+            state.attemptNumber = parsed.attemptNumber || prevAttempts + 1;
+            state.reloadCount = (parsed.reloadCount || 0) + 1;
+            state.answerChangeCount = parsed.answerChangeCount || 0;
+            state.startTimeObj = new Date(parsed.startTimeMs || Date.now());
+            state.startTimeFormatted = parsed.startTimeFormatted || formatBnTimestamp(state.startTimeObj);
+            state.durationLimitSec = parsed.durationLimitSec || 0;
+            saveActiveSession();
+            launchExamSession(true);
+            showNotice(`⚠️ পরীক্ষা চলাকালীন পেজ রিলোড শনাক্ত হয়েছে (মোট রিলোড: ${toBnNum(state.reloadCount)} বার)। আপনার পূর্বের উত্তরসমূহ সংরক্ষিত আছে।`);
+          }
+        }
+      } catch (e) {}
+    })();
+
+    document.getElementById("studentEntryForm").addEventListener("submit", (e) => {
+      e.preventDefault();
+      hideNotice();
+      const nameInput = document.getElementById("studentName");
+      const rollInput = document.getElementById("studentRoll");
+      const durationSelect = document.getElementById("examDurationSelect");
+      const nameVal = nameInput.value.trim();
+      const rollVal = rollInput.value.trim();
+      const durationMinutes = Number(durationSelect ? durationSelect.value : 0);
+
+      let valid = true;
+      if (!nameVal) {
+        document.getElementById("nameError").classList.remove("hidden");
+        nameInput.focus();
+        valid = false;
+      } else {
+        document.getElementById("nameError").classList.add("hidden");
+      }
+      if (!rollVal) {
+        document.getElementById("rollError").classList.remove("hidden");
+        if (valid) rollInput.focus();
+        valid = false;
+      } else {
+        document.getElementById("rollError").classList.add("hidden");
+      }
+      if (!valid) return;
+
+      state.student = { name: nameVal, roll: rollVal };
+      state.answers = {};
+      state.currentIndex = 0;
+      state.attemptNumber = getStoredAttemptCount() + 1;
+      state.reloadCount = 0;
+      state.answerChangeCount = 0;
+      state.startTimeObj = new Date();
+      state.startTimeFormatted = formatBnTimestamp(state.startTimeObj);
+      state.durationLimitSec = durationMinutes > 0 ? durationMinutes * 60 : 0;
+
+      saveActiveSession();
+      launchExamSession(false);
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+
+    document.getElementById("prevQuestionBtn").addEventListener("click", () => {
+      if (state.currentIndex > 0) goToQuestion(state.currentIndex - 1);
+    });
+    document.getElementById("nextQuestionBtn").addEventListener("click", () => {
+      if (state.currentIndex < QUESTIONS.length - 1) goToQuestion(state.currentIndex + 1);
+      else handleRequestSubmit();
+    });
+
+    function handleRequestSubmit() {
+      const answered = getAnsweredCount();
+      const unanswered = QUESTIONS.length - answered;
+      document.getElementById("confirmSubmitStats").innerHTML =
+        `আপনি <strong>${toBnNum(answered)}</strong> টি প্রশ্নের উত্তর দিয়েছেন এবং <strong>${toBnNum(unanswered)}</strong> টি প্রশ্ন উত্তরহীন রেখেছেন (মোট ৩৪টি)।`;
+      document.getElementById("confirmSubmitModal").classList.remove("hidden");
+    }
+
+    document.getElementById("topSubmitExamBtn").addEventListener("click", handleRequestSubmit);
+    document.getElementById("bottomSubmitExamBtn").addEventListener("click", handleRequestSubmit);
+    document.getElementById("cancelSubmitModalBtn").addEventListener("click", () => {
+      document.getElementById("confirmSubmitModal").classList.add("hidden");
+    });
+
+    function finalizeAndSubmitExam() {
+      stopExamTimer();
+      clearActiveSession();
+      document.getElementById("confirmSubmitModal").classList.add("hidden");
+
+      const completedAttemptNum = incrementStoredAttemptCount();
+      const endTimeObj = new Date();
+      const endTimeFormatted = formatBnTimestamp(endTimeObj);
+      const totalElapsed = Math.max(1, Math.floor((endTimeObj.getTime() - state.startTimeObj.getTime()) / 1000));
+      const durationBn = formatDurationBn(totalElapsed);
+
+      let correct = 0, wrong = 0, unanswered = 0;
+      const detailedItems = QUESTIONS.map((qObj, idx) => {
+        const chosen = state.answers[idx] || null;
+        let status = "unanswered";
+        if (!chosen) { unanswered += 1; status = "unanswered"; }
+        else if (chosen === qObj.ans) { correct += 1; status = "correct"; }
+        else { wrong += 1; status = "wrong"; }
+        return {
+          id: qObj.id,
+          img: qObj.img || "",
+          q: qObj.q,
+          options: qObj.options,
+          chosen,
+          chosenText: chosen ? `${OPT_LABELS_BN[chosen]}. ${qObj.options[chosen]}` : "উত্তর দেননি",
+          ans: qObj.ans,
+          ansText: `${OPT_LABELS_BN[qObj.ans]}. ${qObj.options[qObj.ans]}`,
+          exp: qObj.exp,
+          status
+        };
+      });
+
+      const total = QUESTIONS.length;
+      const percentage = ((correct / total) * 100).toFixed(2);
+      const verificationCode = generateVerificationCode(completedAttemptNum, correct, state.student.name, state.student.roll);
+
+      const resultObj = {
+        instructor: INSTRUCTOR_NAME,
+        student: { ...state.student },
+        attemptNum: completedAttemptNum,
+        attemptBn: getAttemptOrdinalBn(completedAttemptNum),
+        attemptEn: getAttemptOrdinalEn(completedAttemptNum),
+        reloadCount: state.reloadCount,
+        answerChangeCount: state.answerChangeCount,
+        startTimeFormatted: state.startTimeFormatted,
+        endTimeFormatted,
+        durationBn,
+        verificationCode,
+        score: correct,
+        total,
+        percentage,
+        correct,
+        wrong,
+        unanswered,
+        items: detailedItems
+      };
+
+      state.lastResult = resultObj;
+      state.reviewFilter = "all";
+
+      examScreen.classList.add("hidden");
+      examProgressBarWrap.classList.add("hidden");
+      headerTimerBadge.classList.add("hidden");
+      resultScreen.classList.remove("hidden");
+
+      document.getElementById("attemptTopPill").textContent = `${resultObj.attemptBn} চেষ্টা ✓`;
+      document.getElementById("trkStudentName").textContent = resultObj.student.name;
+      document.getElementById("trkStudentRoll").textContent = resultObj.student.roll;
+      document.getElementById("trkAttemptText").textContent = `${resultObj.attemptBn} (${resultObj.attemptEn})`;
+      document.getElementById("trkReloadCount").textContent = `${toBnNum(resultObj.reloadCount)} বার`;
+      document.getElementById("trkChangeCount").textContent = `${toBnNum(resultObj.answerChangeCount)} বার`;
+      document.getElementById("trkTimeTaken").textContent = resultObj.durationBn;
+      document.getElementById("trkStartTime").textContent = resultObj.startTimeFormatted;
+      document.getElementById("trkEndTime").textContent = resultObj.endTimeFormatted;
+      document.getElementById("trkVerificationCode").textContent = resultObj.verificationCode;
+
+      document.getElementById("sumScoreText").textContent = `${toBnNum(correct)}/${toBnNum(total)}`;
+      document.getElementById("sumCorrectText").textContent = toBnNum(correct);
+      document.getElementById("sumWrongText").textContent = toBnNum(wrong);
+      document.getElementById("sumUnansweredText").textContent = toBnNum(unanswered);
+
+      const pctNum = Number(percentage);
+      const feedbackEl = document.getElementById("performanceFeedbackBox");
+      if (pctNum >= 80) feedbackEl.textContent = "অসাধারণ ফলাফল! জ্যামিতি অধ্যায়ে আপনার প্রস্তুতি অত্যন্ত দৃঢ়।";
+      else if (pctNum >= 50) feedbackEl.textContent = "ভালো চেষ্টা! ভুল হওয়া প্রশ্নগুলোর ব্যাখ্যা নিচে দেখে নিলে আরও ভালো করবেন।";
+      else feedbackEl.textContent = "এই অধ্যায়ের পিথাগোরাস, মধ্যমা, ভরকেন্দ্র ও নববিন্দু বৃত্ত অংশগুলো পুনরায় পড়ে আবার চেষ্টা করুন।";
+
+      document.getElementById("tabAllCount").textContent = toBnNum(total);
+      document.getElementById("tabWrongCount").textContent = toBnNum(wrong);
+      document.getElementById("tabUnansweredCount").textContent = toBnNum(unanswered);
+      document.getElementById("tabCorrectCount").textContent = toBnNum(correct);
+
+      renderReviewList();
+      sendResultViaFormSubmit(resultObj, TARGET_EMAIL);
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    document.getElementById("confirmSubmitActionBtn").addEventListener("click", finalizeAndSubmitExam);
+
+    function buildEmailSummaryText(res) {
+      const wrongNums = res.items.filter((it) => it.status === "wrong")
+        .map((it) => `${toBnNum(it.id)} (আপনার উত্তর: ${it.chosenText}, সঠিক: ${it.ansText})`).join("\n");
+      const unansweredNums = res.items.filter((it) => it.status === "unanswered")
+        .map((it) => toBnNum(it.id)).join(", ");
+      return [
+        `অধ্যায় ৩: জ্যামিতি (মোট ৩৪টি প্রশ্ন)`,
+        `Instructor: ${res.instructor}`,
+        `Verification Code: ${res.verificationCode}`,
+        `----------------------------------------`,
+        `শিক্ষার্থীর নাম: ${res.student.name}`,
+        `রোল / আইডি: ${res.student.roll}`,
+        `মোট চেষ্টার সংখ্যা: ${res.attemptBn} (${res.attemptEn})`,
+        `পেজ রিলোড / রিফ্রেশ: ${toBnNum(res.reloadCount)} বার`,
+        `উত্তর পরিবর্তন: ${toBnNum(res.answerChangeCount)} বার`,
+        `ব্যয়িত সময়: ${res.durationBn}`,
+        `শুরু: ${res.startTimeFormatted}`,
+        `জমা: ${res.endTimeFormatted}`,
+        `----------------------------------------`,
+        `প্রাপ্ত নম্বর: ${toBnNum(res.score)} / ${toBnNum(res.total)} (${res.percentage}%)`,
+        `সঠিক উত্তর: ${toBnNum(res.correct)} | ভুল উত্তর: ${toBnNum(res.wrong)} | উত্তর দেননি: ${toBnNum(res.unanswered)}`,
+        `----------------------------------------`,
+        `ভুল উত্তরসমূহ (${toBnNum(res.wrong)}টি):`,
+        wrongNums || "নেই",
+        `----------------------------------------`,
+        `উত্তরহীন প্রশ্ন নম্বর (${toBnNum(res.unanswered)}টি): ${unansweredNums || "নেই"}`
+      ].join("\n");
+    }
+
+    async function sendResultViaFormSubmit(res, recipientEmail) {
+      const statusBox = document.getElementById("emailStatusMessage");
+      const mailtoBtn = document.getElementById("mailtoDirectBtn");
+      const subject = `Higher Math Ch-3 Geometry MCQ Result | ${res.student.name} (Roll: ${res.student.roll}) | ${res.score}/${res.total} [${res.verificationCode}]`;
+      const summaryBody = buildEmailSummaryText(res);
+      mailtoBtn.href = `mailto:${encodeURIComponent(recipientEmail)}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(summaryBody)}`;
+      statusBox.innerHTML = `⏳ <strong>${recipientEmail}</strong> মেইলে সম্পূর্ণ ফলাফল ও তথ্য পাঠানো হচ্ছে...`;
+      try {
+        const response = await fetch(`https://formsubmit.co/ajax/${encodeURIComponent(recipientEmail)}`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json", Accept: "application/json" },
+          body: JSON.stringify({
+            _subject: subject,
+            Instructor: res.instructor,
+            Verification_Code: res.verificationCode,
+            Student_Name: res.student.name,
+            Roll_ID: res.student.roll,
+            Attempt: `${res.attemptBn} (${res.attemptEn})`,
+            Page_Reloads: `${res.reloadCount}`,
+            Answer_Changes: `${res.answerChangeCount}`,
+            Time_Taken: res.durationBn,
+            Start_Time: res.startTimeFormatted,
+            Submit_Time: res.endTimeFormatted,
+            Score: `${res.score} / ${res.total} (${res.percentage}%)`,
+            Correct_Answers: `${res.correct}`,
+            Wrong_Answers: `${res.wrong}`,
+            Unanswered: `${res.unanswered}`,
+            Full_Report: summaryBody
+          })
+        });
+        const data = await response.json();
+        if (response.ok && (data.success === "true" || data.success === true)) {
+          statusBox.innerHTML = `✅ <strong>${recipientEmail}</strong> মেইলে সম্পূর্ণ ফলাফল ও তথ্য পাঠানো হয়েছে!`;
+          return;
+        }
+        throw new Error("FormSubmit AJAX returned error");
+      } catch (err) {
+        statusBox.innerHTML = `✅ ফলাফল প্রস্তুত হয়েছে! স্বয়ংক্রিয় মেইল ব্লক হলে ডানপাশের <strong>"সরাসরি মেইল করুন"</strong> বাটনে ক্লিক করে <strong>${recipientEmail}</strong> ঠিকানায় পাঠিয়ে দিন।`;
+      }
+    }
+
+    document.getElementById("resendEmailBtn").addEventListener("click", () => {
+      if (!state.lastResult) return;
+      const mailVal = document.getElementById("instructorMailDisplay").value.trim() || TARGET_EMAIL;
+      sendResultViaFormSubmit(state.lastResult, mailVal);
+    });
+
+    function renderReviewList() {
+      if (!state.lastResult) return;
+      reviewContainer.innerHTML = "";
+      const filtered = state.lastResult.items.filter((it) => state.reviewFilter === "all" || it.status === state.reviewFilter);
+      if (filtered.length === 0) {
+        const emptyBox = document.createElement("div");
+        emptyBox.className = "card-box p-6 text-center text-sm font-semibold text-slate-600";
+        emptyBox.textContent = "এই ক্যাটাগরিতে কোনো প্রশ্ন নেই।";
+        reviewContainer.appendChild(emptyBox);
+        return;
+      }
+
+      filtered.forEach((it) => {
+        const card = document.createElement("article");
+        card.className = "card-box p-4 sm:p-6";
+        let statusBadgeClass = "bg-slate-100 text-slate-700", statusText = "উত্তরহীন";
+        if (it.status === "correct") { statusBadgeClass = "bg-emerald-100 text-emerald-800"; statusText = "সঠিক উত্তর ✓"; }
+        else if (it.status === "wrong") { statusBadgeClass = "bg-rose-100 text-rose-800"; statusText = "ভুল উত্তর ✕"; }
+
+        const topRow = document.createElement("div");
+        topRow.className = "flex items-center justify-between gap-2 mb-2";
+        const qNumTag = document.createElement("span");
+        qNumTag.className = "text-xs sm:text-sm font-bold text-indigo-600";
+        qNumTag.textContent = `প্রশ্ন ${toBnNum(it.id)}`;
+        const statusBadge = document.createElement("span");
+        statusBadge.className = `text-xs font-bold px-3 py-1 rounded-full ${statusBadgeClass}`;
+        statusBadge.textContent = statusText;
+        topRow.appendChild(qNumTag);
+        topRow.appendChild(statusBadge);
+        card.appendChild(topRow);
+
+        const qTitle = document.createElement("h4");
+        qTitle.className = "text-sm sm:text-base font-bold text-slate-900 leading-relaxed whitespace-pre-line mb-3.5";
+        qTitle.textContent = it.q;
+        card.appendChild(qTitle);
+
+        if (it.img) {
+          const im = document.createElement("img");
+          im.src = it.img;
+          im.alt = "chitro";
+          im.className = "block mx-auto mb-3.5 rounded-lg border border-slate-200 w-full max-w-[240px]";
+          card.appendChild(im);
+        }
+
+        const optsWrap = document.createElement("div");
+        optsWrap.className = "space-y-2 mb-4";
+        ["a", "b", "c", "d"].forEach((k) => {
+          const isCorrect = it.ans === k, isChosen = it.chosen === k;
+          let rowStyle = "border border-slate-200 bg-white text-slate-800", tagHtml = "";
+          if (isCorrect && isChosen) {
+            rowStyle = "border-2 border-emerald-500 bg-emerald-50 text-emerald-950 font-bold";
+            tagHtml = `<span class="text-xs font-bold text-emerald-700 shrink-0">✓ আপনার ও সঠিক উত্তর</span>`;
+          } else if (isCorrect) {
+            rowStyle = "border-2 border-emerald-500 bg-emerald-50 text-emerald-950 font-bold";
+            tagHtml = `<span class="text-xs font-bold text-emerald-700 shrink-0">✓ সঠিক উত্তর</span>`;
+          } else if (isChosen) {
+            rowStyle = "border-2 border-rose-500 bg-rose-50 text-rose-950 font-semibold";
+            tagHtml = `<span class="text-xs font-bold text-rose-700 shrink-0">✕ আপনার ভুল উত্তর</span>`;
+          }
+          const optDiv = document.createElement("div");
+          optDiv.className = `rounded-xl px-3.5 py-2.5 text-xs sm:text-sm flex flex-wrap items-center justify-between gap-2 ${rowStyle}`;
+          optDiv.innerHTML = `<span><strong>${OPT_LABELS_BN[k]}.</strong> ${escHtml(it.options[k])}</span>${tagHtml}`;
+          optsWrap.appendChild(optDiv);
+        });
+        card.appendChild(optsWrap);
+
+        const expBox = document.createElement("div");
+        expBox.className = "rounded-xl bg-indigo-50/75 border-l-4 border-indigo-600 p-3.5 text-xs sm:text-sm text-slate-800 leading-relaxed space-y-1";
+        expBox.innerHTML = `
+          <div class="font-bold text-indigo-950">
+            সঠিক উত্তর: <span class="text-emerald-700">${escHtml(it.ansText)}</span>
+            ${it.status === "wrong" ? `<span class="text-rose-700 font-semibold block sm:inline sm:ml-2">• আপনি দিয়েছিলেন: ${escHtml(it.chosenText)}</span>` : ""}
+          </div>
+          <div><strong class="text-indigo-800">ব্যাখ্যা:</strong> ${it.exp}</div>
+        `;
+        card.appendChild(expBox);
+        reviewContainer.appendChild(card);
+      });
+    }
+
+    document.querySelectorAll(".review-filter-btn").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        state.reviewFilter = btn.dataset.reviewFilter;
+        document.querySelectorAll(".review-filter-btn").forEach((b) => {
+          const active = b.dataset.reviewFilter === state.reviewFilter;
+          b.className = active
+            ? "review-filter-btn px-4 py-2 rounded-full text-xs sm:text-sm font-bold bg-indigo-600 text-white shadow-xs cursor-pointer"
+            : "review-filter-btn px-4 py-2 rounded-full text-xs sm:text-sm font-bold bg-white text-slate-700 border border-slate-200 hover:bg-slate-50 cursor-pointer";
+        });
+        renderReviewList();
+      });
+    });
+
+    document.getElementById("scrollToReviewBtn").addEventListener("click", () => {
+      document.getElementById("reviewSectionAnchor").scrollIntoView({ behavior: "smooth" });
+    });
+
+    document.getElementById("retakeExamBtn").addEventListener("click", () => {
+      state.answers = {};
+      state.currentIndex = 0;
+      state.lastResult = null;
+      const prevAttempts = getStoredAttemptCount();
+      const badge = document.getElementById("previousAttemptBadge");
+      if (prevAttempts > 0) {
+        badge.textContent = `পূর্ববর্তী চেষ্টা: ${toBnNum(prevAttempts)} বার`;
+        badge.classList.remove("hidden");
+      }
+      resultScreen.classList.add("hidden");
+      entryScreen.classList.remove("hidden");
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+  </script>
+</body>
+</html>
