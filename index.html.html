@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ssc-mcq | Test Yourself</title>
+
+  <!--
+    =====================================================================
+    GITHUB PAGES IMAGE SETUP:
+    Place this image file in the SAME folder as index.html:
+    - image_18f8a2.png (Used for both the Favicon and Author Profile Picture)
+    =====================================================================
+  -->
+  <link rel="icon" type="image/png" href="image_18f8a2.png" />
+  <link rel="apple-touch-icon" href="image_18f8a2.png" />
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Google Fonts: Plus Jakarta Sans (English) + Hind Siliguri (Crisp Bangla) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', '"Hind Siliguri"', 'sans-serif'],
+            bengali: ['"Hind Siliguri"', '"Plus Jakarta Sans"', 'sans-serif'],
+          },
+        },
+      },
+    };
+  </script>
+
+  <style>
+    body {
+      font-family: 'Plus Jakarta Sans', 'Hind Siliguri', sans-serif;
+      background-color: #f8fafc;
+      color: #0f172a;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    /* Smooth reveal animation for chapter lists */
+    @keyframes fadeSlideUp {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .animate-view {
+      animation: fadeSlideUp 0.28s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    /* Custom subtle scrollbar */
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #f1f5f9;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 9999px;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between selection:bg-indigo-100 selection:text-indigo-900">
+
+  <!-- Top Navigation Bar -->
+  <header class="sticky top-0 z-30 bg-white/85 backdrop-blur-md border-b border-slate-200/80">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+      <a href="#top" onclick="showSubjects(event)" class="flex items-center gap-2.5 group">
+        <img
+          src="image_18f8a2.png"
+          onerror="this.onerror=null; this.src='https://placehold.co/64x64/1e293b/ffffff?text=SSC';"
+          alt="ssc-mcq logo"
+          class="w-9 h-9 rounded-full object-cover border border-slate-200 shadow-sm group-hover:scale-105 transition-transform"
+        />
+        <span class="font-extrabold text-lg tracking-tight text-slate-900">ssc-mcq</span>
+      </a>
+
+      <a
+        href="#author-section"
+        class="inline-flex items-center gap-1.5 text-sm font-semibold text-slate-600 hover:text-indigo-600 bg-slate-100 hover:bg-indigo-50 px-3.5 py-2 rounded-full transition-colors"
+      >
+        <i data-lucide="user-circle" class="w-4 h-4"></i>
+        <span>Contact with Author</span>
+      </a>
+    </div>
+  </header>
+
+  <!-- Main Content Container -->
+  <main id="top" class="flex-grow max-w-4xl w-full mx-auto px-4 sm:px-6 pt-10 pb-16">
+
+    <!-- ===================================================================
+         HERO SECTION: "Test Yourself"
+         =================================================================== -->
+    <section class="text-center mb-10 sm:mb-12">
+      <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-indigo-50 border border-indigo-100 text-indigo-700 text-xs font-semibold uppercase tracking-wider mb-3">
+        <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
+        <span>SSC Exam Preparation</span>
+      </div>
+      <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-slate-900">
+        Test Yourself
+      </h1>
+      <p id="sub-instruction" class="mt-3 text-slate-500 text-base sm:text-lg max-w-xl mx-auto">
+        নিচের যেকোনো একটি বিষয় নির্বাচন করো এবং অধ্যায়ভিত্তিক MCQ অনুশীলন শুরু করো।
+      </p>
+    </section>
+
+    <!-- ===================================================================
+         VIEW 1: SUBJECT SELECTION BUTTON GRID
+         =================================================================== -->
+    <section id="subjects-view" class="animate-view">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-4">
+
+        <!-- 1. General Math -->
+        <button
+          type="button"
+          onclick="openSubject('general-math', 'General Math (সাধারণ গণিত)')"
+          class="group flex items-center justify-between p-5 bg-white border border-slate-200/90 rounded-2xl shadow-sm hover:shadow-md hover:border-indigo-400 hover:-translate-y-0.5 transition-all text-left"
+        >
+          <div class="flex items-center gap-4">
+            <div class="w-12 h-12 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center group-hover:bg-blue-600 group-hover:text-white transition-colors">
+              <i data-lucide="calculator" class="w-6 h-6"></i>
+            </div>
+            <div>
+              <h2 class="text-lg font-bold text-slate-900 group-hover:text-indigo-600 transition-colors">General Math</h2>
+              <p class="text-sm text-slate-500 font-bengali">সাধারণ গণিত • ১৭টি অধ্যায়</p>
+            </div>
+          </div>
+          <i data-lucide="chevron-right" class="w-5 h-5 text-slate-400 group-hover:text-indigo-600 group-hover:translate-x-1 transition-all"></i>
+        </button>
+
+        <!-- 2. Higher Math -->
+        <button
+          type="button"
+          onclick="openSubject('higher-math', 'Higher Math (উচ্চতর গণিত)')"
+          class="group flex items-center justify-between p-5 bg-white border border-slate-200/90 rounded-2xl shadow-sm hover:shadow-md hover:border-indigo-400 hover:-translate-y-0.5 transition-all text-left"
+        >
+          <div class="flex items-center gap-4">
+            <div class="w-12 h-12 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center group-hover:bg-indigo-600 group-hover:text-white transition-colors">
+              <i data-lucide="sigma" class="w-6 h-6"></i>
+            </div>
+            <div>
+              <h2 class="text-lg font-bold text-slate-900 group-hover:text-indigo-600 transition-colors">Higher Math</h2>
+              <p class="text-sm text-slate-500 font-bengali">উচ্চতর গণিত • ১৪টি অধ্যায়</p>
+            </div>
+          </div>
+          <i data-lucide="chevron-right" class="w-5 h-5 text-slate-400 group-hover:text-indigo-600 group-hover:translate-x-1 transition-all"></i>
+        </button>
+
+        <!-- 3. Physics -->
+        <button
+          type="button"
+          onclick="openSubject('physics', 'Physics (পদার্থবিজ্ঞান)')"
+          class="group flex items-center justify-between p-5 bg-white border border-slate-200/90 rounded-2xl shadow-sm hover:shadow-md hover:border-indigo-400 hover:-translate-y-0.5 transition-all text-left"
+        >
+          <div class="flex items-center gap-4">
+            <div class="w-12 h-12 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center group-hover:bg-amber-500 group-hover:text-white transition-colors">
+              <i data-lucide="atom" class="w-6 h-6"></i>
+            </div>
+            <div>
+              <h2 class="text-lg font-bold text-slate-900 group-hover:text-indigo-600 transition-colors">Physics</h2>
+              <p class="text-sm text-slate-500 font-bengali">পদার্থবিজ্ঞান • ১৪টি অধ্যায়</p>
+            </div>
+          </div>
+          <i data-lucide="chevron-right" class="w-5 h-5 text-slate-400 group-hover:text-indigo-600 group-hover:translate-x-1 transition-all"></i>
+        </button>
+
+        <!-- 4. Chemistry -->
+        <button
+          type="button"
+          onclick="openSubject('chemistry', 'Chemistry (রসায়ন)')"
+          class="group flex items-center justify-between p-5 bg-white border border-slate-200/90 rounded-2xl shadow-sm hover:shadow-md hover:border-indigo-400 hover:-translate-y-0.5 transition-all text-left"
+        >
+          <div class="flex items-center gap-4">
+            <div class="w-12 h-12 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center group-hover:bg-emerald-600 group-hover:text-white transition-colors">
+              <i data-lucide="flask-conical" class="w-6 h-6"></i>
+            </div>
+            <div>
+              <h2 class="text-lg font-bold text-slate-900 group-hover:text-indigo-600 transition-colors">Chemistry</h2>
+              <p class="text-sm text-slate-500 font-bengali">রসায়ন • ১২টি অধ্যায়</p>
+            </div>
+          </div>
+          <i data-lucide="chevron-right" class="w-5 h-5 text-slate-400 group-hover:text-indigo-600 group-hover:translate-x-1 transition-all"></i>
+        </button>
+
+        <!-- 5. English -->
+        <button
+          type="button"
+          onclick="openSubject('english', 'English (ইংরেজি)')"
+          class="group flex items-center justify-between p-5 bg-white border border-slate-200/90 rounded-2xl shadow-sm hover:shadow-md hover:border-indigo-400 hover:-translate-y-0.5 transition-all text-left"
+        >
+          <div class="flex items-center gap-4">
+            <div class="w-12 h-12 rounded-xl bg-purple-50 text-purple-600 flex items-center justify-center group-hover:bg-purple-600 group-hover:text-white transition-colors">
+              <i data-lucide="languages" class="w-6 h-6"></i>
+            </div>
+            <div>
+              <h2 class="text-lg font-bold text-slate-900 group-hover:text-indigo-600 transition-colors">English</h2>
+              <p class="text-sm text-slate-500 font-bengali">ইংরেজি গ্রামার • ৯টি টপিক</p>
+            </div>
+          </div>
+          <i data-lucide="chevron-right" class="w-5 h-5 text-slate-400 group-hover:text-indigo-600 group-hover:translate-x-1 transition-all"></i>
+        </button>
+
+        <!-- 6. Bangla 1st Paper -->
+        <button
+          type="button"
+          onclick="openSubject('bangla-1st', 'Bangla 1st Paper (বাংলা ১ম পত্র)')"
+          class="group flex items-center justify-between p-5 bg-white border border-slate-200/90 rounded-2xl shadow-sm hover:shadow-md hover:border-indigo-400 hover:-translate-y-0.5 transition-all text-left"
+        >
+          <div class="flex items-center gap-4">
+            <div class="w-12 h-12 rounded-xl bg-rose-50 text-rose-600 flex items-center justify-center group-hover:bg-rose-600 group-hover:text-white transition-colors">
+              <i data-lucide="book-open" class="w-6 h-6"></i>
+            </div>
+            <div>
+              <h2 class="text-lg font-bold text-slate-900 group-hover:text-indigo-600 transition-colors">Bangla 1st paper</h2>
+              <p class="text-sm text-slate-500 font-bengali">বাংলা ১ম পত্র • গদ্য ও পদ্য</p>
+            </div>
+          </div>
+          <i data-lucide="chevron-right" class="w-5 h-5 text-slate-400 group-hover:text-indigo-600 group-hover:translate-x-1 transition-all"></i>
+        </button>
+
+        <!-- 7. Bangla 2nd Paper -->
+        <button
+          type="button"
+          onclick="openSubject('bangla-2nd', 'Bangla 2nd Paper (বাংলা ২য় পত্র)')"
+          class="group flex items-center justify-between p-5 bg-white border border-slate-200/90 rounded-2xl shadow-sm hover:shadow-md hover:border-indigo-400 hover:-translate-y-0.5 transition-all text-left"
+        >
+          <div class="flex items-center gap-4">
+            <div class="w-12 h-12 rounded-xl bg-orange-50 text-orange-600 flex items-center justify-center group-hover:bg-orange-600 group-hover:text-white transition-colors">
+              <i data-lucide="pen-tool" class="w-6 h-6"></i>
+            </div>
+            <div>
+              <h2 class="text-lg font-bold text-slate-900 group-hover:text-indigo-600 transition-colors">Bangla 2nd paper</h2>
+              <p class="text-sm text-slate-500 font-bengali">বাংলা ২য় পত্র • ব্যাকরণ</p>
+            </div>
+          </div>
+          <i data-lucide="chevron-right" class="w-5 h-5 text-slate-400 group-hover:text-indigo-600 group-hover:translate-x-1 transition-all"></i>
+        </button>
+
+        <!-- 8. ICT -->
+        <button
+          type="button"
+          onclick="openSubject('ict', 'ICT (তথ্য ও যোগাযোগ প্রযুক্তি)')"
+          class="group flex items-center justify-between p-5 bg-white border border-slate-200/90 rounded-2xl shadow-sm hover:shadow-md hover:border-indigo-400 hover:-translate-y-0.5 transition-all text-left"
+        >
+          <div class="flex items-center gap-4">
+            <div class="w-12 h-12 rounded-xl bg-cyan-50 text-cyan-600 flex items-center justify-center group-hover:bg-cyan-600 group-hover:text-white transition-colors">
+              <i data-lucide="cpu" class="w-6 h-6"></i>
+            </div>
+            <div>
+              <h2 class="text-lg font-bold text-slate-900 group-hover:text-indigo-600 transition-colors">ICT</h2>
+              <p class="text-sm text-slate-500 font-bengali">তথ্য ও যোগাযোগ প্রযুক্তি • ৬টি অধ্যায়</p>
+            </div>
+          </div>
+          <i data-lucide="chevron-right" class="w-5 h-5 text-slate-400 group-hover:text-indigo-600 group-hover:translate-x-1 transition-all"></i>
+        </button>
+
+      </div>
+    </section>
+
+    <!-- ===================================================================
+         VIEW 2: CHAPTER LIST DRAWER / PANEL (Revealed when a Subject is clicked)
+         ===================================================================
+         HOW TO ADD YOUR LINKS:
+         Press Ctrl+F in this file, search for any Chapter Name, and replace
+         href="#" with your Google Form / Quiz URL, e.g.:
+         href="https://forms.gle/your-quiz-link"
+         =================================================================== -->
+    <section id="chapters-view" class="hidden animate-view">
+      <!-- Top Bar with Back Button & Active Subject Name -->
+      <div class="flex flex-wrap items-center justify-between gap-3 mb-6 pb-4 border-b border-slate-200">
+        <button
+          type="button"
+          onclick="showSubjects()"
+          class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-white border border-slate-200 text-slate-700 font-semibold text-sm hover:bg-slate-100 hover:border-slate-300 shadow-sm transition-all"
+        >
+          <i data-lucide="arrow-left" class="w-4 h-4"></i>
+          <span>সকল বিষয় (Back)</span>
+        </button>
+
+        <h2 id="active-subject-title" class="text-xl sm:text-2xl font-bold text-slate-900 font-bengali">
+          Subject Title
+        </h2>
+      </div>
+
+      <!-- ===============================================================
+           1. GENERAL MATH CHAPTERS (সাধারণ গণিত)
+           =============================================================== -->
+      <div id="list-general-math" class="chapter-group hidden grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+        <a href="#" class="chapter-btn"><span class="chap-badge">অধ্যায় ১</span><span class="chap-title">বাস্তব সংখ্যা</span></a>
+        <a href="#" class="chapter-btn"><span class="chap-badge">অধ্যায় ২</span><span class="chap-title">সেট ও ফাংশন</span></a>
+        <a href="#" class="chapter-btn"><span class="chap-badge">অধ্যায় ৩</span><span class="chap-title">বীজগাণিতিক রাশি</span></a>
+        <a href="#" class="chapter-btn"><span class="chap-badge">অধ্যায় ৪</span><span class="chap-title">সূচক ও লগারিদম</span></a>
+        <a href="#" class="chapter-btn"><span class="chap-badge">অধ্যায় ৫</span><span class="chap-title">এক চলকবিশিষ্ট সমীকরণ</span></a>
+        <a href="#" class="chapter-btn"><span class="chap-badge">অধ্যায় ৬</span><span class="chap-title">রেখা, কোণ ও ত্রিভুজ</span></a>
+        <a href="#" class="chapter-btn"><span class="chap-badge">অধ্যায় ৭</span><span class="chap-title">ব্যবহারিক জ্যামিতি</span></a>
+        <a href="#" class="chapter-btn"><span class="chap-badge">অধ্যায় ৮</span><span class="chap-title">বৃত্ত</span></a>
+        <a href="#" class="chapter-btn"><span class="chap-badge">অধ্যায় ৯</span><span class="chap-title">ত্রিকোণমিতিক অনুপাত</span></a>
+        <a href="#" class="chapter-btn"><span class="chap-badge">অধ্যায় ১০</span><span class="chap-title">দূরত্ব ও উচ্চতা</span></a>
+        <a href="#" class="chapter-btn"><span class="chap-badge">অধ্যায় ১১</span><span class="chap-title">বীজগাণিতিক অনুপাত ও সমানুপাত</span></a>
+        <a href="#" class="chapter-btn"><span class="chap-badge">অধ্যায় ১২</span><span class="chap-title">দুই চলকবিশিষ্ট সরল সহসমীকরণ</span></a>
+        <a href="#" class="chapter-btn"><span class="chap-badge">অধ্যায় ১৩</span><span class="chap-title">সসীম ধারা</span></a>
+        <a href="#" class="chapter-btn"><span class="chap-badge">অধ্যায় ১৪</span><span class="chap-title">অনুপাত, সদৃশতা ও প্রতিসমতা</span></a>
+        <a href="#" class="chapter-btn"><span class="chap-badge">অধ্যায় ১৫</span><span class="chap-title">ক্ষেত্রফল সম্পর্কিত উপপাদ্য ও সম্পাদ্য</span></a>
+        <a href="#" class="chapter-btn"><span class="chap-badge">অধ্যায় ১৬</span><span class="chap-title">পরিমিতি</span></a>
+        <a href="#" class="chapter-btn"><span class="chap-badge">অধ্যায় ১৭</span><span class="chap-title">পরিসংখ্যান</span></a>
+      </div>
+
+      <!-- ===============================================================
+           2. HIGHER MATH CHAPTERS (উচ্চতর গণিত)
+           =============================================================== -->
+      <div id="list-higher-math" class="chapter-group hidden grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+        <a href="#" class="chapter-btn"><span class="chap-badge">১ম অধ্যায়</span><span class="chap-title">সেট ও ফাংশন</span></a>
+        <a href="#" class="chapter-btn"><span class="chap-badge">২য় অধ্যায়</span><span class="chap-title">বীজগাণিতিক রাশি</span></a>
+        <a href="#" class="chapter-btn"><span class="chap-badge">৩য় অধ্যায়</span><span class="chap-title">জ্যামিতি</span></a>
+        <a href="#" class="chapter-btn"><span class="chap-badge">৪র্থ অধ্যায়</span><span class="chap-title">জ্যামিতিক অঙ্কন</span></a>
+        <a href="#" class="chapter-btn"><span class="chap-badge">৫ম অধ্যায়</span><span class="chap-title">সমীকরণ</span></a>
+        <a href="#" class="chapter-btn"><span class="chap-badge">৬ষ্ঠ অধ্যায়</span><span class="chap-title">অসমতা</span></a>
+        <a href="#" class="chapter-btn"><span class="chap-badge">৭ম অধ্যায়</span><span class="chap-title">অসীম ধারা</span></a>
+        <a href="#" class="chapter-btn"><span class="chap-badge">৮ম অধ্যায়</span><span class="chap-title">ত্রিকোণমিতি</span></a>
+        <a href="#" class="chapter-btn"><span class="chap-badge">৯ম অধ্যায়</span><span class="chap-title">সূচকীয় ও লগারিদমীয় ফাংশন</span></a>
+        <a href="#" class="chapter-btn"><span class="chap-badge">১০ম অধ্যায়</span><span class="chap-title">দ্বিপদী বিস্তৃতি</span></a>
+        <a href="#" class="chapter-btn"><span class="chap-badge">১১তম অধ্যায়</span><span class="chap-title">স্থানাঙ্ক জ্যামিতি</span></a>
+        <a href="#" class="chapter-btn"><span class="chap-badge">১২তম অধ্যায়</span><span class="chap-title">সমতলীয় ভেক্টর</span></a>
+        <a href="#" class="chapter-btn"><span class="chap-badge">১৩তম অধ্যায়</span><span class="chap-title">ঘন জ্যামিতি</span></a>
+        <a href="#" class="chapter-btn"><span class="chap-badge">১৪তম অধ্যায়</span><span class="chap-title">সম্ভাবনা</span></a>
+      </div>
+
+      <!-- ===============================================================
+           3. PHYSICS CHAPTERS (পদার্থবিজ্ঞান)
+           =============================================================== -->
+      <div id="list-physics" class="chapter-group hidden grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+        <a href="#" class="chapter-btn"><span class="chap-badge">অধ্যায় ১</span><span class="chap-title">ভৌত রাশি এবং পরিমাপ (Physical Quantities and Measurement)</span></a>
+        <a href="#" class="chapter-btn"><span class="chap-badge">অধ্যায় ২</span><span class="chap-title">গতি (Motion)</span></a>
+        <a href="#" class="chapter-btn"><span class="chap-badge">অধ্যায় ৩</span><span class="chap-title">বল (Force)</span></a>
+        <a href="#" class="chapter-btn"><span class="chap-badge">অধ্যায় ৪</span><span class="chap-title">কাজ, ক্ষমতা ও শক্তি (Work, Power and Energy)</span></a>
+        <a href="#" class="chapter-btn"><span class="chap-badge">অধ্যায় ৫</span><span class="chap-title">পদার্থের অবস্থা ও চাপ (State of Matter and Pressure)</span></a>
+        <a href="#" class="chapter-btn"><span class="chap-badge">অধ্যায় ৬</span><span class="chap-title">বস্তুর ওপর তাপের প্রভাব (Effect of Heat on Matter)</span></a>
+        <a href="#" class="chapter-btn"><span class="chap-badge">অধ্যায় ৭</span><span class="chap-title">তরঙ্গ ও শব্দ (Waves and Sound)</span></a>
+        <a href="#" class="chapter-btn"><span class="chap-badge">অধ্যায় ৮</span><span class="chap-title">আলোর প্রতিফলন (Reflection of Light)</span></a>
+        <a href="#" class="chapter-btn"><span class="chap-badge">অধ্যায় ৯</span><span class="chap-title">আলোর প্রতিসরণ (Refraction of Light)</span></a>
+        <a href="#" class="chapter-btn"><span class="chap-badge">অধ্যায় ১০</span><span class="chap-title">স্থির তড়িৎ (Static Electricity)</span></a>
+        <a href="#" class="chapter-btn"><span class="chap-badge">অধ্যায় ১১</span><span class="chap-title">চল তড়িৎ (Current Electricity)</span></a>
+        <a href="#" class="chapter-btn"><span class="chap-badge">অধ্যায় ১২</span><span class="chap-title">তড়িতের চৌম্বক ক্রিয়া (Magnetic Effect of Current)</span></a>
+        <a href="#" class="chapter-btn"><span class="chap-badge">অধ্যায় ১৩</span><span class="chap-title">আধুনিক পদার্থবিজ্ঞান ও ইলেকট্রনিক্স (Modern Physics and Electronics)</span></a>
+        <a href="#" class="chapter-btn"><span class="chap-badge">অধ্যায় ১৪</span><span class="chap-title">জীবন বাঁচাতে পদার্থবিজ্ঞান (Physics to Save Life)</span></a>
+      </div>
+
+      <!-- ===============================================================
+           4. CHEMISTRY CHAPTERS (রসায়ন)
+           =============================================================== -->
+      <div id="list-chemistry" class="chapter-group hidden grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+        <a href="#" class="chapter-btn"><span class="chap-badge">১ম অধ্যায়</span><span class="chap-title">রসায়নের ধারণা (Concept of Chemistry)</span></a>
+        <a href="#" class="chapter-btn"><span class="chap-badge">২য় অধ্যায়</span><span class="chap-title">পদার্থের অবস্থা (States of Matter)</span></a>
+        <a href="#" class="chapter-btn"><span class="chap-badge">৩য় অধ্যায়</span><span class="chap-title">পদার্থের গঠন (Structure of Matter)</span></a>
+        <a href="#" class="chapter-btn"><span class="chap-badge">৪র্থ অধ্যায়</span><span class="chap-title">পর্যায় সারণি (Periodic Table)</span></a>
+        <a href="#" class="chapter-btn"><span class="chap-badge">৫ম অধ্যায়</span><span class="chap-title">রাসায়নিক বন্ধন (Chemical Bond)</span></a>
+        <a href="#" class="chapter-btn"><span class="chap-badge">৬ষ্ঠ অধ্যায়</span><span class="chap-title">মোলের ধারণা ও রাসায়নিক গণনা (Concept of Mole and Chemical Counting)</span></a>
+        <a href="#" class="chapter-btn"><span class="chap-badge">৭ম অধ্যায়</span><span class="chap-title">রাসায়নিক বিক্রিয়া (Chemical Reactions)</span></a>
+        <a href="#" class="chapter-btn"><span class="chap-badge">৮ম অধ্যায়</span><span class="chap-title">রসায়ন ও শক্তি (Chemistry and Energy)</span></a>
+        <a href="#" class="chapter-btn"><span class="chap-badge">৯ম অধ্যায়</span><span class="chap-title">এসিড-ক্ষারক সমতা (Acid-Base Balance)</span></a>
+        <a href="#" class="chapter-btn"><span class="chap-badge">১০ম অধ্যায়</span><span class="chap-title">খনিজ সম্পদ: ধাতু-অধাতু (Mineral Resources: Metal-Nonmetal)</span></a>
+        <a href="#" class="chapter-btn"><span class="chap-badge">১১শ অধ্যায়</span><span class="chap-title">খনিজ সম্পদ: জীবাশ্ম (Mineral Resources: Fossils)</span></a>
+        <a href="#" class="chapter-btn"><span class="chap-badge">১২শ অধ্যায়</span><span class="chap-title">আমাদের জীবনে রসায়ন (Chemistry in Our Lives)</span></a>
+      </div>
+
+      <!-- ===============================================================
+           5. ENGLISH TOPICS (ইংরেজি)
+           =============================================================== -->
+      <div id="list-english" class="chapter-group hidden grid grid-cols-1 gap-3.5">
+        <a href="#" class="chapter-btn"><span class="chap-badge">Topic 1</span><span class="chap-title">Gap Filling (with and without clues): Articles, prepositions, and context words.</span></a>
+        <a href="#" class="chapter-btn"><span class="chap-badge">Topic 2</span><span class="chap-title">Right Forms of Verbs: Subject-verb agreement, tenses, conditionals, and modals.</span></a>
+        <a href="#" class="chapter-btn"><span class="chap-badge">Topic 3</span><span class="chap-title">Changing / Transforming Sentences: Affirmative to negative, assertive to interrogative/exclamatory, voice, and simple/complex/compound.</span></a>
+        <a href="#" class="chapter-btn"><span class="chap-badge">Topic 4</span><span class="chap-title">Completing Sentences: Conditionals, clauses, and conjunctions.</span></a>
+        <a href="#" class="chapter-btn"><span class="chap-badge">Topic 5</span><span class="chap-title">Suffixes and Prefixes: Changing parts of speech to fit sentence structure.</span></a>
+        <a href="#" class="chapter-btn"><span class="chap-badge">Topic 6</span><span class="chap-title">Tag Questions: Matching auxiliary verbs and polarity with the main clause.</span></a>
+        <a href="#" class="chapter-btn"><span class="chap-badge">Topic 7</span><span class="chap-title">Sentence Connectors: Linking words showing contrast, cause, result, or sequence.</span></a>
+        <a href="#" class="chapter-btn"><span class="chap-badge">Topic 8</span><span class="chap-title">Punctuation: Capitalization, commas, full stops, apostrophes, and quotation marks.</span></a>
+        <a href="#" class="chapter-btn"><span class="chap-badge">Topic 9</span><span class="chap-title">Narration: Converting direct speech to indirect speech</span></a>
+      </div>
+
+      <!-- ===============================================================
+           6. BANGLA 1ST PAPER (বাংলা ১ম পত্র) - Add/Edit Chapters Here
+           =============================================================== -->
+      <div id="list-bangla-1st" class="chapter-group hidden grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+        <a href="#" class="chapter-btn"><span class="chap-badge">অধ্যায় ১</span><span class="chap-title">গদ্য - সুভা</span></a>
+        <a href="#" class="chapter-btn"><span class="chap-badge">অধ্যায় ২</span><span class="chap-title">গদ্য - বই পড়া</span></a>
+        <a href="#" class="chapter-btn"><span class="chap-badge">অধ্যায় ৩</span><span class="chap-title">গদ্য - আম-আঁটির ভেঁপু</span></a>
+        <a href="#" class="chapter-btn"><span class="chap-badge">অধ্যায় ৪</span><span class="chap-title">পদ্য - বঙ্গবাণী</span></a>
+        <a href="#" class="chapter-btn"><span class="chap-badge">অধ্যায় ৫</span><span class="chap-title">পদ্য - কপোতাক্ষ নদ</span></a>
+        <a href="#" class="chapter-btn"><span class="chap-badge">অধ্যায় ৬</span><span class="chap-title">সহপাঠ - কাকতাড়ুয়া ও বহিপীর</span></a>
+      </div>
+
+      <!-- ===============================================================
+           7. BANGLA 2ND PAPER (বাংলা ২য় পত্র) - Add/Edit Chapters Here
+           =============================================================== -->
+      <div id="list-bangla-2nd" class="chapter-group hidden grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+        <a href="#" class="chapter-btn"><span class="chap-badge">পরিচ্ছেদ ১</span><span class="chap-title">ভাষা ও বাংলা ভাষা</span></a>
+        <a href="#" class="chapter-btn"><span class="chap-badge">পরিচ্ছেদ ২</span><span class="chap-title">বাংলা ব্যাকরণ ও এর আলোচ্য বিষয়</span></a>
+        <a href="#" class="chapter-btn"><span class="chap-badge">পরিচ্ছেদ ৩</span><span class="chap-title">ধ্বনি ও বর্ণ</span></a>
+        <a href="#" class="chapter-btn"><span class="chap-badge">পরিচ্ছেদ ৪</span><span class="chap-title">সন্ধি</span></a>
+        <a href="#" class="chapter-btn"><span class="chap-badge">পরিচ্ছেদ ৫</span><span class="chap-title">সমাস</span></a>
+        <a href="#" class="chapter-btn"><span class="chap-badge">পরিচ্ছেদ ৬</span><span class="chap-title">কারক ও বিভক্তি</span></a>
+      </div>
+
+      <!-- ===============================================================
+           8. ICT (তথ্য ও যোগাযোগ প্রযুক্তি) - Add/Edit Chapters Here
+           =============================================================== -->
+      <div id="list-ict" class="chapter-group hidden grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+        <a href="#" class="chapter-btn"><span class="chap-badge">১ম অধ্যায়</span><span class="chap-title">তথ্য ও যোগাযোগ প্রযুক্তি এবং আমাদের বাংলাদেশ</span></a>
+        <a href="#" class="chapter-btn"><span class="chap-badge">২য় অধ্যায়</span><span class="chap-title">কম্পিউটার ও কম্পিউটার ব্যবহারকারীর নিরাপত্তা</span></a>
+        <a href="#" class="chapter-btn"><span class="chap-badge">৩য় অধ্যায়</span><span class="chap-title">আমার শিক্ষায় ইন্টারনেট</span></a>
+        <a href="#" class="chapter-btn"><span class="chap-badge">৪র্থ অধ্যায়</span><span class="chap-title">আমার লেখালেখি ও হিসাব</span></a>
+        <a href="#" class="chapter-btn"><span class="chap-badge">৫ম অধ্যায়</span><span class="chap-title">মাল্টিমিডিয়া ও গ্রাফিক্স</span></a>
+        <a href="#" class="chapter-btn"><span class="chap-badge">৬ষ্ঠ অধ্যায়</span><span class="chap-title">ডেটাবেজ এর ব্যবহার</span></a>
+      </div>
+    </section>
+
+    <!-- ===================================================================
+         AUTHOR PROFILE CARD SECTION (Overlapping Circular Avatar Card)
+         =================================================================== -->
+    <section id="author-section" class="mt-28 sm:mt-32 pt-4 flex flex-col items-center">
+      <!-- Card Container matching the exact clean light-bordered layout -->
+      <div class="relative w-full max-w-sm bg-white border border-slate-200 px-7 pt-20 pb-8 text-center shadow-sm">
+        <!-- Overlapping Circular Profile Image -->
+        <div class="absolute -top-16 left-1/2 -translate-x-1/2">
+          <img
+            src="image_18f8a2.png"
+            onerror="this.onerror=null; this.src='https://placehold.co/150x150/1e293b/ffffff?text=ATS';"
+            alt="Akash Talukder Shayan"
+            class="w-32 h-32 rounded-full object-cover border-4 border-white shadow-md bg-slate-100"
+          />
+        </div>
+
+        <!-- Author Name -->
+        <h3 class="text-2xl sm:text-[26px] font-bold text-slate-900 leading-snug tracking-tight">
+          Akash Talukder<br />Shayan
+        </h3>
+
+        <!-- Role: Writer (strictly Writer, not Lead Writer) -->
+        <p class="mt-1.5 text-base font-bold text-slate-800">
+          Writer
+        </p>
+
+        <!-- Fight Club Quote -->
+        <blockquote class="mt-4 text-[15px] leading-relaxed text-slate-500 font-normal">
+          “You are not special. You're not a beautiful and unique snowflake. You're the same decaying organic matter as everything else. We're all part of the same compost heap. We're all singing, all dancing crap of the world.”
+          <footer class="mt-2 font-medium text-slate-600">
+            ― Fight Club
+          </footer>
+        </blockquote>
+
+        <!-- Contact with Author Button (Paste your Facebook / Messenger / Email link in href) -->
+        <div class="mt-6 pt-5 border-t border-slate-100">
+          <a
+            href="https://www.facebook.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center justify-center gap-2 w-full py-2.5 px-4 rounded-xl bg-slate-900 hover:bg-indigo-600 text-white text-sm font-semibold transition-colors shadow-sm"
+          >
+            <i data-lucide="send" class="w-4 h-4"></i>
+            <span>Contact with Author</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Minimal Footer -->
+  <footer class="border-t border-slate-200/80 bg-white py-6 text-center text-xs sm:text-sm text-slate-500">
+    <p>&copy; <span id="year"></span> <strong class="text-slate-700">ssc-mcq</strong> • Built for SSC Students</p>
+  </footer>
+
+  <!-- Subtle Toast Notification for Chapters Without Links Yet -->
+  <div
+    id="toast"
+    class="fixed bottom-5 left-1/2 -translate-x-1/2 z-50 pointer-events-none opacity-0 translate-y-3 transition-all duration-200 bg-slate-900 text-white text-sm font-medium px-4 py-2.5 rounded-full shadow-lg flex items-center gap-2"
+  >
+    <i data-lucide="clock" class="w-4 h-4 text-amber-400"></i>
+    <span>এই অধ্যায়ের লিংক শীঘ্রই যুক্ত করা হবে!</span>
+  </div>
+
+  <script>
+    // Initialize Lucide icons
+    lucide.createIcons();
+
+    // Set current year in footer
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Apply consistent Tailwind classes & behavior to all chapter buttons
+    document.querySelectorAll('.chapter-btn').forEach((btn) => {
+      btn.setAttribute('target', '_blank');
+      btn.setAttribute('rel', 'noopener noreferrer');
+      btn.className =
+        'chapter-btn group flex items-center justify-between gap-3 p-4 bg-white border border-slate-200 rounded-xl shadow-xs hover:border-indigo-500 hover:bg-indigo-50/40 hover:shadow-sm transition-all';
+
+      const badge = btn.querySelector('.chap-badge');
+      const title = btn.querySelector('.chap-title');
+
+      if (badge) {
+        badge.className =
+          'chap-badge shrink-0 px-2.5 py-1 rounded-lg bg-slate-100 text-slate-700 group-hover:bg-indigo-600 group-hover:text-white text-xs sm:text-sm font-bold font-bengali transition-colors';
+      }
+
+      if (title) {
+        title.className =
+          'chap-title flex-grow text-left text-sm sm:text-base font-semibold text-slate-800 group-hover:text-indigo-900 font-bengali leading-snug';
+      }
+
+      // Append an external-link arrow icon on the right
+      const iconWrapper = document.createElement('span');
+      iconWrapper.className =
+        'shrink-0 text-slate-400 group-hover:text-indigo-600 group-hover:translate-x-0.5 transition-all';
+      iconWrapper.innerHTML =
+        '<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg>';
+      btn.appendChild(iconWrapper);
+
+      // Show friendly toast if the link is still "#"
+      btn.addEventListener('click', (e) => {
+        const href = btn.getAttribute('href');
+        if (!href || href === '#') {
+          e.preventDefault();
+          showToast();
+        }
+      });
+    });
+
+    // Open chapters for a selected subject
+    function openSubject(subjectId, subjectTitle) {
+      const subjectsView = document.getElementById('subjects-view');
+      const chaptersView = document.getElementById('chapters-view');
+      const titleEl = document.getElementById('active-subject-title');
+      const subInstruction = document.getElementById('sub-instruction');
+
+      // Hide all chapter groups first
+      document.querySelectorAll('.chapter-group').forEach((group) => {
+        group.classList.add('hidden');
+      });
+
+      // Show the selected chapter group
+      const targetGroup = document.getElementById('list-' + subjectId);
+      if (targetGroup) {
+        targetGroup.classList.remove('hidden');
+      }
+
+      titleEl.textContent = subjectTitle;
+      subInstruction.textContent = 'নিচের যেকোনো অধ্যায়ে ক্লিক করে পরীক্ষা দাও।';
+
+      subjectsView.classList.add('hidden');
+      chaptersView.classList.remove('hidden');
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // Return to the main subject buttons grid
+    function showSubjects(event) {
+      if (event) event.preventDefault();
+
+      const subjectsView = document.getElementById('subjects-view');
+      const chaptersView = document.getElementById('chapters-view');
+      const subInstruction = document.getElementById('sub-instruction');
+
+      chaptersView.classList.add('hidden');
+      subjectsView.classList.remove('hidden');
+      subInstruction.textContent =
+        'নিচের যেকোনো একটি বিষয় নির্বাচন করো এবং অধ্যায়ভিত্তিক MCQ অনুশীলন শুরু করো।';
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // Toast notification helper
+    let toastTimer;
+    function showToast() {
+      const toast = document.getElementById('toast');
+      toast.classList.remove('opacity-0', 'translate-y-3');
+      toast.classList.add('opacity-100', 'translate-y-0');
+
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => {
+        toast.classList.add('opacity-0', 'translate-y-3');
+        toast.classList.remove('opacity-100', 'translate-y-0');
+      }, 2400);
+    }
+  </script>
+</body>
+</html>
