@@ -1,0 +1,2088 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>অধ্যায় ২: সেট ও ফাংশন MCQ এক্সাম | Instructor: AKASH</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  />
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #f1f5f9;
+      color: #0f172a;
+      font-family: "Hind Siliguri", "Inter", sans-serif;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+      min-height: 100vh;
+    }
+
+    .mono-num {
+      font-variant-numeric: tabular-nums;
+    }
+
+    .card-box {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 1rem;
+      box-shadow: 0 2px 10px rgba(15, 23, 42, 0.04);
+    }
+
+    .gradient-header {
+      background: linear-gradient(120deg, #1e293b 0%, #312e81 55%, #0f766e 100%);
+    }
+
+    .option-row {
+      border: 1.5px solid #e2e8f0;
+      background: #ffffff;
+      border-radius: 0.75rem;
+      transition: all 0.14s ease;
+    }
+
+    .option-row:hover {
+      border-color: #6366f1;
+      background: #f8fafc;
+    }
+
+    .option-row.selected {
+      border-color: #4f46e5;
+      background: #eef2ff;
+      color: #1e1b4b;
+      box-shadow: 0 2px 8px rgba(79, 70, 229, 0.14);
+    }
+
+    .option-row.selected .opt-badge {
+      background: #4f46e5;
+      color: #ffffff;
+      border-color: #4f46e5;
+    }
+
+    .opt-badge {
+      border: 1.5px solid #cbd5e1;
+      background: #f8fafc;
+      color: #334155;
+      border-radius: 0.5rem;
+      transition: all 0.14s ease;
+    }
+
+    /* Prevent iOS/Android mobile auto-zoom on form input focus */
+    input,
+    select,
+    textarea {
+      font-size: 16px !important;
+      line-height: 1.4;
+      transform: none !important;
+      zoom: 1 !important;
+    }
+
+    @media print {
+      .no-print {
+        display: none !important;
+      }
+      body {
+        background: #ffffff !important;
+      }
+    }
+  </style>
+</head>
+<body class="text-slate-800">
+  <!-- Sticky Header -->
+  <header class="gradient-header text-white sticky top-0 z-30 shadow-md no-print">
+    <div class="max-w-4xl mx-auto px-3 sm:px-6 py-3 flex items-center justify-between gap-2">
+      <div class="flex items-center gap-2.5 sm:gap-3 min-w-0">
+        <div class="w-10 h-10 rounded-xl bg-white/15 border border-white/25 flex items-center justify-center shrink-0 font-bold text-sm sm:text-base">
+          A∪B
+        </div>
+        <div class="min-w-0">
+          <div class="flex items-center gap-2 flex-wrap">
+            <h1 class="text-sm sm:text-lg font-bold tracking-tight text-white truncate">
+              অধ্যায় ২: সেট ও ফাংশন
+            </h1>
+            <span class="text-[11px] sm:text-xs font-bold px-2.5 py-0.5 rounded-full bg-amber-300 text-slate-900 mono-num">
+              মোট ৫৮টি প্রশ্ন
+            </span>
+          </div>
+          <p class="text-xs sm:text-sm text-slate-200 font-medium">
+            Instructor: <span class="font-bold text-white">AKASH</span>
+          </p>
+        </div>
+      </div>
+
+      <!-- Live Timer Badge during Exam -->
+      <div id="headerTimerBadge" class="hidden shrink-0">
+        <div class="px-3 py-1.5 rounded-xl bg-white text-slate-900 font-bold text-xs sm:text-sm mono-num shadow flex items-center gap-1.5">
+          <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+          <span id="liveTimerDisplay">00:00</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Exam Progress Bar Strip -->
+    <div id="examProgressBarWrap" class="hidden bg-slate-950/35 border-t border-white/10">
+      <div class="max-w-4xl mx-auto px-3 sm:px-6 py-2 flex flex-wrap items-center justify-between gap-2 text-xs sm:text-sm text-white">
+        <div class="font-medium truncate max-w-[62%] sm:max-w-none" id="headerStudentInfo"></div>
+        <div class="flex items-center gap-2.5 mono-num ml-auto">
+          <span>উত্তর: <strong id="answeredCountText" class="text-amber-300">0</strong>/58</span>
+          <div class="w-20 sm:w-28 h-2 rounded-full bg-white/20 overflow-hidden">
+            <div id="progressFill" class="h-full bg-emerald-400 transition-all duration-200" style="width: 0%;"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <main class="max-w-4xl mx-auto px-3 sm:px-6 py-5 sm:py-7">
+    <!-- Inline Alert Banner -->
+    <div id="globalNotice" class="hidden mb-4 rounded-xl border border-indigo-200 bg-indigo-50 p-3.5 text-xs sm:text-sm font-medium text-indigo-950 flex items-start justify-between gap-3">
+      <div id="globalNoticeText"></div>
+      <button type="button" id="closeNoticeBtn" class="text-xs font-bold text-indigo-700 underline shrink-0 cursor-pointer">বন্ধ করুন</button>
+    </div>
+
+    <!-- SCREEN 1: STUDENT ENTRY SCREEN -->
+    <section id="entryScreen" class="max-w-xl mx-auto">
+      <div class="card-box p-5 sm:p-7">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 mb-5 border-b border-slate-100">
+          <div>
+            <span class="inline-block text-[11px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800">
+              Online MCQ Exam Portal
+            </span>
+            <h2 class="text-xl sm:text-2xl font-bold text-slate-900 mt-1.5">
+              অধ্যায় ২: সেট ও ফাংশন
+            </h2>
+            <p class="text-xs sm:text-sm text-slate-600 mt-0.5">
+              Instructor: <strong class="text-indigo-700">AKASH</strong> • মোট ৫৮টি প্রশ্ন • পূর্ণমান: ৫৮
+            </p>
+          </div>
+          <div id="previousAttemptBadge" class="hidden text-xs font-bold px-3 py-1.5 rounded-lg bg-slate-100 text-slate-700 border border-slate-200 shrink-0"></div>
+        </div>
+
+        <div class="rounded-xl bg-slate-50 border border-slate-200 p-3.5 mb-5 text-xs sm:text-sm text-slate-700 space-y-1">
+          <div class="font-bold text-slate-900">📌 পরীক্ষার্থীদের জন্য নির্দেশনা:</div>
+          <p>১. আপনার <strong>শিক্ষার্থীর নাম</strong> ও <strong>রোল / আইডি</strong> দিয়ে পরীক্ষা শুরু করুন।</p>
+          <p>২. পরীক্ষা চলাকালীন পেজ রিলোড, উত্তর পরিবর্তন ও ব্যয়িত সময় স্বয়ংক্রিয়ভাবে ট্র্যাক হবে।</p>
+          <p>৩. <strong>পরীক্ষা জমা দিন (Submit)</strong> বাটনে ক্লিক করলে প্রাপ্ত নম্বর, বিস্তারিত ব্যাখ্যা দেখতে পাবেন এবং সম্পূর্ণ রিপোর্ট <strong>akashtalukder1998@gmail.com</strong> মেইলে চলে যাবে।</p>
+        </div>
+
+        <form id="studentEntryForm" class="space-y-4" novalidate>
+          <div>
+            <label for="studentName" class="block text-sm font-bold text-slate-800 mb-1">
+              শিক্ষার্থীর নাম <span class="text-rose-600">*</span>
+            </label>
+            <input
+              type="text"
+              id="studentName"
+              required
+              placeholder="আপনার নাম লিখুন"
+              class="w-full px-3.5 py-2.5 text-base rounded-xl border border-slate-300 bg-white text-slate-900 focus:outline-none focus:border-indigo-600 focus:ring-2 focus:ring-indigo-100"
+            />
+            <p id="nameError" class="hidden text-xs font-semibold text-rose-600 mt-1">
+              অনুগ্রহ করে শিক্ষার্থীর নাম লিখুন।
+            </p>
+          </div>
+
+          <div>
+            <label for="studentRoll" class="block text-sm font-bold text-slate-800 mb-1">
+              রোল / আইডি <span class="text-rose-600">*</span>
+            </label>
+            <input
+              type="text"
+              id="studentRoll"
+              required
+              placeholder="আপনার রোল বা আইডি লিখুন"
+              class="w-full px-3.5 py-2.5 text-base rounded-xl border border-slate-300 bg-white text-slate-900 focus:outline-none focus:border-indigo-600 focus:ring-2 focus:ring-indigo-100 mono-num"
+            />
+            <p id="rollError" class="hidden text-xs font-semibold text-rose-600 mt-1">
+              অনুগ্রহ করে রোল / আইডি লিখুন।
+            </p>
+          </div>
+
+          <div>
+            <label for="examDurationSelect" class="block text-sm font-bold text-slate-800 mb-1">
+              সময় নির্ধারণ
+            </label>
+            <select
+              id="examDurationSelect"
+              class="w-full px-3.5 py-2.5 text-base rounded-xl border border-slate-300 bg-white text-slate-900 focus:outline-none focus:border-indigo-600"
+            >
+              <option value="0" selected>সময়সীমাহীন (Stopwatch চালু থাকবে)</option>
+              <option value="58">৫৮ মিনিট (প্রতি প্রশ্নে ১ মিনিট)</option>
+              <option value="45">৪৫ মিনিট</option>
+              <option value="30">৩০ মিনিট</option>
+            </select>
+          </div>
+
+          <button
+            type="submit"
+            class="w-full py-3 px-5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-base shadow-sm transition cursor-pointer"
+          >
+            পরীক্ষা শুরু করুন →
+          </button>
+        </form>
+      </div>
+    </section>
+
+    <!-- SCREEN 2: ACTIVE EXAM SCREEN (SINGLE QUESTION AT A TIME) -->
+    <section id="examScreen" class="hidden space-y-4">
+      <!-- Top Control Card -->
+      <div class="card-box p-4">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+          <div>
+            <div class="text-xs font-bold text-emerald-700">● লাইভ পরীক্ষা চলছে • Instructor: AKASH</div>
+            <div class="text-sm sm:text-base font-bold text-slate-900 mt-0.5" id="examCandidateMeta"></div>
+          </div>
+          <button
+            type="button"
+            id="topSubmitExamBtn"
+            class="px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs sm:text-sm font-bold cursor-pointer self-start sm:self-auto"
+          >
+            পরীক্ষা জমা দিন (Submit Exam)
+          </button>
+        </div>
+      </div>
+
+      <!-- Single Active Question Container -->
+      <div id="questionsContainer"></div>
+
+      <!-- Previous / Next / Submit Navigation Bar -->
+      <div class="card-box p-4 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-2.5">
+        <button
+          type="button"
+          id="prevQuestionBtn"
+          class="px-4 py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 disabled:opacity-45 disabled:pointer-events-none text-slate-800 font-bold text-sm cursor-pointer transition"
+        >
+          ← পূর্ববর্তী প্রশ্ন
+        </button>
+
+        <div class="text-center text-xs sm:text-sm font-bold text-slate-700 mono-num self-center">
+          প্রশ্ন <span id="currentQIndicator" class="text-indigo-700">১</span> / ৫৮ • উত্তর: <span id="bottomAnsweredCount" class="text-emerald-700">0</span>/৫৮
+        </div>
+
+        <div class="flex items-center gap-2">
+          <button
+            type="button"
+            id="nextQuestionBtn"
+            class="flex-1 sm:flex-initial px-4 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-sm cursor-pointer transition"
+          >
+            পরবর্তী প্রশ্ন →
+          </button>
+          <button
+            type="button"
+            id="bottomSubmitExamBtn"
+            class="px-4 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs sm:text-sm cursor-pointer transition"
+          >
+            পরীক্ষা জমা দিন (Submit Exam)
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- SCREEN 3: POST-SUBMISSION VERIFICATION, SCORE & EXPLANATION SCREEN -->
+    <section id="resultScreen" class="hidden space-y-5">
+      <!-- 1. TOP EMERALD/TEAL AUTO-TRACKING & VERIFICATION CARD (Matches image_8df221.png) -->
+      <div class="rounded-2xl border-2 border-emerald-500 bg-white overflow-hidden shadow-sm">
+        <!-- Emerald Top Header -->
+        <div class="bg-[#059669] text-white px-4 sm:px-6 py-3.5 flex items-center justify-between gap-2">
+          <div class="flex items-center gap-2 font-bold text-xs sm:text-sm">
+            <span class="inline-flex items-center justify-center w-6 h-6 rounded-md bg-white/20 text-white">🛡️</span>
+            <span>• অটো-ট্র্যাকিং ও চেষ্টা যাচাইকরণ By mail</span>
+          </div>
+          <span id="attemptTopPill" class="px-3 py-1 rounded-full bg-white text-[#047857] text-xs font-extrabold shadow-xs shrink-0">
+            ১ম বার চেষ্টা ✓
+          </span>
+        </div>
+
+        <div class="p-4 sm:p-6 space-y-4">
+          <!-- 6 Stat Boxes Grid -->
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+            <div class="rounded-xl border border-slate-200 bg-slate-50/70 p-3.5">
+              <div class="text-xs text-slate-500 font-medium">শিক্ষার্থীর নাম</div>
+              <div id="trkStudentName" class="text-sm sm:text-base font-bold text-slate-900 mt-0.5 break-words">-</div>
+            </div>
+            <div class="rounded-xl border border-slate-200 bg-slate-50/70 p-3.5">
+              <div class="text-xs text-slate-500 font-medium">রোল / আইডি</div>
+              <div id="trkStudentRoll" class="text-sm sm:text-base font-bold text-slate-900 mt-0.5 mono-num">-</div>
+            </div>
+            <div class="rounded-xl border border-slate-200 bg-slate-50/70 p-3.5">
+              <div class="text-xs text-slate-500 font-medium">মোট চেষ্টার সংখ্যা</div>
+              <div id="trkAttemptText" class="text-sm sm:text-base font-bold text-[#059669] mt-0.5">১ম বার (1st Attempt)</div>
+            </div>
+            <div class="rounded-xl border border-slate-200 bg-slate-50/70 p-3.5">
+              <div class="text-xs text-slate-500 font-medium">পেজ রিলোড / রিফ্রেশ</div>
+              <div id="trkReloadCount" class="text-sm sm:text-base font-bold text-slate-900 mt-0.5 mono-num">০ বার</div>
+            </div>
+            <div class="rounded-xl border border-slate-200 bg-slate-50/70 p-3.5">
+              <div class="text-xs text-slate-500 font-medium">উত্তর পরিবর্তন</div>
+              <div id="trkChangeCount" class="text-sm sm:text-base font-bold text-slate-900 mt-0.5 mono-num">০ বার</div>
+            </div>
+            <div class="rounded-xl border border-slate-200 bg-slate-50/70 p-3.5">
+              <div class="text-xs text-slate-500 font-medium">ব্যয়িত সময়</div>
+              <div id="trkTimeTaken" class="text-sm sm:text-base font-bold text-slate-900 mt-0.5 mono-num">০ মিনিট ০ সেকেন্ড</div>
+            </div>
+          </div>
+
+          <!-- Dark Navy Banner with Start Time, Submit Time & Verification Code -->
+          <div class="rounded-xl bg-[#0f172a] text-white p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+            <div class="space-y-1 text-xs sm:text-sm mono-num">
+              <div><span class="text-slate-400">শুরু:</span> <strong id="trkStartTime" class="text-white">-</strong></div>
+              <div><span class="text-slate-400">জমা:</span> <strong id="trkEndTime" class="text-white">-</strong></div>
+            </div>
+            <div class="sm:text-right">
+              <div class="text-[10px] uppercase tracking-widest text-slate-400 font-semibold">VERIFICATION CODE</div>
+              <div id="trkVerificationCode" class="text-sm sm:text-base font-extrabold text-amber-400 tracking-wider mono-num mt-0.5">
+                EXAM-ATT1-SC00-0000
+              </div>
+            </div>
+          </div>
+
+          <!-- Vibrant Indigo Accent Bar -->
+          <div class="h-3.5 w-full rounded-full bg-indigo-600"></div>
+
+          <!-- Light Green Email Status Box -->
+          <div class="rounded-xl border border-emerald-200 bg-emerald-50/80 p-3.5 sm:p-4 space-y-3">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+              <div class="text-xs sm:text-sm text-emerald-950 leading-relaxed" id="emailStatusMessage">
+                ✅ <strong>akashtalukder1998@gmail.com</strong> মেইলে সম্পূর্ণ ফলাফল ও তথ্য পাঠানো হচ্ছে...
+                <span class="block text-xs text-emerald-800 mt-0.5">
+                  (প্রথমবার ব্যবহারে FormSubmit থেকে আসা ভেরিফিকেশন লিংকটি ইনবক্স/স্প্যাম থেকে একবার Confirm করে নেবেন)
+                </span>
+              </div>
+              <a
+                id="mailtoDirectBtn"
+                href="#"
+                class="px-3.5 py-2 rounded-lg bg-white border border-slate-300 hover:bg-slate-50 text-indigo-700 font-bold text-xs inline-flex items-center justify-center gap-1.5 shrink-0 shadow-2xs"
+              >
+                <span>✉️ সরাসরি মেইল করুন</span>
+              </a>
+            </div>
+
+            <!-- Instructor Mail Input Row + Resend Button -->
+            <div class="pt-2.5 border-t border-emerald-200/70 flex flex-col sm:flex-row items-stretch sm:items-center gap-2">
+              <label for="instructorMailDisplay" class="text-xs font-semibold text-slate-600 shrink-0">
+                Instructor Mail:
+              </label>
+              <input
+                type="email"
+                id="instructorMailDisplay"
+                value="akashtalukder1998@gmail.com"
+                readonly
+                class="flex-1 px-3 py-1.5 text-base rounded-lg border border-slate-300 bg-white text-slate-800 font-medium focus:outline-none"
+              />
+              <button
+                type="button"
+                id="resendEmailBtn"
+                class="px-4 py-2 rounded-lg bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold cursor-pointer shrink-0"
+              >
+                পুনরায় পাঠান
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2. SCORE SUMMARY & ACTION CARD (Matches image_8df25d.png) -->
+      <div class="card-box p-4 sm:p-6 space-y-4">
+        <!-- 4 Colored Summary Boxes -->
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-center mono-num">
+          <div class="rounded-xl bg-indigo-50/90 border border-indigo-100 p-4">
+            <div class="text-xs font-bold text-indigo-600">প্রাপ্ত নম্বর</div>
+            <div id="sumScoreText" class="text-2xl sm:text-3xl font-extrabold text-indigo-950 mt-1">০/৫৮</div>
+          </div>
+          <div class="rounded-xl bg-emerald-50/90 border border-emerald-100 p-4">
+            <div class="text-xs font-bold text-emerald-700">সঠিক উত্তর</div>
+            <div id="sumCorrectText" class="text-2xl sm:text-3xl font-extrabold text-emerald-800 mt-1">০</div>
+          </div>
+          <div class="rounded-xl bg-rose-50/90 border border-rose-100 p-4">
+            <div class="text-xs font-bold text-rose-600">ভুল উত্তর</div>
+            <div id="sumWrongText" class="text-2xl sm:text-3xl font-extrabold text-rose-800 mt-1">০</div>
+          </div>
+          <div class="rounded-xl bg-slate-100/90 border border-slate-200 p-4">
+            <div class="text-xs font-bold text-slate-600">উত্তর দেননি</div>
+            <div id="sumUnansweredText" class="text-2xl sm:text-3xl font-extrabold text-slate-800 mt-1">৫৮</div>
+          </div>
+        </div>
+
+        <!-- Dynamic Feedback Banner -->
+        <div id="performanceFeedbackBox" class="rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-center text-xs sm:text-sm font-medium text-slate-700">
+          এই অধ্যায়ের সেট ও ফাংশন অংশগুলো পুনরায় পড়ে আবার চেষ্টা করুন।
+        </div>
+
+        <!-- Two Action Buttons -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 no-print">
+          <button
+            type="button"
+            id="retakeExamBtn"
+            class="py-3 px-4 rounded-xl bg-[#111827] hover:bg-slate-800 text-white font-bold text-xs sm:text-sm cursor-pointer transition"
+          >
+            পুনরায় পরীক্ষা দিন (নতুন চেষ্টা হিসেবে গণ্য হবে)
+          </button>
+          <button
+            type="button"
+            id="scrollToReviewBtn"
+            class="py-3 px-4 rounded-xl bg-white hover:bg-slate-50 text-slate-800 border border-slate-300 font-bold text-xs sm:text-sm cursor-pointer transition"
+          >
+            সব উত্তর পর্যালোচনা করুন
+          </button>
+        </div>
+      </div>
+
+      <!-- 3. FILTER TABS & DETAILED QUESTION REVIEW SECTION -->
+      <div id="reviewSectionAnchor" class="space-y-4 pt-1">
+        <!-- Filter Pills -->
+        <div class="flex flex-wrap items-center gap-2 no-print" role="group" aria-label="উত্তর ফিল্টার">
+          <button
+            type="button"
+            data-review-filter="all"
+            class="review-filter-btn px-4 py-2 rounded-full text-xs sm:text-sm font-bold bg-indigo-600 text-white shadow-xs cursor-pointer"
+          >
+            সব প্রশ্ন (<span id="tabAllCount">৫৮</span>)
+          </button>
+          <button
+            type="button"
+            data-review-filter="wrong"
+            class="review-filter-btn px-4 py-2 rounded-full text-xs sm:text-sm font-bold bg-white text-slate-700 border border-slate-200 hover:bg-slate-50 cursor-pointer"
+          >
+            ভুল উত্তর (<span id="tabWrongCount">০</span>)
+          </button>
+          <button
+            type="button"
+            data-review-filter="unanswered"
+            class="review-filter-btn px-4 py-2 rounded-full text-xs sm:text-sm font-bold bg-white text-slate-700 border border-slate-200 hover:bg-slate-50 cursor-pointer"
+          >
+            উত্তরহীন (<span id="tabUnansweredCount">৫৮</span>)
+          </button>
+          <button
+            type="button"
+            data-review-filter="correct"
+            class="review-filter-btn px-4 py-2 rounded-full text-xs sm:text-sm font-bold bg-white text-slate-700 border border-slate-200 hover:bg-slate-50 cursor-pointer"
+          >
+            সঠিক উত্তর (<span id="tabCorrectCount">০</span>)
+          </button>
+        </div>
+
+        <!-- Review Question Cards Container -->
+        <div id="reviewContainer" class="space-y-4"></div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="border-t border-slate-200 bg-white mt-10 py-4 px-3 sm:px-6 text-center text-xs text-slate-500 no-print">
+    <div class="max-w-4xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-1">
+      <span>অধ্যায় ২: সেট ও ফাংশন (মোট ৫৮টি প্রশ্ন) • Instructor: <strong class="text-slate-700">AKASH</strong></span>
+      <span>akashtalukder1998@gmail.com</span>
+    </div>
+  </footer>
+
+  <!-- Submit Confirmation Modal -->
+  <div id="confirmSubmitModal" class="fixed inset-0 z-50 hidden bg-slate-950/60 flex items-center justify-center p-4">
+    <div class="card-box max-w-md w-full p-5 sm:p-6 bg-white">
+      <h3 class="text-lg font-bold text-slate-900">পরীক্ষা জমা দেওয়ার নিশ্চিতকরণ</h3>
+      <p id="confirmSubmitStats" class="text-sm text-slate-700 mt-2"></p>
+      <p class="text-xs text-slate-500 mt-2">
+        জমা দেওয়ার পর আপনার প্রাপ্ত নম্বর, অটো-ট্র্যাকিং রিপোর্ট ও প্রতিটি প্রশ্নের বিস্তারিত ব্যাখ্যা দেখতে পাবেন এবং ফলাফল <strong>akashtalukder1998@gmail.com</strong> মেইলে পাঠানো হবে।
+      </p>
+      <div class="mt-5 flex items-center justify-end gap-2">
+        <button
+          type="button"
+          id="cancelSubmitModalBtn"
+          class="px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-slate-100 text-slate-700 hover:bg-slate-200 cursor-pointer"
+        >
+          ফিরে যান
+        </button>
+        <button
+          type="button"
+          id="confirmSubmitActionBtn"
+          class="px-5 py-2 rounded-xl text-xs sm:text-sm font-bold bg-emerald-600 hover:bg-emerald-700 text-white cursor-pointer"
+        >
+          হ্যাঁ, জমা দিন ✓
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    /**
+     * =========================================================================
+     * COMPLETE 58 MCQ DATASET: ch2_Set_Function.docx
+     * Crisp Unicode superscripts, subscripts & mathematical symbols
+     * =========================================================================
+     */
+    const QUESTIONS = [
+      {
+        "id": 1,
+        "q": "f(y) = (1 + y² + y³)/y² হলে, f(−½) এর মান কত?",
+        "options": {
+          "a": "9/32",
+          "b": "9/2",
+          "c": "5",
+          "d": "20"
+        },
+        "ans": "b",
+        "exp": "y = −½ হলে y² = ¼ এবং y³ = −⅛।<br>লব = 1 + ¼ − ⅛ = (8 + 2 − 1)/8 = 9/8।<br>∴ f(−½) = (9/8) ÷ (¼) = (9/8) × 4 = 9/2।"
+      },
+      {
+        "id": 2,
+        "q": "F(y) = y⁴ + 5y² − 3 হলে, F(−1) এর মান কত?",
+        "options": {
+          "a": "−9",
+          "b": "−7",
+          "c": "3",
+          "d": "4"
+        },
+        "ans": "c",
+        "exp": "F(−1) = (−1)⁴ + 5(−1)² − 3 = 1 + 5 − 3 = 3।"
+      },
+      {
+        "id": 3,
+        "q": "f(x) = 3/x + 1 হলে, f(1/x) = কত?",
+        "options": {
+          "a": "3x + 1",
+          "b": "3 + x",
+          "c": "(3 + x)/x",
+          "d": "x/(3x + 1)"
+        },
+        "ans": "a",
+        "exp": "f(x) এ x এর পরিবর্তে 1/x বসালে,<br>f(1/x) = 3 ÷ (1/x) + 1 = 3x + 1।"
+      },
+      {
+        "id": 4,
+        "q": "যদি f(x) = x³ + ax² − 6x − 9 হয়, তবে a এর কোন মানের জন্য f(−3) = 0 হবে?",
+        "options": {
+          "a": "6",
+          "b": "2",
+          "c": "−2",
+          "d": "−4"
+        },
+        "ans": "b",
+        "exp": "f(−3) = (−3)³ + a(−3)² − 6(−3) − 9 = −27 + 9a + 18 − 9 = 9a − 18।<br>f(−3) = 0 হলে 9a − 18 = 0 ⇒ 9a = 18 ⇒ a = 2।"
+      },
+      {
+        "id": 5,
+        "q": "f(m) = m³ + km² − 4m − 8 হলে, k এর কোন মানের জন্য f(−2) = 0 হবে?",
+        "options": {
+          "a": "−6",
+          "b": "−2",
+          "c": "2",
+          "d": "6"
+        },
+        "ans": "c",
+        "exp": "f(−2) = (−2)³ + k(−2)² − 4(−2) − 8 = −8 + 4k + 8 − 8 = 4k − 8।<br>f(−2) = 0 হলে 4k − 8 = 0 ⇒ k = 2।"
+      },
+      {
+        "id": 6,
+        "q": "f(y) = y² − (a + 1/a)y + 1 হলে y এর কোন মানের জন্য f(y) = 0 হবে?",
+        "options": {
+          "a": "0, a",
+          "b": "0, 1/a",
+          "c": "0, −1/a",
+          "d": "a, 1/a"
+        },
+        "ans": "d",
+        "exp": "y² − (a + 1/a)y + 1 = y² − ay − (1/a)y + a·(1/a) [কারণ a·(1/a) = 1]<br>= y(y − a) − (1/a)(y − a) = (y − a)(y − 1/a)।<br>f(y) = 0 হলে y = a অথবা y = 1/a।"
+      },
+      {
+        "id": 7,
+        "q": "নিচের কোনটি {x ∈ N : x মৌলিক সংখ্যা এবং 2 ≤ x ≤ 7} সেটটিকে তালিকা পদ্ধতিতে প্রকাশ করে?",
+        "options": {
+          "a": "{2, 3, 7}",
+          "b": "{2, 3, 5}",
+          "c": "{3, 5, 7}",
+          "d": "{2, 3, 5, 7}"
+        },
+        "ans": "d",
+        "exp": "2 থেকে 7 এর মধ্যে (2 ও 7 সহ) মৌলিক সংখ্যাগুলো হলো 2, 3, 5, 7।<br>(4 ও 6 যৌগিক সংখ্যা, তাই বাদ।)<br>∴ সেটটি = {2, 3, 5, 7}।"
+      },
+      {
+        "id": 8,
+        "q": "{x ∈ N : x² > 15 এবং x³ < 36} সেটটির তালিকা রূপ কোনটি?",
+        "options": {
+          "a": "{4, 5, 6}",
+          "b": "{1, 2, 3}",
+          "c": "{3}",
+          "d": "∅"
+        },
+        "ans": "d",
+        "exp": "x² &gt; 15 হলে x ≥ 4 (কারণ 3² = 9 &lt; 15 এবং 4² = 16 &gt; 15)।<br>কিন্তু x ≥ 4 হলে x³ ≥ 64, যা 36 এর চেয়ে বড়।<br>অর্থাৎ দুইটি শর্ত একসাথে কোনো স্বাভাবিক সংখ্যার জন্য সত্য হয় না। ∴ সেটটি ফাঁকা সেট ∅।"
+      },
+      {
+        "id": 9,
+        "q": "{x ∈ N : x² ≥ 4 এবং x³ < 100} সেটটির তালিকা পদ্ধতি নিচের কোনটি?",
+        "options": {
+          "a": "{2, 3, 4}",
+          "b": "{2, 3, 5}",
+          "c": "{3, 4, 5}",
+          "d": "{3, 4, 6}"
+        },
+        "ans": "a",
+        "exp": "x² ≥ 4 হলে x ≥ 2।<br>x³ &lt; 100 হলে x ≤ 4 (কারণ 4³ = 64 &lt; 100 এবং 5³ = 125 &gt; 100)।<br>∴ 2 ≤ x ≤ 4 অর্থাৎ সেটটি = {2, 3, 4}।"
+      },
+      {
+        "id": 10,
+        "q": "{x ∈ Z : x² − 9 = 0} এর তালিকা পদ্ধতিতে প্রকাশিত রূপ কোনটি?",
+        "options": {
+          "a": "∅",
+          "b": "{−3}",
+          "c": "{3}",
+          "d": "{−3, 3}"
+        },
+        "ans": "d",
+        "exp": "x² − 9 = 0 ⇒ x² = 9 ⇒ x = ±3।<br>−3 ও 3 উভয়ই পূর্ণসংখ্যা (Z) এর সদস্য। ∴ সেটটি = {−3, 3}।"
+      },
+      {
+        "id": 11,
+        "q": "A = {1, 2}, B = {2, 3} এবং C = {3, 4, 5} হলে A ∪ B ∪ C এর উপাদান সংখ্যা কত?",
+        "options": {
+          "a": "3",
+          "b": "4",
+          "c": "5",
+          "d": "6"
+        },
+        "ans": "c",
+        "exp": "A ∪ B ∪ C = {1, 2, 3, 4, 5} (সবগুলো উপাদান একবার করে ধরে)।<br>∴ উপাদান সংখ্যা = 5।"
+      },
+      {
+        "id": 12,
+        "q": "A = ∅, B = {1} হলে, A ∪ B = ?",
+        "options": {
+          "a": "φ",
+          "b": "{φ}",
+          "c": "{1}",
+          "d": "{1, φ}"
+        },
+        "ans": "c",
+        "exp": "ফাঁকা সেট ∅ এর কোনো উপাদান নেই।<br>∴ A ∪ B = ∅ ∪ {1} = {1}।"
+      },
+      {
+        "id": 13,
+        "q": "নিচের কোনটি দ্বারা A ∩ B প্রকাশ করা যায়?",
+        "options": {
+          "a": "{x : x ∈ A এবং x ∉ B}",
+          "b": "{x : x ∈ B এবং x ∉ A}",
+          "c": "{x : x ∈ A এবং x ∈ B}",
+          "d": "{x : x ∈ A এবং x ∉ A}"
+        },
+        "ans": "c",
+        "exp": "দুইটি সেটের ছেদ (A ∩ B) হলো সেই সব উপাদানের সেট, যেগুলো A ও B উভয়ের মধ্যেই আছে।<br>∴ A ∩ B = {x : x ∈ A এবং x ∈ B}।<br>(ক নং হলো A \\ B এবং খ নং হলো B \\ A।)"
+      },
+      {
+        "id": 14,
+        "q": "P ∩ Q = { } হলে, P ও Q পরস্পর-",
+        "options": {
+          "a": "উপসেট",
+          "b": "নিশ্ছেদ সেট",
+          "c": "সার্বিক সেট",
+          "d": "ছেদ সেট"
+        },
+        "ans": "b",
+        "exp": "যে দুইটি সেটের কোনো সাধারণ উপাদান নেই অর্থাৎ ছেদ ফাঁকা সেট হয়, তাদের নিশ্ছেদ (বিচ্ছিন্ন) সেট বলে।<br>P ∩ Q = { } হওয়ায় P ও Q পরস্পর নিশ্ছেদ সেট।"
+      },
+      {
+        "id": 15,
+        "q": "P = {n ∈ N : n² − 6n + 8 = 0} এবং R = {1, 4, 5} হলে P ∩ R এর সেট কোনটি?",
+        "options": {
+          "a": "{1, 2, 4, 5}",
+          "b": "{1, 4, 5}",
+          "c": "{2, 4}",
+          "d": "{4}"
+        },
+        "ans": "d",
+        "exp": "n² − 6n + 8 = 0 ⇒ n² − 4n − 2n + 8 = 0 ⇒ n(n − 4) − 2(n − 4) = 0 ⇒ (n − 4)(n − 2) = 0<br>∴ n = 2 বা 4, অর্থাৎ P = {2, 4}।<br>R = {1, 4, 5} এর সাথে সাধারণ উপাদান শুধু 4। ∴ P ∩ R = {4}।"
+      },
+      {
+        "id": 16,
+        "q": "A = {x ∈ N : x² < 25}, B = {x ∈ N : x মৌলিক সংখ্যা ও x² < 25} এবং C = {x ∈ N : x² = 25} হলে (A ∩ B) ∪ C = কত?",
+        "options": {
+          "a": "{ }",
+          "b": "{2, 3, 5}",
+          "c": "{−5, 2, 3, 5}",
+          "d": "{1, 2, 3}"
+        },
+        "ans": "b",
+        "exp": "A = {1, 2, 3, 4} (কারণ 5² = 25 &lt; 25 সত্য নয়)।<br>B = {2, 3} (মৌলিক সংখ্যা এবং বর্গ 25 এর কম)।<br>C: x² = 25 ⇒ x = ±5, কিন্তু x ∈ N বলে x = 5। অর্থাৎ C = {5}।<br>A ∩ B = {2, 3} ⇒ (A ∩ B) ∪ C = {2, 3, 5}।"
+      },
+      {
+        "id": 17,
+        "q": "A = {x ∈ N : x² < 25}, B = {x ∈ N : x মৌলিক সংখ্যা ও x² < 25} এবং C = {x ∈ N : x² = 25} হলে (A ∩ B) ∪ C = কত?",
+        "options": {
+          "a": "{ }",
+          "b": "{2, 3, 5}",
+          "c": "{−5, 2, 3, 5}",
+          "d": "{1, 2, 3, 4, 5}"
+        },
+        "ans": "b",
+        "exp": "A = {1, 2, 3, 4}, B = {2, 3} এবং C = {5} (x ∈ N বলে −5 গ্রহণযোগ্য নয়)।<br>A ∩ B = {2, 3}।<br>∴ (A ∩ B) ∪ C = {2, 3} ∪ {5} = {2, 3, 5}।"
+      },
+      {
+        "id": 18,
+        "q": "A = {3, 4} এবং B = {1, 2, 3} হলে, B \\ A = কত?",
+        "options": {
+          "a": "{1, 2}",
+          "b": "{1, 3}",
+          "c": "{2, 4}",
+          "d": "{3, 4}"
+        },
+        "ans": "a",
+        "exp": "B \\ A = B এর সেই উপাদানগুলো যা A তে নেই।<br>B এর উপাদান 1, 2, 3 এর মধ্যে 3 টি A তে আছে, তাই বাদ।<br>∴ B \\ A = {1, 2}।"
+      },
+      {
+        "id": 19,
+        "q": "U = {4, 5, 6, 7, 8, 9}, B = {5, 7, 9} হলে, B' সেটটি নিচের কোনটি?",
+        "options": {
+          "a": "{4, 5, 6}",
+          "b": "{5, 6, 7}",
+          "c": "{4, 6, 8}",
+          "d": "{7, 8, 9}"
+        },
+        "ans": "c",
+        "exp": "B' হলো সার্বিক সেট U এর সেই উপাদানগুলো যা B তে নেই।<br>U এর উপাদান 4, 5, 6, 7, 8, 9 থেকে B এর উপাদান 5, 7, 9 বাদ দিলে থাকে 4, 6, 8।<br>∴ B' = {4, 6, 8}।"
+      },
+      {
+        "id": 20,
+        "q": "U = {1, 2, 3, 4, 5, 6}, A = {1, 3, 5}, B = {2, 4, 6} হলে (A' ∪ B') এর মান নিচের কোনটি?",
+        "options": {
+          "a": "{ }",
+          "b": "{2, 4, 6}",
+          "c": "{1, 3, 5}",
+          "d": "{1, 2, 3, 4, 5, 6}"
+        },
+        "ans": "d",
+        "exp": "A' = U − A = {2, 4, 6} এবং B' = U − B = {1, 3, 5}।<br>∴ A' ∪ B' = {2, 4, 6} ∪ {1, 3, 5} = {1, 2, 3, 4, 5, 6}।<br>(বিকল্প: ডি-মরগানের সূত্রমতে A' ∪ B' = (A ∩ B)' = { }' = U।)"
+      },
+      {
+        "id": 21,
+        "q": "নিচের কোনটি সসীম সেট?",
+        "options": {
+          "a": "{x ∈ Z : x < 2}",
+          "b": "{p/q : p ও q পূর্ণসংখ্যা এবং q ≠ 0}",
+          "c": "{y ∈ N : y² < 100 < y³}",
+          "d": "{x ∈ Z : x² > 5 এবং x³ ≤ 36}"
+        },
+        "ans": "c",
+        "exp": "ক) 2 এর চেয়ে ছোট পূর্ণসংখ্যা অসংখ্য, তাই অসীম সেট।<br>খ) এটি মূলদ সংখ্যার সেট, অসীম।<br>গ) y² &lt; 100 হলে y ≤ 9 এবং 100 &lt; y³ হলে y ≥ 5। অর্থাৎ সেটটি {5, 6, 7, 8, 9}, যা সসীম।<br>ঘ) x³ ≤ 36 ⇒ x ≤ 3 এবং x² &gt; 5 ⇒ x ≥ 3 অথবা x ≤ −3। ফলে −3, −4, −5, … সবই সেটের সদস্য, তাই অসীম।"
+      },
+      {
+        "id": 22,
+        "q": "{x ∈ N : 9 < x < 10} এরূপ সেটকে কী বলে?",
+        "options": {
+          "a": "নিশ্ছেদ সেট",
+          "b": "অসীম সেট",
+          "c": "ফাঁকা সেট",
+          "d": "সসীম সেট"
+        },
+        "ans": "c",
+        "exp": "9 ও 10 এর মধ্যে কোনো স্বাভাবিক সংখ্যা নেই।<br>তাই সেটটির কোনো উপাদান নেই, অর্থাৎ এটি ফাঁকা সেট।"
+      },
+      {
+        "id": 23,
+        "q": "নিচের কোনটি ফাঁকা সেট?",
+        "options": {
+          "a": "{x ∈ N : x মৌলিক সংখ্যা, 23 < x < 29}",
+          "b": "{x ∈ N : x মৌলিক সংখ্যা, 11 < x < 19}",
+          "c": "{x ∈ N : 23 < x < 25}",
+          "d": "{x ∈ Z : 11 < x < 19}"
+        },
+        "ans": "a",
+        "exp": "ক) 23 ও 29 এর মধ্যবর্তী সংখ্যা 24, 25, 26, 27, 28 — এদের কোনোটিই মৌলিক নয়। তাই সেটটি ফাঁকা।<br>খ) 13 ও 17 মৌলিক, তাই সেটটি {13, 17}।<br>গ) সেটটি {24}।<br>ঘ) সেটটি {12, 13, …, 18}।<br>∴ ফাঁকা সেট ক) নং।"
+      },
+      {
+        "id": 24,
+        "q": "নিচের কোনটি অসীম সেট?",
+        "options": {
+          "a": "{x ∈ N : x > 5}",
+          "b": "{x ∈ N : x < 5}",
+          "c": "{x ∈ N : x মৌলিক সংখ্যা এবং x > 2}",
+          "d": "{x ∈ N : 16 ≤ x² ≤ 36}"
+        },
+        "ans": "a",
+        "exp": "ক) 5 এর চেয়ে বড় স্বাভাবিক সংখ্যা 6, 7, 8, … অসংখ্য, তাই এটি অসীম সেট।<br>খ) সেটটি {1, 2, 3, 4}, সসীম।<br>গ) 2 এর চেয়ে বড় মৌলিক সংখ্যাও অসংখ্য (3, 5, 7, 11, …), তাই এটিও অসীম সেট। (অর্থাৎ ক ও গ দুটিই অসীম সেট।)<br>ঘ) 16 ≤ x² ≤ 36 ⇒ 4 ≤ x ≤ 6, অর্থাৎ {4, 5, 6}, সসীম।"
+      },
+      {
+        "id": 25,
+        "q": "নিচের কোনটি অসীম সেট?",
+        "options": {
+          "a": "{3, 5, 7}",
+          "b": "{1, 2, 2², …, 2¹⁰}",
+          "c": "{x : x স্বাভাবিক সংখ্যা এবং x < 41}",
+          "d": "{3, 3², 3³, …}"
+        },
+        "ans": "d",
+        "exp": "ক) তিনটি উপাদান বিশিষ্ট সসীম সেট।<br>খ) 1, 2, 2², …, 2¹⁰ — মোট 11টি উপাদান, সসীম।<br>গ) 41 এর ছোট স্বাভাবিক সংখ্যা 1 থেকে 40, মোট 40টি, সসীম।<br>ঘ) 3, 3², 3³, … এর শেষ নেই (… চিহ্ন আছে), তাই উপাদান অসংখ্য — অসীম সেট।"
+      },
+      {
+        "id": 26,
+        "q": "M = {3, 5, 7}, N = {4, 5, 7} হলে-\ni. M ∩ N = {5, 7}\nii. P(M ∪ N) এর উপাদান সংখ্যা 16\niii. M \\ N = {3, 5}\nনিচের কোনটি সঠিক?",
+        "options": {
+          "a": "i ও ii",
+          "b": "i ও iii",
+          "c": "ii ও iii",
+          "d": "i, ii ও iii"
+        },
+        "ans": "a",
+        "exp": "i) M ও N এর সাধারণ উপাদান 5 ও 7, তাই M ∩ N = {5, 7} — সঠিক।<br>ii) M ∪ N = {3, 4, 5, 7}, উপাদান সংখ্যা 4।<br>∴ P(M ∪ N) এর উপাদান সংখ্যা = 2⁴ = 16 — সঠিক।<br>iii) M \\ N = M এর যে উপাদান N এ নেই = {3}। {3, 5} বলা ভুল।"
+      },
+      {
+        "id": 27,
+        "q": "U সার্বিক সেট এবং A সেটটি U এর উপসেট হলে-\ni. Aᶜ ∪ A = U\nii. Aᶜ ∩ A = φ\niii. A ∪ U = Aᶜ\nনিচের কোনটি সঠিক?",
+        "options": {
+          "a": "i ও ii",
+          "b": "i ও iii",
+          "c": "ii ও iii",
+          "d": "i, ii ও iii"
+        },
+        "ans": "a",
+        "exp": "i) A এবং A এর পূরক Aᶜ মিলে পুরো U গঠন করে, তাই Aᶜ ∪ A = U — সঠিক।<br>ii) A ও Aᶜ এর কোনো সাধারণ উপাদান নেই, তাই Aᶜ ∩ A = φ — সঠিক।<br>iii) A ⊆ U হওয়ায় A ∪ U = U, Aᶜ নয় — ভুল।"
+      },
+      {
+        "id": 28,
+        "q": "A = {1, 2}, B = {2, 3} এবং C = {3, 4} হলে নিচের কোনটি দ্বারা (A ∩ B) × C নির্দেশ করে?",
+        "options": {
+          "a": "{(2, 3), (2, 4)}",
+          "b": "{(1, 2), (2, 3)}",
+          "c": "{(2, 3), (2, 4)}",
+          "d": "{(1, 3), (1, 4)}"
+        },
+        "ans": "a",
+        "exp": "A ∩ B = {2}।<br>(A ∩ B) × C = {2} × {3, 4} = {(2, 3), (2, 4)}।"
+      },
+      {
+        "id": 29,
+        "q": "A = {2, 4, 6}, B = {1, 3, 5} হলে, A × B এর উপাদান সংখ্যা কতটি?",
+        "options": {
+          "a": "6 টি",
+          "b": "8 টি",
+          "c": "9 টি",
+          "d": "16 টি"
+        },
+        "ans": "c",
+        "exp": "n(A) = 3 এবং n(B) = 3।<br>n(A × B) = n(A) × n(B) = 3 × 3 = 9 টি।"
+      },
+      {
+        "id": 30,
+        "q": "A = {1, 2, 3} হলে, A × A নির্ণয় করলে কয়টি ক্রমজোড় পাওয়া যাবে?",
+        "options": {
+          "a": "5",
+          "b": "7",
+          "c": "8",
+          "d": "9"
+        },
+        "ans": "d",
+        "exp": "n(A) = 3।<br>n(A × A) = 3 × 3 = 9।<br>(ক্রমজোড়গুলো: (1,1), (1,2), (1,3), (2,1), (2,2), (2,3), (3,1), (3,2), (3,3))"
+      },
+      {
+        "id": 31,
+        "q": "M = {1, 3}, N = {1, 2} এবং P = {3, 4} হলে, (M ∩ N) × P এর মান নিচের কোনটি?",
+        "options": {
+          "a": "{(1, 3), (2, 4)}",
+          "b": "{(2, 3), (2, 4)}",
+          "c": "{(1, 3), (1, 4)}",
+          "d": "{(1, 2), (2, 3)}"
+        },
+        "ans": "c",
+        "exp": "M ∩ N = {1}।<br>(M ∩ N) × P = {1} × {3, 4} = {(1, 3), (1, 4)}।"
+      },
+      {
+        "id": 32,
+        "q": "A = {−1, 1, 2, 3} এবং B = {x : x² − 2x − 3 = 0} হলে, A × B এর উপাদান সংখ্যা কত?",
+        "options": {
+          "a": "4",
+          "b": "5",
+          "c": "6",
+          "d": "8"
+        },
+        "ans": "d",
+        "exp": "x² − 2x − 3 = 0 ⇒ (x − 3)(x + 1) = 0 ⇒ x = 3 বা −1।<br>অর্থাৎ B = {−1, 3}, n(B) = 2। n(A) = 4।<br>∴ n(A × B) = 4 × 2 = 8।"
+      },
+      {
+        "id": 33,
+        "q": "U = {1, 2, 3, 4, 5, 6}, A = {1, 2, 3, 4} এবং D = A' হলে-\ni. D এর উপাদান 2 টি\nii. A × D এর উপাদান 8 টি\niii. A × D ফাংশন\nনিচের কোনটি সঠিক?",
+        "options": {
+          "a": "i ও ii",
+          "b": "i ও iii",
+          "c": "ii ও iii",
+          "d": "i, ii ও iii"
+        },
+        "ans": "a",
+        "exp": "D = A' = U − A = {5, 6}।<br>i) D এর উপাদান 2 টি — সঠিক।<br>ii) n(A × D) = 4 × 2 = 8 — সঠিক।<br>iii) A × D = {(1,5), (1,6), (2,5), …} এ একই প্রথম উপাদান 1 এর বিপরীতে দুইটি ভিন্ন দ্বিতীয় উপাদান (5 ও 6) আছে। ফাংশনের ক্ষেত্রে একটি প্রথম উপাদানের জন্য একটিই দ্বিতীয় উপাদান থাকতে হয়, তাই A × D ফাংশন নয় — ভুল।"
+      },
+      {
+        "id": 34,
+        "q": "Q = {1, a} হলে P(Q) নিচের কোনটি?",
+        "options": {
+          "a": "{1, a}",
+          "b": "{1}, {a}, {1, a}",
+          "c": "{1}, {a}, {1, a}, ∅",
+          "d": "{{1}, {a}, {1, a}, ∅}"
+        },
+        "ans": "d",
+        "exp": "Q এর সকল উপসেট নিয়ে গঠিত সেটই শক্তি সেট P(Q)।<br>Q এর উপসেটগুলো: ∅, {1}, {a}, {1, a}।<br>∴ P(Q) = {∅, {1}, {a}, {1, a}} — অর্থাৎ চারটি উপসেটই থাকতে হবে (ফাঁকা সেটসহ)।"
+      },
+      {
+        "id": 35,
+        "q": "{a, b, c, d} এর কয়টি উপসেট হবে যার প্রত্যেকের তিনটি করে উপাদান রয়েছে?",
+        "options": {
+          "a": "2 টি",
+          "b": "3 টি",
+          "c": "4 টি",
+          "d": "6 টি"
+        },
+        "ans": "c",
+        "exp": "4 টি উপাদান থেকে 3 টি করে নিলে উপসেট সংখ্যা = ⁴C₃ = 4।<br>উপসেটগুলো: {a, b, c}, {a, b, d}, {a, c, d}, {b, c, d}।"
+      },
+      {
+        "id": 36,
+        "q": "A = {a, b, c} হলে, P(A) এর উপাদান সংখ্যা নিচের কোনটি?",
+        "options": {
+          "a": "3",
+          "b": "7",
+          "c": "8",
+          "d": "9"
+        },
+        "ans": "c",
+        "exp": "n(A) = 3 হলে শক্তি সেট P(A) এর উপাদান সংখ্যা = 2ⁿ = 2³ = 8।"
+      },
+      {
+        "id": 37,
+        "q": "M = {4, 5} এবং N = {5, 9} হলে, P(M ∩ N) এর সদস্য সংখ্যা নিচের কোনটি?",
+        "options": {
+          "a": "1",
+          "b": "2",
+          "c": "3",
+          "d": "4"
+        },
+        "ans": "b",
+        "exp": "M ∩ N = {5}, এর উপাদান সংখ্যা 1।<br>∴ P(M ∩ N) এর সদস্য সংখ্যা = 2¹ = 2। (সদস্যগুলো: ∅ ও {5})"
+      },
+      {
+        "id": 38,
+        "q": "কোন সেটের শক্তি সেটের উপাদান সংখ্যা 128 হলে ঐ সেটের উপাদান সংখ্যা কত?",
+        "options": {
+          "a": "0",
+          "b": "6",
+          "c": "7",
+          "d": "8"
+        },
+        "ans": "c",
+        "exp": "ধরি সেটটির উপাদান সংখ্যা n।<br>শক্তি সেটের উপাদান সংখ্যা = 2ⁿ = 128 = 2⁷ ⇒ n = 7।"
+      },
+      {
+        "id": 39,
+        "q": "কোনো সেটের সদস্য সংখ্যা 3n হলে এর উপসেটের সংখ্যা কতটি?",
+        "options": {
+          "a": "2ⁿ",
+          "b": "3ⁿ",
+          "c": "6ⁿ",
+          "d": "8ⁿ"
+        },
+        "ans": "d",
+        "exp": "n(A) = 3n হলে উপসেটের সংখ্যা = 2³ⁿ = (2³)ⁿ = 8ⁿ।"
+      },
+      {
+        "id": 40,
+        "q": "P = {2, 4, 6, 8} সেটের প্রকৃত উপসেট সংখ্যা কত?",
+        "options": {
+          "a": "4",
+          "b": "8",
+          "c": "15",
+          "d": "16"
+        },
+        "ans": "c",
+        "exp": "n(P) = 4।<br>মোট উপসেট = 2⁴ = 16।<br>প্রকৃত উপসেট = মোট উপসেট − 1 (সেটটি নিজে) = 16 − 1 = 15।"
+      },
+      {
+        "id": 41,
+        "q": "{x ∈ N : 6 < x < 10} সেটের প্রকৃত উপসেট কতটি?",
+        "options": {
+          "a": "7 টি",
+          "b": "8 টি",
+          "c": "15 টি",
+          "d": "16 টি"
+        },
+        "ans": "a",
+        "exp": "সেটটি = {7, 8, 9}, উপাদান সংখ্যা 3।<br>মোট উপসেট = 2³ = 8।<br>প্রকৃত উপসেট = 8 − 1 = 7 টি।"
+      },
+      {
+        "id": 42,
+        "q": "A = {5, a, b, c} এবং B = {3, c, d} হয় তবে A \\ B এর প্রকৃত উপসেট কতটি?",
+        "options": {
+          "a": "3",
+          "b": "7",
+          "c": "8",
+          "d": "15"
+        },
+        "ans": "b",
+        "exp": "A \\ B = A এর যে উপাদান B তে নেই = {5, a, b} (c উপাদানটি B তে আছে, তাই বাদ)।<br>উপাদান সংখ্যা 3।<br>প্রকৃত উপসেট = 2³ − 1 = 8 − 1 = 7।"
+      },
+      {
+        "id": 43,
+        "q": "যদি A সেট B সেটের প্রকৃত উপসেট হয়, তবে কোন সম্পর্কটি সঠিক?",
+        "options": {
+          "a": "A ⊂ B",
+          "b": "A ⊆ B",
+          "c": "A \\ B",
+          "d": "A ⊄ B"
+        },
+        "ans": "a",
+        "exp": "প্রকৃত উপসেট বোঝাতে ⊂ চিহ্ন ব্যবহার করা হয় (A, B এর উপসেট কিন্তু A ≠ B)।<br>∴ সঠিক সম্পর্ক A ⊂ B।<br>(⊆ চিহ্নে A = B হওয়ারও সম্ভাবনা থাকে।)"
+      },
+      {
+        "id": 44,
+        "q": "সার্বিক সেট U = {3, 4, 5, 6} হলে, S = {x : x + 2 ≤ 7} এর প্রকৃত উপসেট কোনটি?",
+        "options": {
+          "a": "{3, 6}",
+          "b": "{3, 5}",
+          "c": "{3, 4, 5}",
+          "d": "{3, 5, 6}"
+        },
+        "ans": "b",
+        "exp": "x + 2 ≤ 7 ⇒ x ≤ 5। U এর উপাদানগুলোর মধ্যে x ≤ 5 হলো 3, 4, 5। অর্থাৎ S = {3, 4, 5}।<br>ক) 6 ∉ S, তাই {3, 6} উপসেট নয়।<br>খ) {3, 5} এর সব উপাদান S এ আছে এবং এটি S এর সমান নয় — প্রকৃত উপসেট।<br>গ) {3, 4, 5} = S নিজেই, প্রকৃত উপসেট নয়।<br>ঘ) 6 ∉ S, তাই উপসেট নয়।"
+      },
+      {
+        "id": 45,
+        "q": "∅ এর শক্তি সেটের উপাদান কতটি?",
+        "options": {
+          "a": "0",
+          "b": "1",
+          "c": "2",
+          "d": "3"
+        },
+        "ans": "b",
+        "exp": "ফাঁকা সেটের উপাদান সংখ্যা 0।<br>শক্তি সেটের উপাদান সংখ্যা = 2⁰ = 1।<br>(P(∅) = {∅}, যার একটিমাত্র উপাদান ∅।)"
+      },
+      {
+        "id": 46,
+        "q": "চিত্রের গাঢ় অংশটি নিচের কোনটি নির্দেশ করে?",
+        "options": {
+          "a": "A ∪ B",
+          "b": "A ∩ B",
+          "c": "A \\ B",
+          "d": "B \\ A"
+        },
+        "ans": "c",
+        "exp": "চিত্রে A বৃত্তের যে অংশ B বৃত্তের বাইরে, শুধু সেই অংশটি গাঢ় করা আছে।<br>A এর সেই উপাদানগুলো যা B তে নেই — একেই A \\ B (A বিয়োগ B) বলে।<br>∴ গাঢ় অংশ = A \\ B।",
+        "img": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAATYAAADmCAAAAAB6nvbuAAAAIGNIUk0AAHomAACAhAAA+gAAAIDoAAB1MAAA6mAAADqYAAAXcJy6UTwAAAACYktHRAD/h4/MvwAAAAlwSFlzAAAGJgAABiYBnxM6IwAAAAd0SU1FB+oLFgwnAKp24BcAABnUSURBVHja7Z15cF3Vfcd/5+5v1dOTnmRZmyXZ8r6CbWzA4IUQQoAEQigNTWiTDJRMZ5plmv7VmXY6k2kydNqkJZ2UtGnIpMkQ1gA2wQaMsR2821osS7ZWa33Sk95+13P6hzFgY1u653ffM3Te9y8t7/7uOZ93zvmd9XcIAECoBj5Feuw7fM+99bhXKei1hesN4dMpqYC2v7+M67EftV8fFG5USGxLb+J6LHJdQLhTqZJyqYSNSyVsXCph41IJG5dK2LhUwsalEjYulbBxqYSNS4UcXBVP55779fs/NWy648YivPD/BzZ9+KRvfgCA5f7Yder+Bwv/wuJjs6eem1y4scVrs3UPtwAwvX/vPnPFQrnQmSg+NuPokwPrda+xCfM+txEAYLr650f31BccW/FdQm5nLjryTp4Vxnr55hvTR8yCZ6Lo2FjmWXVzzdn2AmGDihjNFMr2hyo6tsR7Myu2NI2/Xais9XYHbyh4HS0+tvE91uZtK3K/H7UKYJxlTuxsq71LK3guiu0SrKG9kRsWLa47e2h7mZd2ad9TLwEwfay95pHFhS9txcY21TV0a3Ng0YauV9Z7ig3GX5MBAKbYrZW6SgqdjWJj6z0SuC8CTet/9YfHqxUvDUdvnQcA0Dl4+l/EHYFCtz1FxkbPHAxuC0N40ep3Ds6v89Cw0Pq9jQAAsOupnX/9aqun38iVXldg+5dp9HR+R4MCUHMHvD1ckDfc9mBj4tBMofNR5NLWeWbyjS8KAPoY23fvslAB3uCLlg0P64XOR5GxHe0K+AYBAJyKmbaNfKv2s4jaRCt4HSoutvMn87duAwAAo/fZo7cWAttwV9y3KFDojBQX28He2ge+CgAA5uCBjvY7gp5ZZplzAQCA/MFXU+tXFaL2X6JiYmP00OjG5Rd+VhY2D7R1bPTOds+TZQAAvVN0yXdqCp6rYmJzhvcOx5ou/nbz6a7D3mGD7CkBAKDiplu2blALnpViYjOOJFpXhi/+dsurhw98ucobywv+6v73f1KCkfLCD0mLii33fGLb4g9euLTxcO/xO72xHFi4sIj5gOJiU1bO29j6wW+Re2siYYS166piYiv720t+feCB6515fpXWSblUwsalEjYulbBxqYSNSyVsXCpkB2Ssn+ux/Cz/T/KZhQkPs0YACnbmSuBbCaGzLKESzhrCqFcZ67ULWdo8S+Zl2XcKmOY5qtS2camEjUslbFwqYePSp3cT6lX9bcF3MsCnGptj2bZNKWWMAgggCESQJEkWxSK8/FOJjVqGZduMUkaBsQvljgABQgQiEFFSZKXA+frUYXNsy7Icy3GEQDRaHg0qqqwoEjVN0zTzM4lEIpkXJEmSJUkRCtdwXxdslFFKKTBgFwoKAUIEQRDIbM0StS3TtExaVlNZUV4Ri1XGylRVVTSJGoZhGNmpeDw+mZiejE9nZFmVZalQ2Ss2NsooZY5j27bNGGWUASFEIESUJEkSRCKQqw7JKKVmPm/6I8HIohXLF8+/ZG36wzU+Y/JsZ/uZ0UwmIWk+TRBn/S54VMgx6WViAAwsXdetq466JEXTNAHIx70hA2bkcgaRlE1bNqyOzYYi2XPk4M60TcVAQBU99629dhGxUStv6DZj1xqpE0JAUzXtY5WAGqmcw8Krd+xoCKryrJME1Db0xN7dfxwigi/o97pKFRGboedNh16Y3VBCkUgkrCqyrMjEtizTNrPJmeRMlgIACIIgaZrvo/0I28jlbGfdlhuXxGLqHBt65kzF+0/s3+NIqt8ne1rgioSN2oZpWLYDAGp5rLI8GPD5/D5JFEVJINRxHMcx8vlcPpNKxKdmGABIsqIq7/ciGMvndEtYv2HDirqIuxfnJnreO3R4Qlb8AdFDcEXB5tiGbhgUQKyMhKNVsVjUd5UeqZmemohPJJPTSQCQVdWniASoaWTy5a3Ltm2q4dilQGeOvH30zIAW8HnYlSs8NsYcI581AWR/sHxJXd2sGzRYZux8X386o1MQtIAmgZnN+OdtuOf2St5eWPLkq6+fT6kBv2dOtdDYGDhmJmMDyHL14pVL5rrx3U60n+rLWA6Az8+ylm/zV3fMwyQj0/bTt8YhEJ7dlXxCsBkzWcoAlJtWN5VJc+4JMGbbo11HzwAAAaHyWw81KKgOP7PzLzx9yJKjAW/Gq722CACgFmj3oZGa1h2Aqs2fX98QUmYfBFwUIaIcrGlZIEwwALFix9oIrpQQUa1bVzczbFDRkwZumhYOG3OyqYzJoHH9zWubIq6Li6j5nbPjbFmrMBWf8YWxO/38VY01drflEMmDelpAbNRMp/OOFFuxcX1rBU9aM33Hu8nND+6ozx7rHbXLIsj0SNH6ajuRtsADx1A4bI6RSloQbNywfVmUq2Jku/Yd07Y8fs+GZVX6xOGzUhWyogL4FywzUjM5kNCOoVDYGM3PpJkcWv7Z28JcrTAzT+9qr77vH9aEILBkuxzvOKEvU7HZlao3yeNjGRnNrVDYaHJaB1hyzx21nB7QaX/uXOvX/65cJADEv74hcbTtVEsl+iSVunbe2LmcKCMdamGwMSORtkHaeudiP2f6MsdfGFnzF49ECAEAQsTqRdGu3uNQFUGmjIg1dakzJiAdakGwUT2Rd6R52zY3+DjLWuLE60PrH73nwxOAakVjw3BPt10bxSZOq6xNn88x3PxlIbA5ejJHg603b6zhPUScan+7b/2ff67xI39Sos1VU139Tm05tjn31dQkx1MMVU8LgM3RUxkoW75lfRlvx14/ve/ckm/dO/+SPwqBlf6Z011iQwDbYVVaIvHRjKAg+iHeY6P5ZAZ86+5YyZs7Rvv3nG5+/CvlH/vP0lCi/ZCvIYQeILUE4v15BdF/8x5bbiYHws13N/J/lakX2mq/8l3lCgYW1Uwfeye0oAKdyEX+wT7Dxz8D5zU2lp/OQ3jLZ6v4S4T17KnYw08Er5QlEmukbZ3BOrRfIPMre0YshTuAg8fYqJXQWeym7dX8ESWSB96VH/xK85X/qZTXJXsGtGZ0ctXy6LGMw+1OvcVGrZkMi63bUs8/y5Pp3jV295+uvVphVWM1w90TgVYFPdCKWW1pgdedeovNys6w8A23NPNbsAf2dSx9YtPVT+fKTfLI6XhtC3a9XdCaOkfzIid+T7E5uWmqrNnSijAxdWR/2bc/c83TksvNvtMjt/AOPz6QFA32jdic6wteYmPZpElavrAYYYIe3kfv/t4s89+L6ZEzybVhbDUlixN94zTAtfTsJTYjlRNjjzRi4gu1vzu06gfzZylIUoS+2V1fiz9TOX+yLSfJPNXdO2yMzmRp+ReW+vhLATN2tzd/fdts7Q0J+NMnxloa0NMhfmm6w/bz9N48LG3ptF1+w9Ygos2hbQfYZ79WMWs25HC0o1eqQ4f6EcO0fVLi8aaeYaPmtOlbup13eg0AwEnu7Fv70Fwu9PBV0lODoWZ0RK6APHWEKhwT9tPUm51zzEkZULduEcaG3tUh3zq3a1DCj25K7nzTRie78d55Vp7LjDeljRpx5t9yC6a5oZMvTtz15RVz+qzgj3Yeha3o4CtqUO/Iyu47b16VNisFsGm1D2NiprPbf/+6uX568/ba9l/P9cNXV8UTjZAzOB70BJudz0HNyhqUrclT9J5lc45NpH3mhoHfdfFk+BLJ8+6rNXjCb3mCTc86ZEMDKmpJerA38MWGuadm2e3NZ36TxCacSF9opjpHcFEvsNl5XapfW46yMX7WXLfOhW8M33qn+ezpLDbpZNnaKmO2A6xXkBfY8joN3VqD6n6a/eeiD0XcJKZ1W33n7jFs0ol8+zIrN9sJ1o/LA2wsb0hVW/0oG1Pnxufd5yrqmrL4frKrH3+09KYVUt68HtgMg1Zv0nBD6+7hxs/Nc9dfb/h84OShUXTqyzdtoOnrgS1tkep1yP0o/eP1211uMZBrH/Dv70CnXli5wcm5PmeNxsbsvBNrxvkDNjImt650+RCJPBw+fCSBTT/Ur4yZhtvKjsZGsxZrWIIzw3oS81e4Ju/bsEY/3olNPwSaVjK96NicFPUtWIAywdiZ1CK3hQ1AjNxVd/oINv0ANZsgX2xsjOqssR41rAKaP6e3LuV4cGvDUBs+xO689aphu3QKWGyOzmBVE86G3pZpXFrN8WDrEu3cUWQGAEKtqyW3IwUsNisDvmrkzJfRY65u4vDERFjdPLofmQEAEt7qM4uMzdGhiW+X6Ycy+6zF87meXN0ydsB9F/9yBTZolsvGDYnNNim494GX2ciMkGaeOgrQ3Kr0dKIvzPGvClLbXdcNic3UQWlFLiLp8Uysjs9G2eKWmbdzuNcDKHW1su2uuCGxWYZUFUWeGcgOkxURzmebluUO4X2psKLMdte4IfuptqUux560yCCw1Tbnj+roxk1YGbGKiY1S0NZggypnh2E5ry+ubpb6RtDFjRS5tJkWqE3YdV59iizibR7lWLPRlUImAEhr0Clm22ZYUjCIbB6NrFVWyV3Ry5eyjhlcAgBItFxxxw2XZ8vW0MHUc2mpjv86jegy1j6DTQKRYiF3wfRw2Bwn1IgyAAC5tNLI318uXwJn0JUUoCpMXS0z4463UijDbMwCAIBcWm7g36YUaoKRHP4+wFgxsdkM/OiDz7m0gsAmBmpgAl/cqsKseNgsh8joOx1yabmBv5ISpV6Mo9dLoaqMFq9tM6mkoA9nmoZYgdjepTTKE3hsYc1deFlcaaMKboISAMCxxCACvdwoeVDaNIW5aiBxbRv14a9ccizBj0iF0iDH8W2bKruLEox0CX78bZm2jcIm18uTXmArYmkD8OO3rzo28SMqqRAkBn6DoObSKeH6bUzFX47k4EqbGBDczmhfQYpcRJfAQMFjs20hgCltAYFnp9VlUiUoZiWVC3+B2SwifmIU4vbrawtZ2vC9XZAkihkdCZ5gM2x3x2GQpc2DSipK1P3WlY9kwC94gM203N3CgMSm4ru7osSyiNJGNC9Km+7SGSOxeRBITsKVNmYwD+IAGpa7nKBXrtApFmUUNpqjKuZ43AUZljsS2Blt/GqbKDsZRCVlOeYBtrxZxNJGvChtiupMIbbgUk+wpfNFdQkWx+b0y+QPWYOI0RHNUQ2PbSIluJq8wm5mwJc2f8gcQLhCmmX8kSk+0ESKuPIryEpq4ts2f8gaRGBz0l64hImUUERsJJ9Bp9gfMgcQldQesaP4Sb94sojYBMjhp7r8IXtY5++BmINWDHtuntnxDCle2yYJuTQyxQBqQE5O8jeR1oAdw86Vsqlp090VMihssqCjN5cBaBWsh7/QmgNWFRpbT9pl/EAUNkW0dHeTyVdSsA6xH4GZg/jSRtuSsju3gixtzOUGpyspUAv82JzsGFSh27b2pMswUUhskI8jkwwQmI/YNJQdsqswUTQAAIC2JaUiljZBgHQvMskAWiwUH+Zt3KbPwCLsMpB5fsSS3KHHjRIEIYXHJgVr2LlxzoenOwn3VsyLyp3MCJI7EDhskpQbQaYZAJQmuZvXTKKTf+PvRWUP6XIxF/xAlc0Z/HEKtVU52cvX4aWJLmF5BPd6lnor73amE4sNjCG0L9VWBAdO810oPX7OaZ6PXM9Id5+03U6i4LCJIugn0aN5wdei9fAdDB3pU9dgFqcBAMYOmarbQEe4VxJRNNrRc0eELAn3tHE92n/avx67eDZ6EHxuuzDIb0pSrME0egsGWRQd6eA5vp3p7im7Dbl4lulrF7QiY1N8LDOED2JSM8/ubud4cPBMasE6ZGkbOhVX1GJjUwFO4o/5w4Kqod2Oe5d84mzNZuR1abTtsOg+0j46EqsKXTNIGwCwuHbgtXH3CzEne+fdjHzz9MH3hJBr8lhscgDSE/hJt4qWeeMvua3srPd0tvlG5JsPdlCf+whuWGySj9Du80gjAPKClsRvpt12efcNVCNHVsza2yH53W/bRldSWYGeAfQBYpjXohw/5m7rspPedX7JDbjXso5jcZ59LOg4IEJAmBqcxFqBYENz9oVBV8XNaP8jXb0K9VZmvdQr8CyzorGJYRH6Oz04vrNKeKXDTevGkv+bXLced1LOGntxhGsfLT40lKwJ57vxm44jy1pzLxxz8QCd+HXyFvexai7R1L8PgJ9nQygaGyEh2Rk9gTUDJLJN2/2Wi8BiQztnVmzgi4NxUaljv0wFuEKoeRCIzKeSifdMxF6rC9IWL7ffPTjnj1s9z9PtLbitw/0vj8s+rs1xHmATNSXbix/Qi2Wbqzr29M85y/vONH8GV9ji771BgnO9AftSeRGb0qdB8s0EunkTli3U3901xzgL2QM7xXvXoJaszGM7+1TO+5+8wKb6FP1ED35Ar93Qcu5XZ+c263nuzZP1j0ZQ7xvZtVuKcF5X6kncXS0A7E10VFKA5esqOn84tzWsPxyq/9IqXMv23Ov5QIgz/57EFBeIZWej+I0/JGCfGYjUz6HqHfhF+8bvzn5HwDXEXv5Fh1Iuc5nwKPA/ASHrpMtq0Du2VSnXM9Ayf7bRjpN6cm/jl7diVpWN3h8cdkKcZ+S8ui9BECw7I5Sjg1sIPm20j9TNdq9J+oVn2H0PYt7mjD79UiYU5PyevcJGiGg4WVKHi1kMAEpQHh5Q6q4dlix9/J/6b38YNYgf3/WTaX+It2307HYOIttWTpcbkFOtAGpdfKhfWH6tZtLq/Pkr9U/cjvEHybee7FEi3IsQHt4FoxpWKt4aQkccEBaMnhu0brn6MQE28uKPyPfvwlRRuutfDykx9ZNw9aEg2LY1vBi7aAmgRGfODsPyqwacyr/8n7kvfbMR4w9eeXo/iSFuwPYOGyEis620UYPda0aEgJbt6QvVXq2ePv/M2bV/vxBTRV9/+l29LIhoT7y8HkwQwbCm5QjalhSUZ86MabHIFf/7xi+OtTy2HRH8LLv3Z++kQiG+HtsFeXqHnyhQU0+q5a7i919Jakib7oxrV7rX22j7yb7qP3kIcQnZ9IGf7s6GuJ3oBRue3hgpSKaTzspV6IPgvsrwWPeo0vixZOlnf/ya9tCfVfNTmzn41O9pGEfNY2xEVPPOzIxaj3anSk3FcFc/u1G89Ci23f2zp+1vfq2F2y4zd/94F4mGkQEOvb5EWBRNJzPG6tCneUhl5XRP98CKSy/UPPwfzxh/+cgSfiea/O+fHmKxIOe0xwfyGBsBmThWfoxVYIcLRAxHnMFzHcGPWnrrv15xHvvaEu49H0bnk8/1sAiamueljQgSOFZ2GsJoi0o4qox2DzrRDy6o3v3LN8SHv76E+xuZeuvfXh8WygJoagW4IF0UBcdOpZg/gN31rpRXqdOdI2YgIhEAJ7nv53u0L35jJW+zZPS/8czv874w182aBccGoiyYNBXXg+j0ieEFcuZs15Rf84n6yL5/3h944BsreW3G2158Zp8UKkN0XQqKDQRZ1mnu/HB5Gbo2SAui6YGTb8i1Sv/v/vFM9WOPcgbCpFbm5R/+dkSpCONPnl7ARgAAQugAkx8VY7npPIjBuzdF0bbsqVPv9mqbV/TuoTf+zcYoZ8VPtz319jgJhGV0z+iCeu0CYANGzVTWJhVrNjajg9LY2fPH9xNNl+/89kLOQ0LJE6+8PpxWgz7Rg6glAADQa3tfSQGIIMoCtXPT4yktgrQlaNJUTypjgNgU41mco9PvPPPbfd0sFNJkr6gVpG0DACCSJFJbj09mQeO6S/sD6SPtbaM2ECc+ej4Nbre55M4fef7Fne35QCikYD17EbABiLLkMJoeHqdEcnme6UMxa+rse/vPOoKsqXToYG8iY1rqXB00cyb6jr3x7P90G75Q2OdBt+Oj2ArRtr2fbDuVMRnAqg2tUa4ws8zOTxw9PAog+MJ+YqRyDguv2rG9IaTObo5aZn5q7573hgTiD/jxMZAuVWFcwvu5Bsil0wwEofHm9a7u0Hxf+tCBdw3KQCoPyADAjHzWAEnedNvGVVWzYUv2HD74WsahYiCgiu5Cs11nbABAbT2VA1CC5Tcune9yGm6yt+10JsNACoSlCx1ASqmZz5v+ULCsdcXyxVeb/jUmz7a3d41lM0lJ82mCZ+6zeNiAUUPP6w4IVRW1DY11c51RdTID/YMTk0kAxadpyoelhdq2YVomLausjJZXxGKxWJmqqYomUcMwDCM7ORGPTyZmJienbVlWZdnlUe5PCjYA5hh53bQBgrH5tbUVF+rbNR8wkomJ4eGRhA1EVn2afJkHdGzLsm3bdoRAtLw8GpRVRVYkapqmZeZnEonppCXIoiRLsix4c4359cAGALaRyzs2A5Cb59dUlgcCvqv1SWwjl80kxkeGRgFAFGW//8qfpJZh2TajlDHG2IUYpgQIEIEIhIiSorg9VvsJxAbgmLm8SRkDgMD8hoaasCqJoigQQgQgjDHGKHUc28lODQ8OjlMAIIKo+XzXnO2gjmXbNqUUKAUQCBGIIEmS7C4OyicZGwOAfDZ78fQC8UVjsapKv6pqmiJYhqGbejI+MTmRunhxI/EFghJc2wNedfug9y7gOmEDAKDUMXXjwrWzRJRESRSIQAghjFHGmOPY9vu32CiqqsmCR6PuAmEraBvwUQmCKKmOY5um5VD7KjtWRUmRFUkQxUI15l6paNgAiCgCOLZtOw6lDnUYMMYYECCEECIKoiCIoizh56yLoCJiAwAAUVQBqOPYjsMYo4xdgEYEURLFgvUYPFexsQEAgCB4M8t6/fSp+X4/WSph41IJG5dK2LhUwsalEjYulbBxqYSNSyVsXCph41IJG5dK2LhUwsalEjYulbBxqYSNSyVsXCph41IJG5dK2LhUwsalEjYulbBxqYSNSyVsJZVUUkkllVRS0fV/pjbrPSL12iwAAAAASUVORK5CYII="
+      },
+      {
+        "id": 47,
+        "q": "U = A ∪ B, A ∩ B = 45 এবং n(U) = 135 হলে, ভেনচিত্র অনুসারে 2x এর মান কত? (ভেনচিত্রে শুধু A এর অংশ 75 − x, A ∩ B এর অংশ 3x এবং শুধু B এর অংশ 60 − 2x)",
+        "options": {
+          "a": "15",
+          "b": "17",
+          "c": "20",
+          "d": "30"
+        },
+        "ans": "d",
+        "exp": "ভেনচিত্র অনুযায়ী A ∩ B = 3x।<br>দেওয়া আছে n(A ∩ B) = 45 ⇒ 3x = 45 ⇒ x = 15।<br>∴ 2x = 2 × 15 = 30।<br>(যাচাই: 75 − 15 + 45 + 60 − 30 = 60 + 45 + 30 = 135 = n(U) ✓)"
+      },
+      {
+        "id": 48,
+        "q": "যদি n(M) = 7, n(N) = 4 এবং n(M ∩ N) = 5 হয়, তবে n(M ∪ N) = কত?",
+        "options": {
+          "a": "2",
+          "b": "6",
+          "c": "8",
+          "d": "16"
+        },
+        "ans": "b",
+        "exp": "সূত্র: n(M ∪ N) = n(M) + n(N) − n(M ∩ N)।<br>= 7 + 4 − 5 = 6।<br>(প্রশ্নে প্রদত্ত মান অনুযায়ী সূত্র প্রয়োগ করে এই ফল পাওয়া যায়।)"
+      },
+      {
+        "id": 49,
+        "q": "(x + y, 6) = (6, x − y) হলে (x, y) নিচের কোনটি?",
+        "options": {
+          "a": "(3, 3)",
+          "b": "(0, 6)",
+          "c": "(12, 0)",
+          "d": "(6, 0)"
+        },
+        "ans": "d",
+        "exp": "ক্রমজোড় সমান হলে অনুরূপ উপাদানগুলো সমান হয়।<br>x + y = 6 ... (i) এবং 6 = x − y অর্থাৎ x − y = 6 ... (ii)<br>(i) + (ii): 2x = 12 ⇒ x = 6।<br>(i) এ x = 6 বসিয়ে: 6 + y = 6 ⇒ y = 0।<br>∴ (x, y) = (6, 0)।"
+      },
+      {
+        "id": 50,
+        "q": "(x − 2y, 3x + 2y) = (1, 19) হলে (x, y) এর মান কোনটি?",
+        "options": {
+          "a": "(5, 2)",
+          "b": "(2, 5)",
+          "c": "(9, 4)",
+          "d": "(4, 9)"
+        },
+        "ans": "a",
+        "exp": "x − 2y = 1 ... (i) এবং 3x + 2y = 19 ... (ii)<br>(i) + (ii): 4x = 20 ⇒ x = 5।<br>(i) এ x = 5 বসিয়ে: 5 − 2y = 1 ⇒ 2y = 4 ⇒ y = 2।<br>∴ (x, y) = (5, 2)।"
+      },
+      {
+        "id": 51,
+        "q": "P = {2, 3, 5} এবং Q = {(x, y) : x ∈ P, y ∈ P এবং y = x + 1} হলে Q সেটের তালিকা পদ্ধতিতে প্রকাশিত রূপ নিচের কোনটি?",
+        "options": {
+          "a": "Q = {(3, 3)}",
+          "b": "Q = {(5, 5)}",
+          "c": "Q = {(3, 2)}",
+          "d": "Q = {(2, 3)}"
+        },
+        "ans": "d",
+        "exp": "x ∈ P এবং y = x + 1 এর জন্য y ও P এর সদস্য হতে হবে।<br>x = 2 হলে y = 3 ∈ P ✓ ⇒ (2, 3)।<br>x = 3 হলে y = 4 ∉ P ✗।<br>x = 5 হলে y = 6 ∉ P ✗।<br>∴ Q = {(2, 3)}।"
+      },
+      {
+        "id": 52,
+        "q": "নিচের কোন অন্বয়টি ফাংশন?",
+        "options": {
+          "a": "{(1, 2), (1, 3)}",
+          "b": "{(−1, 1), (−1, 2)}",
+          "c": "{(2, 3), (1, 2)}",
+          "d": "{(−3, 5), (−3, −4)}"
+        },
+        "ans": "c",
+        "exp": "ফাংশনে ডোমেনের প্রত্যেক উপাদানের জন্য কেবল একটিই প্রতিবিম্ব থাকে (একই প্রথম উপাদানের জন্য দুইটি ভিন্ন দ্বিতীয় উপাদান থাকে না)।<br>ক) 1 এর প্রতিবিম্ব 2 ও 3 — ফাংশন নয়।<br>খ) −1 এর প্রতিবিম্ব 1 ও 2 — ফাংশন নয়।<br>গ) প্রথম উপাদান 2 ও 1 ভিন্ন, প্রত্যেকের একটিই প্রতিবিম্ব — ফাংশন।<br>ঘ) −3 এর প্রতিবিম্ব 5 ও −4 — ফাংশন নয়।"
+      },
+      {
+        "id": 53,
+        "q": "S = {(−1, 1), (1, 2), (1, 3), (2, 4)} অন্বয়টির ডোমেন কত?",
+        "options": {
+          "a": "−1, 1, 2",
+          "b": "−1, 2",
+          "c": "1, 2, 3, 4",
+          "d": "−1, 1, 2, 3, 4"
+        },
+        "ans": "a",
+        "exp": "অন্বয়ের ক্রমজোড়গুলোর প্রথম উপাদানগুলোর সেটকে ডোমেন বলে।<br>প্রথম উপাদানগুলো: −1, 1, 1, 2 (1 দুইবার এসেছে, একবার ধরতে হবে)।<br>∴ ডোমেন = {−1, 1, 2}।"
+      },
+      {
+        "id": 54,
+        "q": "S = {(2, 1), (2, 2), (4, 2), (5, 4)} অন্বয়টির রেঞ্জ কোনটি?",
+        "options": {
+          "a": "{2, 2, 4}",
+          "b": "{2, 4, 5}",
+          "c": "{1, 2, 4}",
+          "d": "{1, 4, 5}"
+        },
+        "ans": "c",
+        "exp": "ক্রমজোড়গুলোর দ্বিতীয় উপাদানগুলোর সেটকে রেঞ্জ বলে।<br>দ্বিতীয় উপাদান: 1, 2, 2, 4। একই উপাদান একবারই লিখতে হয়।<br>∴ রেঞ্জ = {1, 2, 4}।"
+      },
+      {
+        "id": 55,
+        "q": "x = −5 হলে 3x − 2y = 5 সমীকরণ হতে প্রাপ্ত বিন্দুটি কোন চতুর্ভাগে অবস্থিত?",
+        "options": {
+          "a": "প্রথম",
+          "b": "দ্বিতীয়",
+          "c": "তৃতীয়",
+          "d": "চতুর্থ"
+        },
+        "ans": "c",
+        "exp": "x = −5 বসিয়ে: 3(−5) − 2y = 5 ⇒ −15 − 2y = 5 ⇒ −2y = 20 ⇒ y = −10।<br>বিন্দুটি (−5, −10)। x ও y উভয়ই ঋণাত্মক, তাই বিন্দুটি তৃতীয় চতুর্ভাগে অবস্থিত।"
+      },
+      {
+        "id": 56,
+        "q": "2x + 3y = 2 সমীকরণে x = −2 বসালে, সমীকরণের প্রাপ্ত বিন্দুটি কোন চতুর্ভাগে পড়ে?",
+        "options": {
+          "a": "১ম",
+          "b": "২য়",
+          "c": "৩য়",
+          "d": "৪র্থ"
+        },
+        "ans": "b",
+        "exp": "x = −2 বসিয়ে: 2(−2) + 3y = 2 ⇒ −4 + 3y = 2 ⇒ 3y = 6 ⇒ y = 2।<br>বিন্দুটি (−2, 2)। x ঋণাত্মক ও y ধনাত্মক, তাই বিন্দুটি দ্বিতীয় চতুর্ভাগে পড়ে।"
+      },
+      {
+        "id": 57,
+        "q": "2x = y + 2 সরলরেখাটির উপরস্থ বিন্দু কোনটি?",
+        "options": {
+          "a": "(0, 2)",
+          "b": "(0, −2)",
+          "c": "(1, −4)",
+          "d": "(−4, −1)"
+        },
+        "ans": "b",
+        "exp": "প্রতিটি বিন্দুর মান সমীকরণে বসিয়ে যাচাই করি:<br>(0, 2): 2·0 = 0, y + 2 = 4 — মিলে না।<br>(0, −2): 2·0 = 0, y + 2 = −2 + 2 = 0 — মিলে।<br>(1, −4): 2 ≠ −2 — মিলে না।<br>(−4, −1): −8 ≠ 1 — মিলে না।<br>∴ বিন্দুটি (0, −2)।"
+      },
+      {
+        "id": 58,
+        "q": "3x − y = 7 সমীকরণের লেখের উপরস্থ বিন্দু কোনটি?",
+        "options": {
+          "a": "(2, −1)",
+          "b": "(−1, 2)",
+          "c": "(2, 1)",
+          "d": "(2, 2)"
+        },
+        "ans": "a",
+        "exp": "যে বিন্দুর স্থানাঙ্ক সমীকরণকে সিদ্ধ করে, সেটিই লেখের উপরস্থ বিন্দু।<br>(2, −1): 3·2 − (−1) = 6 + 1 = 7 ✓<br>(−1, 2): −3 − 2 = −5 ≠ 7 ✗<br>(2, 1): 6 − 1 = 5 ≠ 7 ✗<br>(2, 2): 6 − 2 = 4 ≠ 7 ✗<br>∴ বিন্দুটি (2, −1)।"
+      }
+    ];
+
+    const TARGET_EMAIL = "akashtalukder1998@gmail.com";
+    const INSTRUCTOR_NAME = "AKASH";
+    const OPT_LABELS_BN = { a: "ক", b: "খ", c: "গ", d: "ঘ" };
+    const STORAGE_ATTEMPTS_KEY = "akash_ch2_set_func_58_attempts_v1";
+    const SESSION_ACTIVE_KEY = "akash_ch2_set_func_58_active_session_v1";
+
+    // Application State
+    const state = {
+      student: { name: "", roll: "" },
+      answers: {},
+      currentIndex: 0,
+      reviewFilter: "all",
+      attemptNumber: 1,
+      reloadCount: 0,
+      answerChangeCount: 0,
+      startTimeObj: null,
+      startTimeFormatted: "",
+      durationLimitSec: 0,
+      elapsedSeconds: 0,
+      timerInterval: null,
+      lastResult: null
+    };
+
+    // Bangla Digit & Ordinal Helpers
+    const BN_DIGITS = ["০", "১", "২", "৩", "৪", "৫", "৬", "৭", "৮", "৯"];
+    function escHtml(t) {
+      return String(t).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+    }
+
+    function toBnNum(val) {
+      return String(val).replace(/\d/g, (d) => BN_DIGITS[Number(d)]);
+    }
+
+    function getAttemptOrdinalBn(n) {
+      if (n === 1) return "১ম বার";
+      if (n === 2) return "২য় বার";
+      if (n === 3) return "৩য় বার";
+      if (n === 4) return "৪র্থ বার";
+      if (n === 5) return "৫ম বার";
+      return `${toBnNum(n)}তম বার`;
+    }
+
+    function getAttemptOrdinalEn(n) {
+      const mod100 = n % 100;
+      if (mod100 >= 11 && mod100 <= 13) return `${n}th Attempt`;
+      const mod10 = n % 10;
+      if (mod10 === 1) return `${n}st Attempt`;
+      if (mod10 === 2) return `${n}nd Attempt`;
+      if (mod10 === 3) return `${n}rd Attempt`;
+      return `${n}th Attempt`;
+    }
+
+    function formatBnTimestamp(dateObj) {
+      const monthsBn = [
+        "জানু", "ফেব্রু", "মার্চ", "এপ্রিল", "মে", "জুন",
+        "জুলাই", "আগস্ট", "সেপ্টে", "অক্টো", "নভে", "ডিসে"
+      ];
+      const day = toBnNum(String(dateObj.getDate()).padStart(2, "0"));
+      const month = monthsBn[dateObj.getMonth()];
+      const year = toBnNum(dateObj.getFullYear());
+      let hours = dateObj.getHours();
+      const ampm = hours >= 12 ? "PM" : "AM";
+      hours = hours % 12;
+      if (hours === 0) hours = 12;
+      const hh = toBnNum(String(hours).padStart(2, "0"));
+      const mm = toBnNum(String(dateObj.getMinutes()).padStart(2, "0"));
+      const ss = toBnNum(String(dateObj.getSeconds()).padStart(2, "0"));
+      return `${day} ${month}, ${year}, ${hh}:${mm}:${ss} ${ampm}`;
+    }
+
+    function formatDurationBn(totalSec) {
+      const mins = Math.floor(totalSec / 60);
+      const secs = totalSec % 60;
+      return `${toBnNum(mins)} মিনিট ${toBnNum(secs)} সেকেন্ড`;
+    }
+
+    function formatTimerDigital(totalSec) {
+      const mins = Math.floor(totalSec / 60);
+      const secs = totalSec % 60;
+      return `${String(mins).padStart(2, "0")}:${String(secs).padStart(2, "0")}`;
+    }
+
+    function generateVerificationCode(attemptNum, score, name, roll) {
+      const attPart = `ATT${attemptNum}`;
+      const scPart = `SC${String(score).padStart(2, "0")}`;
+      const seed = `${name}|${roll}|${attemptNum}|${score}|${Date.now()}`;
+      let hash = 2166136261;
+      for (let i = 0; i < seed.length; i++) {
+        hash ^= seed.charCodeAt(i);
+        hash = Math.imul(hash, 16777619);
+      }
+      const hex = (hash >>> 0).toString(16).toUpperCase().padStart(8, "0").slice(0, 4);
+      return `EXAM-${attPart}-${scPart}-${hex}`;
+    }
+
+    // LocalStorage & SessionStorage Tracking Helpers
+    function getStoredAttemptCount() {
+      try {
+        return Number(localStorage.getItem(STORAGE_ATTEMPTS_KEY) || "0");
+      } catch (e) {
+        return 0;
+      }
+    }
+
+    function incrementStoredAttemptCount() {
+      try {
+        const next = getStoredAttemptCount() + 1;
+        localStorage.setItem(STORAGE_ATTEMPTS_KEY, String(next));
+        return next;
+      } catch (e) {
+        return state.attemptNumber;
+      }
+    }
+
+    function saveActiveSession() {
+      try {
+        sessionStorage.setItem(
+          SESSION_ACTIVE_KEY,
+          JSON.stringify({
+            active: true,
+            student: state.student,
+            answers: state.answers,
+            currentIndex: state.currentIndex,
+            attemptNumber: state.attemptNumber,
+            reloadCount: state.reloadCount,
+            answerChangeCount: state.answerChangeCount,
+            startTimeMs: state.startTimeObj ? state.startTimeObj.getTime() : Date.now(),
+            startTimeFormatted: state.startTimeFormatted,
+            durationLimitSec: state.durationLimitSec
+          })
+        );
+      } catch (e) {
+        // Ignore storage restrictions
+      }
+    }
+
+    function clearActiveSession() {
+      try {
+        sessionStorage.removeItem(SESSION_ACTIVE_KEY);
+      } catch (e) {
+        // Ignore storage restrictions
+      }
+    }
+
+    // DOM References
+    const entryScreen = document.getElementById("entryScreen");
+    const examScreen = document.getElementById("examScreen");
+    const resultScreen = document.getElementById("resultScreen");
+    const examProgressBarWrap = document.getElementById("examProgressBarWrap");
+    const headerTimerBadge = document.getElementById("headerTimerBadge");
+    const questionsContainer = document.getElementById("questionsContainer");
+    const reviewContainer = document.getElementById("reviewContainer");
+
+    function showNotice(msg) {
+      const box = document.getElementById("globalNotice");
+      document.getElementById("globalNoticeText").innerHTML = msg;
+      box.classList.remove("hidden");
+    }
+
+    function hideNotice() {
+      document.getElementById("globalNotice").classList.add("hidden");
+    }
+
+    document.getElementById("closeNoticeBtn").addEventListener("click", hideNotice);
+
+    function stopExamTimer() {
+      if (state.timerInterval) {
+        clearInterval(state.timerInterval);
+        state.timerInterval = null;
+      }
+    }
+
+    function startExamTimer(limitSeconds, initialElapsed = 0) {
+      stopExamTimer();
+      state.durationLimitSec = limitSeconds;
+      state.elapsedSeconds = initialElapsed;
+
+      const timerEl = document.getElementById("liveTimerDisplay");
+      timerEl.textContent =
+        state.durationLimitSec > 0
+          ? formatTimerDigital(Math.max(0, state.durationLimitSec - state.elapsedSeconds))
+          : formatTimerDigital(state.elapsedSeconds);
+
+      state.timerInterval = setInterval(() => {
+        state.elapsedSeconds = Math.max(
+          0,
+          Math.floor((Date.now() - state.startTimeObj.getTime()) / 1000)
+        );
+        if (state.durationLimitSec > 0) {
+          const remaining = Math.max(0, state.durationLimitSec - state.elapsedSeconds);
+          timerEl.textContent = formatTimerDigital(remaining);
+          if (remaining === 0) {
+            stopExamTimer();
+            showNotice("⏰ নির্ধারিত সময় শেষ হয়েছে! আপনার পরীক্ষা স্বয়ংক্রিয়ভাবে জমা হচ্ছে...");
+            finalizeAndSubmitExam();
+          }
+        } else {
+          timerEl.textContent = formatTimerDigital(state.elapsedSeconds);
+        }
+      }, 1000);
+    }
+
+    function getAnsweredCount() {
+      return Object.keys(state.answers).length;
+    }
+
+    function updateProgressUI() {
+      const ansCount = getAnsweredCount();
+      const total = QUESTIONS.length;
+      const pct = Math.round((ansCount / total) * 100);
+
+      document.getElementById("answeredCountText").textContent = ansCount;
+      document.getElementById("bottomAnsweredCount").textContent = toBnNum(ansCount);
+      document.getElementById("currentQIndicator").textContent = toBnNum(state.currentIndex + 1);
+      document.getElementById("progressFill").style.width = `${pct}%`;
+
+      const prevBtn = document.getElementById("prevQuestionBtn");
+      const nextBtn = document.getElementById("nextQuestionBtn");
+      prevBtn.disabled = state.currentIndex <= 0;
+      if (state.currentIndex >= total - 1) {
+        nextBtn.textContent = "শেষ প্রশ্ন ✓";
+      } else {
+        nextBtn.textContent = "পরবর্তী প্রশ্ন →";
+      }
+    }
+
+    function goToQuestion(idx) {
+      const clamped = Math.max(0, Math.min(QUESTIONS.length - 1, idx));
+      state.currentIndex = clamped;
+      saveActiveSession();
+      renderExamQuestion();
+    }
+
+    function renderExamQuestion() {
+      questionsContainer.innerHTML = "";
+      const idx = state.currentIndex;
+      const qObj = QUESTIONS[idx];
+      if (!qObj) return;
+
+      const selectedOpt = state.answers[idx] || null;
+      const isAnswered = Boolean(selectedOpt);
+
+      const card = document.createElement("article");
+      card.id = `exam-q-${idx}`;
+      card.className = "card-box p-5 sm:p-6";
+
+      const headerRow = document.createElement("div");
+      headerRow.className = "flex items-center justify-between gap-2 mb-3";
+
+      const qStepTag = document.createElement("span");
+      qStepTag.className = "text-xs sm:text-sm font-bold text-indigo-600 mono-num";
+      qStepTag.textContent = `প্রশ্ন ${toBnNum(qObj.id)} / ৫৮`;
+
+      const badge = document.createElement("span");
+      badge.className = isAnswered
+        ? "text-xs font-bold px-3 py-1 rounded-full bg-indigo-100 text-indigo-800 shrink-0"
+        : "text-xs font-semibold px-3 py-1 rounded-full bg-slate-100 text-slate-600 shrink-0";
+      badge.textContent = isAnswered ? `উত্তর দেওয়া হয়েছে: ${OPT_LABELS_BN[selectedOpt]}` : "উত্তর দেওয়া হয়নি";
+
+      headerRow.appendChild(qStepTag);
+      headerRow.appendChild(badge);
+      card.appendChild(headerRow);
+
+      const qTitle = document.createElement("h3");
+      qTitle.className = "text-base sm:text-lg font-bold text-slate-900 leading-relaxed whitespace-pre-line mb-4";
+      qTitle.textContent = `${toBnNum(qObj.id)}। ${qObj.q}`;
+      card.appendChild(qTitle);
+
+      if (qObj.img) {
+        const im = document.createElement("img");
+        im.src = qObj.img;
+        im.alt = "chitro";
+        im.className = "block mx-auto mb-4 rounded-lg border border-slate-200 w-full max-w-[260px]";
+        card.appendChild(im);
+      }
+
+      const optsGrid = document.createElement("div");
+      optsGrid.className = "grid grid-cols-1 gap-2.5";
+
+      ["a", "b", "c", "d"].forEach((optKey) => {
+        const optText = qObj.options[optKey];
+        const isSelected = selectedOpt === optKey;
+
+        const optBtn = document.createElement("button");
+        optBtn.type = "button";
+        optBtn.className = `option-row w-full text-left p-3.5 flex items-center gap-3 cursor-pointer ${
+          isSelected ? "selected" : ""
+        }`;
+        optBtn.setAttribute("aria-pressed", isSelected ? "true" : "false");
+
+        const optBadge = document.createElement("span");
+        optBadge.className =
+          "opt-badge w-8 h-8 text-sm font-bold flex items-center justify-center shrink-0";
+        optBadge.textContent = OPT_LABELS_BN[optKey];
+
+        const optLabel = document.createElement("span");
+        optLabel.className = "text-sm sm:text-base font-medium leading-snug break-words";
+        optLabel.textContent = optText;
+
+        optBtn.appendChild(optBadge);
+        optBtn.appendChild(optLabel);
+
+        optBtn.addEventListener("click", () => {
+          const prevChoice = state.answers[idx] || null;
+          if (prevChoice === optKey) {
+            delete state.answers[idx];
+            state.answerChangeCount += 1;
+          } else {
+            if (prevChoice !== null && prevChoice !== optKey) {
+              state.answerChangeCount += 1;
+            }
+            state.answers[idx] = optKey;
+          }
+          saveActiveSession();
+          updateProgressUI();
+
+          const nowSelected = state.answers[idx] || null;
+          badge.className = nowSelected
+            ? "text-xs font-bold px-3 py-1 rounded-full bg-indigo-100 text-indigo-800 shrink-0"
+            : "text-xs font-semibold px-3 py-1 rounded-full bg-slate-100 text-slate-600 shrink-0";
+          badge.textContent = nowSelected
+            ? `উত্তর দেওয়া হয়েছে: ${OPT_LABELS_BN[nowSelected]}`
+            : "উত্তর দেওয়া হয়নি";
+
+          optsGrid.querySelectorAll("button").forEach((b, bIdx) => {
+            const key = ["a", "b", "c", "d"][bIdx];
+            const active = nowSelected === key;
+            b.className = `option-row w-full text-left p-3.5 flex items-center gap-3 cursor-pointer ${
+              active ? "selected" : ""
+            }`;
+            b.setAttribute("aria-pressed", active ? "true" : "false");
+          });
+        });
+
+        optsGrid.appendChild(optBtn);
+      });
+
+      card.appendChild(optsGrid);
+      questionsContainer.appendChild(card);
+      updateProgressUI();
+    }
+
+    // Begin Exam Session Helper
+    function launchExamSession(isResume = false) {
+      entryScreen.classList.add("hidden");
+      resultScreen.classList.add("hidden");
+      examScreen.classList.remove("hidden");
+      examProgressBarWrap.classList.remove("hidden");
+      headerTimerBadge.classList.remove("hidden");
+
+      const metaText = `${state.student.name} (রোল: ${state.student.roll}) • ${getAttemptOrdinalBn(
+        state.attemptNumber
+      )} চেষ্টা`;
+      document.getElementById("headerStudentInfo").textContent = metaText;
+      document.getElementById("examCandidateMeta").textContent = metaText;
+
+      renderExamQuestion();
+
+      const elapsedSoFar = isResume
+        ? Math.max(0, Math.floor((Date.now() - state.startTimeObj.getTime()) / 1000))
+        : 0;
+      startExamTimer(state.durationLimitSec, elapsedSoFar);
+    }
+
+    // Restore Active Session if Page Reloaded Mid-Exam
+    (function initAppOnLoad() {
+      const prevAttempts = getStoredAttemptCount();
+      if (prevAttempts > 0) {
+        const badge = document.getElementById("previousAttemptBadge");
+        badge.textContent = `পূর্ববর্তী চেষ্টা: ${toBnNum(prevAttempts)} বার`;
+        badge.classList.remove("hidden");
+      }
+
+      try {
+        const savedRaw = sessionStorage.getItem(SESSION_ACTIVE_KEY);
+        if (savedRaw) {
+          const parsed = JSON.parse(savedRaw);
+          if (parsed && parsed.active && parsed.student && parsed.student.name) {
+            state.student = parsed.student;
+            state.answers = parsed.answers || {};
+            state.currentIndex = Number.isInteger(parsed.currentIndex)
+              ? Math.max(0, Math.min(QUESTIONS.length - 1, parsed.currentIndex))
+              : 0;
+            state.attemptNumber = parsed.attemptNumber || prevAttempts + 1;
+            state.reloadCount = (parsed.reloadCount || 0) + 1;
+            state.answerChangeCount = parsed.answerChangeCount || 0;
+            state.startTimeObj = new Date(parsed.startTimeMs || Date.now());
+            state.startTimeFormatted =
+              parsed.startTimeFormatted || formatBnTimestamp(state.startTimeObj);
+            state.durationLimitSec = parsed.durationLimitSec || 0;
+
+            saveActiveSession();
+            launchExamSession(true);
+            showNotice(
+              `⚠️ পরীক্ষা চলাকালীন পেজ রিলোড শনাক্ত হয়েছে (মোট রিলোড: ${toBnNum(
+                state.reloadCount
+              )} বার)। আপনার পূর্বের উত্তরসমূহ সংরক্ষিত আছে।`
+            );
+          }
+        }
+      } catch (e) {
+        // Ignore storage errors
+      }
+    })();
+
+    // Student Entry Form Submit
+    document.getElementById("studentEntryForm").addEventListener("submit", (e) => {
+      e.preventDefault();
+      hideNotice();
+
+      const nameInput = document.getElementById("studentName");
+      const rollInput = document.getElementById("studentRoll");
+      const durationSelect = document.getElementById("examDurationSelect");
+
+      const nameVal = nameInput.value.trim();
+      const rollVal = rollInput.value.trim();
+      const durationMinutes = Number(durationSelect ? durationSelect.value : 0);
+
+      let valid = true;
+      if (!nameVal) {
+        document.getElementById("nameError").classList.remove("hidden");
+        nameInput.focus();
+        valid = false;
+      } else {
+        document.getElementById("nameError").classList.add("hidden");
+      }
+
+      if (!rollVal) {
+        document.getElementById("rollError").classList.remove("hidden");
+        if (valid) rollInput.focus();
+        valid = false;
+      } else {
+        document.getElementById("rollError").classList.add("hidden");
+      }
+
+      if (!valid) return;
+
+      state.student = { name: nameVal, roll: rollVal };
+      state.answers = {};
+      state.currentIndex = 0;
+      state.attemptNumber = getStoredAttemptCount() + 1;
+      state.reloadCount = 0;
+      state.answerChangeCount = 0;
+      state.startTimeObj = new Date();
+      state.startTimeFormatted = formatBnTimestamp(state.startTimeObj);
+      state.durationLimitSec = durationMinutes > 0 ? durationMinutes * 60 : 0;
+
+      saveActiveSession();
+      launchExamSession(false);
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+
+    // Keep mobile zoom reset cleanly on input focus/blur
+    ["studentName", "studentRoll"].forEach((id) => {
+      const el = document.getElementById(id);
+      if (el) {
+        el.addEventListener("focus", () => {
+          el.style.zoom = "1";
+          el.style.transform = "none";
+        });
+        el.addEventListener("blur", () => {
+          if (window.visualViewport && window.visualViewport.scale > 1) {
+            window.scrollTo(window.scrollX, window.scrollY);
+          }
+        });
+      }
+    });
+
+    // Previous & Next Single-Question Navigation
+    document.getElementById("prevQuestionBtn").addEventListener("click", () => {
+      if (state.currentIndex > 0) {
+        goToQuestion(state.currentIndex - 1);
+      }
+    });
+
+    document.getElementById("nextQuestionBtn").addEventListener("click", () => {
+      if (state.currentIndex < QUESTIONS.length - 1) {
+        goToQuestion(state.currentIndex + 1);
+      } else {
+        handleRequestSubmit();
+      }
+    });
+
+    // Submit Confirmation Flow
+    function handleRequestSubmit() {
+      const answered = getAnsweredCount();
+      const total = QUESTIONS.length;
+      const unanswered = total - answered;
+      document.getElementById("confirmSubmitStats").innerHTML =
+        `আপনি <strong>${toBnNum(answered)}</strong> টি প্রশ্নের উত্তর দিয়েছেন এবং <strong>${toBnNum(
+          unanswered
+        )}</strong> টি প্রশ্ন উত্তরহীন রেখেছেন (মোট ৫৮টি)।`;
+      document.getElementById("confirmSubmitModal").classList.remove("hidden");
+    }
+
+    document.getElementById("topSubmitExamBtn").addEventListener("click", handleRequestSubmit);
+    document.getElementById("bottomSubmitExamBtn").addEventListener("click", handleRequestSubmit);
+    document.getElementById("cancelSubmitModalBtn").addEventListener("click", () => {
+      document.getElementById("confirmSubmitModal").classList.add("hidden");
+    });
+
+    // Finalize Exam, Compute Score, Update Verification Card & Send Mail
+    function finalizeAndSubmitExam() {
+      stopExamTimer();
+      clearActiveSession();
+      document.getElementById("confirmSubmitModal").classList.add("hidden");
+
+      const completedAttemptNum = incrementStoredAttemptCount();
+      const endTimeObj = new Date();
+      const endTimeFormatted = formatBnTimestamp(endTimeObj);
+      const totalElapsed = Math.max(
+        1,
+        Math.floor((endTimeObj.getTime() - state.startTimeObj.getTime()) / 1000)
+      );
+      const durationBn = formatDurationBn(totalElapsed);
+
+      let correct = 0;
+      let wrong = 0;
+      let unanswered = 0;
+
+      const detailedItems = QUESTIONS.map((qObj, idx) => {
+        const chosen = state.answers[idx] || null;
+        let status = "unanswered";
+        if (!chosen) {
+          unanswered += 1;
+          status = "unanswered";
+        } else if (chosen === qObj.ans) {
+          correct += 1;
+          status = "correct";
+        } else {
+          wrong += 1;
+          status = "wrong";
+        }
+
+        return {
+          id: qObj.id,
+          img: qObj.img || "",
+          q: qObj.q,
+          options: qObj.options,
+          chosen,
+          chosenText: chosen ? `${OPT_LABELS_BN[chosen]}. ${qObj.options[chosen]}` : "উত্তর দেননি",
+          ans: qObj.ans,
+          ansText: `${OPT_LABELS_BN[qObj.ans]}. ${qObj.options[qObj.ans]}`,
+          exp: qObj.exp,
+          status
+        };
+      });
+
+      const total = QUESTIONS.length;
+      const percentage = ((correct / total) * 100).toFixed(2);
+      const verificationCode = generateVerificationCode(
+        completedAttemptNum,
+        correct,
+        state.student.name,
+        state.student.roll
+      );
+
+      const resultObj = {
+        instructor: INSTRUCTOR_NAME,
+        student: { ...state.student },
+        attemptNum: completedAttemptNum,
+        attemptBn: getAttemptOrdinalBn(completedAttemptNum),
+        attemptEn: getAttemptOrdinalEn(completedAttemptNum),
+        reloadCount: state.reloadCount,
+        answerChangeCount: state.answerChangeCount,
+        startTimeFormatted: state.startTimeFormatted,
+        endTimeFormatted,
+        durationBn,
+        verificationCode,
+        score: correct,
+        total,
+        percentage,
+        correct,
+        wrong,
+        unanswered,
+        items: detailedItems
+      };
+
+      state.lastResult = resultObj;
+      state.reviewFilter = "all";
+
+      // Switch UI Screens
+      examScreen.classList.add("hidden");
+      examProgressBarWrap.classList.add("hidden");
+      headerTimerBadge.classList.add("hidden");
+      resultScreen.classList.remove("hidden");
+
+      // Populate Top Emerald Verification Card
+      document.getElementById("attemptTopPill").textContent = `${resultObj.attemptBn} চেষ্টা ✓`;
+      document.getElementById("trkStudentName").textContent = resultObj.student.name;
+      document.getElementById("trkStudentRoll").textContent = resultObj.student.roll;
+      document.getElementById("trkAttemptText").textContent = `${resultObj.attemptBn} (${resultObj.attemptEn})`;
+      document.getElementById("trkReloadCount").textContent = `${toBnNum(resultObj.reloadCount)} বার`;
+      document.getElementById("trkChangeCount").textContent = `${toBnNum(resultObj.answerChangeCount)} বার`;
+      document.getElementById("trkTimeTaken").textContent = resultObj.durationBn;
+      document.getElementById("trkStartTime").textContent = resultObj.startTimeFormatted;
+      document.getElementById("trkEndTime").textContent = resultObj.endTimeFormatted;
+      document.getElementById("trkVerificationCode").textContent = resultObj.verificationCode;
+
+      // Populate Score Summary Card
+      document.getElementById("sumScoreText").textContent = `${toBnNum(correct)}/${toBnNum(total)}`;
+      document.getElementById("sumCorrectText").textContent = toBnNum(correct);
+      document.getElementById("sumWrongText").textContent = toBnNum(wrong);
+      document.getElementById("sumUnansweredText").textContent = toBnNum(unanswered);
+
+      const pctNum = Number(percentage);
+      const feedbackEl = document.getElementById("performanceFeedbackBox");
+      if (pctNum >= 80) {
+        feedbackEl.textContent = "অসাধারণ ফলাফল! সেট ও ফাংশন অধ্যায়ে আপনার প্রস্তুতি অত্যন্ত দৃঢ়।";
+      } else if (pctNum >= 50) {
+        feedbackEl.textContent = "ভালো চেষ্টা! ভুল হওয়া প্রশ্নগুলোর ব্যাখ্যা নিচে দেখে নিলে আরও ভালো করবেন।";
+      } else {
+        feedbackEl.textContent = "এই অধ্যায়ের সেট, উপসেট, ক্রমজোড়, অন্বয় ও ফাংশন অংশগুলো পুনরায় পড়ে আবার চেষ্টা করুন।";
+      }
+
+      // Populate Filter Tab Counts
+      document.getElementById("tabAllCount").textContent = toBnNum(total);
+      document.getElementById("tabWrongCount").textContent = toBnNum(wrong);
+      document.getElementById("tabUnansweredCount").textContent = toBnNum(unanswered);
+      document.getElementById("tabCorrectCount").textContent = toBnNum(correct);
+
+      renderReviewList();
+      sendResultViaFormSubmit(resultObj, TARGET_EMAIL);
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    document.getElementById("confirmSubmitActionBtn").addEventListener("click", finalizeAndSubmitExam);
+
+    function buildEmailSummaryText(res) {
+      const wrongNums = res.items
+        .filter((it) => it.status === "wrong")
+        .map((it) => `${toBnNum(it.id)} (আপনার উত্তর: ${it.chosenText}, সঠিক: ${it.ansText})`)
+        .join("\n");
+
+      const unansweredNums = res.items
+        .filter((it) => it.status === "unanswered")
+        .map((it) => toBnNum(it.id))
+        .join(", ");
+
+      return [
+        `অধ্যায় ২: সেট ও ফাংশন (মোট ৫৮টি প্রশ্ন)`,
+        `Instructor: ${res.instructor}`,
+        `Verification Code: ${res.verificationCode}`,
+        `----------------------------------------`,
+        `শিক্ষার্থীর নাম: ${res.student.name}`,
+        `রোল / আইডি: ${res.student.roll}`,
+        `মোট চেষ্টার সংখ্যা: ${res.attemptBn} (${res.attemptEn})`,
+        `পেজ রিলোড / রিফ্রেশ: ${toBnNum(res.reloadCount)} বার`,
+        `উত্তর পরিবর্তন: ${toBnNum(res.answerChangeCount)} বার`,
+        `ব্যয়িত সময়: ${res.durationBn}`,
+        `শুরু: ${res.startTimeFormatted}`,
+        `জমা: ${res.endTimeFormatted}`,
+        `----------------------------------------`,
+        `প্রাপ্ত নম্বর: ${toBnNum(res.score)} / ${toBnNum(res.total)} (${res.percentage}%)`,
+        `সঠিক উত্তর: ${toBnNum(res.correct)} | ভুল উত্তর: ${toBnNum(res.wrong)} | উত্তর দেননি: ${toBnNum(res.unanswered)}`,
+        `----------------------------------------`,
+        `ভুল উত্তরসমূহ (${toBnNum(res.wrong)}টি):`,
+        wrongNums || "নেই",
+        `----------------------------------------`,
+        `উত্তরহীন প্রশ্ন নম্বর (${toBnNum(res.unanswered)}টি): ${unansweredNums || "নেই"}`
+      ].join("\n");
+    }
+
+    async function sendResultViaFormSubmit(res, recipientEmail) {
+      const statusBox = document.getElementById("emailStatusMessage");
+      const mailtoBtn = document.getElementById("mailtoDirectBtn");
+
+      const subject = `Ch-2 Set & Function MCQ Result | ${res.student.name} (Roll: ${res.student.roll}) | ${res.score}/${res.total} [${res.verificationCode}]`;
+      const summaryBody = buildEmailSummaryText(res);
+
+      mailtoBtn.href = `mailto:${encodeURIComponent(recipientEmail)}?subject=${encodeURIComponent(
+        subject
+      )}&body=${encodeURIComponent(summaryBody)}`;
+
+      statusBox.innerHTML = `⏳ <strong>${recipientEmail}</strong> মেইলে সম্পূর্ণ ফলাফল ও তথ্য পাঠানো হচ্ছে...`;
+
+      try {
+        const response = await fetch(`https://formsubmit.co/ajax/${encodeURIComponent(recipientEmail)}`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json"
+          },
+          body: JSON.stringify({
+            _subject: subject,
+            Instructor: res.instructor,
+            Verification_Code: res.verificationCode,
+            Student_Name: res.student.name,
+            Roll_ID: res.student.roll,
+            Attempt: `${res.attemptBn} (${res.attemptEn})`,
+            Page_Reloads: `${res.reloadCount}`,
+            Answer_Changes: `${res.answerChangeCount}`,
+            Time_Taken: res.durationBn,
+            Start_Time: res.startTimeFormatted,
+            Submit_Time: res.endTimeFormatted,
+            Score: `${res.score} / ${res.total} (${res.percentage}%)`,
+            Correct_Answers: `${res.correct}`,
+            Wrong_Answers: `${res.wrong}`,
+            Unanswered: `${res.unanswered}`,
+            Full_Report: summaryBody
+          })
+        });
+
+        const data = await response.json();
+        if (response.ok && (data.success === "true" || data.success === true)) {
+          statusBox.innerHTML = `✅ <strong>${recipientEmail}</strong> মেইলে সম্পূর্ণ ফলাফল ও তথ্য পাঠানো হয়েছে!<span class="block text-xs text-emerald-800 mt-0.5">(প্রথমবার ব্যবহারে FormSubmit থেকে আসা ভেরিফিকেশন লিংকটি ইনবক্স/স্প্যাম থেকে একবার Confirm করে নেবেন)</span>`;
+          return;
+        }
+        throw new Error("FormSubmit AJAX returned error");
+      } catch (err) {
+        statusBox.innerHTML = `✅ ফলাফল প্রস্তুত হয়েছে! স্বয়ংক্রিয় মেইল ব্লক হলে ডানপাশের <strong>"সরাসরি মেইল করুন"</strong> বাটনে ক্লিক করে <strong>${recipientEmail}</strong> ঠিকানায় পাঠিয়ে দিন।`;
+      }
+    }
+
+    document.getElementById("resendEmailBtn").addEventListener("click", () => {
+      if (!state.lastResult) return;
+      const mailVal = document.getElementById("instructorMailDisplay").value.trim() || TARGET_EMAIL;
+      sendResultViaFormSubmit(state.lastResult, mailVal);
+    });
+
+    // Render Detailed Review Cards with Explanations
+    function renderReviewList() {
+      if (!state.lastResult) return;
+      reviewContainer.innerHTML = "";
+
+      const filtered = state.lastResult.items.filter((it) => {
+        if (state.reviewFilter === "all") return true;
+        return it.status === state.reviewFilter;
+      });
+
+      if (filtered.length === 0) {
+        const emptyBox = document.createElement("div");
+        emptyBox.className = "card-box p-6 text-center text-sm font-semibold text-slate-600";
+        emptyBox.textContent = "এই ক্যাটাগরিতে কোনো প্রশ্ন নেই।";
+        reviewContainer.appendChild(emptyBox);
+        return;
+      }
+
+      filtered.forEach((it) => {
+        const card = document.createElement("article");
+        card.className = "card-box p-4 sm:p-6";
+
+        let statusBadgeClass = "bg-slate-100 text-slate-700";
+        let statusText = "উত্তরহীন";
+        if (it.status === "correct") {
+          statusBadgeClass = "bg-emerald-100 text-emerald-800";
+          statusText = "সঠিক উত্তর ✓";
+        } else if (it.status === "wrong") {
+          statusBadgeClass = "bg-rose-100 text-rose-800";
+          statusText = "ভুল উত্তর ✕";
+        }
+
+        const topRow = document.createElement("div");
+        topRow.className = "flex items-center justify-between gap-2 mb-2";
+
+        const qNumTag = document.createElement("span");
+        qNumTag.className = "text-xs sm:text-sm font-bold text-indigo-600";
+        qNumTag.textContent = `প্রশ্ন ${toBnNum(it.id)}`;
+
+        const statusBadge = document.createElement("span");
+        statusBadge.className = `text-xs font-bold px-3 py-1 rounded-full ${statusBadgeClass}`;
+        statusBadge.textContent = statusText;
+
+        topRow.appendChild(qNumTag);
+        topRow.appendChild(statusBadge);
+        card.appendChild(topRow);
+
+        const qTitle = document.createElement("h4");
+        qTitle.className = "text-sm sm:text-base font-bold text-slate-900 leading-relaxed whitespace-pre-line mb-3.5";
+        qTitle.textContent = it.q;
+        card.appendChild(qTitle);
+
+        if (it.img) {
+          const im = document.createElement("img");
+          im.src = it.img;
+          im.alt = "chitro";
+          im.className = "block mx-auto mb-3.5 rounded-lg border border-slate-200 w-full max-w-[240px]";
+          card.appendChild(im);
+        }
+
+        // 4 Options List (ক, খ, গ, ঘ)
+        const optsWrap = document.createElement("div");
+        optsWrap.className = "space-y-2 mb-4";
+
+        ["a", "b", "c", "d"].forEach((k) => {
+          const isCorrect = it.ans === k;
+          const isChosen = it.chosen === k;
+
+          let rowStyle = "border border-slate-200 bg-white text-slate-800";
+          let tagHtml = "";
+
+          if (isCorrect && isChosen) {
+            rowStyle = "border-2 border-emerald-500 bg-emerald-50 text-emerald-950 font-bold";
+            tagHtml = `<span class="text-xs font-bold text-emerald-700 shrink-0">✓ আপনার ও সঠিক উত্তর</span>`;
+          } else if (isCorrect) {
+            rowStyle = "border-2 border-emerald-500 bg-emerald-50 text-emerald-950 font-bold";
+            tagHtml = `<span class="text-xs font-bold text-emerald-700 shrink-0">✓ সঠিক উত্তর</span>`;
+          } else if (isChosen) {
+            rowStyle = "border-2 border-rose-500 bg-rose-50 text-rose-950 font-semibold";
+            tagHtml = `<span class="text-xs font-bold text-rose-700 shrink-0">✕ আপনার ভুল উত্তর</span>`;
+          }
+
+          const optDiv = document.createElement("div");
+          optDiv.className = `rounded-xl px-3.5 py-2.5 text-xs sm:text-sm flex flex-wrap items-center justify-between gap-2 ${rowStyle}`;
+          optDiv.innerHTML = `<span><strong>${OPT_LABELS_BN[k]}.</strong> ${escHtml(it.options[k])}</span>${tagHtml}`;
+          optsWrap.appendChild(optDiv);
+        });
+
+        card.appendChild(optsWrap);
+
+        // Explanation Box ("ব্যাখ্যা:")
+        const expBox = document.createElement("div");
+        expBox.className = "rounded-xl bg-indigo-50/75 border-l-4 border-indigo-600 p-3.5 text-xs sm:text-sm text-slate-800 leading-relaxed space-y-1";
+        expBox.innerHTML = `
+          <div class="font-bold text-indigo-950">
+            সঠিক উত্তর: <span class="text-emerald-700">${escHtml(it.ansText)}</span>
+            ${
+              it.status === "wrong"
+                ? `<span class="text-rose-700 font-semibold block sm:inline sm:ml-2">• আপনি দিয়েছিলেন: ${escHtml(it.chosenText)}</span>`
+                : ""
+            }
+          </div>
+          <div><strong class="text-indigo-800">ব্যাখ্যা:</strong> ${it.exp}</div>
+        `;
+        card.appendChild(expBox);
+
+        reviewContainer.appendChild(card);
+      });
+    }
+
+    // Filter Pills Click Handler
+    document.querySelectorAll(".review-filter-btn").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        state.reviewFilter = btn.dataset.reviewFilter;
+        document.querySelectorAll(".review-filter-btn").forEach((b) => {
+          const active = b.dataset.reviewFilter === state.reviewFilter;
+          b.className = active
+            ? "review-filter-btn px-4 py-2 rounded-full text-xs sm:text-sm font-bold bg-indigo-600 text-white shadow-xs cursor-pointer"
+            : "review-filter-btn px-4 py-2 rounded-full text-xs sm:text-sm font-bold bg-white text-slate-700 border border-slate-200 hover:bg-slate-50 cursor-pointer";
+        });
+        renderReviewList();
+      });
+    });
+
+    // Scroll to Review Section Button
+    document.getElementById("scrollToReviewBtn").addEventListener("click", () => {
+      document.getElementById("reviewSectionAnchor").scrollIntoView({ behavior: "smooth" });
+    });
+
+    // Retake Exam Button (Counts as New Attempt)
+    document.getElementById("retakeExamBtn").addEventListener("click", () => {
+      state.answers = {};
+      state.currentIndex = 0;
+      state.lastResult = null;
+      const prevAttempts = getStoredAttemptCount();
+      const badge = document.getElementById("previousAttemptBadge");
+      if (prevAttempts > 0) {
+        badge.textContent = `পূর্ববর্তী চেষ্টা: ${toBnNum(prevAttempts)} বার`;
+        badge.classList.remove("hidden");
+      }
+      resultScreen.classList.add("hidden");
+      entryScreen.classList.remove("hidden");
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+  </script>
+</body>
+</html>
