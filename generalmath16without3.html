@@ -1,0 +1,1908 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>পরিমিতি: ত্রিভুজ, চতুর্ভুজ, সুষম বহুভুজ ও ঘনবস্তু MCQ এক্সাম | Instructor: AKASH</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  />
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #f1f5f9;
+      color: #0f172a;
+      font-family: "Hind Siliguri", "Inter", sans-serif;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+      min-height: 100vh;
+    }
+
+    .mono-num {
+      font-variant-numeric: tabular-nums;
+    }
+
+    .card-box {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 1rem;
+      box-shadow: 0 2px 10px rgba(15, 23, 42, 0.04);
+    }
+
+    .gradient-header {
+      background: linear-gradient(120deg, #1e293b 0%, #312e81 55%, #0f766e 100%);
+    }
+
+    .option-row {
+      border: 1.5px solid #e2e8f0;
+      background: #ffffff;
+      border-radius: 0.75rem;
+      transition: all 0.14s ease;
+    }
+
+    .option-row:hover {
+      border-color: #6366f1;
+      background: #f8fafc;
+    }
+
+    .option-row.selected {
+      border-color: #4f46e5;
+      background: #eef2ff;
+      color: #1e1b4b;
+      box-shadow: 0 2px 8px rgba(79, 70, 229, 0.14);
+    }
+
+    .option-row.selected .opt-badge {
+      background: #4f46e5;
+      color: #ffffff;
+      border-color: #4f46e5;
+    }
+
+    .opt-badge {
+      border: 1.5px solid #cbd5e1;
+      background: #f8fafc;
+      color: #334155;
+      border-radius: 0.5rem;
+      transition: all 0.14s ease;
+    }
+
+    /* Prevent iOS/Android mobile auto-zoom on form input focus */
+    input,
+    select,
+    textarea {
+      font-size: 16px !important;
+      line-height: 1.4;
+      transform: none !important;
+      zoom: 1 !important;
+    }
+
+    @media print {
+      .no-print {
+        display: none !important;
+      }
+      body {
+        background: #ffffff !important;
+      }
+    }
+    .frac{display:inline-flex;flex-direction:column;vertical-align:middle;text-align:center;margin:0 3px;line-height:1.3;font-size:.95em}
+  .frac>.num{border-bottom:1.5px solid currentColor;padding:0 4px}
+  .frac>.den{padding:0 4px}
+  sup,sub{font-size:.8em;line-height:0}
+</style>
+</head>
+<body class="text-slate-800">
+  <!-- Sticky Header -->
+  <header class="gradient-header text-white sticky top-0 z-30 shadow-md no-print">
+    <div class="max-w-4xl mx-auto px-3 sm:px-6 py-3 flex items-center justify-between gap-2">
+      <div class="flex items-center gap-2.5 sm:gap-3 min-w-0">
+        <div class="w-10 h-10 rounded-xl bg-white/15 border border-white/25 flex items-center justify-center shrink-0 font-bold text-sm sm:text-base">
+          📐
+        </div>
+        <div class="min-w-0">
+          <div class="flex items-center gap-2 flex-wrap">
+            <h1 class="text-sm sm:text-lg font-bold tracking-tight text-white truncate">
+              অধ্যায় ১৬: পরিমিতি
+            </h1>
+            <span class="text-[11px] sm:text-xs font-bold px-2.5 py-0.5 rounded-full bg-amber-300 text-slate-900 mono-num">
+              মোট ২৮টি প্রশ্ন
+            </span>
+          </div>
+          <p class="text-xs sm:text-sm text-slate-200 font-medium">
+            Instructor: <span class="font-bold text-white">AKASH</span>
+          </p>
+        </div>
+      </div>
+
+      <!-- Live Timer Badge during Exam -->
+      <div id="headerTimerBadge" class="hidden shrink-0">
+        <div class="px-3 py-1.5 rounded-xl bg-white text-slate-900 font-bold text-xs sm:text-sm mono-num shadow flex items-center gap-1.5">
+          <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+          <span id="liveTimerDisplay">00:00</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Exam Progress Bar Strip -->
+    <div id="examProgressBarWrap" class="hidden bg-slate-950/35 border-t border-white/10">
+      <div class="max-w-4xl mx-auto px-3 sm:px-6 py-2 flex flex-wrap items-center justify-between gap-2 text-xs sm:text-sm text-white">
+        <div class="font-medium truncate max-w-[62%] sm:max-w-none" id="headerStudentInfo"></div>
+        <div class="flex items-center gap-2.5 mono-num ml-auto">
+          <span>উত্তর: <strong id="answeredCountText" class="text-amber-300">0</strong>/28</span>
+          <div class="w-20 sm:w-28 h-2 rounded-full bg-white/20 overflow-hidden">
+            <div id="progressFill" class="h-full bg-emerald-400 transition-all duration-200" style="width: 0%;"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <main class="max-w-4xl mx-auto px-3 sm:px-6 py-5 sm:py-7">
+    <!-- Inline Alert Banner -->
+    <div id="globalNotice" class="hidden mb-4 rounded-xl border border-indigo-200 bg-indigo-50 p-3.5 text-xs sm:text-sm font-medium text-indigo-950 flex items-start justify-between gap-3">
+      <div id="globalNoticeText"></div>
+      <button type="button" id="closeNoticeBtn" class="text-xs font-bold text-indigo-700 underline shrink-0 cursor-pointer">বন্ধ করুন</button>
+    </div>
+
+    <!-- SCREEN 1: STUDENT ENTRY SCREEN -->
+    <section id="entryScreen" class="max-w-xl mx-auto">
+      <div class="card-box p-5 sm:p-7">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 mb-5 border-b border-slate-100">
+          <div>
+            <span class="inline-block text-[11px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800">
+              Online MCQ Exam Portal
+            </span>
+            <h2 class="text-xl sm:text-2xl font-bold text-slate-900 mt-1.5">
+              পরিমিতি: ত্রিভুজ, চতুর্ভুজ, সুষম বহুভুজ ও ঘনবস্তু
+            </h2>
+            <p class="text-xs sm:text-sm text-slate-600 mt-0.5">
+              Instructor: <strong class="text-indigo-700">AKASH</strong> • মোট ২৮টি প্রশ্ন • পূর্ণমান: ২৮
+            </p>
+          </div>
+          <div id="previousAttemptBadge" class="hidden text-xs font-bold px-3 py-1.5 rounded-lg bg-slate-100 text-slate-700 border border-slate-200 shrink-0"></div>
+        </div>
+
+        <div class="rounded-xl bg-slate-50 border border-slate-200 p-3.5 mb-5 text-xs sm:text-sm text-slate-700 space-y-1">
+          <div class="font-bold text-slate-900">📌 পরীক্ষার্থীদের জন্য নির্দেশনা:</div>
+          <p>১. আপনার <strong>শিক্ষার্থীর নাম</strong> ও <strong>রোল / আইডি</strong> দিয়ে পরীক্ষা শুরু করুন।</p>
+          <p>২. পরীক্ষা চলাকালীন পেজ রিলোড, উত্তর পরিবর্তন ও ব্যয়িত সময় স্বয়ংক্রিয়ভাবে ট্র্যাক হবে।</p>
+          <p>৩. <strong>পরীক্ষা জমা দিন (Submit)</strong> বাটনে ক্লিক করলে প্রাপ্ত নম্বর, বিস্তারিত ব্যাখ্যা দেখতে পাবেন এবং সম্পূর্ণ রিপোর্ট <strong>akashtalukder1998@gmail.com</strong> মেইলে চলে যাবে।</p>
+        </div>
+
+        <form id="studentEntryForm" class="space-y-4" novalidate>
+          <div>
+            <label for="studentName" class="block text-sm font-bold text-slate-800 mb-1">
+              শিক্ষার্থীর নাম <span class="text-rose-600">*</span>
+            </label>
+            <input
+              type="text"
+              id="studentName"
+              required
+              placeholder="আপনার নাম লিখুন"
+              class="w-full px-3.5 py-2.5 text-base rounded-xl border border-slate-300 bg-white text-slate-900 focus:outline-none focus:border-indigo-600 focus:ring-2 focus:ring-indigo-100"
+            />
+            <p id="nameError" class="hidden text-xs font-semibold text-rose-600 mt-1">
+              অনুগ্রহ করে শিক্ষার্থীর নাম লিখুন।
+            </p>
+          </div>
+
+          <div>
+            <label for="studentRoll" class="block text-sm font-bold text-slate-800 mb-1">
+              রোল / আইডি <span class="text-rose-600">*</span>
+            </label>
+            <input
+              type="text"
+              id="studentRoll"
+              required
+              placeholder="আপনার রোল বা আইডি লিখুন"
+              class="w-full px-3.5 py-2.5 text-base rounded-xl border border-slate-300 bg-white text-slate-900 focus:outline-none focus:border-indigo-600 focus:ring-2 focus:ring-indigo-100 mono-num"
+            />
+            <p id="rollError" class="hidden text-xs font-semibold text-rose-600 mt-1">
+              অনুগ্রহ করে রোল / আইডি লিখুন।
+            </p>
+          </div>
+
+          <div>
+            <label for="examDurationSelect" class="block text-sm font-bold text-slate-800 mb-1">
+              সময় নির্ধারণ
+            </label>
+            <select
+              id="examDurationSelect"
+              class="w-full px-3.5 py-2.5 text-base rounded-xl border border-slate-300 bg-white text-slate-900 focus:outline-none focus:border-indigo-600"
+            >
+              <option value="0" selected>সময়সীমাহীন (Stopwatch চালু থাকবে)</option>
+              <option value="28">২৮ মিনিট (প্রতি প্রশ্নে ১ মিনিট)</option>
+              <option value="45">৪৫ মিনিট</option>
+              <option value="30">৩০ মিনিট</option>
+            </select>
+          </div>
+
+          <button
+            type="submit"
+            class="w-full py-3 px-5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-base shadow-sm transition cursor-pointer"
+          >
+            পরীক্ষা শুরু করুন →
+          </button>
+        </form>
+      </div>
+    </section>
+
+    <!-- SCREEN 2: ACTIVE EXAM SCREEN (SINGLE QUESTION AT A TIME) -->
+    <section id="examScreen" class="hidden space-y-4">
+      <!-- Top Control Card -->
+      <div class="card-box p-4">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+          <div>
+            <div class="text-xs font-bold text-emerald-700">● লাইভ পরীক্ষা চলছে • Instructor: AKASH</div>
+            <div class="text-sm sm:text-base font-bold text-slate-900 mt-0.5" id="examCandidateMeta"></div>
+          </div>
+          <button
+            type="button"
+            id="topSubmitExamBtn"
+            class="px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs sm:text-sm font-bold cursor-pointer self-start sm:self-auto"
+          >
+            পরীক্ষা জমা দিন (Submit Exam)
+          </button>
+        </div>
+      </div>
+
+      <!-- Single Active Question Container -->
+      <div id="questionsContainer"></div>
+
+      <!-- Previous / Next / Submit Navigation Bar -->
+      <div class="card-box p-4 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-2.5">
+        <button
+          type="button"
+          id="prevQuestionBtn"
+          class="px-4 py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 disabled:opacity-45 disabled:pointer-events-none text-slate-800 font-bold text-sm cursor-pointer transition"
+        >
+          ← পূর্ববর্তী প্রশ্ন
+        </button>
+
+        <div class="text-center text-xs sm:text-sm font-bold text-slate-700 mono-num self-center">
+          প্রশ্ন <span id="currentQIndicator" class="text-indigo-700">১</span> / ২৮ • উত্তর: <span id="bottomAnsweredCount" class="text-emerald-700">0</span>/২৮
+        </div>
+
+        <div class="flex items-center gap-2">
+          <button
+            type="button"
+            id="nextQuestionBtn"
+            class="flex-1 sm:flex-initial px-4 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-sm cursor-pointer transition"
+          >
+            পরবর্তী প্রশ্ন →
+          </button>
+          <button
+            type="button"
+            id="bottomSubmitExamBtn"
+            class="px-4 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs sm:text-sm cursor-pointer transition"
+          >
+            পরীক্ষা জমা দিন (Submit Exam)
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- SCREEN 3: POST-SUBMISSION VERIFICATION, SCORE & EXPLANATION SCREEN -->
+    <section id="resultScreen" class="hidden space-y-5">
+      <!-- 1. TOP EMERALD/TEAL AUTO-TRACKING & VERIFICATION CARD (Matches image_8df221.png) -->
+      <div class="rounded-2xl border-2 border-emerald-500 bg-white overflow-hidden shadow-sm">
+        <!-- Emerald Top Header -->
+        <div class="bg-[#059669] text-white px-4 sm:px-6 py-3.5 flex items-center justify-between gap-2">
+          <div class="flex items-center gap-2 font-bold text-xs sm:text-sm">
+            <span class="inline-flex items-center justify-center w-6 h-6 rounded-md bg-white/20 text-white">🛡️</span>
+            <span>• অটো-ট্র্যাকিং ও চেষ্টা যাচাইকরণ By mail</span>
+          </div>
+          <span id="attemptTopPill" class="px-3 py-1 rounded-full bg-white text-[#047857] text-xs font-extrabold shadow-xs shrink-0">
+            ১ম বার চেষ্টা ✓
+          </span>
+        </div>
+
+        <div class="p-4 sm:p-6 space-y-4">
+          <!-- 6 Stat Boxes Grid -->
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+            <div class="rounded-xl border border-slate-200 bg-slate-50/70 p-3.5">
+              <div class="text-xs text-slate-500 font-medium">শিক্ষার্থীর নাম</div>
+              <div id="trkStudentName" class="text-sm sm:text-base font-bold text-slate-900 mt-0.5 break-words">-</div>
+            </div>
+            <div class="rounded-xl border border-slate-200 bg-slate-50/70 p-3.5">
+              <div class="text-xs text-slate-500 font-medium">রোল / আইডি</div>
+              <div id="trkStudentRoll" class="text-sm sm:text-base font-bold text-slate-900 mt-0.5 mono-num">-</div>
+            </div>
+            <div class="rounded-xl border border-slate-200 bg-slate-50/70 p-3.5">
+              <div class="text-xs text-slate-500 font-medium">মোট চেষ্টার সংখ্যা</div>
+              <div id="trkAttemptText" class="text-sm sm:text-base font-bold text-[#059669] mt-0.5">১ম বার (1st Attempt)</div>
+            </div>
+            <div class="rounded-xl border border-slate-200 bg-slate-50/70 p-3.5">
+              <div class="text-xs text-slate-500 font-medium">পেজ রিলোড / রিফ্রেশ</div>
+              <div id="trkReloadCount" class="text-sm sm:text-base font-bold text-slate-900 mt-0.5 mono-num">০ বার</div>
+            </div>
+            <div class="rounded-xl border border-slate-200 bg-slate-50/70 p-3.5">
+              <div class="text-xs text-slate-500 font-medium">উত্তর পরিবর্তন</div>
+              <div id="trkChangeCount" class="text-sm sm:text-base font-bold text-slate-900 mt-0.5 mono-num">০ বার</div>
+            </div>
+            <div class="rounded-xl border border-slate-200 bg-slate-50/70 p-3.5">
+              <div class="text-xs text-slate-500 font-medium">ব্যয়িত সময়</div>
+              <div id="trkTimeTaken" class="text-sm sm:text-base font-bold text-slate-900 mt-0.5 mono-num">০ মিনিট ০ সেকেন্ড</div>
+            </div>
+          </div>
+
+          <!-- Dark Navy Banner with Start Time, Submit Time & Verification Code -->
+          <div class="rounded-xl bg-[#0f172a] text-white p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+            <div class="space-y-1 text-xs sm:text-sm mono-num">
+              <div><span class="text-slate-400">শুরু:</span> <strong id="trkStartTime" class="text-white">-</strong></div>
+              <div><span class="text-slate-400">জমা:</span> <strong id="trkEndTime" class="text-white">-</strong></div>
+            </div>
+            <div class="sm:text-right">
+              <div class="text-[10px] uppercase tracking-widest text-slate-400 font-semibold">VERIFICATION CODE</div>
+              <div id="trkVerificationCode" class="text-sm sm:text-base font-extrabold text-amber-400 tracking-wider mono-num mt-0.5">
+                EXAM-ATT1-SC00-0000
+              </div>
+            </div>
+          </div>
+
+          <!-- Vibrant Indigo Accent Bar -->
+          <div class="h-3.5 w-full rounded-full bg-indigo-600"></div>
+
+          <!-- Light Green Email Status Box -->
+          <div class="rounded-xl border border-emerald-200 bg-emerald-50/80 p-3.5 sm:p-4 space-y-3">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+              <div class="text-xs sm:text-sm text-emerald-950 leading-relaxed" id="emailStatusMessage">
+                ✅ <strong>akashtalukder1998@gmail.com</strong> মেইলে সম্পূর্ণ ফলাফল ও তথ্য পাঠানো হচ্ছে...
+                <span class="block text-xs text-emerald-800 mt-0.5">
+                  (প্রথমবার ব্যবহারে FormSubmit থেকে আসা ভেরিফিকেশন লিংকটি ইনবক্স/স্প্যাম থেকে একবার Confirm করে নেবেন)
+                </span>
+              </div>
+              <a
+                id="mailtoDirectBtn"
+                href="#"
+                class="px-3.5 py-2 rounded-lg bg-white border border-slate-300 hover:bg-slate-50 text-indigo-700 font-bold text-xs inline-flex items-center justify-center gap-1.5 shrink-0 shadow-2xs"
+              >
+                <span>✉️ সরাসরি মেইল করুন</span>
+              </a>
+            </div>
+
+            <!-- Instructor Mail Input Row + Resend Button -->
+            <div class="pt-2.5 border-t border-emerald-200/70 flex flex-col sm:flex-row items-stretch sm:items-center gap-2">
+              <label for="instructorMailDisplay" class="text-xs font-semibold text-slate-600 shrink-0">
+                Instructor Mail:
+              </label>
+              <input
+                type="email"
+                id="instructorMailDisplay"
+                value="akashtalukder1998@gmail.com"
+                readonly
+                class="flex-1 px-3 py-1.5 text-base rounded-lg border border-slate-300 bg-white text-slate-800 font-medium focus:outline-none"
+              />
+              <button
+                type="button"
+                id="resendEmailBtn"
+                class="px-4 py-2 rounded-lg bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold cursor-pointer shrink-0"
+              >
+                পুনরায় পাঠান
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2. SCORE SUMMARY & ACTION CARD (Matches image_8df25d.png) -->
+      <div class="card-box p-4 sm:p-6 space-y-4">
+        <!-- 4 Colored Summary Boxes -->
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-center mono-num">
+          <div class="rounded-xl bg-indigo-50/90 border border-indigo-100 p-4">
+            <div class="text-xs font-bold text-indigo-600">প্রাপ্ত নম্বর</div>
+            <div id="sumScoreText" class="text-2xl sm:text-3xl font-extrabold text-indigo-950 mt-1">০/২৮</div>
+          </div>
+          <div class="rounded-xl bg-emerald-50/90 border border-emerald-100 p-4">
+            <div class="text-xs font-bold text-emerald-700">সঠিক উত্তর</div>
+            <div id="sumCorrectText" class="text-2xl sm:text-3xl font-extrabold text-emerald-800 mt-1">০</div>
+          </div>
+          <div class="rounded-xl bg-rose-50/90 border border-rose-100 p-4">
+            <div class="text-xs font-bold text-rose-600">ভুল উত্তর</div>
+            <div id="sumWrongText" class="text-2xl sm:text-3xl font-extrabold text-rose-800 mt-1">০</div>
+          </div>
+          <div class="rounded-xl bg-slate-100/90 border border-slate-200 p-4">
+            <div class="text-xs font-bold text-slate-600">উত্তর দেননি</div>
+            <div id="sumUnansweredText" class="text-2xl sm:text-3xl font-extrabold text-slate-800 mt-1">২৮</div>
+          </div>
+        </div>
+
+        <!-- Dynamic Feedback Banner -->
+        <div id="performanceFeedbackBox" class="rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-center text-xs sm:text-sm font-medium text-slate-700">
+          এই অধ্যায়ের পরিমিতির সূত্রগুলো পুনরায় পড়ে আবার চেষ্টা করুন।
+        </div>
+
+        <!-- Two Action Buttons -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 no-print">
+          <button
+            type="button"
+            id="retakeExamBtn"
+            class="py-3 px-4 rounded-xl bg-[#111827] hover:bg-slate-800 text-white font-bold text-xs sm:text-sm cursor-pointer transition"
+          >
+            পুনরায় পরীক্ষা দিন (নতুন চেষ্টা হিসেবে গণ্য হবে)
+          </button>
+          <button
+            type="button"
+            id="scrollToReviewBtn"
+            class="py-3 px-4 rounded-xl bg-white hover:bg-slate-50 text-slate-800 border border-slate-300 font-bold text-xs sm:text-sm cursor-pointer transition"
+          >
+            সব উত্তর পর্যালোচনা করুন
+          </button>
+        </div>
+      </div>
+
+      <!-- 3. FILTER TABS & DETAILED QUESTION REVIEW SECTION -->
+      <div id="reviewSectionAnchor" class="space-y-4 pt-1">
+        <!-- Filter Pills -->
+        <div class="flex flex-wrap items-center gap-2 no-print" role="group" aria-label="উত্তর ফিল্টার">
+          <button
+            type="button"
+            data-review-filter="all"
+            class="review-filter-btn px-4 py-2 rounded-full text-xs sm:text-sm font-bold bg-indigo-600 text-white shadow-xs cursor-pointer"
+          >
+            সব প্রশ্ন (<span id="tabAllCount">২৮</span>)
+          </button>
+          <button
+            type="button"
+            data-review-filter="wrong"
+            class="review-filter-btn px-4 py-2 rounded-full text-xs sm:text-sm font-bold bg-white text-slate-700 border border-slate-200 hover:bg-slate-50 cursor-pointer"
+          >
+            ভুল উত্তর (<span id="tabWrongCount">০</span>)
+          </button>
+          <button
+            type="button"
+            data-review-filter="unanswered"
+            class="review-filter-btn px-4 py-2 rounded-full text-xs sm:text-sm font-bold bg-white text-slate-700 border border-slate-200 hover:bg-slate-50 cursor-pointer"
+          >
+            উত্তরহীন (<span id="tabUnansweredCount">২৮</span>)
+          </button>
+          <button
+            type="button"
+            data-review-filter="correct"
+            class="review-filter-btn px-4 py-2 rounded-full text-xs sm:text-sm font-bold bg-white text-slate-700 border border-slate-200 hover:bg-slate-50 cursor-pointer"
+          >
+            সঠিক উত্তর (<span id="tabCorrectCount">০</span>)
+          </button>
+        </div>
+
+        <!-- Review Question Cards Container -->
+        <div id="reviewContainer" class="space-y-4"></div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="border-t border-slate-200 bg-white mt-10 py-4 px-3 sm:px-6 text-center text-xs text-slate-500 no-print">
+    <div class="max-w-4xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-1">
+      <span>পরিমিতি: ত্রিভুজ, চতুর্ভুজ, সুষম বহুভুজ ও ঘনবস্তু (মোট ২৮টি প্রশ্ন) • Instructor: <strong class="text-slate-700">AKASH</strong></span>
+      <span>akashtalukder1998@gmail.com</span>
+    </div>
+  </footer>
+
+  <!-- Submit Confirmation Modal -->
+  <div id="confirmSubmitModal" class="fixed inset-0 z-50 hidden bg-slate-950/60 flex items-center justify-center p-4">
+    <div class="card-box max-w-md w-full p-5 sm:p-6 bg-white">
+      <h3 class="text-lg font-bold text-slate-900">পরীক্ষা জমা দেওয়ার নিশ্চিতকরণ</h3>
+      <p id="confirmSubmitStats" class="text-sm text-slate-700 mt-2"></p>
+      <p class="text-xs text-slate-500 mt-2">
+        জমা দেওয়ার পর আপনার প্রাপ্ত নম্বর, অটো-ট্র্যাকিং রিপোর্ট ও প্রতিটি প্রশ্নের বিস্তারিত ব্যাখ্যা দেখতে পাবেন এবং ফলাফল <strong>akashtalukder1998@gmail.com</strong> মেইলে পাঠানো হবে।
+      </p>
+      <div class="mt-5 flex items-center justify-end gap-2">
+        <button
+          type="button"
+          id="cancelSubmitModalBtn"
+          class="px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-slate-100 text-slate-700 hover:bg-slate-200 cursor-pointer"
+        >
+          ফিরে যান
+        </button>
+        <button
+          type="button"
+          id="confirmSubmitActionBtn"
+          class="px-5 py-2 rounded-xl text-xs sm:text-sm font-bold bg-emerald-600 hover:bg-emerald-700 text-white cursor-pointer"
+        >
+          হ্যাঁ, জমা দিন ✓
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    /**
+     * =========================================================================
+     * COMPLETE 28 MCQ DATASET: Chapter 16 Mensuration (Triangle, Quadrilateral, Regular Polygon, Solids)
+     * Crisp Unicode superscripts, subscripts & mathematical symbols
+     * =========================================================================
+     */
+    const QUESTIONS = [
+  {
+    "id": 1,
+    "q": "একটি সমবাহু ত্রিভুজের প্রত্যেক বাহুর দৈর্ঘ্য 10 সেমি হলে এর মধ্যমার দৈর্ঘ্য কত? [সি. বো. ২৪]",
+    "qp": "একটি সমবাহু ত্রিভুজের প্রত্যেক বাহুর দৈর্ঘ্য 10 সেমি হলে এর মধ্যমার দৈর্ঘ্য কত? [সি. বো. ২৪]",
+    "options": {
+      "a": "5√3 সেমি",
+      "b": "3√5 সেমি",
+      "c": "75 সেমি",
+      "d": "125 সেমি"
+    },
+    "optionsP": {
+      "a": "5√3 সেমি",
+      "b": "3√5 সেমি",
+      "c": "75 সেমি",
+      "d": "125 সেমি"
+    },
+    "ans": "a",
+    "exp": "সমবাহু ত্রিভুজে মধ্যমা ও উচ্চতা সমান।<br>h = <span class=\"frac\"><span class=\"num\">√3</span><span class=\"den\">2</span></span>a = <span class=\"frac\"><span class=\"num\">√3</span><span class=\"den\">2</span></span> × 10 = 5√3 সেমি।"
+  },
+  {
+    "id": 2,
+    "q": "কোনো সমবাহু ত্রিভুজের উচ্চতা 2√3 সেমি হলে, এর বাহুর দৈর্ঘ্য কত সেমি? [দি. বো. ২৩]",
+    "qp": "কোনো সমবাহু ত্রিভুজের উচ্চতা 2√3 সেমি হলে, এর বাহুর দৈর্ঘ্য কত সেমি? [দি. বো. ২৩]",
+    "options": {
+      "a": "√3",
+      "b": "2",
+      "c": "2√3",
+      "d": "4"
+    },
+    "optionsP": {
+      "a": "√3",
+      "b": "2",
+      "c": "2√3",
+      "d": "4"
+    },
+    "ans": "d",
+    "exp": "h = <span class=\"frac\"><span class=\"num\">√3</span><span class=\"den\">2</span></span>a<br>⇒ 2√3 = <span class=\"frac\"><span class=\"num\">√3</span><span class=\"den\">2</span></span>a<br>⇒ a = 4"
+  },
+  {
+    "id": 3,
+    "q": "△PQR এর প্রতিটি বাহুর দৈর্ঘ্য 8 সে.মি. এবং PM ⊥ QR হলে, PM এর দৈর্ঘ্য কত সে.মি. হবে? [যশোর বোর্ড-২০২৫]",
+    "qp": "△PQR এর প্রতিটি বাহুর দৈর্ঘ্য 8 সে.মি. এবং PM ⊥ QR হলে, PM এর দৈর্ঘ্য কত সে.মি. হবে? [যশোর বোর্ড-২০২৫]",
+    "options": {
+      "a": "4√3",
+      "b": "4",
+      "c": "5",
+      "d": "√3"
+    },
+    "optionsP": {
+      "a": "4√3",
+      "b": "4",
+      "c": "5",
+      "d": "√3"
+    },
+    "ans": "a",
+    "exp": "PM হলো সমবাহু ত্রিভুজের উচ্চতা।<br>h = <span class=\"frac\"><span class=\"num\">√3</span><span class=\"den\">2</span></span>a = <span class=\"frac\"><span class=\"num\">√3</span><span class=\"den\">2</span></span> × 8 = 4√3 সে.মি."
+  },
+  {
+    "id": 4,
+    "q": "4 সে.মি. বাহুবিশিষ্ট সমবাহু ত্রিভুজের উচ্চতা কত সে.মি.? [ময়মনসিংহ বোর্ড-২০২৫]",
+    "qp": "4 সে.মি. বাহুবিশিষ্ট সমবাহু ত্রিভুজের উচ্চতা কত সে.মি.? [ময়মনসিংহ বোর্ড-২০২৫]",
+    "options": {
+      "a": "2√3",
+      "b": "4√3",
+      "c": "√2",
+      "d": "2√5"
+    },
+    "optionsP": {
+      "a": "2√3",
+      "b": "4√3",
+      "c": "√2",
+      "d": "2√5"
+    },
+    "ans": "a",
+    "exp": "a = 4, উচ্চতা h = <span class=\"frac\"><span class=\"num\">√3</span><span class=\"den\">2</span></span>a<br>= <span class=\"frac\"><span class=\"num\">√3</span><span class=\"den\">2</span></span> × 4 = 2√3 সে.মি."
+  },
+  {
+    "id": 5,
+    "q": "একটি সমবাহু ত্রিভুজের ক্ষেত্রফল 12√3 বর্গমিটার হলে, এর পরিসীমা কত? [ঢা. বো. ২৩]",
+    "qp": "একটি সমবাহু ত্রিভুজের ক্ষেত্রফল 12√3 বর্গমিটার হলে, এর পরিসীমা কত? [ঢা. বো. ২৩]",
+    "options": {
+      "a": "4√3 মিটার",
+      "b": "12√3 মিটার",
+      "c": "48 মিটার",
+      "d": "192 মিটার"
+    },
+    "optionsP": {
+      "a": "4√3 মিটার",
+      "b": "12√3 মিটার",
+      "c": "48 মিটার",
+      "d": "192 মিটার"
+    },
+    "ans": "b",
+    "exp": "<span class=\"frac\"><span class=\"num\">√3</span><span class=\"den\">4</span></span>a² = 12√3 ⇒ a² = 48 ⇒ a = √48 = √(16 × 3) = 4√3 মি.<br>পরিসীমা = 3a = 3 × 4√3 = 12√3 মিটার।"
+  },
+  {
+    "id": 6,
+    "q": "ABC সমবাহু ত্রিভুজের পরিসীমা এবং ক্ষেত্রফলের সংখ্যামান সমান হলে, AB = কত একক? [ব. বো. ১৫]",
+    "qp": "ABC সমবাহু ত্রিভুজের পরিসীমা এবং ক্ষেত্রফলের সংখ্যামান সমান হলে, AB = কত একক? [ব. বো. ১৫]",
+    "options": {
+      "a": "√3",
+      "b": "2√3",
+      "c": "3√3",
+      "d": "4√3"
+    },
+    "optionsP": {
+      "a": "√3",
+      "b": "2√3",
+      "c": "3√3",
+      "d": "4√3"
+    },
+    "ans": "d",
+    "exp": "ক্ষেত্রফল = পরিসীমা ⇒ <span class=\"frac\"><span class=\"num\">√3</span><span class=\"den\">4</span></span>a² = 3a<br>⇒ <span class=\"frac\"><span class=\"num\">√3</span><span class=\"den\">4</span></span>a = 3<br>⇒ a = <span class=\"frac\"><span class=\"num\">12</span><span class=\"den\">√3</span></span> = <span class=\"frac\"><span class=\"num\">12 × √3</span><span class=\"den\">3</span></span> = 4√3"
+  },
+  {
+    "id": 7,
+    "q": "সমবাহু △ABC এ AD ⊥ BC এবং BC = 2 একক হলে, △ABD এর ক্ষেত্রফল কত বর্গ একক? [রা. বো. ১৭]",
+    "qp": "সমবাহু △ABC এ AD ⊥ BC এবং BC = 2 একক হলে, △ABD এর ক্ষেত্রফল কত বর্গ একক? [রা. বো. ১৭]",
+    "options": {
+      "a": "2√3",
+      "b": "√3",
+      "c": "<span class=\"frac\"><span class=\"num\">√3</span><span class=\"den\">2</span></span>",
+      "d": "<span class=\"frac\"><span class=\"num\">√3</span><span class=\"den\">4</span></span>"
+    },
+    "optionsP": {
+      "a": "2√3",
+      "b": "√3",
+      "c": "(√3)/(2)",
+      "d": "(√3)/(4)"
+    },
+    "ans": "c",
+    "exp": "△ABC এর ক্ষেত্রফল = <span class=\"frac\"><span class=\"num\">√3</span><span class=\"den\">4</span></span> × 2² = √3<br>AD মধ্যমা, তাই △ABD = △ABC এর অর্ধেক = <span class=\"frac\"><span class=\"num\">√3</span><span class=\"den\">2</span></span> বর্গ একক।"
+  },
+  {
+    "id": 8,
+    "q": "একটি ত্রিভুজের দুটি বাহুর দৈর্ঘ্য যথাক্রমে 10 সেমি এবং 12 সেমি এবং এদের অন্তর্ভুক্ত কোণ 30° হলে, এর ক্ষেত্রফল কত? [ঢা. বো. ২৩]",
+    "qp": "একটি ত্রিভুজের দুটি বাহুর দৈর্ঘ্য যথাক্রমে 10 সেমি এবং 12 সেমি এবং এদের অন্তর্ভুক্ত কোণ 30° হলে, এর ক্ষেত্রফল কত? [ঢা. বো. ২৩]",
+    "options": {
+      "a": "30 বর্গ সেমি",
+      "b": "30√3 বর্গ সেমি",
+      "c": "60 বর্গ সেমি",
+      "d": "60√3 বর্গ সেমি"
+    },
+    "optionsP": {
+      "a": "30 বর্গ সেমি",
+      "b": "30√3 বর্গ সেমি",
+      "c": "60 বর্গ সেমি",
+      "d": "60√3 বর্গ সেমি"
+    },
+    "ans": "a",
+    "exp": "a = 10, b = 12, θ = 30°<br>ক্ষেত্রফল = <span class=\"frac\"><span class=\"num\">1</span><span class=\"den\">2</span></span>ab sinθ = <span class=\"frac\"><span class=\"num\">1</span><span class=\"den\">2</span></span> × 10 × 12 × sin30° = <span class=\"frac\"><span class=\"num\">1</span><span class=\"den\">2</span></span> × 10 × 12 × <span class=\"frac\"><span class=\"num\">1</span><span class=\"den\">2</span></span> = 30 বর্গ সেমি।"
+  },
+  {
+    "id": 9,
+    "q": "△ABC এর AB = AC = 25 cm এবং BC = 30 cm. তাহলে △ABC এর ক্ষেত্রফল নির্ণয় কর। [ঢা. বো. ১৫]",
+    "qp": "△ABC এর AB = AC = 25 cm এবং BC = 30 cm. তাহলে △ABC এর ক্ষেত্রফল নির্ণয় কর। [ঢা. বো. ১৫]",
+    "options": {
+      "a": "250 cm²",
+      "b": "300 cm²",
+      "c": "340 cm²",
+      "d": "409 cm²"
+    },
+    "optionsP": {
+      "a": "250 cm²",
+      "b": "300 cm²",
+      "c": "340 cm²",
+      "d": "409 cm²"
+    },
+    "ans": "b",
+    "exp": "সমদ্বিবাহু ত্রিভুজ: a = 25, b = 30<br>ক্ষেত্রফল = <span class=\"frac\"><span class=\"num\">b</span><span class=\"den\">4</span></span>√(4a² − b²) = <span class=\"frac\"><span class=\"num\">30</span><span class=\"den\">4</span></span>√(4 × 625 − 900) = <span class=\"frac\"><span class=\"num\">30</span><span class=\"den\">4</span></span>√1600 = <span class=\"frac\"><span class=\"num\">30</span><span class=\"den\">4</span></span> × 40 = 300 cm²"
+  },
+  {
+    "id": 10,
+    "q": "একটি সমদ্বিবাহু ত্রিভুজের পরিসীমা 16 সেমি। এর ভূমি 6 সেমি হলে, উচ্চতা কত?",
+    "qp": "একটি সমদ্বিবাহু ত্রিভুজের পরিসীমা 16 সেমি। এর ভূমি 6 সেমি হলে, উচ্চতা কত?",
+    "options": {
+      "a": "12 সেমি",
+      "b": "8 সেমি",
+      "c": "6 সেমি",
+      "d": "4 সেমি"
+    },
+    "optionsP": {
+      "a": "12 সেমি",
+      "b": "8 সেমি",
+      "c": "6 সেমি",
+      "d": "4 সেমি"
+    },
+    "ans": "d",
+    "exp": "সমান বাহু a হলে, 2a + 6 = 16 ⇒ 2a = 10 ⇒ a = 5 সেমি।<br>ভূমির অর্ধেক = 3 সেমি, তাই উচ্চতা = √(5² − 3²) = √16 = 4 সেমি।"
+  },
+  {
+    "id": 11,
+    "q": "একটি সমদ্বিবাহু সমকোণী ত্রিভুজের সমান সমান বাহুদ্বয়ের প্রতিটির দৈর্ঘ্য 2a সে.মি. হলে ত্রিভুজটির ক্ষেত্রফল কত বর্গ সে.মি.? [ময়মনসিংহ বোর্ড-২০২৫]",
+    "qp": "একটি সমদ্বিবাহু সমকোণী ত্রিভুজের সমান সমান বাহুদ্বয়ের প্রতিটির দৈর্ঘ্য 2a সে.মি. হলে ত্রিভুজটির ক্ষেত্রফল কত বর্গ সে.মি.? [ময়মনসিংহ বোর্ড-২০২৫]",
+    "options": {
+      "a": "<span class=\"frac\"><span class=\"num\">a²</span><span class=\"den\">2</span></span>",
+      "b": "a²",
+      "c": "2a²",
+      "d": "4a²"
+    },
+    "optionsP": {
+      "a": "(a²)/(2)",
+      "b": "a²",
+      "c": "2a²",
+      "d": "4a²"
+    },
+    "ans": "c",
+    "exp": "সমকোণ সংলগ্ন বাহু দুটি 2a ও 2a।<br>ক্ষেত্রফল = <span class=\"frac\"><span class=\"num\">1</span><span class=\"den\">2</span></span> × 2a × 2a = 2a²"
+  },
+  {
+    "id": 12,
+    "q": "চিত্রে AB ⊥ BC, AB = 8 cm, BC = 10 cm এবং F বিন্দু BC এর মধ্যবিন্দু হলে, △AFC এর ক্ষেত্রফল কত? [ঘ. বো. ১৯]\n<img src=\"data:image/png;base64,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\" alt=\"চিত্র\" style=\"display:block;margin:10px auto 4px;max-width:100%;height:auto;background:#fff;border-radius:8px;\" />",
+    "qp": "চিত্রে AB ⊥ BC, AB = 8 cm, BC = 10 cm এবং F বিন্দু BC এর মধ্যবিন্দু হলে, △AFC এর ক্ষেত্রফল কত? [ঘ. বো. ১৯]",
+    "options": {
+      "a": "20 cm²",
+      "b": "40 cm²",
+      "c": "60 cm²",
+      "d": "80 cm²"
+    },
+    "optionsP": {
+      "a": "20 cm²",
+      "b": "40 cm²",
+      "c": "60 cm²",
+      "d": "80 cm²"
+    },
+    "ans": "a",
+    "exp": "F মধ্যবিন্দু, তাই BF = FC = 5 cm।<br>△AFC এর ভূমি FC = 5 cm, উচ্চতা AB = 8 cm।<br>ক্ষেত্রফল = <span class=\"frac\"><span class=\"num\">1</span><span class=\"den\">2</span></span> × 5 × 8 = 20 cm²"
+  },
+  {
+    "id": 13,
+    "q": "চিত্রে AB ⊥ BC, AB = 8 cm, BC = 10 cm এবং F বিন্দু BC এর মধ্যবিন্দু হলে, △ABF এর পরিসীমা কত? [ঘ. বো. ১৯]\n<img src=\"data:image/png;base64,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\" alt=\"চিত্র\" style=\"display:block;margin:10px auto 4px;max-width:100%;height:auto;background:#fff;border-radius:8px;\" />",
+    "qp": "চিত্রে AB ⊥ BC, AB = 8 cm, BC = 10 cm এবং F বিন্দু BC এর মধ্যবিন্দু হলে, △ABF এর পরিসীমা কত? [ঘ. বো. ১৯]",
+    "options": {
+      "a": "40 cm",
+      "b": "22.43 cm",
+      "c": "20 cm",
+      "d": "18.43 cm"
+    },
+    "optionsP": {
+      "a": "40 cm",
+      "b": "22.43 cm",
+      "c": "20 cm",
+      "d": "18.43 cm"
+    },
+    "ans": "b",
+    "exp": "AF = √(AB² + BF²) = √(8² + 5²) = √89 ≈ 9.43 cm<br>পরিসীমা = AB + BF + AF = 8 + 5 + 9.43 = 22.43 cm"
+  },
+  {
+    "id": 14,
+    "q": "△ABC এর ক্ষেত্রফল কত বর্গ সেমি? [কু. বো. ১৭]\n<img src=\"data:image/png;base64,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\" alt=\"চিত্র\" style=\"display:block;margin:10px auto 4px;max-width:100%;height:auto;background:#fff;border-radius:8px;\" />",
+    "qp": "△ABC এর ক্ষেত্রফল কত বর্গ সেমি? [কু. বো. ১৭]",
+    "options": {
+      "a": "48",
+      "b": "96",
+      "c": "192",
+      "d": "400"
+    },
+    "optionsP": {
+      "a": "48",
+      "b": "96",
+      "c": "192",
+      "d": "400"
+    },
+    "ans": "b",
+    "exp": "চিত্রে লম্ব = 16, অতিভুজ = 20, ভূমি = x।<br>পিথাগোরাসের উপপাদ্য: 20² = 16² + x² ⇒ x = 12<br>ক্ষেত্রফল = <span class=\"frac\"><span class=\"num\">1</span><span class=\"den\">2</span></span> × 12 × 16 = 96 বর্গ সেমি।"
+  },
+  {
+    "id": 15,
+    "q": "∠QPS = ∠PQS = 45°, QS = 4.5 cm. △PQS এর ক্ষেত্রফল কত? [দি. বো. ১৯]\n<img src=\"data:image/png;base64,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\" alt=\"চিত্র\" style=\"display:block;margin:10px auto 4px;max-width:100%;height:auto;background:#fff;border-radius:8px;\" />",
+    "qp": "∠QPS = ∠PQS = 45°, QS = 4.5 cm. △PQS এর ক্ষেত্রফল কত? [দি. বো. ১৯]",
+    "options": {
+      "a": "4.50 cm²",
+      "b": "7.16 cm²",
+      "c": "10.13 cm²",
+      "d": "20.25 cm²"
+    },
+    "optionsP": {
+      "a": "4.50 cm²",
+      "b": "7.16 cm²",
+      "c": "10.13 cm²",
+      "d": "20.25 cm²"
+    },
+    "ans": "c",
+    "exp": "∠QPS = ∠PQS = 45° ⇒ ∠PSQ = 90° এবং PS = QS = 4.5 cm<br>ক্ষেত্রফল = <span class=\"frac\"><span class=\"num\">1</span><span class=\"den\">2</span></span> × 4.5 × 4.5 = 10.125 ≈ 10.13 cm²"
+  },
+  {
+    "id": 16,
+    "q": "একটি সমকোণী সমদ্বিবাহু ত্রিভুজের অতিভুজের দৈর্ঘ্য 12 সেমি হলে, ত্রিভুজটির ক্ষেত্রফল কত? [রা. বো. ১৯]",
+    "qp": "একটি সমকোণী সমদ্বিবাহু ত্রিভুজের অতিভুজের দৈর্ঘ্য 12 সেমি হলে, ত্রিভুজটির ক্ষেত্রফল কত? [রা. বো. ১৯]",
+    "options": {
+      "a": "√72 সেমি",
+      "b": "√144 বর্গ সেমি",
+      "c": "36 বর্গ সেমি",
+      "d": "144 বর্গ সেমি"
+    },
+    "optionsP": {
+      "a": "√72 সেমি",
+      "b": "√144 বর্গ সেমি",
+      "c": "36 বর্গ সেমি",
+      "d": "144 বর্গ সেমি"
+    },
+    "ans": "c",
+    "exp": "সমান বাহু a হলে, 12² = a² + a² ⇒ 2a² = 144 ⇒ a² = 72<br>ক্ষেত্রফল = <span class=\"frac\"><span class=\"num\">1</span><span class=\"den\">2</span></span> × a × a = <span class=\"frac\"><span class=\"num\">1</span><span class=\"den\">2</span></span> × 72 = 36 বর্গ সেমি।"
+  },
+  {
+    "id": 17,
+    "q": "একটি সুষম ষড়ভুজের কেন্দ্র থেকে কৌণিক বিন্দুর দূরত্ব 6 মি. হলে, এর ক্ষেত্রফল কত বর্গমিটার? [কু. বো. ২২, সি. বো. ২০]",
+    "qp": "একটি সুষম ষড়ভুজের কেন্দ্র থেকে কৌণিক বিন্দুর দূরত্ব 6 মি. হলে, এর ক্ষেত্রফল কত বর্গমিটার? [কু. বো. ২২, সি. বো. ২০]",
+    "options": {
+      "a": "108√3",
+      "b": "54√3",
+      "c": "27√3",
+      "d": "9√3"
+    },
+    "optionsP": {
+      "a": "108√3",
+      "b": "54√3",
+      "c": "27√3",
+      "d": "9√3"
+    },
+    "ans": "b",
+    "exp": "সুষম ষড়ভুজে কেন্দ্র থেকে কৌণিক বিন্দুর দূরত্ব = বাহুর দৈর্ঘ্য, তাই a = 6, n = 6।<br>ক্ষেত্রফল = <span class=\"frac\"><span class=\"num\">na²</span><span class=\"den\">2</span></span> sin(360°/n) = <span class=\"frac\"><span class=\"num\">6 × 6²</span><span class=\"den\">2</span></span> sin60° = 108 × <span class=\"frac\"><span class=\"num\">√3</span><span class=\"den\">2</span></span> = 54√3 বর্গমিটার।"
+  },
+  {
+    "id": 18,
+    "q": "একটি সুষম ষড়ভুজের ক্ষেত্রফল 18√3 বর্গ একক হলে, এর বাহুর দৈর্ঘ্য কত একক? [কু. বো. ২৩]",
+    "qp": "একটি সুষম ষড়ভুজের ক্ষেত্রফল 18√3 বর্গ একক হলে, এর বাহুর দৈর্ঘ্য কত একক? [কু. বো. ২৩]",
+    "options": {
+      "a": "3",
+      "b": "2√3",
+      "c": "6",
+      "d": "9"
+    },
+    "optionsP": {
+      "a": "3",
+      "b": "2√3",
+      "c": "6",
+      "d": "9"
+    },
+    "ans": "b",
+    "exp": "ক্ষেত্রফল = <span class=\"frac\"><span class=\"num\">na²</span><span class=\"den\">4</span></span> cot(180°/n)<br>⇒ 18√3 = <span class=\"frac\"><span class=\"num\">6a²</span><span class=\"den\">4</span></span> cot30° = <span class=\"frac\"><span class=\"num\">3a²</span><span class=\"den\">2</span></span> × √3<br>⇒ a² = 12 ⇒ a = √12 = √(4 × 3) = 2√3"
+  },
+  {
+    "id": 19,
+    "q": "সুষম পঞ্চভুজের একটি শীর্ষকোণ কত ডিগ্রী? [ম. বো. ২২]",
+    "qp": "সুষম পঞ্চভুজের একটি শীর্ষকোণ কত ডিগ্রী? [ম. বো. ২২]",
+    "options": {
+      "a": "108°",
+      "b": "120°",
+      "c": "180°",
+      "d": "360°"
+    },
+    "optionsP": {
+      "a": "108°",
+      "b": "120°",
+      "c": "180°",
+      "d": "360°"
+    },
+    "ans": "a",
+    "exp": "শীর্ষকোণ θ = 180° − <span class=\"frac\"><span class=\"num\">360°</span><span class=\"den\">n</span></span> = 180° − <span class=\"frac\"><span class=\"num\">360°</span><span class=\"den\">5</span></span> = 180° − 72° = 108°"
+  },
+  {
+    "id": 20,
+    "q": "উদ্দীপকের আলোকে নিচের প্রশ্নের উত্তর দাও: [ঢা. বো. ২২]\nচিত্রে, ABCDEF একটি সুষম ষড়ভুজ। CD = 4 সে.মি. এবং EM = 13 সে.মি.\nসম্পূর্ণ ক্ষেত্রের পরিধি কত?\n<img src=\"data:image/png;base64,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\" alt=\"চিত্র\" style=\"display:block;margin:10px auto 4px;max-width:100%;height:auto;background:#fff;border-radius:8px;\" />",
+    "qp": "উদ্দীপকের আলোকে নিচের প্রশ্নের উত্তর দাও: [ঢা. বো. ২২]\nচিত্রে, ABCDEF একটি সুষম ষড়ভুজ। CD = 4 সে.মি. এবং EM = 13 সে.মি.\nসম্পূর্ণ ক্ষেত্রের পরিধি কত?",
+    "options": {
+      "a": "58 সে.মি.",
+      "b": "54 সে.মি.",
+      "c": "50 সে.মি.",
+      "d": "46 সে.মি."
+    },
+    "optionsP": {
+      "a": "58 সে.মি.",
+      "b": "54 সে.মি.",
+      "c": "50 সে.মি.",
+      "d": "46 সে.মি."
+    },
+    "ans": "c",
+    "exp": "ষড়ভুজের FE বাহু বাদে বাকি 5টি বাহু = 5 × 4 = 20 সে.মি.<br>আয়তের FN = 13, NM = FE = 4, ME = 13, অর্থাৎ 13 + 4 + 13 = 30 সে.মি.<br>সম্পূর্ণ ক্ষেত্রের পরিধি = 20 + 30 = 50 সে.মি."
+  },
+  {
+    "id": 21,
+    "q": "উদ্দীপকের আলোকে নিচের প্রশ্নের উত্তর দাও: [ঢা. বো. ২২]\nচিত্রে, ABCDEF একটি সুষম ষড়ভুজ। CD = 4 সে.মি. এবং EM = 13 সে.মি.\nABCDEF ক্ষেত্রের ক্ষেত্রফল কত?\n<img src=\"data:image/png;base64,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\" alt=\"চিত্র\" style=\"display:block;margin:10px auto 4px;max-width:100%;height:auto;background:#fff;border-radius:8px;\" />",
+    "qp": "উদ্দীপকের আলোকে নিচের প্রশ্নের উত্তর দাও: [ঢা. বো. ২২]\nচিত্রে, ABCDEF একটি সুষম ষড়ভুজ। CD = 4 সে.মি. এবং EM = 13 সে.মি.\nABCDEF ক্ষেত্রের ক্ষেত্রফল কত?",
+    "options": {
+      "a": "<span class=\"frac\"><span class=\"num\">24</span><span class=\"den\">√3</span></span> বর্গ সে.মি.",
+      "b": "24√3 বর্গ সে.মি.",
+      "c": "4√3 বর্গ সে.মি.",
+      "d": "<span class=\"frac\"><span class=\"num\">4</span><span class=\"den\">√3</span></span> বর্গ সে.মি."
+    },
+    "optionsP": {
+      "a": "(24)/(√3) বর্গ সে.মি.",
+      "b": "24√3 বর্গ সে.মি.",
+      "c": "4√3 বর্গ সে.মি.",
+      "d": "(4)/(√3) বর্গ সে.মি."
+    },
+    "ans": "b",
+    "exp": "ক্ষেত্রফল = <span class=\"frac\"><span class=\"num\">na²</span><span class=\"den\">4</span></span> cot(180°/n)<br>= <span class=\"frac\"><span class=\"num\">6 × 4²</span><span class=\"den\">4</span></span> cot30° = 24 × √3 = 24√3 বর্গ সে.মি."
+  },
+  {
+    "id": 22,
+    "q": "একটি আয়তের বাহু দুটি যথাক্রমে 12 সেমি ও 5 সেমি হলে এর কর্ণদ্বয়ের সমষ্টি কত? [কু. বো. ২৩]",
+    "qp": "একটি আয়তের বাহু দুটি যথাক্রমে 12 সেমি ও 5 সেমি হলে এর কর্ণদ্বয়ের সমষ্টি কত? [কু. বো. ২৩]",
+    "options": {
+      "a": "13 সেমি",
+      "b": "17 সেমি",
+      "c": "26 সেমি",
+      "d": "60 সেমি"
+    },
+    "optionsP": {
+      "a": "13 সেমি",
+      "b": "17 সেমি",
+      "c": "26 সেমি",
+      "d": "60 সেমি"
+    },
+    "ans": "c",
+    "exp": "একটি কর্ণ = √(12² + 5²) = √169 = 13 সেমি<br>আয়তের দুটি কর্ণ সমান, তাই কর্ণদ্বয়ের সমষ্টি = 2 × 13 = 26 সেমি।"
+  },
+  {
+    "id": 23,
+    "q": "একটি আয়তক্ষেত্রের দৈর্ঘ্য প্রস্থ অপেক্ষা 3 মিটার বেশি এবং পরিসীমা 30 মিটার হলে আয়তক্ষেত্রের প্রস্থ কত মিটার? [চ. বো. ২৪]",
+    "qp": "একটি আয়তক্ষেত্রের দৈর্ঘ্য প্রস্থ অপেক্ষা 3 মিটার বেশি এবং পরিসীমা 30 মিটার হলে আয়তক্ষেত্রের প্রস্থ কত মিটার? [চ. বো. ২৪]",
+    "options": {
+      "a": "6",
+      "b": "9",
+      "c": "18",
+      "d": "36"
+    },
+    "optionsP": {
+      "a": "6",
+      "b": "9",
+      "c": "18",
+      "d": "36"
+    },
+    "ans": "a",
+    "exp": "প্রস্থ x হলে দৈর্ঘ্য x + 3<br>পরিসীমা: 2(x + x + 3) = 30 ⇒ 2x + 3 = 15 ⇒ 2x = 12 ⇒ x = 6"
+  },
+  {
+    "id": 24,
+    "q": "একটি ঘনকের এক পৃষ্ঠের কর্ণের দৈর্ঘ্য 8√2 সে.মি.। ঘনকটির কর্ণ কত সে.মি.? [সকল বোর্ড ১৮]",
+    "qp": "একটি ঘনকের এক পৃষ্ঠের কর্ণের দৈর্ঘ্য 8√2 সে.মি.। ঘনকটির কর্ণ কত সে.মি.? [সকল বোর্ড ১৮]",
+    "options": {
+      "a": "<span class=\"frac\"><span class=\"num\">8</span><span class=\"den\">√3</span></span>",
+      "b": "<span class=\"frac\"><span class=\"num\">8</span><span class=\"den\">√2</span></span>",
+      "c": "8√3",
+      "d": "24"
+    },
+    "optionsP": {
+      "a": "(8)/(√3)",
+      "b": "(8)/(√2)",
+      "c": "8√3",
+      "d": "24"
+    },
+    "ans": "c",
+    "exp": "ঘনকের এক পৃষ্ঠের কর্ণ = √2 a = 8√2 ⇒ a = 8<br>ঘনকের কর্ণ = √3 a = 8√3 সে.মি."
+  },
+  {
+    "id": 25,
+    "q": "একটি ঘনকের সম্পূর্ণ পৃষ্ঠের ক্ষেত্রফল 216 বর্গ মি.। এর আয়তন কত ঘন মি.? [ব. বো. ১৭]",
+    "qp": "একটি ঘনকের সম্পূর্ণ পৃষ্ঠের ক্ষেত্রফল 216 বর্গ মি.। এর আয়তন কত ঘন মি.? [ব. বো. ১৭]",
+    "options": {
+      "a": "6√6",
+      "b": "36",
+      "c": "216",
+      "d": "144"
+    },
+    "optionsP": {
+      "a": "6√6",
+      "b": "36",
+      "c": "216",
+      "d": "144"
+    },
+    "ans": "c",
+    "exp": "6a² = 216 ⇒ a² = 36 ⇒ a = 6 মি.<br>আয়তন = a³ = 6³ = 216 ঘন মি."
+  },
+  {
+    "id": 26,
+    "q": "নিচের চিত্রের বেলনাকৃত বস্তুটির (বেলনটির ভূমির ব্যাসার্ধ 5 সে.মি. এবং উচ্চতা 20 সে.মি.) – [চট্টগ্রাম বোর্ড-২০২৫]\ni. ভূমির ক্ষেত্রফল = 78.54 cm² (πr²)\nii. বক্রপৃষ্ঠের ক্ষেত্রফল = 628.32 cm² (2πrh)\niii. আয়তন = 1570.8 cm³ (πr²h)\nনিচের কোনটি সঠিক?",
+    "qp": "নিচের চিত্রের বেলনাকৃত বস্তুটির (বেলনটির ভূমির ব্যাসার্ধ 5 সে.মি. এবং উচ্চতা 20 সে.মি.) – [চট্টগ্রাম বোর্ড-২০২৫]\ni. ভূমির ক্ষেত্রফল = 78.54 cm² (πr²)\nii. বক্রপৃষ্ঠের ক্ষেত্রফল = 628.32 cm² (2πrh)\niii. আয়তন = 1570.8 cm³ (πr²h)\nনিচের কোনটি সঠিক?",
+    "options": {
+      "a": "i ও ii",
+      "b": "i ও iii",
+      "c": "ii ও iii",
+      "d": "i, ii ও iii"
+    },
+    "optionsP": {
+      "a": "i ও ii",
+      "b": "i ও iii",
+      "c": "ii ও iii",
+      "d": "i, ii ও iii"
+    },
+    "ans": "d",
+    "exp": "i সত্য: ভূমির ক্ষেত্রফল = πr² = π × 5² = 25π = 78.54 cm²<br>ii সত্য: বক্রপৃষ্ঠের ক্ষেত্রফল = 2πrh = 2 × π × 5 × 20 = 200π = 628.32 cm²<br>iii সত্য: আয়তন = πr²h = π × 5² × 20 = 500π = 1570.8 cm³<br>তিনটিই সঠিক।"
+  },
+  {
+    "id": 27,
+    "q": "একটি সমবৃত্তভূমিক বেলনের ভূমির ব্যাসার্ধ 5 সে.মি. এবং উচ্চতা 6 সে.মি. হলে বেলনটির– [রাজশাহী বোর্ড-২০২৫]\ni. ভূমির ক্ষেত্রফল = 25π বর্গ সে.মি. (πr²)\nii. আয়তন 150π ঘন সে.মি. (πr²h)\niii. বক্রতলের ক্ষেত্রফল = 60π বর্গ সে.মি. (2πrh)\nনিচের কোনটি সঠিক?",
+    "qp": "একটি সমবৃত্তভূমিক বেলনের ভূমির ব্যাসার্ধ 5 সে.মি. এবং উচ্চতা 6 সে.মি. হলে বেলনটির– [রাজশাহী বোর্ড-২০২৫]\ni. ভূমির ক্ষেত্রফল = 25π বর্গ সে.মি. (πr²)\nii. আয়তন 150π ঘন সে.মি. (πr²h)\niii. বক্রতলের ক্ষেত্রফল = 60π বর্গ সে.মি. (2πrh)\nনিচের কোনটি সঠিক?",
+    "options": {
+      "a": "i ও ii",
+      "b": "i ও iii",
+      "c": "ii ও iii",
+      "d": "i, ii ও iii"
+    },
+    "optionsP": {
+      "a": "i ও ii",
+      "b": "i ও iii",
+      "c": "ii ও iii",
+      "d": "i, ii ও iii"
+    },
+    "ans": "d",
+    "exp": "i সত্য: ভূমির ক্ষেত্রফল = πr² = π × 5² = 25π<br>ii সত্য: আয়তন = πr²h = π × 5² × 6 = 150π<br>iii সত্য: বক্রতলের ক্ষেত্রফল = 2πrh = 2 × π × 5 × 6 = 60π<br>তিনটিই সঠিক।"
+  },
+  {
+    "id": 28,
+    "q": "একটি সমবৃত্তভূমিক বেলনের ভূমির ব্যাসার্ধ ও উচ্চতা পরস্পর সমান। বেলনটির সমগ্রতল ও বক্রতলের ক্ষেত্রফলের অনুপাত কত হবে? [ব. বো. ২৪]",
+    "qp": "একটি সমবৃত্তভূমিক বেলনের ভূমির ব্যাসার্ধ ও উচ্চতা পরস্পর সমান। বেলনটির সমগ্রতল ও বক্রতলের ক্ষেত্রফলের অনুপাত কত হবে? [ব. বো. ২৪]",
+    "options": {
+      "a": "3 : 1",
+      "b": "2 : 1",
+      "c": "1 : 1",
+      "d": "1 : 2"
+    },
+    "optionsP": {
+      "a": "3 : 1",
+      "b": "2 : 1",
+      "c": "1 : 1",
+      "d": "1 : 2"
+    },
+    "ans": "b",
+    "exp": "r = h ধরে, সমগ্রতল : বক্রতল = 2πr(r + h) : 2πrh<br>= <span class=\"frac\"><span class=\"num\">2πh(h + h)</span><span class=\"den\">2πh · h</span></span> = <span class=\"frac\"><span class=\"num\">2h</span><span class=\"den\">h</span></span> = 2<br>অতএব অনুপাত = 2 : 1"
+  }
+];
+
+    const TARGET_EMAIL = "akashtalukder1998@gmail.com";
+    const INSTRUCTOR_NAME = "AKASH";
+    const OPT_LABELS_BN = { a: "ক", b: "খ", c: "গ", d: "ঘ" };
+    const STORAGE_ATTEMPTS_KEY = "akash_mensuration_28_attempts_v1";
+    const SESSION_ACTIVE_KEY = "akash_mensuration_28_active_session_v1";
+
+    // Application State
+    const state = {
+      student: { name: "", roll: "" },
+      answers: {},
+      currentIndex: 0,
+      reviewFilter: "all",
+      attemptNumber: 1,
+      reloadCount: 0,
+      answerChangeCount: 0,
+      startTimeObj: null,
+      startTimeFormatted: "",
+      durationLimitSec: 0,
+      elapsedSeconds: 0,
+      timerInterval: null,
+      lastResult: null
+    };
+
+    // Bangla Digit & Ordinal Helpers
+    const BN_DIGITS = ["০", "১", "২", "৩", "৪", "৫", "৬", "৭", "৮", "৯"];
+    function toBnNum(val) {
+      return String(val).replace(/\d/g, (d) => BN_DIGITS[Number(d)]);
+    }
+
+    function getAttemptOrdinalBn(n) {
+      if (n === 1) return "১ম বার";
+      if (n === 2) return "২য় বার";
+      if (n === 3) return "৩য় বার";
+      if (n === 4) return "৪র্থ বার";
+      if (n === 5) return "৫ম বার";
+      return `${toBnNum(n)}তম বার`;
+    }
+
+    function getAttemptOrdinalEn(n) {
+      const mod100 = n % 100;
+      if (mod100 >= 11 && mod100 <= 13) return `${n}th Attempt`;
+      const mod10 = n % 10;
+      if (mod10 === 1) return `${n}st Attempt`;
+      if (mod10 === 2) return `${n}nd Attempt`;
+      if (mod10 === 3) return `${n}rd Attempt`;
+      return `${n}th Attempt`;
+    }
+
+    function formatBnTimestamp(dateObj) {
+      const monthsBn = [
+        "জানু", "ফেব্রু", "মার্চ", "এপ্রিল", "মে", "জুন",
+        "জুলাই", "আগস্ট", "সেপ্টে", "অক্টো", "নভে", "ডিসে"
+      ];
+      const day = toBnNum(String(dateObj.getDate()).padStart(2, "0"));
+      const month = monthsBn[dateObj.getMonth()];
+      const year = toBnNum(dateObj.getFullYear());
+      let hours = dateObj.getHours();
+      const ampm = hours >= 12 ? "PM" : "AM";
+      hours = hours % 12;
+      if (hours === 0) hours = 12;
+      const hh = toBnNum(String(hours).padStart(2, "0"));
+      const mm = toBnNum(String(dateObj.getMinutes()).padStart(2, "0"));
+      const ss = toBnNum(String(dateObj.getSeconds()).padStart(2, "0"));
+      return `${day} ${month}, ${year}, ${hh}:${mm}:${ss} ${ampm}`;
+    }
+
+    function formatDurationBn(totalSec) {
+      const mins = Math.floor(totalSec / 60);
+      const secs = totalSec % 60;
+      return `${toBnNum(mins)} মিনিট ${toBnNum(secs)} সেকেন্ড`;
+    }
+
+    function formatTimerDigital(totalSec) {
+      const mins = Math.floor(totalSec / 60);
+      const secs = totalSec % 60;
+      return `${String(mins).padStart(2, "0")}:${String(secs).padStart(2, "0")}`;
+    }
+
+    function generateVerificationCode(attemptNum, score, name, roll) {
+      const attPart = `ATT${attemptNum}`;
+      const scPart = `SC${String(score).padStart(2, "0")}`;
+      const seed = `${name}|${roll}|${attemptNum}|${score}|${Date.now()}`;
+      let hash = 2166136261;
+      for (let i = 0; i < seed.length; i++) {
+        hash ^= seed.charCodeAt(i);
+        hash = Math.imul(hash, 16777619);
+      }
+      const hex = (hash >>> 0).toString(16).toUpperCase().padStart(8, "0").slice(0, 4);
+      return `EXAM-${attPart}-${scPart}-${hex}`;
+    }
+
+    // LocalStorage & SessionStorage Tracking Helpers
+    function getStoredAttemptCount() {
+      try {
+        return Number(localStorage.getItem(STORAGE_ATTEMPTS_KEY) || "0");
+      } catch (e) {
+        return 0;
+      }
+    }
+
+    function incrementStoredAttemptCount() {
+      try {
+        const next = getStoredAttemptCount() + 1;
+        localStorage.setItem(STORAGE_ATTEMPTS_KEY, String(next));
+        return next;
+      } catch (e) {
+        return state.attemptNumber;
+      }
+    }
+
+    function saveActiveSession() {
+      try {
+        sessionStorage.setItem(
+          SESSION_ACTIVE_KEY,
+          JSON.stringify({
+            active: true,
+            student: state.student,
+            answers: state.answers,
+            currentIndex: state.currentIndex,
+            attemptNumber: state.attemptNumber,
+            reloadCount: state.reloadCount,
+            answerChangeCount: state.answerChangeCount,
+            startTimeMs: state.startTimeObj ? state.startTimeObj.getTime() : Date.now(),
+            startTimeFormatted: state.startTimeFormatted,
+            durationLimitSec: state.durationLimitSec
+          })
+        );
+      } catch (e) {
+        // Ignore storage restrictions
+      }
+    }
+
+    function clearActiveSession() {
+      try {
+        sessionStorage.removeItem(SESSION_ACTIVE_KEY);
+      } catch (e) {
+        // Ignore storage restrictions
+      }
+    }
+
+    // DOM References
+    const entryScreen = document.getElementById("entryScreen");
+    const examScreen = document.getElementById("examScreen");
+    const resultScreen = document.getElementById("resultScreen");
+    const examProgressBarWrap = document.getElementById("examProgressBarWrap");
+    const headerTimerBadge = document.getElementById("headerTimerBadge");
+    const questionsContainer = document.getElementById("questionsContainer");
+    const reviewContainer = document.getElementById("reviewContainer");
+
+    function showNotice(msg) {
+      const box = document.getElementById("globalNotice");
+      document.getElementById("globalNoticeText").innerHTML = msg;
+      box.classList.remove("hidden");
+    }
+
+    function hideNotice() {
+      document.getElementById("globalNotice").classList.add("hidden");
+    }
+
+    document.getElementById("closeNoticeBtn").addEventListener("click", hideNotice);
+
+    function stopExamTimer() {
+      if (state.timerInterval) {
+        clearInterval(state.timerInterval);
+        state.timerInterval = null;
+      }
+    }
+
+    function startExamTimer(limitSeconds, initialElapsed = 0) {
+      stopExamTimer();
+      state.durationLimitSec = limitSeconds;
+      state.elapsedSeconds = initialElapsed;
+
+      const timerEl = document.getElementById("liveTimerDisplay");
+      timerEl.textContent =
+        state.durationLimitSec > 0
+          ? formatTimerDigital(Math.max(0, state.durationLimitSec - state.elapsedSeconds))
+          : formatTimerDigital(state.elapsedSeconds);
+
+      state.timerInterval = setInterval(() => {
+        state.elapsedSeconds = Math.max(
+          0,
+          Math.floor((Date.now() - state.startTimeObj.getTime()) / 1000)
+        );
+        if (state.durationLimitSec > 0) {
+          const remaining = Math.max(0, state.durationLimitSec - state.elapsedSeconds);
+          timerEl.textContent = formatTimerDigital(remaining);
+          if (remaining === 0) {
+            stopExamTimer();
+            showNotice("⏰ নির্ধারিত সময় শেষ হয়েছে! আপনার পরীক্ষা স্বয়ংক্রিয়ভাবে জমা হচ্ছে...");
+            finalizeAndSubmitExam();
+          }
+        } else {
+          timerEl.textContent = formatTimerDigital(state.elapsedSeconds);
+        }
+      }, 1000);
+    }
+
+    function getAnsweredCount() {
+      return Object.keys(state.answers).length;
+    }
+
+    function updateProgressUI() {
+      const ansCount = getAnsweredCount();
+      const total = QUESTIONS.length;
+      const pct = Math.round((ansCount / total) * 100);
+
+      document.getElementById("answeredCountText").textContent = ansCount;
+      document.getElementById("bottomAnsweredCount").textContent = toBnNum(ansCount);
+      document.getElementById("currentQIndicator").textContent = toBnNum(state.currentIndex + 1);
+      document.getElementById("progressFill").style.width = `${pct}%`;
+
+      const prevBtn = document.getElementById("prevQuestionBtn");
+      const nextBtn = document.getElementById("nextQuestionBtn");
+      prevBtn.disabled = state.currentIndex <= 0;
+      if (state.currentIndex >= total - 1) {
+        nextBtn.textContent = "শেষ প্রশ্ন ✓";
+      } else {
+        nextBtn.textContent = "পরবর্তী প্রশ্ন →";
+      }
+    }
+
+    function goToQuestion(idx) {
+      const clamped = Math.max(0, Math.min(QUESTIONS.length - 1, idx));
+      state.currentIndex = clamped;
+      saveActiveSession();
+      renderExamQuestion();
+    }
+
+    function renderExamQuestion() {
+      questionsContainer.innerHTML = "";
+      const idx = state.currentIndex;
+      const qObj = QUESTIONS[idx];
+      if (!qObj) return;
+
+      const selectedOpt = state.answers[idx] || null;
+      const isAnswered = Boolean(selectedOpt);
+
+      const card = document.createElement("article");
+      card.id = `exam-q-${idx}`;
+      card.className = "card-box p-5 sm:p-6";
+
+      const headerRow = document.createElement("div");
+      headerRow.className = "flex items-center justify-between gap-2 mb-3";
+
+      const qStepTag = document.createElement("span");
+      qStepTag.className = "text-xs sm:text-sm font-bold text-indigo-600 mono-num";
+      qStepTag.textContent = `প্রশ্ন ${toBnNum(qObj.id)} / ২৮`;
+
+      const badge = document.createElement("span");
+      badge.className = isAnswered
+        ? "text-xs font-bold px-3 py-1 rounded-full bg-indigo-100 text-indigo-800 shrink-0"
+        : "text-xs font-semibold px-3 py-1 rounded-full bg-slate-100 text-slate-600 shrink-0";
+      badge.textContent = isAnswered ? `উত্তর দেওয়া হয়েছে: ${OPT_LABELS_BN[selectedOpt]}` : "উত্তর দেওয়া হয়নি";
+
+      headerRow.appendChild(qStepTag);
+      headerRow.appendChild(badge);
+      card.appendChild(headerRow);
+
+      const qTitle = document.createElement("h3");
+      qTitle.className = "text-base sm:text-lg font-bold text-slate-900 leading-relaxed whitespace-pre-line mb-4";
+      qTitle.innerHTML = `${toBnNum(qObj.id)}। ${qObj.q}`;
+      card.appendChild(qTitle);
+
+      const optsGrid = document.createElement("div");
+      optsGrid.className = "grid grid-cols-1 gap-2.5";
+
+      ["a", "b", "c", "d"].forEach((optKey) => {
+        const optText = qObj.options[optKey];
+        const isSelected = selectedOpt === optKey;
+
+        const optBtn = document.createElement("button");
+        optBtn.type = "button";
+        optBtn.className = `option-row w-full text-left p-3.5 flex items-center gap-3 cursor-pointer ${
+          isSelected ? "selected" : ""
+        }`;
+        optBtn.setAttribute("aria-pressed", isSelected ? "true" : "false");
+
+        const optBadge = document.createElement("span");
+        optBadge.className =
+          "opt-badge w-8 h-8 text-sm font-bold flex items-center justify-center shrink-0";
+        optBadge.textContent = OPT_LABELS_BN[optKey];
+
+        const optLabel = document.createElement("span");
+        optLabel.className = "text-sm sm:text-base font-medium leading-snug break-words";
+        optLabel.innerHTML = optText;
+
+        optBtn.appendChild(optBadge);
+        optBtn.appendChild(optLabel);
+
+        optBtn.addEventListener("click", () => {
+          const prevChoice = state.answers[idx] || null;
+          if (prevChoice === optKey) {
+            delete state.answers[idx];
+            state.answerChangeCount += 1;
+          } else {
+            if (prevChoice !== null && prevChoice !== optKey) {
+              state.answerChangeCount += 1;
+            }
+            state.answers[idx] = optKey;
+          }
+          saveActiveSession();
+          updateProgressUI();
+
+          const nowSelected = state.answers[idx] || null;
+          badge.className = nowSelected
+            ? "text-xs font-bold px-3 py-1 rounded-full bg-indigo-100 text-indigo-800 shrink-0"
+            : "text-xs font-semibold px-3 py-1 rounded-full bg-slate-100 text-slate-600 shrink-0";
+          badge.textContent = nowSelected
+            ? `উত্তর দেওয়া হয়েছে: ${OPT_LABELS_BN[nowSelected]}`
+            : "উত্তর দেওয়া হয়নি";
+
+          optsGrid.querySelectorAll("button").forEach((b, bIdx) => {
+            const key = ["a", "b", "c", "d"][bIdx];
+            const active = nowSelected === key;
+            b.className = `option-row w-full text-left p-3.5 flex items-center gap-3 cursor-pointer ${
+              active ? "selected" : ""
+            }`;
+            b.setAttribute("aria-pressed", active ? "true" : "false");
+          });
+        });
+
+        optsGrid.appendChild(optBtn);
+      });
+
+      card.appendChild(optsGrid);
+      questionsContainer.appendChild(card);
+      updateProgressUI();
+    }
+
+    // Begin Exam Session Helper
+    function launchExamSession(isResume = false) {
+      entryScreen.classList.add("hidden");
+      resultScreen.classList.add("hidden");
+      examScreen.classList.remove("hidden");
+      examProgressBarWrap.classList.remove("hidden");
+      headerTimerBadge.classList.remove("hidden");
+
+      const metaText = `${state.student.name} (রোল: ${state.student.roll}) • ${getAttemptOrdinalBn(
+        state.attemptNumber
+      )} চেষ্টা`;
+      document.getElementById("headerStudentInfo").textContent = metaText;
+      document.getElementById("examCandidateMeta").textContent = metaText;
+
+      renderExamQuestion();
+
+      const elapsedSoFar = isResume
+        ? Math.max(0, Math.floor((Date.now() - state.startTimeObj.getTime()) / 1000))
+        : 0;
+      startExamTimer(state.durationLimitSec, elapsedSoFar);
+    }
+
+    // Restore Active Session if Page Reloaded Mid-Exam
+    (function initAppOnLoad() {
+      const prevAttempts = getStoredAttemptCount();
+      if (prevAttempts > 0) {
+        const badge = document.getElementById("previousAttemptBadge");
+        badge.textContent = `পূর্ববর্তী চেষ্টা: ${toBnNum(prevAttempts)} বার`;
+        badge.classList.remove("hidden");
+      }
+
+      try {
+        const savedRaw = sessionStorage.getItem(SESSION_ACTIVE_KEY);
+        if (savedRaw) {
+          const parsed = JSON.parse(savedRaw);
+          if (parsed && parsed.active && parsed.student && parsed.student.name) {
+            state.student = parsed.student;
+            state.answers = parsed.answers || {};
+            state.currentIndex = Number.isInteger(parsed.currentIndex)
+              ? Math.max(0, Math.min(QUESTIONS.length - 1, parsed.currentIndex))
+              : 0;
+            state.attemptNumber = parsed.attemptNumber || prevAttempts + 1;
+            state.reloadCount = (parsed.reloadCount || 0) + 1;
+            state.answerChangeCount = parsed.answerChangeCount || 0;
+            state.startTimeObj = new Date(parsed.startTimeMs || Date.now());
+            state.startTimeFormatted =
+              parsed.startTimeFormatted || formatBnTimestamp(state.startTimeObj);
+            state.durationLimitSec = parsed.durationLimitSec || 0;
+
+            saveActiveSession();
+            launchExamSession(true);
+            showNotice(
+              `⚠️ পরীক্ষা চলাকালীন পেজ রিলোড শনাক্ত হয়েছে (মোট রিলোড: ${toBnNum(
+                state.reloadCount
+              )} বার)। আপনার পূর্বের উত্তরসমূহ সংরক্ষিত আছে।`
+            );
+          }
+        }
+      } catch (e) {
+        // Ignore storage errors
+      }
+    })();
+
+    // Student Entry Form Submit
+    document.getElementById("studentEntryForm").addEventListener("submit", (e) => {
+      e.preventDefault();
+      hideNotice();
+
+      const nameInput = document.getElementById("studentName");
+      const rollInput = document.getElementById("studentRoll");
+      const durationSelect = document.getElementById("examDurationSelect");
+
+      const nameVal = nameInput.value.trim();
+      const rollVal = rollInput.value.trim();
+      const durationMinutes = Number(durationSelect ? durationSelect.value : 0);
+
+      let valid = true;
+      if (!nameVal) {
+        document.getElementById("nameError").classList.remove("hidden");
+        nameInput.focus();
+        valid = false;
+      } else {
+        document.getElementById("nameError").classList.add("hidden");
+      }
+
+      if (!rollVal) {
+        document.getElementById("rollError").classList.remove("hidden");
+        if (valid) rollInput.focus();
+        valid = false;
+      } else {
+        document.getElementById("rollError").classList.add("hidden");
+      }
+
+      if (!valid) return;
+
+      state.student = { name: nameVal, roll: rollVal };
+      state.answers = {};
+      state.currentIndex = 0;
+      state.attemptNumber = getStoredAttemptCount() + 1;
+      state.reloadCount = 0;
+      state.answerChangeCount = 0;
+      state.startTimeObj = new Date();
+      state.startTimeFormatted = formatBnTimestamp(state.startTimeObj);
+      state.durationLimitSec = durationMinutes > 0 ? durationMinutes * 60 : 0;
+
+      saveActiveSession();
+      launchExamSession(false);
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+
+    // Keep mobile zoom reset cleanly on input focus/blur
+    ["studentName", "studentRoll"].forEach((id) => {
+      const el = document.getElementById(id);
+      if (el) {
+        el.addEventListener("focus", () => {
+          el.style.zoom = "1";
+          el.style.transform = "none";
+        });
+        el.addEventListener("blur", () => {
+          if (window.visualViewport && window.visualViewport.scale > 1) {
+            window.scrollTo(window.scrollX, window.scrollY);
+          }
+        });
+      }
+    });
+
+    // Previous & Next Single-Question Navigation
+    document.getElementById("prevQuestionBtn").addEventListener("click", () => {
+      if (state.currentIndex > 0) {
+        goToQuestion(state.currentIndex - 1);
+      }
+    });
+
+    document.getElementById("nextQuestionBtn").addEventListener("click", () => {
+      if (state.currentIndex < QUESTIONS.length - 1) {
+        goToQuestion(state.currentIndex + 1);
+      } else {
+        handleRequestSubmit();
+      }
+    });
+
+    // Submit Confirmation Flow
+    function handleRequestSubmit() {
+      const answered = getAnsweredCount();
+      const total = QUESTIONS.length;
+      const unanswered = total - answered;
+      document.getElementById("confirmSubmitStats").innerHTML =
+        `আপনি <strong>${toBnNum(answered)}</strong> টি প্রশ্নের উত্তর দিয়েছেন এবং <strong>${toBnNum(
+          unanswered
+        )}</strong> টি প্রশ্ন উত্তরহীন রেখেছেন (মোট ২৮টি)।`;
+      document.getElementById("confirmSubmitModal").classList.remove("hidden");
+    }
+
+    document.getElementById("topSubmitExamBtn").addEventListener("click", handleRequestSubmit);
+    document.getElementById("bottomSubmitExamBtn").addEventListener("click", handleRequestSubmit);
+    document.getElementById("cancelSubmitModalBtn").addEventListener("click", () => {
+      document.getElementById("confirmSubmitModal").classList.add("hidden");
+    });
+
+    // Finalize Exam, Compute Score, Update Verification Card & Send Mail
+    function finalizeAndSubmitExam() {
+      stopExamTimer();
+      clearActiveSession();
+      document.getElementById("confirmSubmitModal").classList.add("hidden");
+
+      const completedAttemptNum = incrementStoredAttemptCount();
+      const endTimeObj = new Date();
+      const endTimeFormatted = formatBnTimestamp(endTimeObj);
+      const totalElapsed = Math.max(
+        1,
+        Math.floor((endTimeObj.getTime() - state.startTimeObj.getTime()) / 1000)
+      );
+      const durationBn = formatDurationBn(totalElapsed);
+
+      let correct = 0;
+      let wrong = 0;
+      let unanswered = 0;
+
+      const detailedItems = QUESTIONS.map((qObj, idx) => {
+        const chosen = state.answers[idx] || null;
+        let status = "unanswered";
+        if (!chosen) {
+          unanswered += 1;
+          status = "unanswered";
+        } else if (chosen === qObj.ans) {
+          correct += 1;
+          status = "correct";
+        } else {
+          wrong += 1;
+          status = "wrong";
+        }
+
+        return {
+          id: qObj.id,
+          q: qObj.q,
+          options: qObj.options,
+          chosen,
+          chosenText: chosen ? `${OPT_LABELS_BN[chosen]}. ${qObj.options[chosen]}` : "উত্তর দেননি",
+          ans: qObj.ans,
+          ansText: `${OPT_LABELS_BN[qObj.ans]}. ${qObj.options[qObj.ans]}`,
+          chosenPlain: chosen ? `${OPT_LABELS_BN[chosen]}. ${qObj.optionsP[chosen]}` : "উত্তর দেননি",
+          ansPlain: `${OPT_LABELS_BN[qObj.ans]}. ${qObj.optionsP[qObj.ans]}`,
+          exp: qObj.exp,
+          status
+        };
+      });
+
+      const total = QUESTIONS.length;
+      const percentage = ((correct / total) * 100).toFixed(2);
+      const verificationCode = generateVerificationCode(
+        completedAttemptNum,
+        correct,
+        state.student.name,
+        state.student.roll
+      );
+
+      const resultObj = {
+        instructor: INSTRUCTOR_NAME,
+        student: { ...state.student },
+        attemptNum: completedAttemptNum,
+        attemptBn: getAttemptOrdinalBn(completedAttemptNum),
+        attemptEn: getAttemptOrdinalEn(completedAttemptNum),
+        reloadCount: state.reloadCount,
+        answerChangeCount: state.answerChangeCount,
+        startTimeFormatted: state.startTimeFormatted,
+        endTimeFormatted,
+        durationBn,
+        verificationCode,
+        score: correct,
+        total,
+        percentage,
+        correct,
+        wrong,
+        unanswered,
+        items: detailedItems
+      };
+
+      state.lastResult = resultObj;
+      state.reviewFilter = "all";
+
+      // Switch UI Screens
+      examScreen.classList.add("hidden");
+      examProgressBarWrap.classList.add("hidden");
+      headerTimerBadge.classList.add("hidden");
+      resultScreen.classList.remove("hidden");
+
+      // Populate Top Emerald Verification Card
+      document.getElementById("attemptTopPill").textContent = `${resultObj.attemptBn} চেষ্টা ✓`;
+      document.getElementById("trkStudentName").textContent = resultObj.student.name;
+      document.getElementById("trkStudentRoll").textContent = resultObj.student.roll;
+      document.getElementById("trkAttemptText").textContent = `${resultObj.attemptBn} (${resultObj.attemptEn})`;
+      document.getElementById("trkReloadCount").textContent = `${toBnNum(resultObj.reloadCount)} বার`;
+      document.getElementById("trkChangeCount").textContent = `${toBnNum(resultObj.answerChangeCount)} বার`;
+      document.getElementById("trkTimeTaken").textContent = resultObj.durationBn;
+      document.getElementById("trkStartTime").textContent = resultObj.startTimeFormatted;
+      document.getElementById("trkEndTime").textContent = resultObj.endTimeFormatted;
+      document.getElementById("trkVerificationCode").textContent = resultObj.verificationCode;
+
+      // Populate Score Summary Card
+      document.getElementById("sumScoreText").textContent = `${toBnNum(correct)}/${toBnNum(total)}`;
+      document.getElementById("sumCorrectText").textContent = toBnNum(correct);
+      document.getElementById("sumWrongText").textContent = toBnNum(wrong);
+      document.getElementById("sumUnansweredText").textContent = toBnNum(unanswered);
+
+      const pctNum = Number(percentage);
+      const feedbackEl = document.getElementById("performanceFeedbackBox");
+      if (pctNum >= 80) {
+        feedbackEl.textContent = "অসাধারণ ফলাফল! পরিমিতি অধ্যায়ে আপনার প্রস্তুতি অত্যন্ত দৃঢ়।";
+      } else if (pctNum >= 50) {
+        feedbackEl.textContent = "ভালো চেষ্টা! ভুল হওয়া প্রশ্নগুলোর ব্যাখ্যা নিচে দেখে নিলে আরও ভালো করবেন।";
+      } else {
+        feedbackEl.textContent = "এই অধ্যায়ের ত্রিভুজ, চতুর্ভুজ, সুষম বহুভুজ ও ঘনবস্তুর সূত্রগুলো পুনরায় পড়ে আবার চেষ্টা করুন।";
+      }
+
+      // Populate Filter Tab Counts
+      document.getElementById("tabAllCount").textContent = toBnNum(total);
+      document.getElementById("tabWrongCount").textContent = toBnNum(wrong);
+      document.getElementById("tabUnansweredCount").textContent = toBnNum(unanswered);
+      document.getElementById("tabCorrectCount").textContent = toBnNum(correct);
+
+      renderReviewList();
+      sendResultViaFormSubmit(resultObj, TARGET_EMAIL);
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    document.getElementById("confirmSubmitActionBtn").addEventListener("click", finalizeAndSubmitExam);
+
+    function buildEmailSummaryText(res) {
+      const wrongNums = res.items
+        .filter((it) => it.status === "wrong")
+        .map((it) => `${toBnNum(it.id)} (আপনার উত্তর: ${it.chosenPlain}, সঠিক: ${it.ansPlain})`)
+        .join("\n");
+
+      const unansweredNums = res.items
+        .filter((it) => it.status === "unanswered")
+        .map((it) => toBnNum(it.id))
+        .join(", ");
+
+      return [
+        `পরিমিতি: ত্রিভুজ, চতুর্ভুজ, সুষম বহুভুজ ও ঘনবস্তু (মোট ২৮টি প্রশ্ন)`,
+        `Instructor: ${res.instructor}`,
+        `Verification Code: ${res.verificationCode}`,
+        `----------------------------------------`,
+        `শিক্ষার্থীর নাম: ${res.student.name}`,
+        `রোল / আইডি: ${res.student.roll}`,
+        `মোট চেষ্টার সংখ্যা: ${res.attemptBn} (${res.attemptEn})`,
+        `পেজ রিলোড / রিফ্রেশ: ${toBnNum(res.reloadCount)} বার`,
+        `উত্তর পরিবর্তন: ${toBnNum(res.answerChangeCount)} বার`,
+        `ব্যয়িত সময়: ${res.durationBn}`,
+        `শুরু: ${res.startTimeFormatted}`,
+        `জমা: ${res.endTimeFormatted}`,
+        `----------------------------------------`,
+        `প্রাপ্ত নম্বর: ${toBnNum(res.score)} / ${toBnNum(res.total)} (${res.percentage}%)`,
+        `সঠিক উত্তর: ${toBnNum(res.correct)} | ভুল উত্তর: ${toBnNum(res.wrong)} | উত্তর দেননি: ${toBnNum(res.unanswered)}`,
+        `----------------------------------------`,
+        `ভুল উত্তরসমূহ (${toBnNum(res.wrong)}টি):`,
+        wrongNums || "নেই",
+        `----------------------------------------`,
+        `উত্তরহীন প্রশ্ন নম্বর (${toBnNum(res.unanswered)}টি): ${unansweredNums || "নেই"}`
+      ].join("\n");
+    }
+
+    async function sendResultViaFormSubmit(res, recipientEmail) {
+      const statusBox = document.getElementById("emailStatusMessage");
+      const mailtoBtn = document.getElementById("mailtoDirectBtn");
+
+      const subject = `Mensuration (Chapter 16) MCQ Result | ${res.student.name} (Roll: ${res.student.roll}) | ${res.score}/${res.total} [${res.verificationCode}]`;
+      const summaryBody = buildEmailSummaryText(res);
+
+      mailtoBtn.href = `mailto:${encodeURIComponent(recipientEmail)}?subject=${encodeURIComponent(
+        subject
+      )}&body=${encodeURIComponent(summaryBody)}`;
+
+      statusBox.innerHTML = `⏳ <strong>${recipientEmail}</strong> মেইলে সম্পূর্ণ ফলাফল ও তথ্য পাঠানো হচ্ছে...`;
+
+      try {
+        const response = await fetch(`https://formsubmit.co/ajax/${encodeURIComponent(recipientEmail)}`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json"
+          },
+          body: JSON.stringify({
+            _subject: subject,
+            Instructor: res.instructor,
+            Verification_Code: res.verificationCode,
+            Student_Name: res.student.name,
+            Roll_ID: res.student.roll,
+            Attempt: `${res.attemptBn} (${res.attemptEn})`,
+            Page_Reloads: `${res.reloadCount}`,
+            Answer_Changes: `${res.answerChangeCount}`,
+            Time_Taken: res.durationBn,
+            Start_Time: res.startTimeFormatted,
+            Submit_Time: res.endTimeFormatted,
+            Score: `${res.score} / ${res.total} (${res.percentage}%)`,
+            Correct_Answers: `${res.correct}`,
+            Wrong_Answers: `${res.wrong}`,
+            Unanswered: `${res.unanswered}`,
+            Full_Report: summaryBody
+          })
+        });
+
+        const data = await response.json();
+        if (response.ok && (data.success === "true" || data.success === true)) {
+          statusBox.innerHTML = `✅ <strong>${recipientEmail}</strong> মেইলে সম্পূর্ণ ফলাফল ও তথ্য পাঠানো হয়েছে!<span class="block text-xs text-emerald-800 mt-0.5">(প্রথমবার ব্যবহারে FormSubmit থেকে আসা ভেরিফিকেশন লিংকটি ইনবক্স/স্প্যাম থেকে একবার Confirm করে নেবেন)</span>`;
+          return;
+        }
+        throw new Error("FormSubmit AJAX returned error");
+      } catch (err) {
+        statusBox.innerHTML = `✅ ফলাফল প্রস্তুত হয়েছে! স্বয়ংক্রিয় মেইল ব্লক হলে ডানপাশের <strong>"সরাসরি মেইল করুন"</strong> বাটনে ক্লিক করে <strong>${recipientEmail}</strong> ঠিকানায় পাঠিয়ে দিন।`;
+      }
+    }
+
+    document.getElementById("resendEmailBtn").addEventListener("click", () => {
+      if (!state.lastResult) return;
+      const mailVal = document.getElementById("instructorMailDisplay").value.trim() || TARGET_EMAIL;
+      sendResultViaFormSubmit(state.lastResult, mailVal);
+    });
+
+    // Render Detailed Review Cards with Explanations
+    function renderReviewList() {
+      if (!state.lastResult) return;
+      reviewContainer.innerHTML = "";
+
+      const filtered = state.lastResult.items.filter((it) => {
+        if (state.reviewFilter === "all") return true;
+        return it.status === state.reviewFilter;
+      });
+
+      if (filtered.length === 0) {
+        const emptyBox = document.createElement("div");
+        emptyBox.className = "card-box p-6 text-center text-sm font-semibold text-slate-600";
+        emptyBox.textContent = "এই ক্যাটাগরিতে কোনো প্রশ্ন নেই।";
+        reviewContainer.appendChild(emptyBox);
+        return;
+      }
+
+      filtered.forEach((it) => {
+        const card = document.createElement("article");
+        card.className = "card-box p-4 sm:p-6";
+
+        let statusBadgeClass = "bg-slate-100 text-slate-700";
+        let statusText = "উত্তরহীন";
+        if (it.status === "correct") {
+          statusBadgeClass = "bg-emerald-100 text-emerald-800";
+          statusText = "সঠিক উত্তর ✓";
+        } else if (it.status === "wrong") {
+          statusBadgeClass = "bg-rose-100 text-rose-800";
+          statusText = "ভুল উত্তর ✕";
+        }
+
+        const topRow = document.createElement("div");
+        topRow.className = "flex items-center justify-between gap-2 mb-2";
+
+        const qNumTag = document.createElement("span");
+        qNumTag.className = "text-xs sm:text-sm font-bold text-indigo-600";
+        qNumTag.textContent = `প্রশ্ন ${toBnNum(it.id)}`;
+
+        const statusBadge = document.createElement("span");
+        statusBadge.className = `text-xs font-bold px-3 py-1 rounded-full ${statusBadgeClass}`;
+        statusBadge.textContent = statusText;
+
+        topRow.appendChild(qNumTag);
+        topRow.appendChild(statusBadge);
+        card.appendChild(topRow);
+
+        const qTitle = document.createElement("h4");
+        qTitle.className = "text-sm sm:text-base font-bold text-slate-900 leading-relaxed whitespace-pre-line mb-3.5";
+        qTitle.innerHTML = it.q;
+        card.appendChild(qTitle);
+
+        // 4 Options List (ক, খ, গ, ঘ)
+        const optsWrap = document.createElement("div");
+        optsWrap.className = "space-y-2 mb-4";
+
+        ["a", "b", "c", "d"].forEach((k) => {
+          const isCorrect = it.ans === k;
+          const isChosen = it.chosen === k;
+
+          let rowStyle = "border border-slate-200 bg-white text-slate-800";
+          let tagHtml = "";
+
+          if (isCorrect && isChosen) {
+            rowStyle = "border-2 border-emerald-500 bg-emerald-50 text-emerald-950 font-bold";
+            tagHtml = `<span class="text-xs font-bold text-emerald-700 shrink-0">✓ আপনার ও সঠিক উত্তর</span>`;
+          } else if (isCorrect) {
+            rowStyle = "border-2 border-emerald-500 bg-emerald-50 text-emerald-950 font-bold";
+            tagHtml = `<span class="text-xs font-bold text-emerald-700 shrink-0">✓ সঠিক উত্তর</span>`;
+          } else if (isChosen) {
+            rowStyle = "border-2 border-rose-500 bg-rose-50 text-rose-950 font-semibold";
+            tagHtml = `<span class="text-xs font-bold text-rose-700 shrink-0">✕ আপনার ভুল উত্তর</span>`;
+          }
+
+          const optDiv = document.createElement("div");
+          optDiv.className = `rounded-xl px-3.5 py-2.5 text-xs sm:text-sm flex flex-wrap items-center justify-between gap-2 ${rowStyle}`;
+          optDiv.innerHTML = `<span><strong>${OPT_LABELS_BN[k]}.</strong> ${it.options[k]}</span>${tagHtml}`;
+          optsWrap.appendChild(optDiv);
+        });
+
+        card.appendChild(optsWrap);
+
+        // Explanation Box ("ব্যাখ্যা:")
+        const expBox = document.createElement("div");
+        expBox.className = "rounded-xl bg-indigo-50/75 border-l-4 border-indigo-600 p-3.5 text-xs sm:text-sm text-slate-800 leading-relaxed space-y-1";
+        expBox.innerHTML = `
+          <div class="font-bold text-indigo-950">
+            সঠিক উত্তর: <span class="text-emerald-700">${it.ansText}</span>
+            ${
+              it.status === "wrong"
+                ? `<span class="text-rose-700 font-semibold block sm:inline sm:ml-2">• আপনি দিয়েছিলেন: ${it.chosenText}</span>`
+                : ""
+            }
+          </div>
+          <div><strong class="text-indigo-800">ব্যাখ্যা:</strong> ${it.exp}</div>
+        `;
+        card.appendChild(expBox);
+
+        reviewContainer.appendChild(card);
+      });
+    }
+
+    // Filter Pills Click Handler
+    document.querySelectorAll(".review-filter-btn").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        state.reviewFilter = btn.dataset.reviewFilter;
+        document.querySelectorAll(".review-filter-btn").forEach((b) => {
+          const active = b.dataset.reviewFilter === state.reviewFilter;
+          b.className = active
+            ? "review-filter-btn px-4 py-2 rounded-full text-xs sm:text-sm font-bold bg-indigo-600 text-white shadow-xs cursor-pointer"
+            : "review-filter-btn px-4 py-2 rounded-full text-xs sm:text-sm font-bold bg-white text-slate-700 border border-slate-200 hover:bg-slate-50 cursor-pointer";
+        });
+        renderReviewList();
+      });
+    });
+
+    // Scroll to Review Section Button
+    document.getElementById("scrollToReviewBtn").addEventListener("click", () => {
+      document.getElementById("reviewSectionAnchor").scrollIntoView({ behavior: "smooth" });
+    });
+
+    // Retake Exam Button (Counts as New Attempt)
+    document.getElementById("retakeExamBtn").addEventListener("click", () => {
+      state.answers = {};
+      state.currentIndex = 0;
+      state.lastResult = null;
+      const prevAttempts = getStoredAttemptCount();
+      const badge = document.getElementById("previousAttemptBadge");
+      if (prevAttempts > 0) {
+        badge.textContent = `পূর্ববর্তী চেষ্টা: ${toBnNum(prevAttempts)} বার`;
+        badge.classList.remove("hidden");
+      }
+      resultScreen.classList.add("hidden");
+      entryScreen.classList.remove("hidden");
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,2106 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>সমতলীয় ভেক্টর MCQ এক্সাম | Instructor: AKASH</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  />
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #f1f5f9;
+      color: #0f172a;
+      font-family: "Hind Siliguri", "Inter", sans-serif;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+      min-height: 100vh;
+    }
+
+    .mono-num {
+      font-variant-numeric: tabular-nums;
+    }
+
+    .card-box {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 1rem;
+      box-shadow: 0 2px 10px rgba(15, 23, 42, 0.04);
+    }
+
+    .gradient-header {
+      background: linear-gradient(120deg, #1e293b 0%, #312e81 55%, #0f766e 100%);
+    }
+
+    .option-row {
+      border: 1.5px solid #e2e8f0;
+      background: #ffffff;
+      border-radius: 0.75rem;
+      transition: all 0.14s ease;
+    }
+
+    .option-row:hover {
+      border-color: #6366f1;
+      background: #f8fafc;
+    }
+
+    .option-row.selected {
+      border-color: #4f46e5;
+      background: #eef2ff;
+      color: #1e1b4b;
+      box-shadow: 0 2px 8px rgba(79, 70, 229, 0.14);
+    }
+
+    .option-row.selected .opt-badge {
+      background: #4f46e5;
+      color: #ffffff;
+      border-color: #4f46e5;
+    }
+
+    .opt-badge {
+      border: 1.5px solid #cbd5e1;
+      background: #f8fafc;
+      color: #334155;
+      border-radius: 0.5rem;
+      transition: all 0.14s ease;
+    }
+
+    /* Prevent iOS/Android mobile auto-zoom on form input focus */
+    input,
+    select,
+    textarea {
+      font-size: 16px !important;
+      line-height: 1.4;
+      transform: none !important;
+      zoom: 1 !important;
+    }
+
+    @media print {
+      .no-print {
+        display: none !important;
+      }
+      body {
+        background: #ffffff !important;
+      }
+    }
+    .frac{display:inline-flex;flex-direction:column;vertical-align:middle;text-align:center;margin:0 3px;line-height:1.3;font-size:.95em}
+  .frac>.num{border-bottom:1.5px solid currentColor;padding:0 4px}
+  .frac>.den{padding:0 4px}
+  sup,sub{font-size:.8em;line-height:0}
+
+    .vec{position:relative;display:inline-block;line-height:1;padding-top:.42em;margin:0 1px}
+    .vec::before{content:"→";position:absolute;top:-.12em;left:50%;transform:translateX(-50%);font-size:.72em;line-height:1;font-weight:700}
+    .fig-box{border:1.5px dashed #cbd5e1;border-radius:.75rem;background:#f8fafc;padding:.6rem;margin:0 0 1rem 0}
+    .fig-box svg{max-height:260px}
+</style>
+</head>
+<body class="text-slate-800">
+  <!-- Sticky Header -->
+  <header class="gradient-header text-white sticky top-0 z-30 shadow-md no-print">
+    <div class="max-w-4xl mx-auto px-3 sm:px-6 py-3 flex items-center justify-between gap-2">
+      <div class="flex items-center gap-2.5 sm:gap-3 min-w-0">
+        <div class="w-10 h-10 rounded-xl bg-white/15 border border-white/25 flex items-center justify-center shrink-0 font-bold text-sm sm:text-base">
+          v⃗
+        </div>
+        <div class="min-w-0">
+          <div class="flex items-center gap-2 flex-wrap">
+            <h1 class="text-sm sm:text-lg font-bold tracking-tight text-white truncate">
+              সমতলীয় ভেক্টর
+            </h1>
+            <span class="text-[11px] sm:text-xs font-bold px-2.5 py-0.5 rounded-full bg-amber-300 text-slate-900 mono-num">
+              মোট ৩৬টি প্রশ্ন
+            </span>
+          </div>
+          <p class="text-xs sm:text-sm text-slate-200 font-medium">
+            Instructor: <span class="font-bold text-white">AKASH</span>
+          </p>
+        </div>
+      </div>
+
+      <!-- Live Timer Badge during Exam -->
+      <div id="headerTimerBadge" class="hidden shrink-0">
+        <div class="px-3 py-1.5 rounded-xl bg-white text-slate-900 font-bold text-xs sm:text-sm mono-num shadow flex items-center gap-1.5">
+          <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+          <span id="liveTimerDisplay">00:00</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Exam Progress Bar Strip -->
+    <div id="examProgressBarWrap" class="hidden bg-slate-950/35 border-t border-white/10">
+      <div class="max-w-4xl mx-auto px-3 sm:px-6 py-2 flex flex-wrap items-center justify-between gap-2 text-xs sm:text-sm text-white">
+        <div class="font-medium truncate max-w-[62%] sm:max-w-none" id="headerStudentInfo"></div>
+        <div class="flex items-center gap-2.5 mono-num ml-auto">
+          <span>উত্তর: <strong id="answeredCountText" class="text-amber-300">0</strong>/36</span>
+          <div class="w-20 sm:w-28 h-2 rounded-full bg-white/20 overflow-hidden">
+            <div id="progressFill" class="h-full bg-emerald-400 transition-all duration-200" style="width: 0%;"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <main class="max-w-4xl mx-auto px-3 sm:px-6 py-5 sm:py-7">
+    <!-- Inline Alert Banner -->
+    <div id="globalNotice" class="hidden mb-4 rounded-xl border border-indigo-200 bg-indigo-50 p-3.5 text-xs sm:text-sm font-medium text-indigo-950 flex items-start justify-between gap-3">
+      <div id="globalNoticeText"></div>
+      <button type="button" id="closeNoticeBtn" class="text-xs font-bold text-indigo-700 underline shrink-0 cursor-pointer">বন্ধ করুন</button>
+    </div>
+
+    <!-- SCREEN 1: STUDENT ENTRY SCREEN -->
+    <section id="entryScreen" class="max-w-xl mx-auto">
+      <div class="card-box p-5 sm:p-7">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 mb-5 border-b border-slate-100">
+          <div>
+            <span class="inline-block text-[11px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800">
+              Online MCQ Exam Portal
+            </span>
+            <h2 class="text-xl sm:text-2xl font-bold text-slate-900 mt-1.5">
+              সমতলীয় ভেক্টর
+            </h2>
+            <p class="text-xs sm:text-sm text-slate-600 mt-0.5">
+              Instructor: <strong class="text-indigo-700">AKASH</strong> • মোট ৩৬টি প্রশ্ন • পূর্ণমান: ৩৬
+            </p>
+          </div>
+          <div id="previousAttemptBadge" class="hidden text-xs font-bold px-3 py-1.5 rounded-lg bg-slate-100 text-slate-700 border border-slate-200 shrink-0"></div>
+        </div>
+
+        <div class="rounded-xl bg-slate-50 border border-slate-200 p-3.5 mb-5 text-xs sm:text-sm text-slate-700 space-y-1">
+          <div class="font-bold text-slate-900">📌 পরীক্ষার্থীদের জন্য নির্দেশনা:</div>
+          <p>১. আপনার <strong>শিক্ষার্থীর নাম</strong> ও <strong>রোল / আইডি</strong> দিয়ে পরীক্ষা শুরু করুন।</p>
+          <p>২. পরীক্ষা চলাকালীন পেজ রিলোড, উত্তর পরিবর্তন ও ব্যয়িত সময় স্বয়ংক্রিয়ভাবে ট্র্যাক হবে।</p>
+          <p>৩. <strong>পরীক্ষা জমা দিন (Submit)</strong> বাটনে ক্লিক করলে প্রাপ্ত নম্বর, বিস্তারিত ব্যাখ্যা দেখতে পাবেন এবং সম্পূর্ণ রিপোর্ট <strong>akashtalukder1998@gmail.com</strong> মেইলে চলে যাবে।</p>
+        </div>
+
+        <form id="studentEntryForm" class="space-y-4" novalidate>
+          <div>
+            <label for="studentName" class="block text-sm font-bold text-slate-800 mb-1">
+              শিক্ষার্থীর নাম <span class="text-rose-600">*</span>
+            </label>
+            <input
+              type="text"
+              id="studentName"
+              required
+              placeholder="আপনার নাম লিখুন"
+              class="w-full px-3.5 py-2.5 text-base rounded-xl border border-slate-300 bg-white text-slate-900 focus:outline-none focus:border-indigo-600 focus:ring-2 focus:ring-indigo-100"
+            />
+            <p id="nameError" class="hidden text-xs font-semibold text-rose-600 mt-1">
+              অনুগ্রহ করে শিক্ষার্থীর নাম লিখুন।
+            </p>
+          </div>
+
+          <div>
+            <label for="studentRoll" class="block text-sm font-bold text-slate-800 mb-1">
+              রোল / আইডি <span class="text-rose-600">*</span>
+            </label>
+            <input
+              type="text"
+              id="studentRoll"
+              required
+              placeholder="আপনার রোল বা আইডি লিখুন"
+              class="w-full px-3.5 py-2.5 text-base rounded-xl border border-slate-300 bg-white text-slate-900 focus:outline-none focus:border-indigo-600 focus:ring-2 focus:ring-indigo-100 mono-num"
+            />
+            <p id="rollError" class="hidden text-xs font-semibold text-rose-600 mt-1">
+              অনুগ্রহ করে রোল / আইডি লিখুন।
+            </p>
+          </div>
+
+          <div>
+            <label for="examDurationSelect" class="block text-sm font-bold text-slate-800 mb-1">
+              সময় নির্ধারণ
+            </label>
+            <select
+              id="examDurationSelect"
+              class="w-full px-3.5 py-2.5 text-base rounded-xl border border-slate-300 bg-white text-slate-900 focus:outline-none focus:border-indigo-600"
+            >
+              <option value="0" selected>সময়সীমাহীন (Stopwatch চালু থাকবে)</option>
+              <option value="36">৩৬ মিনিট (প্রতি প্রশ্নে ১ মিনিট)</option>
+              <option value="45">৪৫ মিনিট</option>
+              <option value="30">৩০ মিনিট</option>
+            </select>
+          </div>
+
+          <button
+            type="submit"
+            class="w-full py-3 px-5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-base shadow-sm transition cursor-pointer"
+          >
+            পরীক্ষা শুরু করুন →
+          </button>
+        </form>
+      </div>
+    </section>
+
+    <!-- SCREEN 2: ACTIVE EXAM SCREEN (SINGLE QUESTION AT A TIME) -->
+    <section id="examScreen" class="hidden space-y-4">
+      <!-- Top Control Card -->
+      <div class="card-box p-4">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+          <div>
+            <div class="text-xs font-bold text-emerald-700">● লাইভ পরীক্ষা চলছে • Instructor: AKASH</div>
+            <div class="text-sm sm:text-base font-bold text-slate-900 mt-0.5" id="examCandidateMeta"></div>
+          </div>
+          <button
+            type="button"
+            id="topSubmitExamBtn"
+            class="px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs sm:text-sm font-bold cursor-pointer self-start sm:self-auto"
+          >
+            পরীক্ষা জমা দিন (Submit Exam)
+          </button>
+        </div>
+      </div>
+
+      <!-- Single Active Question Container -->
+      <div id="questionsContainer"></div>
+
+      <!-- Previous / Next / Submit Navigation Bar -->
+      <div class="card-box p-4 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-2.5">
+        <button
+          type="button"
+          id="prevQuestionBtn"
+          class="px-4 py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 disabled:opacity-45 disabled:pointer-events-none text-slate-800 font-bold text-sm cursor-pointer transition"
+        >
+          ← পূর্ববর্তী প্রশ্ন
+        </button>
+
+        <div class="text-center text-xs sm:text-sm font-bold text-slate-700 mono-num self-center">
+          প্রশ্ন <span id="currentQIndicator" class="text-indigo-700">১</span> / ৩৬ • উত্তর: <span id="bottomAnsweredCount" class="text-emerald-700">0</span>/৩৬
+        </div>
+
+        <div class="flex items-center gap-2">
+          <button
+            type="button"
+            id="nextQuestionBtn"
+            class="flex-1 sm:flex-initial px-4 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-sm cursor-pointer transition"
+          >
+            পরবর্তী প্রশ্ন →
+          </button>
+          <button
+            type="button"
+            id="bottomSubmitExamBtn"
+            class="px-4 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs sm:text-sm cursor-pointer transition"
+          >
+            পরীক্ষা জমা দিন (Submit Exam)
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- SCREEN 3: POST-SUBMISSION VERIFICATION, SCORE & EXPLANATION SCREEN -->
+    <section id="resultScreen" class="hidden space-y-5">
+      <!-- 1. TOP EMERALD/TEAL AUTO-TRACKING & VERIFICATION CARD (Matches image_8df221.png) -->
+      <div class="rounded-2xl border-2 border-emerald-500 bg-white overflow-hidden shadow-sm">
+        <!-- Emerald Top Header -->
+        <div class="bg-[#059669] text-white px-4 sm:px-6 py-3.5 flex items-center justify-between gap-2">
+          <div class="flex items-center gap-2 font-bold text-xs sm:text-sm">
+            <span class="inline-flex items-center justify-center w-6 h-6 rounded-md bg-white/20 text-white">🛡️</span>
+            <span>• অটো-ট্র্যাকিং ও চেষ্টা যাচাইকরণ By mail</span>
+          </div>
+          <span id="attemptTopPill" class="px-3 py-1 rounded-full bg-white text-[#047857] text-xs font-extrabold shadow-xs shrink-0">
+            ১ম বার চেষ্টা ✓
+          </span>
+        </div>
+
+        <div class="p-4 sm:p-6 space-y-4">
+          <!-- 6 Stat Boxes Grid -->
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+            <div class="rounded-xl border border-slate-200 bg-slate-50/70 p-3.5">
+              <div class="text-xs text-slate-500 font-medium">শিক্ষার্থীর নাম</div>
+              <div id="trkStudentName" class="text-sm sm:text-base font-bold text-slate-900 mt-0.5 break-words">-</div>
+            </div>
+            <div class="rounded-xl border border-slate-200 bg-slate-50/70 p-3.5">
+              <div class="text-xs text-slate-500 font-medium">রোল / আইডি</div>
+              <div id="trkStudentRoll" class="text-sm sm:text-base font-bold text-slate-900 mt-0.5 mono-num">-</div>
+            </div>
+            <div class="rounded-xl border border-slate-200 bg-slate-50/70 p-3.5">
+              <div class="text-xs text-slate-500 font-medium">মোট চেষ্টার সংখ্যা</div>
+              <div id="trkAttemptText" class="text-sm sm:text-base font-bold text-[#059669] mt-0.5">১ম বার (1st Attempt)</div>
+            </div>
+            <div class="rounded-xl border border-slate-200 bg-slate-50/70 p-3.5">
+              <div class="text-xs text-slate-500 font-medium">পেজ রিলোড / রিফ্রেশ</div>
+              <div id="trkReloadCount" class="text-sm sm:text-base font-bold text-slate-900 mt-0.5 mono-num">০ বার</div>
+            </div>
+            <div class="rounded-xl border border-slate-200 bg-slate-50/70 p-3.5">
+              <div class="text-xs text-slate-500 font-medium">উত্তর পরিবর্তন</div>
+              <div id="trkChangeCount" class="text-sm sm:text-base font-bold text-slate-900 mt-0.5 mono-num">০ বার</div>
+            </div>
+            <div class="rounded-xl border border-slate-200 bg-slate-50/70 p-3.5">
+              <div class="text-xs text-slate-500 font-medium">ব্যয়িত সময়</div>
+              <div id="trkTimeTaken" class="text-sm sm:text-base font-bold text-slate-900 mt-0.5 mono-num">০ মিনিট ০ সেকেন্ড</div>
+            </div>
+          </div>
+
+          <!-- Dark Navy Banner with Start Time, Submit Time & Verification Code -->
+          <div class="rounded-xl bg-[#0f172a] text-white p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+            <div class="space-y-1 text-xs sm:text-sm mono-num">
+              <div><span class="text-slate-400">শুরু:</span> <strong id="trkStartTime" class="text-white">-</strong></div>
+              <div><span class="text-slate-400">জমা:</span> <strong id="trkEndTime" class="text-white">-</strong></div>
+            </div>
+            <div class="sm:text-right">
+              <div class="text-[10px] uppercase tracking-widest text-slate-400 font-semibold">VERIFICATION CODE</div>
+              <div id="trkVerificationCode" class="text-sm sm:text-base font-extrabold text-amber-400 tracking-wider mono-num mt-0.5">
+                EXAM-ATT1-SC00-0000
+              </div>
+            </div>
+          </div>
+
+          <!-- Vibrant Indigo Accent Bar -->
+          <div class="h-3.5 w-full rounded-full bg-indigo-600"></div>
+
+          <!-- Light Green Email Status Box -->
+          <div class="rounded-xl border border-emerald-200 bg-emerald-50/80 p-3.5 sm:p-4 space-y-3">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+              <div class="text-xs sm:text-sm text-emerald-950 leading-relaxed" id="emailStatusMessage">
+                ✅ <strong>akashtalukder1998@gmail.com</strong> মেইলে সম্পূর্ণ ফলাফল ও তথ্য পাঠানো হচ্ছে...
+                <span class="block text-xs text-emerald-800 mt-0.5">
+                  (প্রথমবার ব্যবহারে FormSubmit থেকে আসা ভেরিফিকেশন লিংকটি ইনবক্স/স্প্যাম থেকে একবার Confirm করে নেবেন)
+                </span>
+              </div>
+              <a
+                id="mailtoDirectBtn"
+                href="#"
+                class="px-3.5 py-2 rounded-lg bg-white border border-slate-300 hover:bg-slate-50 text-indigo-700 font-bold text-xs inline-flex items-center justify-center gap-1.5 shrink-0 shadow-2xs"
+              >
+                <span>✉️ সরাসরি মেইল করুন</span>
+              </a>
+            </div>
+
+            <!-- Instructor Mail Input Row + Resend Button -->
+            <div class="pt-2.5 border-t border-emerald-200/70 flex flex-col sm:flex-row items-stretch sm:items-center gap-2">
+              <label for="instructorMailDisplay" class="text-xs font-semibold text-slate-600 shrink-0">
+                Instructor Mail:
+              </label>
+              <input
+                type="email"
+                id="instructorMailDisplay"
+                value="akashtalukder1998@gmail.com"
+                readonly
+                class="flex-1 px-3 py-1.5 text-base rounded-lg border border-slate-300 bg-white text-slate-800 font-medium focus:outline-none"
+              />
+              <button
+                type="button"
+                id="resendEmailBtn"
+                class="px-4 py-2 rounded-lg bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold cursor-pointer shrink-0"
+              >
+                পুনরায় পাঠান
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2. SCORE SUMMARY & ACTION CARD (Matches image_8df25d.png) -->
+      <div class="card-box p-4 sm:p-6 space-y-4">
+        <!-- 4 Colored Summary Boxes -->
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-center mono-num">
+          <div class="rounded-xl bg-indigo-50/90 border border-indigo-100 p-4">
+            <div class="text-xs font-bold text-indigo-600">প্রাপ্ত নম্বর</div>
+            <div id="sumScoreText" class="text-2xl sm:text-3xl font-extrabold text-indigo-950 mt-1">০/৩৬</div>
+          </div>
+          <div class="rounded-xl bg-emerald-50/90 border border-emerald-100 p-4">
+            <div class="text-xs font-bold text-emerald-700">সঠিক উত্তর</div>
+            <div id="sumCorrectText" class="text-2xl sm:text-3xl font-extrabold text-emerald-800 mt-1">০</div>
+          </div>
+          <div class="rounded-xl bg-rose-50/90 border border-rose-100 p-4">
+            <div class="text-xs font-bold text-rose-600">ভুল উত্তর</div>
+            <div id="sumWrongText" class="text-2xl sm:text-3xl font-extrabold text-rose-800 mt-1">০</div>
+          </div>
+          <div class="rounded-xl bg-slate-100/90 border border-slate-200 p-4">
+            <div class="text-xs font-bold text-slate-600">উত্তর দেননি</div>
+            <div id="sumUnansweredText" class="text-2xl sm:text-3xl font-extrabold text-slate-800 mt-1">৩৬</div>
+          </div>
+        </div>
+
+        <!-- Dynamic Feedback Banner -->
+        <div id="performanceFeedbackBox" class="rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-center text-xs sm:text-sm font-medium text-slate-700">
+          এই অধ্যায়ের সমতলীয় ভেক্টর অংশগুলো পুনরায় পড়ে আবার চেষ্টা করুন।
+        </div>
+
+        <!-- Two Action Buttons -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 no-print">
+          <button
+            type="button"
+            id="retakeExamBtn"
+            class="py-3 px-4 rounded-xl bg-[#111827] hover:bg-slate-800 text-white font-bold text-xs sm:text-sm cursor-pointer transition"
+          >
+            পুনরায় পরীক্ষা দিন (নতুন চেষ্টা হিসেবে গণ্য হবে)
+          </button>
+          <button
+            type="button"
+            id="scrollToReviewBtn"
+            class="py-3 px-4 rounded-xl bg-white hover:bg-slate-50 text-slate-800 border border-slate-300 font-bold text-xs sm:text-sm cursor-pointer transition"
+          >
+            সব উত্তর পর্যালোচনা করুন
+          </button>
+        </div>
+      </div>
+
+      <!-- 3. FILTER TABS & DETAILED QUESTION REVIEW SECTION -->
+      <div id="reviewSectionAnchor" class="space-y-4 pt-1">
+        <!-- Filter Pills -->
+        <div class="flex flex-wrap items-center gap-2 no-print" role="group" aria-label="উত্তর ফিল্টার">
+          <button
+            type="button"
+            data-review-filter="all"
+            class="review-filter-btn px-4 py-2 rounded-full text-xs sm:text-sm font-bold bg-indigo-600 text-white shadow-xs cursor-pointer"
+          >
+            সব প্রশ্ন (<span id="tabAllCount">৩৬</span>)
+          </button>
+          <button
+            type="button"
+            data-review-filter="wrong"
+            class="review-filter-btn px-4 py-2 rounded-full text-xs sm:text-sm font-bold bg-white text-slate-700 border border-slate-200 hover:bg-slate-50 cursor-pointer"
+          >
+            ভুল উত্তর (<span id="tabWrongCount">০</span>)
+          </button>
+          <button
+            type="button"
+            data-review-filter="unanswered"
+            class="review-filter-btn px-4 py-2 rounded-full text-xs sm:text-sm font-bold bg-white text-slate-700 border border-slate-200 hover:bg-slate-50 cursor-pointer"
+          >
+            উত্তরহীন (<span id="tabUnansweredCount">৩৬</span>)
+          </button>
+          <button
+            type="button"
+            data-review-filter="correct"
+            class="review-filter-btn px-4 py-2 rounded-full text-xs sm:text-sm font-bold bg-white text-slate-700 border border-slate-200 hover:bg-slate-50 cursor-pointer"
+          >
+            সঠিক উত্তর (<span id="tabCorrectCount">০</span>)
+          </button>
+        </div>
+
+        <!-- Review Question Cards Container -->
+        <div id="reviewContainer" class="space-y-4"></div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="border-t border-slate-200 bg-white mt-10 py-4 px-3 sm:px-6 text-center text-xs text-slate-500 no-print">
+    <div class="max-w-4xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-1">
+      <span>সমতলীয় ভেক্টর (মোট ৩৬টি প্রশ্ন) • Instructor: <strong class="text-slate-700">AKASH</strong></span>
+      <span>akashtalukder1998@gmail.com</span>
+    </div>
+  </footer>
+
+  <!-- Submit Confirmation Modal -->
+  <div id="confirmSubmitModal" class="fixed inset-0 z-50 hidden bg-slate-950/60 flex items-center justify-center p-4">
+    <div class="card-box max-w-md w-full p-5 sm:p-6 bg-white">
+      <h3 class="text-lg font-bold text-slate-900">পরীক্ষা জমা দেওয়ার নিশ্চিতকরণ</h3>
+      <p id="confirmSubmitStats" class="text-sm text-slate-700 mt-2"></p>
+      <p class="text-xs text-slate-500 mt-2">
+        জমা দেওয়ার পর আপনার প্রাপ্ত নম্বর, অটো-ট্র্যাকিং রিপোর্ট ও প্রতিটি প্রশ্নের বিস্তারিত ব্যাখ্যা দেখতে পাবেন এবং ফলাফল <strong>akashtalukder1998@gmail.com</strong> মেইলে পাঠানো হবে।
+      </p>
+      <div class="mt-5 flex items-center justify-end gap-2">
+        <button
+          type="button"
+          id="cancelSubmitModalBtn"
+          class="px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-slate-100 text-slate-700 hover:bg-slate-200 cursor-pointer"
+        >
+          ফিরে যান
+        </button>
+        <button
+          type="button"
+          id="confirmSubmitActionBtn"
+          class="px-5 py-2 rounded-xl text-xs sm:text-sm font-bold bg-emerald-600 hover:bg-emerald-700 text-white cursor-pointer"
+        >
+          হ্যাঁ, জমা দিন ✓
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    /**
+     * =========================================================================
+     * COMPLETE 36 MCQ DATASET: Plane Vector (অধ্যায় ১২)
+     * Crisp Unicode superscripts, subscripts & mathematical symbols
+     * =========================================================================
+     */
+    const QUESTIONS = [
+  {
+    "id": 1,
+    "q": "5<span class=\"vec\">p</span> − 3<span class=\"vec\">q</span> এর বিপরীত ভেক্টর কোনটি? [দি. বো. ২০২০]",
+    "qp": "5p⃗ − 3q⃗ এর বিপরীত ভেক্টর কোনটি? [দি. বো. ২০২০]",
+    "options": {
+      "a": "<span class=\"frac\"><span class=\"num\">1</span><span class=\"den\">5<span class=\"vec\">p</span> − 3<span class=\"vec\">q</span></span></span>",
+      "b": "<span class=\"frac\"><span class=\"num\">1</span><span class=\"den\">3<span class=\"vec\">q</span> − 5<span class=\"vec\">p</span></span></span>",
+      "c": "3<span class=\"vec\">q</span> − 5<span class=\"vec\">p</span>",
+      "d": "5<span class=\"vec\">q</span> − 3<span class=\"vec\">p</span>"
+    },
+    "optionsP": {
+      "a": "1/(5p⃗ − 3q⃗)",
+      "b": "1/(3q⃗ − 5p⃗)",
+      "c": "3q⃗ − 5p⃗",
+      "d": "5q⃗ − 3p⃗"
+    },
+    "ans": "c",
+    "exp": "<span class=\"vec\">u</span> এর বিপরীত ভেক্টর −<span class=\"vec\">u</span> (মান সমান, দিক বিপরীত)।<br>−(5<span class=\"vec\">p</span> − 3<span class=\"vec\">q</span>) = −5<span class=\"vec\">p</span> + 3<span class=\"vec\">q</span> = 3<span class=\"vec\">q</span> − 5<span class=\"vec\">p</span>।"
+  },
+  {
+    "id": 2,
+    "q": "যেকোনো <span class=\"vec\">a</span>, <span class=\"vec\">b</span> ও <span class=\"vec\">c</span> ভেক্টরের জন্য- [রা. বো. ২০১৭]\ni. <span class=\"vec\">a</span> + <span class=\"vec\">b</span> = <span class=\"vec\">b</span> + <span class=\"vec\">a</span> ভেক্টর যোগের বিনিময় বিধি\nii. m(<span class=\"vec\">b</span> + <span class=\"vec\">c</span>) = m<span class=\"vec\">b</span> + m<span class=\"vec\">c</span> ভেক্টরের বণ্টন বিধি\niii. (<span class=\"vec\">a</span> + <span class=\"vec\">b</span>) + <span class=\"vec\">c</span> = <span class=\"vec\">a</span> + (<span class=\"vec\">b</span> + <span class=\"vec\">c</span>) ভেক্টর যোগের সংযোগ বিধি\nনিচের কোনটি সঠিক?",
+    "qp": "যেকোনো a⃗, b⃗ ও c⃗ ভেক্টরের জন্য- [রা. বো. ২০১৭]\ni. a⃗ + b⃗ = b⃗ + a⃗ ভেক্টর যোগের বিনিময় বিধি\nii. m(b⃗ + c⃗) = mb⃗ + mc⃗ ভেক্টরের বণ্টন বিধি\niii. (a⃗ + b⃗) + c⃗ = a⃗ + (b⃗ + c⃗) ভেক্টর যোগের সংযোগ বিধি\nনিচের কোনটি সঠিক?",
+    "options": {
+      "a": "i ও ii",
+      "b": "ii ও iii",
+      "c": "i ও iii",
+      "d": "i, ii ও iii"
+    },
+    "optionsP": {
+      "a": "i ও ii",
+      "b": "ii ও iii",
+      "c": "i ও iii",
+      "d": "i, ii ও iii"
+    },
+    "ans": "d",
+    "exp": "i: <span class=\"vec\">a</span> + <span class=\"vec\">b</span> = <span class=\"vec\">b</span> + <span class=\"vec\">a</span> — বিনিময় বিধি ✔<br>ii: m(<span class=\"vec\">b</span> + <span class=\"vec\">c</span>) = m<span class=\"vec\">b</span> + m<span class=\"vec\">c</span> — স্কেলারের বণ্টন বিধি ✔<br>iii: (<span class=\"vec\">a</span> + <span class=\"vec\">b</span>) + <span class=\"vec\">c</span> = <span class=\"vec\">a</span> + (<span class=\"vec\">b</span> + <span class=\"vec\">c</span>) — সংযোগ বিধি ✔<br>তিনটি উক্তিই সত্য।"
+  },
+  {
+    "id": 3,
+    "q": "△ABC এ- [সকল. বো. ১৮]\ni. <span class=\"vec\">BC</span> = <span class=\"vec\">BA</span> + <span class=\"vec\">AC</span>\nii. <span class=\"vec\">AC</span> + <span class=\"vec\">BA</span> + <span class=\"vec\">CB</span> = <span class=\"vec\">0</span>\niii. <span class=\"vec\">AB</span> + <span class=\"vec\">CA</span> = <span class=\"vec\">BC</span>\nনিচের কোনটি সঠিক?",
+    "qp": "△ABC এ- [সকল. বো. ১৮]\ni. BC⃗ = BA⃗ + AC⃗\nii. AC⃗ + BA⃗ + CB⃗ = 0⃗\niii. AB⃗ + CA⃗ = BC⃗\nনিচের কোনটি সঠিক?",
+    "options": {
+      "a": "i, ii",
+      "b": "i, iii",
+      "c": "ii, iii",
+      "d": "i, ii, iii"
+    },
+    "optionsP": {
+      "a": "i, ii",
+      "b": "i, iii",
+      "c": "ii, iii",
+      "d": "i, ii, iii"
+    },
+    "ans": "a",
+    "exp": "i: B থেকে A হয়ে C তে গেলে <span class=\"vec\">BA</span> + <span class=\"vec\">AC</span> = <span class=\"vec\">BC</span> ✔<br>ii: <span class=\"vec\">AC</span> + <span class=\"vec\">BA</span> + <span class=\"vec\">CB</span> = (<span class=\"vec\">BA</span> + <span class=\"vec\">AC</span>) + <span class=\"vec\">CB</span> = <span class=\"vec\">BC</span> + <span class=\"vec\">CB</span> = <span class=\"vec\">0</span> ✔<br>iii: <span class=\"vec\">AB</span> + <span class=\"vec\">CA</span> = <span class=\"vec\">CA</span> + <span class=\"vec\">AB</span> = <span class=\"vec\">CB</span>, যা <span class=\"vec\">BC</span> নয় (<span class=\"vec\">CB</span> = −<span class=\"vec\">BC</span>) ✘<br>তাই i ও ii সত্য।",
+    "fig": "<svg viewBox=\"0 0 300 190\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\" style=\"width:100%;max-width:340px;height:auto;display:block;margin:0 auto\" font-family=\"Inter, Hind Siliguri, sans-serif\"><defs><marker id=\"ah1\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto\"><path d=\"M0 0 L10 5 L0 10 z\" fill=\"#4f46e5\"/></marker></defs><polygon points=\"150,28 50,160 250,160\" fill=\"#eef2ff\" stroke=\"#334155\" stroke-width=\"1.6\" stroke-linejoin=\"round\"/><line x1=\"150\" y1=\"28\" x2=\"50\" y2=\"160\" stroke=\"#334155\" stroke-width=\"1.6\"/><line x1=\"50\" y1=\"160\" x2=\"250\" y2=\"160\" stroke=\"#334155\" stroke-width=\"1.6\"/><line x1=\"250\" y1=\"160\" x2=\"150\" y2=\"28\" stroke=\"#334155\" stroke-width=\"1.6\"/><circle cx=\"150\" cy=\"28\" r=\"2.8\" fill=\"#334155\"/><text x=\"150.0\" y=\"14.0\" text-anchor=\"middle\" dominant-baseline=\"central\" font-size=\"15\" font-weight=\"700\" fill=\"#0f172a\" stroke=\"#f8fafc\" stroke-width=\"4\" paint-order=\"stroke\">A</text><circle cx=\"50\" cy=\"160\" r=\"2.8\" fill=\"#334155\"/><text x=\"37.2\" y=\"165.6\" text-anchor=\"middle\" dominant-baseline=\"central\" font-size=\"15\" font-weight=\"700\" fill=\"#0f172a\" stroke=\"#f8fafc\" stroke-width=\"4\" paint-order=\"stroke\">B</text><circle cx=\"250\" cy=\"160\" r=\"2.8\" fill=\"#334155\"/><text x=\"262.8\" y=\"165.6\" text-anchor=\"middle\" dominant-baseline=\"central\" font-size=\"15\" font-weight=\"700\" fill=\"#0f172a\" stroke=\"#f8fafc\" stroke-width=\"4\" paint-order=\"stroke\">C</text></svg>"
+  },
+  {
+    "id": 4,
+    "q": "ABCD সামান্তরিকের ক্ষেত্রে কোনটি প্রযোজ্য? [চ. বো. ১৬]",
+    "qp": "ABCD সামান্তরিকের ক্ষেত্রে কোনটি প্রযোজ্য? [চ. বো. ১৬]",
+    "options": {
+      "a": "<span class=\"vec\">AB</span> + <span class=\"vec\">AC</span> = <span class=\"vec\">BC</span>",
+      "b": "<span class=\"vec\">AB</span> + <span class=\"vec\">AD</span> = <span class=\"vec\">AC</span>",
+      "c": "<span class=\"vec\">AD</span> + <span class=\"vec\">BC</span> = <span class=\"vec\">AC</span>",
+      "d": "<span class=\"vec\">AC</span> + <span class=\"vec\">DC</span> = <span class=\"vec\">AD</span>"
+    },
+    "optionsP": {
+      "a": "AB⃗ + AC⃗ = BC⃗",
+      "b": "AB⃗ + AD⃗ = AC⃗",
+      "c": "AD⃗ + BC⃗ = AC⃗",
+      "d": "AC⃗ + DC⃗ = AD⃗"
+    },
+    "ans": "b",
+    "exp": "সামান্তরিক বিধি: একই বিন্দু (A) থেকে উৎপন্ন দুই সন্নিহিত বাহু <span class=\"vec\">AB</span> ও <span class=\"vec\">AD</span> এর যোগফল কর্ণ <span class=\"vec\">AC</span>।<br>তাই <span class=\"vec\">AB</span> + <span class=\"vec\">AD</span> = <span class=\"vec\">AC</span>।",
+    "fig": "<svg viewBox=\"0 0 300 190\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\" style=\"width:100%;max-width:340px;height:auto;display:block;margin:0 auto\" font-family=\"Inter, Hind Siliguri, sans-serif\"><defs><marker id=\"ah2\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto\"><path d=\"M0 0 L10 5 L0 10 z\" fill=\"#4f46e5\"/></marker></defs><polygon points=\"60,150 220,150 270,50 110,50\" fill=\"#eef2ff\" stroke=\"#334155\" stroke-width=\"1.6\" stroke-linejoin=\"round\"/><line x1=\"60\" y1=\"150\" x2=\"220\" y2=\"150\" stroke=\"#334155\" stroke-width=\"1.6\"/><line x1=\"220\" y1=\"150\" x2=\"270\" y2=\"50\" stroke=\"#334155\" stroke-width=\"1.6\"/><line x1=\"270\" y1=\"50\" x2=\"110\" y2=\"50\" stroke=\"#334155\" stroke-width=\"1.6\"/><line x1=\"110\" y1=\"50\" x2=\"60\" y2=\"150\" stroke=\"#334155\" stroke-width=\"1.6\"/><line x1=\"60\" y1=\"150\" x2=\"270\" y2=\"50\" stroke=\"#64748b\" stroke-width=\"1.4\" stroke-dasharray=\"5 4\"/><circle cx=\"60\" cy=\"150\" r=\"2.8\" fill=\"#334155\"/><text x=\"47.4\" y=\"156.0\" text-anchor=\"middle\" dominant-baseline=\"central\" font-size=\"15\" font-weight=\"700\" fill=\"#0f172a\" stroke=\"#f8fafc\" stroke-width=\"4\" paint-order=\"stroke\">A</text><circle cx=\"220\" cy=\"150\" r=\"2.8\" fill=\"#334155\"/><text x=\"230.4\" y=\"159.4\" text-anchor=\"middle\" dominant-baseline=\"central\" font-size=\"15\" font-weight=\"700\" fill=\"#0f172a\" stroke=\"#f8fafc\" stroke-width=\"4\" paint-order=\"stroke\">B</text><circle cx=\"270\" cy=\"50\" r=\"2.8\" fill=\"#334155\"/><text x=\"282.6\" y=\"44.0\" text-anchor=\"middle\" dominant-baseline=\"central\" font-size=\"15\" font-weight=\"700\" fill=\"#0f172a\" stroke=\"#f8fafc\" stroke-width=\"4\" paint-order=\"stroke\">C</text><circle cx=\"110\" cy=\"50\" r=\"2.8\" fill=\"#334155\"/><text x=\"99.6\" y=\"40.6\" text-anchor=\"middle\" dominant-baseline=\"central\" font-size=\"15\" font-weight=\"700\" fill=\"#0f172a\" stroke=\"#f8fafc\" stroke-width=\"4\" paint-order=\"stroke\">D</text></svg>"
+  },
+  {
+    "id": 5,
+    "q": "<span class=\"vec\">V</span> কে <span class=\"vec\">U</span> এর বিপরীত ভেক্টর বলা হয়, যদি- [চ. বো. ১৬]\ni. |<span class=\"vec\">V</span>| = |<span class=\"vec\">U</span>|\nii. <span class=\"vec\">V</span> এর ধারক রেখা <span class=\"vec\">U</span> এর ধারক রেখার সঙ্গে অভিন্ন বা সমান্তরাল\niii. <span class=\"vec\">V</span> এর দিক <span class=\"vec\">U</span> এর দিকের বিপরীত হয়\nনিচের কোনটি সঠিক?",
+    "qp": "V⃗ কে U⃗ এর বিপরীত ভেক্টর বলা হয়, যদি- [চ. বো. ১৬]\ni. |V⃗| = |U⃗|\nii. V⃗ এর ধারক রেখা U⃗ এর ধারক রেখার সঙ্গে অভিন্ন বা সমান্তরাল\niii. V⃗ এর দিক U⃗ এর দিকের বিপরীত হয়\nনিচের কোনটি সঠিক?",
+    "options": {
+      "a": "i, ii",
+      "b": "i, iii",
+      "c": "ii, iii",
+      "d": "i, ii, iii"
+    },
+    "optionsP": {
+      "a": "i, ii",
+      "b": "i, iii",
+      "c": "ii, iii",
+      "d": "i, ii, iii"
+    },
+    "ans": "d",
+    "exp": "বিপরীত ভেক্টরের সংজ্ঞা অনুযায়ী মান সমান, ধারক রেখা অভিন্ন বা সমান্তরাল এবং দিক বিপরীত — তিনটি শর্তই প্রযোজ্য।"
+  },
+  {
+    "id": 6,
+    "q": "EFGH সামান্তরিক। চিত্রের আলোকে নিচের কোনটি সঠিক? [সি. বো. ১৯]",
+    "qp": "EFGH সামান্তরিক। চিত্রের আলোকে নিচের কোনটি সঠিক? [সি. বো. ১৯]",
+    "options": {
+      "a": "<span class=\"vec\">EF</span> + <span class=\"vec\">FG</span> = <span class=\"vec\">GE</span>",
+      "b": "<span class=\"vec\">HG</span> − <span class=\"vec\">HE</span> = <span class=\"vec\">GE</span>",
+      "c": "<span class=\"vec\">EF</span> + <span class=\"vec\">FG</span> + <span class=\"vec\">GH</span> + <span class=\"vec\">EH</span> = <span class=\"vec\">0</span>",
+      "d": "<span class=\"vec\">EF</span> + <span class=\"vec\">FG</span> + <span class=\"vec\">GH</span> + <span class=\"vec\">HE</span> = <span class=\"vec\">0</span>"
+    },
+    "optionsP": {
+      "a": "EF⃗ + FG⃗ = GE⃗",
+      "b": "HG⃗ − HE⃗ = GE⃗",
+      "c": "EF⃗ + FG⃗ + GH⃗ + EH⃗ = 0⃗",
+      "d": "EF⃗ + FG⃗ + GH⃗ + HE⃗ = 0⃗"
+    },
+    "ans": "d",
+    "exp": "E → F → G → H → E একটি বদ্ধ পথ, তাই চক্রাকার ভেক্টরের যোগফল শূন্য ভেক্টর।<br><span class=\"vec\">EF</span> + <span class=\"vec\">FG</span> = <span class=\"vec\">EG</span> (<span class=\"vec\">GE</span> নয়), তাই প্রথম অপশন ভুল।<br><span class=\"vec\">HG</span> − <span class=\"vec\">HE</span> = <span class=\"vec\">HG</span> + <span class=\"vec\">EH</span> = <span class=\"vec\">EG</span>, <span class=\"vec\">GE</span> নয়।<br>তৃতীয় অপশনে <span class=\"vec\">EH</span> আছে, <span class=\"vec\">HE</span> নয়, তাই চক্র মেলে না।",
+    "fig": "<svg viewBox=\"0 0 300 190\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\" style=\"width:100%;max-width:340px;height:auto;display:block;margin:0 auto\" font-family=\"Inter, Hind Siliguri, sans-serif\"><defs><marker id=\"ah3\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto\"><path d=\"M0 0 L10 5 L0 10 z\" fill=\"#4f46e5\"/></marker></defs><polygon points=\"60,150 220,150 270,50 110,50\" fill=\"#eef2ff\" stroke=\"#334155\" stroke-width=\"1.6\" stroke-linejoin=\"round\"/><line x1=\"62.0\" y1=\"150.0\" x2=\"216.0\" y2=\"150.0\" stroke=\"#4f46e5\" stroke-width=\"2\" marker-end=\"url(#ah3)\"/><line x1=\"220.9\" y1=\"148.2\" x2=\"268.2\" y2=\"53.6\" stroke=\"#4f46e5\" stroke-width=\"2\" marker-end=\"url(#ah3)\"/><line x1=\"268.0\" y1=\"50.0\" x2=\"114.0\" y2=\"50.0\" stroke=\"#4f46e5\" stroke-width=\"2\" marker-end=\"url(#ah3)\"/><line x1=\"109.1\" y1=\"51.8\" x2=\"61.8\" y2=\"146.4\" stroke=\"#4f46e5\" stroke-width=\"2\" marker-end=\"url(#ah3)\"/><line x1=\"61.8\" y1=\"149.1\" x2=\"266.4\" y2=\"51.7\" stroke=\"#4f46e5\" stroke-width=\"2\" stroke-dasharray=\"6 4\" marker-end=\"url(#ah3)\"/><circle cx=\"60\" cy=\"150\" r=\"2.8\" fill=\"#334155\"/><text x=\"47.4\" y=\"156.0\" text-anchor=\"middle\" dominant-baseline=\"central\" font-size=\"15\" font-weight=\"700\" fill=\"#0f172a\" stroke=\"#f8fafc\" stroke-width=\"4\" paint-order=\"stroke\">E</text><circle cx=\"220\" cy=\"150\" r=\"2.8\" fill=\"#334155\"/><text x=\"230.4\" y=\"159.4\" text-anchor=\"middle\" dominant-baseline=\"central\" font-size=\"15\" font-weight=\"700\" fill=\"#0f172a\" stroke=\"#f8fafc\" stroke-width=\"4\" paint-order=\"stroke\">F</text><circle cx=\"270\" cy=\"50\" r=\"2.8\" fill=\"#334155\"/><text x=\"282.6\" y=\"44.0\" text-anchor=\"middle\" dominant-baseline=\"central\" font-size=\"15\" font-weight=\"700\" fill=\"#0f172a\" stroke=\"#f8fafc\" stroke-width=\"4\" paint-order=\"stroke\">G</text><circle cx=\"110\" cy=\"50\" r=\"2.8\" fill=\"#334155\"/><text x=\"99.6\" y=\"40.6\" text-anchor=\"middle\" dominant-baseline=\"central\" font-size=\"15\" font-weight=\"700\" fill=\"#0f172a\" stroke=\"#f8fafc\" stroke-width=\"4\" paint-order=\"stroke\">H</text></svg>"
+  },
+  {
+    "id": 7,
+    "q": "△DEF এ <span class=\"vec\">DF</span> ভেক্টরের মান কত? [কু. বো. ২০১৯]",
+    "qp": "△DEF এ DF⃗ ভেক্টরের মান কত? [কু. বো. ২০১৯]",
+    "options": {
+      "a": "<span class=\"vec\">EF</span> + <span class=\"vec\">ED</span>",
+      "b": "<span class=\"vec\">DE</span> + <span class=\"vec\">EF</span>",
+      "c": "<span class=\"vec\">DF</span> + <span class=\"vec\">FE</span>",
+      "d": "<span class=\"vec\">DE</span> − <span class=\"vec\">EF</span>"
+    },
+    "optionsP": {
+      "a": "EF⃗ + ED⃗",
+      "b": "DE⃗ + EF⃗",
+      "c": "DF⃗ + FE⃗",
+      "d": "DE⃗ − EF⃗"
+    },
+    "ans": "b",
+    "exp": "ত্রিভুজ বিধি অনুযায়ী <span class=\"vec\">DE</span> + <span class=\"vec\">EF</span> = <span class=\"vec\">DF</span>।<br>অন্য অপশনগুলো <span class=\"vec\">DF</span> এর সমান হয় না।",
+    "fig": "<svg viewBox=\"0 0 300 190\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\" style=\"width:100%;max-width:340px;height:auto;display:block;margin:0 auto\" font-family=\"Inter, Hind Siliguri, sans-serif\"><defs><marker id=\"ah4\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto\"><path d=\"M0 0 L10 5 L0 10 z\" fill=\"#4f46e5\"/></marker></defs><polygon points=\"150,28 50,160 250,160\" fill=\"#eef2ff\" stroke=\"#334155\" stroke-width=\"1.6\" stroke-linejoin=\"round\"/><line x1=\"51.2\" y1=\"158.4\" x2=\"147.6\" y2=\"31.2\" stroke=\"#4f46e5\" stroke-width=\"2\" marker-end=\"url(#ah4)\"/><line x1=\"151.2\" y1=\"29.6\" x2=\"247.6\" y2=\"156.8\" stroke=\"#4f46e5\" stroke-width=\"2\" marker-end=\"url(#ah4)\"/><line x1=\"52.0\" y1=\"160.0\" x2=\"246.0\" y2=\"160.0\" stroke=\"#4f46e5\" stroke-width=\"2\" marker-end=\"url(#ah4)\"/><circle cx=\"150\" cy=\"28\" r=\"2.8\" fill=\"#334155\"/><text x=\"150.0\" y=\"14.0\" text-anchor=\"middle\" dominant-baseline=\"central\" font-size=\"15\" font-weight=\"700\" fill=\"#0f172a\" stroke=\"#f8fafc\" stroke-width=\"4\" paint-order=\"stroke\">E</text><circle cx=\"50\" cy=\"160\" r=\"2.8\" fill=\"#334155\"/><text x=\"37.2\" y=\"165.6\" text-anchor=\"middle\" dominant-baseline=\"central\" font-size=\"15\" font-weight=\"700\" fill=\"#0f172a\" stroke=\"#f8fafc\" stroke-width=\"4\" paint-order=\"stroke\">D</text><circle cx=\"250\" cy=\"160\" r=\"2.8\" fill=\"#334155\"/><text x=\"262.8\" y=\"165.6\" text-anchor=\"middle\" dominant-baseline=\"central\" font-size=\"15\" font-weight=\"700\" fill=\"#0f172a\" stroke=\"#f8fafc\" stroke-width=\"4\" paint-order=\"stroke\">F</text></svg>"
+  },
+  {
+    "id": 8,
+    "q": "△ABC এর ক্ষেত্রে- [ঢা. বো. ২০১৯]\ni. <span class=\"vec\">AB</span> + <span class=\"vec\">BC</span> = <span class=\"vec\">AC</span>\nii. <span class=\"vec\">AB</span> + <span class=\"vec\">AC</span> = <span class=\"vec\">BC</span>\niii. <span class=\"vec\">AC</span> − <span class=\"vec\">AB</span> = <span class=\"vec\">BC</span>\nনিচের কোনটি সঠিক?",
+    "qp": "△ABC এর ক্ষেত্রে- [ঢা. বো. ২০১৯]\ni. AB⃗ + BC⃗ = AC⃗\nii. AB⃗ + AC⃗ = BC⃗\niii. AC⃗ − AB⃗ = BC⃗\nনিচের কোনটি সঠিক?",
+    "options": {
+      "a": "i ও ii",
+      "b": "i ও iii",
+      "c": "ii ও iii",
+      "d": "i, ii ও iii"
+    },
+    "optionsP": {
+      "a": "i ও ii",
+      "b": "i ও iii",
+      "c": "ii ও iii",
+      "d": "i, ii ও iii"
+    },
+    "ans": "b",
+    "exp": "i: ত্রিভুজ বিধি <span class=\"vec\">AB</span> + <span class=\"vec\">BC</span> = <span class=\"vec\">AC</span> ✔<br>ii: <span class=\"vec\">AB</span> + <span class=\"vec\">AC</span> ≠ <span class=\"vec\">BC</span> ✘<br>iii: <span class=\"vec\">AB</span> + <span class=\"vec\">BC</span> = <span class=\"vec\">AC</span> থেকে <span class=\"vec\">BC</span> = <span class=\"vec\">AC</span> − <span class=\"vec\">AB</span> ✔<br>তাই i ও iii সত্য।",
+    "fig": "<svg viewBox=\"0 0 300 190\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\" style=\"width:100%;max-width:340px;height:auto;display:block;margin:0 auto\" font-family=\"Inter, Hind Siliguri, sans-serif\"><defs><marker id=\"ah5\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto\"><path d=\"M0 0 L10 5 L0 10 z\" fill=\"#4f46e5\"/></marker></defs><polygon points=\"150,28 50,160 250,160\" fill=\"#eef2ff\" stroke=\"#334155\" stroke-width=\"1.6\" stroke-linejoin=\"round\"/><line x1=\"148.8\" y1=\"29.6\" x2=\"52.4\" y2=\"156.8\" stroke=\"#4f46e5\" stroke-width=\"2\" marker-end=\"url(#ah5)\"/><line x1=\"52.0\" y1=\"160.0\" x2=\"246.0\" y2=\"160.0\" stroke=\"#4f46e5\" stroke-width=\"2\" marker-end=\"url(#ah5)\"/><line x1=\"151.2\" y1=\"29.6\" x2=\"247.6\" y2=\"156.8\" stroke=\"#4f46e5\" stroke-width=\"2\" marker-end=\"url(#ah5)\"/><circle cx=\"150\" cy=\"28\" r=\"2.8\" fill=\"#334155\"/><text x=\"150.0\" y=\"14.0\" text-anchor=\"middle\" dominant-baseline=\"central\" font-size=\"15\" font-weight=\"700\" fill=\"#0f172a\" stroke=\"#f8fafc\" stroke-width=\"4\" paint-order=\"stroke\">A</text><circle cx=\"50\" cy=\"160\" r=\"2.8\" fill=\"#334155\"/><text x=\"37.2\" y=\"165.6\" text-anchor=\"middle\" dominant-baseline=\"central\" font-size=\"15\" font-weight=\"700\" fill=\"#0f172a\" stroke=\"#f8fafc\" stroke-width=\"4\" paint-order=\"stroke\">B</text><circle cx=\"250\" cy=\"160\" r=\"2.8\" fill=\"#334155\"/><text x=\"262.8\" y=\"165.6\" text-anchor=\"middle\" dominant-baseline=\"central\" font-size=\"15\" font-weight=\"700\" fill=\"#0f172a\" stroke=\"#f8fafc\" stroke-width=\"4\" paint-order=\"stroke\">C</text></svg>"
+  },
+  {
+    "id": 9,
+    "q": "△ABC এর ক্ষেত্রে কোনটি সঠিক?",
+    "qp": "△ABC এর ক্ষেত্রে কোনটি সঠিক?",
+    "options": {
+      "a": "<span class=\"vec\">AB</span> + <span class=\"vec\">AC</span> + <span class=\"vec\">BC</span> = 0",
+      "b": "<span class=\"vec\">AB</span> + <span class=\"vec\">BC</span> + <span class=\"vec\">CA</span> = <span class=\"vec\">0</span>",
+      "c": "<span class=\"vec\">AB</span> + <span class=\"vec\">BC</span> = <span class=\"vec\">CA</span>",
+      "d": "<span class=\"vec\">AB</span> + <span class=\"vec\">AC</span> = <span class=\"vec\">BC</span>"
+    },
+    "optionsP": {
+      "a": "AB⃗ + AC⃗ + BC⃗ = 0",
+      "b": "AB⃗ + BC⃗ + CA⃗ = 0⃗",
+      "c": "AB⃗ + BC⃗ = CA⃗",
+      "d": "AB⃗ + AC⃗ = BC⃗"
+    },
+    "ans": "b",
+    "exp": "A → B → C → A চক্রাকারে তিনটি বাহুর ভেক্টর যোগ করলে ফল শূন্য ভেক্টর।<br>অন্য অপশনে চক্র ঠিক নেই (যেমন <span class=\"vec\">AB</span> + <span class=\"vec\">BC</span> = <span class=\"vec\">AC</span>, <span class=\"vec\">CA</span> নয়)।",
+    "fig": "<svg viewBox=\"0 0 300 190\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\" style=\"width:100%;max-width:340px;height:auto;display:block;margin:0 auto\" font-family=\"Inter, Hind Siliguri, sans-serif\"><defs><marker id=\"ah6\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto\"><path d=\"M0 0 L10 5 L0 10 z\" fill=\"#4f46e5\"/></marker></defs><polygon points=\"150,28 50,160 250,160\" fill=\"#eef2ff\" stroke=\"#334155\" stroke-width=\"1.6\" stroke-linejoin=\"round\"/><line x1=\"148.8\" y1=\"29.6\" x2=\"52.4\" y2=\"156.8\" stroke=\"#4f46e5\" stroke-width=\"2\" marker-end=\"url(#ah6)\"/><line x1=\"52.0\" y1=\"160.0\" x2=\"246.0\" y2=\"160.0\" stroke=\"#4f46e5\" stroke-width=\"2\" marker-end=\"url(#ah6)\"/><line x1=\"248.8\" y1=\"158.4\" x2=\"152.4\" y2=\"31.2\" stroke=\"#4f46e5\" stroke-width=\"2\" marker-end=\"url(#ah6)\"/><circle cx=\"150\" cy=\"28\" r=\"2.8\" fill=\"#334155\"/><text x=\"150.0\" y=\"14.0\" text-anchor=\"middle\" dominant-baseline=\"central\" font-size=\"15\" font-weight=\"700\" fill=\"#0f172a\" stroke=\"#f8fafc\" stroke-width=\"4\" paint-order=\"stroke\">A</text><circle cx=\"50\" cy=\"160\" r=\"2.8\" fill=\"#334155\"/><text x=\"37.2\" y=\"165.6\" text-anchor=\"middle\" dominant-baseline=\"central\" font-size=\"15\" font-weight=\"700\" fill=\"#0f172a\" stroke=\"#f8fafc\" stroke-width=\"4\" paint-order=\"stroke\">B</text><circle cx=\"250\" cy=\"160\" r=\"2.8\" fill=\"#334155\"/><text x=\"262.8\" y=\"165.6\" text-anchor=\"middle\" dominant-baseline=\"central\" font-size=\"15\" font-weight=\"700\" fill=\"#0f172a\" stroke=\"#f8fafc\" stroke-width=\"4\" paint-order=\"stroke\">C</text></svg>"
+  },
+  {
+    "id": 10,
+    "q": "চিত্রে <span class=\"vec\">OB</span> + <span class=\"vec\">BA</span> + <span class=\"vec\">AO</span> = কত? [সি. বো. ২০১৬]",
+    "qp": "চিত্রে OB⃗ + BA⃗ + AO⃗ = কত? [সি. বো. ২০১৬]",
+    "options": {
+      "a": "−<span class=\"vec\">OA</span>",
+      "b": "<span class=\"vec\">OA</span>",
+      "c": "<span class=\"vec\">AO</span> + <span class=\"vec\">AO</span>",
+      "d": "<span class=\"vec\">AO</span> + <span class=\"vec\">OA</span>"
+    },
+    "optionsP": {
+      "a": "−OA⃗",
+      "b": "OA⃗",
+      "c": "AO⃗ + AO⃗",
+      "d": "AO⃗ + OA⃗"
+    },
+    "ans": "d",
+    "exp": "<span class=\"vec\">OB</span> + <span class=\"vec\">BA</span> = <span class=\"vec\">OA</span> (ত্রিভুজ বিধি)।<br>তাই রাশিটি = <span class=\"vec\">OA</span> + <span class=\"vec\">AO</span>। যেহেতু <span class=\"vec\">AO</span> = −<span class=\"vec\">OA</span>, তাই <span class=\"vec\">OA</span> + <span class=\"vec\">AO</span> = <span class=\"vec\">0</span> (শূন্য ভেক্টর)।<br>আবার <span class=\"vec\">AO</span> + <span class=\"vec\">OA</span> ও শূন্য ভেক্টর। অন্য অপশনগুলো শূন্য নয়।",
+    "fig": "<svg viewBox=\"0 0 300 190\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\" style=\"width:100%;max-width:340px;height:auto;display:block;margin:0 auto\" font-family=\"Inter, Hind Siliguri, sans-serif\"><defs><marker id=\"ah7\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto\"><path d=\"M0 0 L10 5 L0 10 z\" fill=\"#4f46e5\"/></marker></defs><polygon points=\"60,150 250,150 150,38\" fill=\"#eef2ff\" stroke=\"#334155\" stroke-width=\"1.6\" stroke-linejoin=\"round\"/><line x1=\"61.3\" y1=\"148.4\" x2=\"147.5\" y2=\"41.1\" stroke=\"#4f46e5\" stroke-width=\"2\" marker-end=\"url(#ah7)\"/><line x1=\"151.3\" y1=\"39.5\" x2=\"247.3\" y2=\"147.0\" stroke=\"#4f46e5\" stroke-width=\"2\" marker-end=\"url(#ah7)\"/><line x1=\"248.0\" y1=\"150.0\" x2=\"64.0\" y2=\"150.0\" stroke=\"#4f46e5\" stroke-width=\"2\" marker-end=\"url(#ah7)\"/><circle cx=\"60\" cy=\"150\" r=\"2.8\" fill=\"#334155\"/><text x=\"47.1\" y=\"155.4\" text-anchor=\"middle\" dominant-baseline=\"central\" font-size=\"15\" font-weight=\"700\" fill=\"#0f172a\" stroke=\"#f8fafc\" stroke-width=\"4\" paint-order=\"stroke\">O</text><circle cx=\"250\" cy=\"150\" r=\"2.8\" fill=\"#334155\"/><text x=\"263.1\" y=\"155.0\" text-anchor=\"middle\" dominant-baseline=\"central\" font-size=\"15\" font-weight=\"700\" fill=\"#0f172a\" stroke=\"#f8fafc\" stroke-width=\"4\" paint-order=\"stroke\">A</text><circle cx=\"150\" cy=\"38\" r=\"2.8\" fill=\"#334155\"/><text x=\"150.0\" y=\"24.0\" text-anchor=\"middle\" dominant-baseline=\"central\" font-size=\"15\" font-weight=\"700\" fill=\"#0f172a\" stroke=\"#f8fafc\" stroke-width=\"4\" paint-order=\"stroke\">B</text></svg>"
+  },
+  {
+    "id": 11,
+    "q": "PQR একটি ত্রিভুজ হলে, নিচের কোনটি ভেক্টর বিয়োগের ত্রিভুজ বিধি নির্দেশ করে? [দি. বো. ২০২৪]",
+    "qp": "PQR একটি ত্রিভুজ হলে, নিচের কোনটি ভেক্টর বিয়োগের ত্রিভুজ বিধি নির্দেশ করে? [দি. বো. ২০২৪]",
+    "options": {
+      "a": "<span class=\"vec\">RQ</span> = <span class=\"vec\">RP</span> − <span class=\"vec\">PQ</span>",
+      "b": "<span class=\"vec\">PQ</span> = <span class=\"vec\">RQ</span> − <span class=\"vec\">RP</span>",
+      "c": "<span class=\"vec\">PQ</span> = <span class=\"vec\">QR</span> − <span class=\"vec\">PR</span>",
+      "d": "<span class=\"vec\">RQ</span> = <span class=\"vec\">QP</span> − <span class=\"vec\">RP</span>"
+    },
+    "optionsP": {
+      "a": "RQ⃗ = RP⃗ − PQ⃗",
+      "b": "PQ⃗ = RQ⃗ − RP⃗",
+      "c": "PQ⃗ = QR⃗ − PR⃗",
+      "d": "RQ⃗ = QP⃗ − RP⃗"
+    },
+    "ans": "b",
+    "exp": "ত্রিভুজ বিধি: <span class=\"vec\">RP</span> + <span class=\"vec\">PQ</span> = <span class=\"vec\">RQ</span>।<br>তাই <span class=\"vec\">PQ</span> = <span class=\"vec\">RQ</span> − <span class=\"vec\">RP</span>।<br>প্রথম অপশনে <span class=\"vec\">RQ</span> = <span class=\"vec\">RP</span> + <span class=\"vec\">PQ</span> হওয়া উচিত, বিয়োগ নয়, তাই ভুল।",
+    "fig": "<svg viewBox=\"0 0 300 190\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\" style=\"width:100%;max-width:340px;height:auto;display:block;margin:0 auto\" font-family=\"Inter, Hind Siliguri, sans-serif\"><defs><marker id=\"ah8\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto\"><path d=\"M0 0 L10 5 L0 10 z\" fill=\"#4f46e5\"/></marker></defs><polygon points=\"150,28 50,160 250,160\" fill=\"#eef2ff\" stroke=\"#334155\" stroke-width=\"1.6\" stroke-linejoin=\"round\"/><line x1=\"150\" y1=\"28\" x2=\"50\" y2=\"160\" stroke=\"#334155\" stroke-width=\"1.6\"/><line x1=\"50\" y1=\"160\" x2=\"250\" y2=\"160\" stroke=\"#334155\" stroke-width=\"1.6\"/><line x1=\"250\" y1=\"160\" x2=\"150\" y2=\"28\" stroke=\"#334155\" stroke-width=\"1.6\"/><circle cx=\"150\" cy=\"28\" r=\"2.8\" fill=\"#334155\"/><text x=\"150.0\" y=\"14.0\" text-anchor=\"middle\" dominant-baseline=\"central\" font-size=\"15\" font-weight=\"700\" fill=\"#0f172a\" stroke=\"#f8fafc\" stroke-width=\"4\" paint-order=\"stroke\">P</text><circle cx=\"50\" cy=\"160\" r=\"2.8\" fill=\"#334155\"/><text x=\"37.2\" y=\"165.6\" text-anchor=\"middle\" dominant-baseline=\"central\" font-size=\"15\" font-weight=\"700\" fill=\"#0f172a\" stroke=\"#f8fafc\" stroke-width=\"4\" paint-order=\"stroke\">Q</text><circle cx=\"250\" cy=\"160\" r=\"2.8\" fill=\"#334155\"/><text x=\"262.8\" y=\"165.6\" text-anchor=\"middle\" dominant-baseline=\"central\" font-size=\"15\" font-weight=\"700\" fill=\"#0f172a\" stroke=\"#f8fafc\" stroke-width=\"4\" paint-order=\"stroke\">R</text></svg>"
+  },
+  {
+    "id": 12,
+    "q": "|<span class=\"vec\">AB</span>| = x হলে, |3<span class=\"vec\">AB</span> + 2<span class=\"vec\">BA</span>| + 2 এর মান কত? [ম. বো. ২০২০]",
+    "qp": "|AB⃗| = x হলে, |3AB⃗ + 2BA⃗| + 2 এর মান কত? [ম. বো. ২০২০]",
+    "options": {
+      "a": "x",
+      "b": "2x",
+      "c": "x + 2",
+      "d": "5x + 2"
+    },
+    "optionsP": {
+      "a": "x",
+      "b": "2x",
+      "c": "x + 2",
+      "d": "5x + 2"
+    },
+    "ans": "c",
+    "exp": "<span class=\"vec\">BA</span> = −<span class=\"vec\">AB</span><br>|3<span class=\"vec\">AB</span> + 2(−<span class=\"vec\">AB</span>)| + 2 = |<span class=\"vec\">AB</span>| + 2 = x + 2।"
+  },
+  {
+    "id": 13,
+    "q": "চিত্রে <span class=\"vec\">AC</span> = কত? [ঢা. বো. ১৯]",
+    "qp": "চিত্রে AC⃗ = কত? [ঢা. বো. ১৯]",
+    "options": {
+      "a": "2<span class=\"vec\">a</span> + <span class=\"vec\">b</span>",
+      "b": "2<span class=\"vec\">a</span> − <span class=\"vec\">b</span>",
+      "c": "<span class=\"vec\">b</span> − 2<span class=\"vec\">a</span>",
+      "d": "−<span class=\"vec\">b</span> − 2<span class=\"vec\">a</span>"
+    },
+    "optionsP": {
+      "a": "2a⃗ + b⃗",
+      "b": "2a⃗ − b⃗",
+      "c": "b⃗ − 2a⃗",
+      "d": "−b⃗ − 2a⃗"
+    },
+    "ans": "a",
+    "exp": "চিত্রে <span class=\"vec\">AB</span> = 2<span class=\"vec\">a</span> এবং <span class=\"vec\">BC</span> = <span class=\"vec\">b</span>।<br><span class=\"vec\">AC</span> = <span class=\"vec\">AB</span> + <span class=\"vec\">BC</span> (ত্রিভুজ/যোগ বিধি)<br>= 2<span class=\"vec\">a</span> + <span class=\"vec\">b</span>।",
+    "fig": "<svg viewBox=\"0 0 300 190\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\" style=\"width:100%;max-width:340px;height:auto;display:block;margin:0 auto\" font-family=\"Inter, Hind Siliguri, sans-serif\"><defs><marker id=\"ah9\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto\"><path d=\"M0 0 L10 5 L0 10 z\" fill=\"#4f46e5\"/></marker></defs><line x1=\"42.0\" y1=\"100.0\" x2=\"146.0\" y2=\"100.0\" stroke=\"#4f46e5\" stroke-width=\"2\" marker-end=\"url(#ah9)\"/><line x1=\"152.0\" y1=\"100.0\" x2=\"256.0\" y2=\"100.0\" stroke=\"#4f46e5\" stroke-width=\"2\" marker-end=\"url(#ah9)\"/><circle cx=\"40\" cy=\"100\" r=\"2.8\" fill=\"#334155\"/><text x=\"40.0\" y=\"116.0\" text-anchor=\"middle\" dominant-baseline=\"central\" font-size=\"15\" font-weight=\"700\" fill=\"#0f172a\" stroke=\"#f8fafc\" stroke-width=\"4\" paint-order=\"stroke\">A</text><circle cx=\"150\" cy=\"100\" r=\"2.8\" fill=\"#334155\"/><text x=\"150.0\" y=\"116.0\" text-anchor=\"middle\" dominant-baseline=\"central\" font-size=\"15\" font-weight=\"700\" fill=\"#0f172a\" stroke=\"#f8fafc\" stroke-width=\"4\" paint-order=\"stroke\">B</text><circle cx=\"260\" cy=\"100\" r=\"2.8\" fill=\"#334155\"/><text x=\"260.0\" y=\"116.0\" text-anchor=\"middle\" dominant-baseline=\"central\" font-size=\"15\" font-weight=\"700\" fill=\"#0f172a\" stroke=\"#f8fafc\" stroke-width=\"4\" paint-order=\"stroke\">C</text><text x=\"95\" y=\"80\" text-anchor=\"middle\" dominant-baseline=\"central\" font-size=\"13\" font-weight=\"700\" fill=\"#4f46e5\" stroke=\"#f8fafc\" stroke-width=\"4\" paint-order=\"stroke\">2a</text><text x=\"205\" y=\"80\" text-anchor=\"middle\" dominant-baseline=\"central\" font-size=\"13\" font-weight=\"700\" fill=\"#4f46e5\" stroke=\"#f8fafc\" stroke-width=\"4\" paint-order=\"stroke\">b</text></svg>"
+  },
+  {
+    "id": 14,
+    "q": "শূন্য ভেক্টরের-\ni. দিক নির্ণয় করা যায়\nii. পরম মান শূন্য\niii. ধারক রেখা নেই\nনিচের কোনটি সঠিক?",
+    "qp": "শূন্য ভেক্টরের-\ni. দিক নির্ণয় করা যায়\nii. পরম মান শূন্য\niii. ধারক রেখা নেই\nনিচের কোনটি সঠিক?",
+    "options": {
+      "a": "i ও ii",
+      "b": "i ও iii",
+      "c": "ii ও iii",
+      "d": "i, ii ও iii"
+    },
+    "optionsP": {
+      "a": "i ও ii",
+      "b": "i ও iii",
+      "c": "ii ও iii",
+      "d": "i, ii ও iii"
+    },
+    "ans": "c",
+    "exp": "শূন্য ভেক্টরের মান (পরম মান) 0, কিন্তু এর কোনো নির্দিষ্ট দিক নেই এবং ধারক রেখাও নেই।<br>তাই i মিথ্যা; ii ও iii সত্য।"
+  },
+  {
+    "id": 15,
+    "q": "____ ভেক্টরের কোনো নির্দিষ্ট দিক এবং ধারকরেখা নেই। [রা. বো. ১৫]",
+    "qp": "____ ভেক্টরের কোনো নির্দিষ্ট দিক এবং ধারকরেখা নেই। [রা. বো. ১৫]",
+    "options": {
+      "a": "একক",
+      "b": "শূন্য",
+      "c": "সমান",
+      "d": "অবস্থান"
+    },
+    "optionsP": {
+      "a": "একক",
+      "b": "শূন্য",
+      "c": "সমান",
+      "d": "অবস্থান"
+    },
+    "ans": "b",
+    "exp": "শূন্য ভেক্টর (<span class=\"vec\">0</span>) এর মান শূন্য, তাই এর নির্দিষ্ট দিক বা ধারকরেখা থাকে না।"
+  },
+  {
+    "id": 16,
+    "q": "যে ভেক্টরের আদি বিন্দু ও শেষ বিন্দু একই তাকে কী বলে?",
+    "qp": "যে ভেক্টরের আদি বিন্দু ও শেষ বিন্দু একই তাকে কী বলে?",
+    "options": {
+      "a": "একই ভেক্টর",
+      "b": "সমান্তরাল ভেক্টর",
+      "c": "শূন্য ভেক্টর",
+      "d": "সদৃশ ভেক্টর"
+    },
+    "optionsP": {
+      "a": "একই ভেক্টর",
+      "b": "সমান্তরাল ভেক্টর",
+      "c": "শূন্য ভেক্টর",
+      "d": "সদৃশ ভেক্টর"
+    },
+    "ans": "c",
+    "exp": "<span class=\"vec\">AA</span> এর আদি ও শেষ বিন্দু একই, তাই এর মান 0। একে শূন্য ভেক্টর বলে।"
+  },
+  {
+    "id": 17,
+    "q": "যদি △PQR এ PQ ও PR এর মধ্যবিন্দু যথাক্রমে M ও N হয়, তবে নিচের কোনটি সঠিক? [কু. বো.; ব. বো.]",
+    "qp": "যদি △PQR এ PQ ও PR এর মধ্যবিন্দু যথাক্রমে M ও N হয়, তবে নিচের কোনটি সঠিক? [কু. বো.; ব. বো.]",
+    "options": {
+      "a": "<span class=\"vec\">QR</span> = 2(<span class=\"vec\">PN</span> − <span class=\"vec\">PM</span>)",
+      "b": "<span class=\"vec\">QR</span> = 2(<span class=\"vec\">PM</span> − <span class=\"vec\">PN</span>)",
+      "c": "<span class=\"vec\">QR</span> = 2(<span class=\"vec\">PN</span> + <span class=\"vec\">PM</span>)",
+      "d": "<span class=\"vec\">QR</span> = 2(<span class=\"vec\">PQ</span> + <span class=\"vec\">PR</span>)"
+    },
+    "optionsP": {
+      "a": "QR⃗ = 2(PN⃗ − PM⃗)",
+      "b": "QR⃗ = 2(PM⃗ − PN⃗)",
+      "c": "QR⃗ = 2(PN⃗ + PM⃗)",
+      "d": "QR⃗ = 2(PQ⃗ + PR⃗)"
+    },
+    "ans": "a",
+    "exp": "<span class=\"vec\">PM</span> + <span class=\"vec\">MN</span> = <span class=\"vec\">PN</span> ⇒ <span class=\"vec\">MN</span> = <span class=\"vec\">PN</span> − <span class=\"vec\">PM</span><br>মধ্যবিন্দু উপপাদ্য: <span class=\"vec\">MN</span> = <span class=\"frac\"><span class=\"num\">1</span><span class=\"den\">2</span></span><span class=\"vec\">QR</span><br>তাই <span class=\"frac\"><span class=\"num\">1</span><span class=\"den\">2</span></span><span class=\"vec\">QR</span> = <span class=\"vec\">PN</span> − <span class=\"vec\">PM</span> ⇒ <span class=\"vec\">QR</span> = 2(<span class=\"vec\">PN</span> − <span class=\"vec\">PM</span>)।",
+    "fig": "<svg viewBox=\"0 0 300 190\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\" style=\"width:100%;max-width:340px;height:auto;display:block;margin:0 auto\" font-family=\"Inter, Hind Siliguri, sans-serif\"><defs><marker id=\"ah10\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto\"><path d=\"M0 0 L10 5 L0 10 z\" fill=\"#4f46e5\"/></marker></defs><polygon points=\"150,28 50,160 250,160\" fill=\"#eef2ff\" stroke=\"#334155\" stroke-width=\"1.6\" stroke-linejoin=\"round\"/><line x1=\"150\" y1=\"28\" x2=\"50\" y2=\"160\" stroke=\"#334155\" stroke-width=\"1.6\"/><line x1=\"50\" y1=\"160\" x2=\"250\" y2=\"160\" stroke=\"#334155\" stroke-width=\"1.6\"/><line x1=\"250\" y1=\"160\" x2=\"150\" y2=\"28\" stroke=\"#334155\" stroke-width=\"1.6\"/><line x1=\"100\" y1=\"94\" x2=\"200\" y2=\"94\" stroke=\"#64748b\" stroke-width=\"1.4\" stroke-dasharray=\"5 4\"/><line x1=\"148.8\" y1=\"29.6\" x2=\"102.4\" y2=\"90.8\" stroke=\"#4f46e5\" stroke-width=\"2\" marker-end=\"url(#ah10)\"/><line x1=\"151.2\" y1=\"29.6\" x2=\"197.6\" y2=\"90.8\" stroke=\"#4f46e5\" stroke-width=\"2\" marker-end=\"url(#ah10)\"/><circle cx=\"150\" cy=\"28\" r=\"2.8\" fill=\"#334155\"/><text x=\"150.0\" y=\"14.0\" text-anchor=\"middle\" dominant-baseline=\"central\" font-size=\"15\" font-weight=\"700\" fill=\"#0f172a\" stroke=\"#f8fafc\" stroke-width=\"4\" paint-order=\"stroke\">P</text><circle cx=\"50\" cy=\"160\" r=\"2.8\" fill=\"#334155\"/><text x=\"37.2\" y=\"165.6\" text-anchor=\"middle\" dominant-baseline=\"central\" font-size=\"15\" font-weight=\"700\" fill=\"#0f172a\" stroke=\"#f8fafc\" stroke-width=\"4\" paint-order=\"stroke\">Q</text><circle cx=\"250\" cy=\"160\" r=\"2.8\" fill=\"#334155\"/><text x=\"262.8\" y=\"165.6\" text-anchor=\"middle\" dominant-baseline=\"central\" font-size=\"15\" font-weight=\"700\" fill=\"#0f172a\" stroke=\"#f8fafc\" stroke-width=\"4\" paint-order=\"stroke\">R</text><circle cx=\"100\" cy=\"94\" r=\"2.8\" fill=\"#334155\"/><text x=\"87.2\" y=\"88.4\" text-anchor=\"middle\" dominant-baseline=\"central\" font-size=\"15\" font-weight=\"700\" fill=\"#0f172a\" stroke=\"#f8fafc\" stroke-width=\"4\" paint-order=\"stroke\">M</text><circle cx=\"200\" cy=\"94\" r=\"2.8\" fill=\"#334155\"/><text x=\"212.8\" y=\"88.4\" text-anchor=\"middle\" dominant-baseline=\"central\" font-size=\"15\" font-weight=\"700\" fill=\"#0f172a\" stroke=\"#f8fafc\" stroke-width=\"4\" paint-order=\"stroke\">N</text></svg>"
+  },
+  {
+    "id": 18,
+    "q": "D ও E যথাক্রমে PQ ও PR এর মধ্যবিন্দু হলে নিচের কোনটি সঠিক? [কু. বো. ২০১৯]",
+    "qp": "D ও E যথাক্রমে PQ ও PR এর মধ্যবিন্দু হলে নিচের কোনটি সঠিক? [কু. বো. ২০১৯]",
+    "options": {
+      "a": "<span class=\"vec\">QR</span> = 2(<span class=\"vec\">PQ</span> + <span class=\"vec\">PR</span>)",
+      "b": "<span class=\"vec\">QR</span> = 2(<span class=\"vec\">PE</span> + <span class=\"vec\">PD</span>)",
+      "c": "<span class=\"vec\">QR</span> = 2(<span class=\"vec\">PD</span> − <span class=\"vec\">PE</span>)",
+      "d": "<span class=\"vec\">QR</span> = 2(<span class=\"vec\">PE</span> − <span class=\"vec\">PD</span>)"
+    },
+    "optionsP": {
+      "a": "QR⃗ = 2(PQ⃗ + PR⃗)",
+      "b": "QR⃗ = 2(PE⃗ + PD⃗)",
+      "c": "QR⃗ = 2(PD⃗ − PE⃗)",
+      "d": "QR⃗ = 2(PE⃗ − PD⃗)"
+    },
+    "ans": "d",
+    "exp": "<span class=\"vec\">PD</span> + <span class=\"vec\">DE</span> = <span class=\"vec\">PE</span> ⇒ <span class=\"vec\">DE</span> = <span class=\"vec\">PE</span> − <span class=\"vec\">PD</span><br><span class=\"vec\">DE</span> = <span class=\"frac\"><span class=\"num\">1</span><span class=\"den\">2</span></span><span class=\"vec\">QR</span> (মধ্যবিন্দু উপপাদ্য)<br>তাই <span class=\"vec\">QR</span> = 2(<span class=\"vec\">PE</span> − <span class=\"vec\">PD</span>)।",
+    "fig": "<svg viewBox=\"0 0 300 190\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\" style=\"width:100%;max-width:340px;height:auto;display:block;margin:0 auto\" font-family=\"Inter, Hind Siliguri, sans-serif\"><defs><marker id=\"ah11\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto\"><path d=\"M0 0 L10 5 L0 10 z\" fill=\"#4f46e5\"/></marker></defs><polygon points=\"150,28 50,160 250,160\" fill=\"#eef2ff\" stroke=\"#334155\" stroke-width=\"1.6\" stroke-linejoin=\"round\"/><line x1=\"150\" y1=\"28\" x2=\"50\" y2=\"160\" stroke=\"#334155\" stroke-width=\"1.6\"/><line x1=\"50\" y1=\"160\" x2=\"250\" y2=\"160\" stroke=\"#334155\" stroke-width=\"1.6\"/><line x1=\"250\" y1=\"160\" x2=\"150\" y2=\"28\" stroke=\"#334155\" stroke-width=\"1.6\"/><line x1=\"100\" y1=\"94\" x2=\"200\" y2=\"94\" stroke=\"#64748b\" stroke-width=\"1.4\" stroke-dasharray=\"5 4\"/><line x1=\"148.8\" y1=\"29.6\" x2=\"102.4\" y2=\"90.8\" stroke=\"#4f46e5\" stroke-width=\"2\" marker-end=\"url(#ah11)\"/><line x1=\"151.2\" y1=\"29.6\" x2=\"197.6\" y2=\"90.8\" stroke=\"#4f46e5\" stroke-width=\"2\" marker-end=\"url(#ah11)\"/><circle cx=\"150\" cy=\"28\" r=\"2.8\" fill=\"#334155\"/><text x=\"150.0\" y=\"14.0\" text-anchor=\"middle\" dominant-baseline=\"central\" font-size=\"15\" font-weight=\"700\" fill=\"#0f172a\" stroke=\"#f8fafc\" stroke-width=\"4\" paint-order=\"stroke\">P</text><circle cx=\"50\" cy=\"160\" r=\"2.8\" fill=\"#334155\"/><text x=\"37.2\" y=\"165.6\" text-anchor=\"middle\" dominant-baseline=\"central\" font-size=\"15\" font-weight=\"700\" fill=\"#0f172a\" stroke=\"#f8fafc\" stroke-width=\"4\" paint-order=\"stroke\">Q</text><circle cx=\"250\" cy=\"160\" r=\"2.8\" fill=\"#334155\"/><text x=\"262.8\" y=\"165.6\" text-anchor=\"middle\" dominant-baseline=\"central\" font-size=\"15\" font-weight=\"700\" fill=\"#0f172a\" stroke=\"#f8fafc\" stroke-width=\"4\" paint-order=\"stroke\">R</text><circle cx=\"100\" cy=\"94\" r=\"2.8\" fill=\"#334155\"/><text x=\"87.2\" y=\"88.4\" text-anchor=\"middle\" dominant-baseline=\"central\" font-size=\"15\" font-weight=\"700\" fill=\"#0f172a\" stroke=\"#f8fafc\" stroke-width=\"4\" paint-order=\"stroke\">D</text><circle cx=\"200\" cy=\"94\" r=\"2.8\" fill=\"#334155\"/><text x=\"212.8\" y=\"88.4\" text-anchor=\"middle\" dominant-baseline=\"central\" font-size=\"15\" font-weight=\"700\" fill=\"#0f172a\" stroke=\"#f8fafc\" stroke-width=\"4\" paint-order=\"stroke\">E</text></svg>"
+  },
+  {
+    "id": 19,
+    "q": "△PQR এর PQ ও PR এর মধ্যবিন্দুদ্বয় যথাক্রমে E ও F হলে- [রা. বো. ২০২০]\ni. EF ∥ QR\nii. EF = <span class=\"frac\"><span class=\"num\">1</span><span class=\"den\">2</span></span>QR\niii. <span class=\"vec\">PF</span> = <span class=\"vec\">PE</span> + <span class=\"vec\">EF</span>\nনিচের কোনটি সঠিক?",
+    "qp": "△PQR এর PQ ও PR এর মধ্যবিন্দুদ্বয় যথাক্রমে E ও F হলে- [রা. বো. ২০২০]\ni. EF ∥ QR\nii. EF = 1/2QR\niii. PF⃗ = PE⃗ + EF⃗\nনিচের কোনটি সঠিক?",
+    "options": {
+      "a": "i ও ii",
+      "b": "i ও iii",
+      "c": "ii ও iii",
+      "d": "i, ii ও iii"
+    },
+    "optionsP": {
+      "a": "i ও ii",
+      "b": "i ও iii",
+      "c": "ii ও iii",
+      "d": "i, ii ও iii"
+    },
+    "ans": "d",
+    "exp": "i, ii: মধ্যবিন্দু উপপাদ্য অনুযায়ী EF ∥ QR এবং EF = <span class=\"frac\"><span class=\"num\">1</span><span class=\"den\">2</span></span>QR ✔<br>iii: ত্রিভুজ বিধি <span class=\"vec\">PE</span> + <span class=\"vec\">EF</span> = <span class=\"vec\">PF</span> ✔<br>তিনটি উক্তিই সত্য।",
+    "fig": "<svg viewBox=\"0 0 300 190\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\" style=\"width:100%;max-width:340px;height:auto;display:block;margin:0 auto\" font-family=\"Inter, Hind Siliguri, sans-serif\"><defs><marker id=\"ah12\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto\"><path d=\"M0 0 L10 5 L0 10 z\" fill=\"#4f46e5\"/></marker></defs><polygon points=\"150,28 50,160 250,160\" fill=\"#eef2ff\" stroke=\"#334155\" stroke-width=\"1.6\" stroke-linejoin=\"round\"/><line x1=\"150\" y1=\"28\" x2=\"50\" y2=\"160\" stroke=\"#334155\" stroke-width=\"1.6\"/><line x1=\"50\" y1=\"160\" x2=\"250\" y2=\"160\" stroke=\"#334155\" stroke-width=\"1.6\"/><line x1=\"250\" y1=\"160\" x2=\"150\" y2=\"28\" stroke=\"#334155\" stroke-width=\"1.6\"/><line x1=\"100\" y1=\"94\" x2=\"200\" y2=\"94\" stroke=\"#64748b\" stroke-width=\"1.4\" stroke-dasharray=\"5 4\"/><circle cx=\"150\" cy=\"28\" r=\"2.8\" fill=\"#334155\"/><text x=\"150.0\" y=\"14.0\" text-anchor=\"middle\" dominant-baseline=\"central\" font-size=\"15\" font-weight=\"700\" fill=\"#0f172a\" stroke=\"#f8fafc\" stroke-width=\"4\" paint-order=\"stroke\">P</text><circle cx=\"50\" cy=\"160\" r=\"2.8\" fill=\"#334155\"/><text x=\"37.2\" y=\"165.6\" text-anchor=\"middle\" dominant-baseline=\"central\" font-size=\"15\" font-weight=\"700\" fill=\"#0f172a\" stroke=\"#f8fafc\" stroke-width=\"4\" paint-order=\"stroke\">Q</text><circle cx=\"250\" cy=\"160\" r=\"2.8\" fill=\"#334155\"/><text x=\"262.8\" y=\"165.6\" text-anchor=\"middle\" dominant-baseline=\"central\" font-size=\"15\" font-weight=\"700\" fill=\"#0f172a\" stroke=\"#f8fafc\" stroke-width=\"4\" paint-order=\"stroke\">R</text><circle cx=\"100\" cy=\"94\" r=\"2.8\" fill=\"#334155\"/><text x=\"87.2\" y=\"88.4\" text-anchor=\"middle\" dominant-baseline=\"central\" font-size=\"15\" font-weight=\"700\" fill=\"#0f172a\" stroke=\"#f8fafc\" stroke-width=\"4\" paint-order=\"stroke\">E</text><circle cx=\"200\" cy=\"94\" r=\"2.8\" fill=\"#334155\"/><text x=\"212.8\" y=\"88.4\" text-anchor=\"middle\" dominant-baseline=\"central\" font-size=\"15\" font-weight=\"700\" fill=\"#0f172a\" stroke=\"#f8fafc\" stroke-width=\"4\" paint-order=\"stroke\">F</text></svg>"
+  },
+  {
+    "id": 20,
+    "q": "PQ এর মধ্যবিন্দু D এবং QR ∥ DE হলে- [দি. বো. ২০২০]\ni. <span class=\"vec\">QR</span> = 2(<span class=\"vec\">PE</span> − <span class=\"vec\">PD</span>)\nii. <span class=\"vec\">PR</span> = 2<span class=\"vec\">PE</span>\niii. <span class=\"vec\">DE</span> = <span class=\"frac\"><span class=\"num\">1</span><span class=\"den\">2</span></span><span class=\"vec\">QR</span>\nনিচের কোনটি সঠিক?",
+    "qp": "PQ এর মধ্যবিন্দু D এবং QR ∥ DE হলে- [দি. বো. ২০২০]\ni. QR⃗ = 2(PE⃗ − PD⃗)\nii. PR⃗ = 2PE⃗\niii. DE⃗ = 1/2QR⃗\nনিচের কোনটি সঠিক?",
+    "options": {
+      "a": "i ও ii",
+      "b": "i ও iii",
+      "c": "ii ও iii",
+      "d": "i, ii ও iii"
+    },
+    "optionsP": {
+      "a": "i ও ii",
+      "b": "i ও iii",
+      "c": "ii ও iii",
+      "d": "i, ii ও iii"
+    },
+    "ans": "d",
+    "exp": "D মধ্যবিন্দু এবং DE ∥ QR হলে E ও PR এর মধ্যবিন্দু হয়, তাই <span class=\"vec\">PR</span> = 2<span class=\"vec\">PE</span> ✔<br><span class=\"vec\">DE</span> = <span class=\"vec\">PE</span> − <span class=\"vec\">PD</span> এবং <span class=\"vec\">DE</span> = <span class=\"frac\"><span class=\"num\">1</span><span class=\"den\">2</span></span><span class=\"vec\">QR</span> ⇒ <span class=\"vec\">QR</span> = 2(<span class=\"vec\">PE</span> − <span class=\"vec\">PD</span>) ✔<br>তিনটি উক্তিই সত্য।",
+    "fig": "<svg viewBox=\"0 0 300 190\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\" style=\"width:100%;max-width:340px;height:auto;display:block;margin:0 auto\" font-family=\"Inter, Hind Siliguri, sans-serif\"><defs><marker id=\"ah13\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto\"><path d=\"M0 0 L10 5 L0 10 z\" fill=\"#4f46e5\"/></marker></defs><polygon points=\"150,28 50,160 250,160\" fill=\"#eef2ff\" stroke=\"#334155\" stroke-width=\"1.6\" stroke-linejoin=\"round\"/><line x1=\"150\" y1=\"28\" x2=\"50\" y2=\"160\" stroke=\"#334155\" stroke-width=\"1.6\"/><line x1=\"50\" y1=\"160\" x2=\"250\" y2=\"160\" stroke=\"#334155\" stroke-width=\"1.6\"/><line x1=\"250\" y1=\"160\" x2=\"150\" y2=\"28\" stroke=\"#334155\" stroke-width=\"1.6\"/><line x1=\"100\" y1=\"94\" x2=\"200\" y2=\"94\" stroke=\"#64748b\" stroke-width=\"1.4\" stroke-dasharray=\"5 4\"/><circle cx=\"150\" cy=\"28\" r=\"2.8\" fill=\"#334155\"/><text x=\"150.0\" y=\"14.0\" text-anchor=\"middle\" dominant-baseline=\"central\" font-size=\"15\" font-weight=\"700\" fill=\"#0f172a\" stroke=\"#f8fafc\" stroke-width=\"4\" paint-order=\"stroke\">P</text><circle cx=\"50\" cy=\"160\" r=\"2.8\" fill=\"#334155\"/><text x=\"37.2\" y=\"165.6\" text-anchor=\"middle\" dominant-baseline=\"central\" font-size=\"15\" font-weight=\"700\" fill=\"#0f172a\" stroke=\"#f8fafc\" stroke-width=\"4\" paint-order=\"stroke\">Q</text><circle cx=\"250\" cy=\"160\" r=\"2.8\" fill=\"#334155\"/><text x=\"262.8\" y=\"165.6\" text-anchor=\"middle\" dominant-baseline=\"central\" font-size=\"15\" font-weight=\"700\" fill=\"#0f172a\" stroke=\"#f8fafc\" stroke-width=\"4\" paint-order=\"stroke\">R</text><circle cx=\"100\" cy=\"94\" r=\"2.8\" fill=\"#334155\"/><text x=\"87.2\" y=\"88.4\" text-anchor=\"middle\" dominant-baseline=\"central\" font-size=\"15\" font-weight=\"700\" fill=\"#0f172a\" stroke=\"#f8fafc\" stroke-width=\"4\" paint-order=\"stroke\">D</text><circle cx=\"200\" cy=\"94\" r=\"2.8\" fill=\"#334155\"/><text x=\"212.8\" y=\"88.4\" text-anchor=\"middle\" dominant-baseline=\"central\" font-size=\"15\" font-weight=\"700\" fill=\"#0f172a\" stroke=\"#f8fafc\" stroke-width=\"4\" paint-order=\"stroke\">E</text></svg>"
+  },
+  {
+    "id": 21,
+    "q": "△ABC এর AB ও AC বাহুর মধ্যবিন্দু যথাক্রমে D ও E হলে <span class=\"vec\">AD</span> + <span class=\"vec\">DE</span> = কত? [ঢা. বো. ২০]",
+    "qp": "△ABC এর AB ও AC বাহুর মধ্যবিন্দু যথাক্রমে D ও E হলে AD⃗ + DE⃗ = কত? [ঢা. বো. ২০]",
+    "options": {
+      "a": "<span class=\"frac\"><span class=\"num\">1</span><span class=\"den\">2</span></span><span class=\"vec\">BC</span>",
+      "b": "<span class=\"frac\"><span class=\"num\">1</span><span class=\"den\">2</span></span><span class=\"vec\">AC</span>",
+      "c": "<span class=\"frac\"><span class=\"num\">1</span><span class=\"den\">2</span></span><span class=\"vec\">AB</span>",
+      "d": "<span class=\"frac\"><span class=\"num\">1</span><span class=\"den\">2</span></span><span class=\"vec\">BE</span>"
+    },
+    "optionsP": {
+      "a": "1/2BC⃗",
+      "b": "1/2AC⃗",
+      "c": "1/2AB⃗",
+      "d": "1/2BE⃗"
+    },
+    "ans": "b",
+    "exp": "ত্রিভুজ বিধি: <span class=\"vec\">AD</span> + <span class=\"vec\">DE</span> = <span class=\"vec\">AE</span><br>E, AC এর মধ্যবিন্দু, তাই <span class=\"vec\">AE</span> = <span class=\"frac\"><span class=\"num\">1</span><span class=\"den\">2</span></span><span class=\"vec\">AC</span>।",
+    "fig": "<svg viewBox=\"0 0 300 190\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\" style=\"width:100%;max-width:340px;height:auto;display:block;margin:0 auto\" font-family=\"Inter, Hind Siliguri, sans-serif\"><defs><marker id=\"ah14\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto\"><path d=\"M0 0 L10 5 L0 10 z\" fill=\"#4f46e5\"/></marker></defs><polygon points=\"150,28 50,160 250,160\" fill=\"#eef2ff\" stroke=\"#334155\" stroke-width=\"1.6\" stroke-linejoin=\"round\"/><line x1=\"150\" y1=\"28\" x2=\"50\" y2=\"160\" stroke=\"#334155\" stroke-width=\"1.6\"/><line x1=\"50\" y1=\"160\" x2=\"250\" y2=\"160\" stroke=\"#334155\" stroke-width=\"1.6\"/><line x1=\"250\" y1=\"160\" x2=\"150\" y2=\"28\" stroke=\"#334155\" stroke-width=\"1.6\"/><line x1=\"100\" y1=\"94\" x2=\"200\" y2=\"94\" stroke=\"#64748b\" stroke-width=\"1.4\" stroke-dasharray=\"5 4\"/><line x1=\"148.8\" y1=\"29.6\" x2=\"102.4\" y2=\"90.8\" stroke=\"#4f46e5\" stroke-width=\"2\" marker-end=\"url(#ah14)\"/><line x1=\"151.2\" y1=\"29.6\" x2=\"197.6\" y2=\"90.8\" stroke=\"#4f46e5\" stroke-width=\"2\" marker-end=\"url(#ah14)\"/><circle cx=\"150\" cy=\"28\" r=\"2.8\" fill=\"#334155\"/><text x=\"150.0\" y=\"14.0\" text-anchor=\"middle\" dominant-baseline=\"central\" font-size=\"15\" font-weight=\"700\" fill=\"#0f172a\" stroke=\"#f8fafc\" stroke-width=\"4\" paint-order=\"stroke\">A</text><circle cx=\"50\" cy=\"160\" r=\"2.8\" fill=\"#334155\"/><text x=\"37.2\" y=\"165.6\" text-anchor=\"middle\" dominant-baseline=\"central\" font-size=\"15\" font-weight=\"700\" fill=\"#0f172a\" stroke=\"#f8fafc\" stroke-width=\"4\" paint-order=\"stroke\">B</text><circle cx=\"250\" cy=\"160\" r=\"2.8\" fill=\"#334155\"/><text x=\"262.8\" y=\"165.6\" text-anchor=\"middle\" dominant-baseline=\"central\" font-size=\"15\" font-weight=\"700\" fill=\"#0f172a\" stroke=\"#f8fafc\" stroke-width=\"4\" paint-order=\"stroke\">C</text><circle cx=\"100\" cy=\"94\" r=\"2.8\" fill=\"#334155\"/><text x=\"87.2\" y=\"88.4\" text-anchor=\"middle\" dominant-baseline=\"central\" font-size=\"15\" font-weight=\"700\" fill=\"#0f172a\" stroke=\"#f8fafc\" stroke-width=\"4\" paint-order=\"stroke\">D</text><circle cx=\"200\" cy=\"94\" r=\"2.8\" fill=\"#334155\"/><text x=\"212.8\" y=\"88.4\" text-anchor=\"middle\" dominant-baseline=\"central\" font-size=\"15\" font-weight=\"700\" fill=\"#0f172a\" stroke=\"#f8fafc\" stroke-width=\"4\" paint-order=\"stroke\">E</text></svg>"
+  },
+  {
+    "id": 22,
+    "q": "△ABC এর ভরকেন্দ্র G হলে নিচের কোনটি সঠিক? [ম. বো. ২০২৪]",
+    "qp": "△ABC এর ভরকেন্দ্র G হলে নিচের কোনটি সঠিক? [ম. বো. ২০২৪]",
+    "options": {
+      "a": "<span class=\"vec\">AB</span> − <span class=\"vec\">AC</span> = <span class=\"vec\">BC</span>",
+      "b": "<span class=\"vec\">AB</span> + <span class=\"vec\">AC</span> = <span class=\"vec\">BC</span>",
+      "c": "<span class=\"vec\">AB</span> + <span class=\"vec\">AC</span> = 2<span class=\"vec\">AD</span>",
+      "d": "<span class=\"vec\">AD</span> + <span class=\"vec\">BE</span> − <span class=\"vec\">CF</span> = <span class=\"vec\">0</span>"
+    },
+    "optionsP": {
+      "a": "AB⃗ − AC⃗ = BC⃗",
+      "b": "AB⃗ + AC⃗ = BC⃗",
+      "c": "AB⃗ + AC⃗ = 2AD⃗",
+      "d": "AD⃗ + BE⃗ − CF⃗ = 0⃗"
+    },
+    "ans": "c",
+    "exp": "ভরকেন্দ্র মধ্যমা AD এর উপর থাকে, D হলো BC এর মধ্যবিন্দু।<br>সামান্তরিক বিধি অনুযায়ী <span class=\"vec\">AB</span> + <span class=\"vec\">AC</span> = 2<span class=\"vec\">AD</span>।<br><span class=\"vec\">AB</span> − <span class=\"vec\">AC</span> = <span class=\"vec\">CB</span> (<span class=\"vec\">BC</span> নয়); সঠিক সম্পর্ক <span class=\"vec\">AD</span> + <span class=\"vec\">BE</span> + <span class=\"vec\">CF</span> = <span class=\"vec\">0</span> (মাঝে + চিহ্ন), বিয়োগ নয়।",
+    "fig": "<svg viewBox=\"0 0 300 190\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\" style=\"width:100%;max-width:340px;height:auto;display:block;margin:0 auto\" font-family=\"Inter, Hind Siliguri, sans-serif\"><defs><marker id=\"ah15\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto\"><path d=\"M0 0 L10 5 L0 10 z\" fill=\"#4f46e5\"/></marker></defs><polygon points=\"150,28 50,160 250,160\" fill=\"#eef2ff\" stroke=\"#334155\" stroke-width=\"1.6\" stroke-linejoin=\"round\"/><line x1=\"150\" y1=\"28\" x2=\"50\" y2=\"160\" stroke=\"#334155\" stroke-width=\"1.6\"/><line x1=\"50\" y1=\"160\" x2=\"250\" y2=\"160\" stroke=\"#334155\" stroke-width=\"1.6\"/><line x1=\"250\" y1=\"160\" x2=\"150\" y2=\"28\" stroke=\"#334155\" stroke-width=\"1.6\"/><line x1=\"150\" y1=\"28\" x2=\"150\" y2=\"160\" stroke=\"#64748b\" stroke-width=\"1.4\" stroke-dasharray=\"5 4\"/><line x1=\"50\" y1=\"160\" x2=\"200\" y2=\"94\" stroke=\"#64748b\" stroke-width=\"1.4\" stroke-dasharray=\"5 4\"/><line x1=\"250\" y1=\"160\" x2=\"100\" y2=\"94\" stroke=\"#64748b\" stroke-width=\"1.4\" stroke-dasharray=\"5 4\"/><circle cx=\"150\" cy=\"28\" r=\"2.8\" fill=\"#334155\"/><text x=\"150.0\" y=\"14.0\" text-anchor=\"middle\" dominant-baseline=\"central\" font-size=\"15\" font-weight=\"700\" fill=\"#0f172a\" stroke=\"#f8fafc\" stroke-width=\"4\" paint-order=\"stroke\">A</text><circle cx=\"50\" cy=\"160\" r=\"2.8\" fill=\"#334155\"/><text x=\"37.2\" y=\"165.6\" text-anchor=\"middle\" dominant-baseline=\"central\" font-size=\"15\" font-weight=\"700\" fill=\"#0f172a\" stroke=\"#f8fafc\" stroke-width=\"4\" paint-order=\"stroke\">B</text><circle cx=\"250\" cy=\"160\" r=\"2.8\" fill=\"#334155\"/><text x=\"262.8\" y=\"165.6\" text-anchor=\"middle\" dominant-baseline=\"central\" font-size=\"15\" font-weight=\"700\" fill=\"#0f172a\" stroke=\"#f8fafc\" stroke-width=\"4\" paint-order=\"stroke\">C</text><circle cx=\"150\" cy=\"160\" r=\"2.8\" fill=\"#334155\"/><text x=\"150.0\" y=\"175.0\" text-anchor=\"middle\" dominant-baseline=\"central\" font-size=\"15\" font-weight=\"700\" fill=\"#0f172a\" stroke=\"#f8fafc\" stroke-width=\"4\" paint-order=\"stroke\">D</text><circle cx=\"200\" cy=\"94\" r=\"2.8\" fill=\"#334155\"/><text x=\"212.8\" y=\"88.4\" text-anchor=\"middle\" dominant-baseline=\"central\" font-size=\"15\" font-weight=\"700\" fill=\"#0f172a\" stroke=\"#f8fafc\" stroke-width=\"4\" paint-order=\"stroke\">E</text><circle cx=\"100\" cy=\"94\" r=\"2.8\" fill=\"#334155\"/><text x=\"87.2\" y=\"88.4\" text-anchor=\"middle\" dominant-baseline=\"central\" font-size=\"15\" font-weight=\"700\" fill=\"#0f172a\" stroke=\"#f8fafc\" stroke-width=\"4\" paint-order=\"stroke\">F</text><circle cx=\"150\" cy=\"116\" r=\"2.8\" fill=\"#334155\"/><text x=\"163.0\" y=\"107.0\" text-anchor=\"middle\" dominant-baseline=\"central\" font-size=\"15\" font-weight=\"700\" fill=\"#0f172a\" stroke=\"#f8fafc\" stroke-width=\"4\" paint-order=\"stroke\">G</text></svg>"
+  },
+  {
+    "id": 23,
+    "q": "G প্রদত্ত ত্রিভুজের ভরকেন্দ্র এবং- [য. বো. ২০১৬]\ni. AG : GD = 1 : 2\nii. <span class=\"vec\">AB</span> + <span class=\"vec\">AC</span> = 2<span class=\"vec\">AD</span>\niii. <span class=\"vec\">AD</span> + <span class=\"vec\">BE</span> + <span class=\"vec\">CF</span> = <span class=\"vec\">0</span>\nনিচের কোনটি সঠিক?",
+    "qp": "G প্রদত্ত ত্রিভুজের ভরকেন্দ্র এবং- [য. বো. ২০১৬]\ni. AG : GD = 1 : 2\nii. AB⃗ + AC⃗ = 2AD⃗\niii. AD⃗ + BE⃗ + CF⃗ = 0⃗\nনিচের কোনটি সঠিক?",
+    "options": {
+      "a": "i ও ii",
+      "b": "ii ও iii",
+      "c": "i ও iii",
+      "d": "i, ii ও iii"
+    },
+    "optionsP": {
+      "a": "i ও ii",
+      "b": "ii ও iii",
+      "c": "i ও iii",
+      "d": "i, ii ও iii"
+    },
+    "ans": "b",
+    "exp": "i: ভরকেন্দ্র মধ্যমাকে 2 : 1 অনুপাতে ভাগ করে, তাই AG : GD = 2 : 1; 1 : 2 নয় ✘<br>ii: <span class=\"vec\">AB</span> + <span class=\"vec\">AC</span> = 2<span class=\"vec\">AD</span> ✔<br>iii: তিন মধ্যমার ভেক্টর যোগফল শূন্য ✔<br>তাই ii ও iii সত্য।",
+    "fig": "<svg viewBox=\"0 0 300 190\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\" style=\"width:100%;max-width:340px;height:auto;display:block;margin:0 auto\" font-family=\"Inter, Hind Siliguri, sans-serif\"><defs><marker id=\"ah15\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto\"><path d=\"M0 0 L10 5 L0 10 z\" fill=\"#4f46e5\"/></marker></defs><polygon points=\"150,28 50,160 250,160\" fill=\"#eef2ff\" stroke=\"#334155\" stroke-width=\"1.6\" stroke-linejoin=\"round\"/><line x1=\"150\" y1=\"28\" x2=\"50\" y2=\"160\" stroke=\"#334155\" stroke-width=\"1.6\"/><line x1=\"50\" y1=\"160\" x2=\"250\" y2=\"160\" stroke=\"#334155\" stroke-width=\"1.6\"/><line x1=\"250\" y1=\"160\" x2=\"150\" y2=\"28\" stroke=\"#334155\" stroke-width=\"1.6\"/><line x1=\"150\" y1=\"28\" x2=\"150\" y2=\"160\" stroke=\"#64748b\" stroke-width=\"1.4\" stroke-dasharray=\"5 4\"/><line x1=\"50\" y1=\"160\" x2=\"200\" y2=\"94\" stroke=\"#64748b\" stroke-width=\"1.4\" stroke-dasharray=\"5 4\"/><line x1=\"250\" y1=\"160\" x2=\"100\" y2=\"94\" stroke=\"#64748b\" stroke-width=\"1.4\" stroke-dasharray=\"5 4\"/><circle cx=\"150\" cy=\"28\" r=\"2.8\" fill=\"#334155\"/><text x=\"150.0\" y=\"14.0\" text-anchor=\"middle\" dominant-baseline=\"central\" font-size=\"15\" font-weight=\"700\" fill=\"#0f172a\" stroke=\"#f8fafc\" stroke-width=\"4\" paint-order=\"stroke\">A</text><circle cx=\"50\" cy=\"160\" r=\"2.8\" fill=\"#334155\"/><text x=\"37.2\" y=\"165.6\" text-anchor=\"middle\" dominant-baseline=\"central\" font-size=\"15\" font-weight=\"700\" fill=\"#0f172a\" stroke=\"#f8fafc\" stroke-width=\"4\" paint-order=\"stroke\">B</text><circle cx=\"250\" cy=\"160\" r=\"2.8\" fill=\"#334155\"/><text x=\"262.8\" y=\"165.6\" text-anchor=\"middle\" dominant-baseline=\"central\" font-size=\"15\" font-weight=\"700\" fill=\"#0f172a\" stroke=\"#f8fafc\" stroke-width=\"4\" paint-order=\"stroke\">C</text><circle cx=\"150\" cy=\"160\" r=\"2.8\" fill=\"#334155\"/><text x=\"150.0\" y=\"175.0\" text-anchor=\"middle\" dominant-baseline=\"central\" font-size=\"15\" font-weight=\"700\" fill=\"#0f172a\" stroke=\"#f8fafc\" stroke-width=\"4\" paint-order=\"stroke\">D</text><circle cx=\"200\" cy=\"94\" r=\"2.8\" fill=\"#334155\"/><text x=\"212.8\" y=\"88.4\" text-anchor=\"middle\" dominant-baseline=\"central\" font-size=\"15\" font-weight=\"700\" fill=\"#0f172a\" stroke=\"#f8fafc\" stroke-width=\"4\" paint-order=\"stroke\">E</text><circle cx=\"100\" cy=\"94\" r=\"2.8\" fill=\"#334155\"/><text x=\"87.2\" y=\"88.4\" text-anchor=\"middle\" dominant-baseline=\"central\" font-size=\"15\" font-weight=\"700\" fill=\"#0f172a\" stroke=\"#f8fafc\" stroke-width=\"4\" paint-order=\"stroke\">F</text><circle cx=\"150\" cy=\"116\" r=\"2.8\" fill=\"#334155\"/><text x=\"163.0\" y=\"107.0\" text-anchor=\"middle\" dominant-baseline=\"central\" font-size=\"15\" font-weight=\"700\" fill=\"#0f172a\" stroke=\"#f8fafc\" stroke-width=\"4\" paint-order=\"stroke\">G</text></svg>"
+  },
+  {
+    "id": 24,
+    "q": "DEFG সামান্তরিকের দুইটি কর্ণ DF এবং EG হলে- [য. বো. ১৯]\ni. <span class=\"vec\">EO</span> = <span class=\"vec\">OG</span> = <span class=\"frac\"><span class=\"num\">1</span><span class=\"den\">2</span></span><span class=\"vec\">EG</span>\nii. <span class=\"vec\">DG</span> = <span class=\"frac\"><span class=\"num\">1</span><span class=\"den\">2</span></span><span class=\"vec\">DF</span> + <span class=\"frac\"><span class=\"num\">1</span><span class=\"den\">2</span></span><span class=\"vec\">EG</span>\niii. <span class=\"vec\">OF</span> − <span class=\"vec\">OE</span> = <span class=\"vec\">EF</span>\nনিচের কোনটি সঠিক?",
+    "qp": "DEFG সামান্তরিকের দুইটি কর্ণ DF এবং EG হলে- [য. বো. ১৯]\ni. EO⃗ = OG⃗ = 1/2EG⃗\nii. DG⃗ = 1/2DF⃗ + 1/2EG⃗\niii. OF⃗ − OE⃗ = EF⃗\nনিচের কোনটি সঠিক?",
+    "options": {
+      "a": "i, ii",
+      "b": "i, iii",
+      "c": "ii, iii",
+      "d": "i, ii, iii"
+    },
+    "optionsP": {
+      "a": "i, ii",
+      "b": "i, iii",
+      "c": "ii, iii",
+      "d": "i, ii, iii"
+    },
+    "ans": "d",
+    "exp": "সামান্তরিকের কর্ণদ্বয় পরস্পরকে সমদ্বিখণ্ডিত করে (O মধ্যবিন্দু)।<br>i: <span class=\"vec\">EO</span> = <span class=\"vec\">OG</span> = <span class=\"frac\"><span class=\"num\">1</span><span class=\"den\">2</span></span><span class=\"vec\">EG</span> ✔<br>ii: <span class=\"vec\">DG</span> = <span class=\"vec\">DO</span> + <span class=\"vec\">OG</span> = <span class=\"frac\"><span class=\"num\">1</span><span class=\"den\">2</span></span><span class=\"vec\">DF</span> + <span class=\"frac\"><span class=\"num\">1</span><span class=\"den\">2</span></span><span class=\"vec\">EG</span> ✔<br>iii: <span class=\"vec\">EF</span> = <span class=\"vec\">OF</span> − <span class=\"vec\">OE</span> ✔<br>তিনটি উক্তিই সত্য।",
+    "fig": "<svg viewBox=\"0 0 300 190\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\" style=\"width:100%;max-width:340px;height:auto;display:block;margin:0 auto\" font-family=\"Inter, Hind Siliguri, sans-serif\"><defs><marker id=\"ah16\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto\"><path d=\"M0 0 L10 5 L0 10 z\" fill=\"#4f46e5\"/></marker></defs><polygon points=\"60,150 220,150 270,50 110,50\" fill=\"#eef2ff\" stroke=\"#334155\" stroke-width=\"1.6\" stroke-linejoin=\"round\"/><line x1=\"60\" y1=\"150\" x2=\"220\" y2=\"150\" stroke=\"#334155\" stroke-width=\"1.6\"/><line x1=\"220\" y1=\"150\" x2=\"270\" y2=\"50\" stroke=\"#334155\" stroke-width=\"1.6\"/><line x1=\"270\" y1=\"50\" x2=\"110\" y2=\"50\" stroke=\"#334155\" stroke-width=\"1.6\"/><line x1=\"110\" y1=\"50\" x2=\"60\" y2=\"150\" stroke=\"#334155\" stroke-width=\"1.6\"/><line x1=\"60\" y1=\"150\" x2=\"270\" y2=\"50\" stroke=\"#64748b\" stroke-width=\"1.4\" stroke-dasharray=\"5 4\"/><line x1=\"220\" y1=\"150\" x2=\"110\" y2=\"50\" stroke=\"#64748b\" stroke-width=\"1.4\" stroke-dasharray=\"5 4\"/><circle cx=\"60\" cy=\"150\" r=\"2.8\" fill=\"#334155\"/><text x=\"47.4\" y=\"156.0\" text-anchor=\"middle\" dominant-baseline=\"central\" font-size=\"15\" font-weight=\"700\" fill=\"#0f172a\" stroke=\"#f8fafc\" stroke-width=\"4\" paint-order=\"stroke\">D</text><circle cx=\"220\" cy=\"150\" r=\"2.8\" fill=\"#334155\"/><text x=\"230.4\" y=\"159.4\" text-anchor=\"middle\" dominant-baseline=\"central\" font-size=\"15\" font-weight=\"700\" fill=\"#0f172a\" stroke=\"#f8fafc\" stroke-width=\"4\" paint-order=\"stroke\">E</text><circle cx=\"270\" cy=\"50\" r=\"2.8\" fill=\"#334155\"/><text x=\"282.6\" y=\"44.0\" text-anchor=\"middle\" dominant-baseline=\"central\" font-size=\"15\" font-weight=\"700\" fill=\"#0f172a\" stroke=\"#f8fafc\" stroke-width=\"4\" paint-order=\"stroke\">F</text><circle cx=\"110\" cy=\"50\" r=\"2.8\" fill=\"#334155\"/><text x=\"99.6\" y=\"40.6\" text-anchor=\"middle\" dominant-baseline=\"central\" font-size=\"15\" font-weight=\"700\" fill=\"#0f172a\" stroke=\"#f8fafc\" stroke-width=\"4\" paint-order=\"stroke\">G</text><circle cx=\"165\" cy=\"100\" r=\"2.8\" fill=\"#334155\"/><text x=\"165.0\" y=\"115.0\" text-anchor=\"middle\" dominant-baseline=\"central\" font-size=\"15\" font-weight=\"700\" fill=\"#0f172a\" stroke=\"#f8fafc\" stroke-width=\"4\" paint-order=\"stroke\">O</text></svg>"
+  },
+  {
+    "id": 25,
+    "q": "চিত্রে QR এবং QP এর মধ্যবিন্দু যথাক্রমে S এবং T হলে-\ni. ST ∥ RP\nii. ST = <span class=\"frac\"><span class=\"num\">1</span><span class=\"den\">2</span></span>RP\niii. <span class=\"vec\">QT</span> − <span class=\"vec\">QS</span> = <span class=\"vec\">ST</span>\nনিচের কোনটি সঠিক?",
+    "qp": "চিত্রে QR এবং QP এর মধ্যবিন্দু যথাক্রমে S এবং T হলে-\ni. ST ∥ RP\nii. ST = 1/2RP\niii. QT⃗ − QS⃗ = ST⃗\nনিচের কোনটি সঠিক?",
+    "options": {
+      "a": "i ও ii",
+      "b": "i ও iii",
+      "c": "ii ও iii",
+      "d": "i, ii ও iii"
+    },
+    "optionsP": {
+      "a": "i ও ii",
+      "b": "i ও iii",
+      "c": "ii ও iii",
+      "d": "i, ii ও iii"
+    },
+    "ans": "d",
+    "exp": "i, ii: মধ্যবিন্দু উপপাদ্য অনুযায়ী ST ∥ RP এবং ST = <span class=\"frac\"><span class=\"num\">1</span><span class=\"den\">2</span></span>RP ✔<br>iii: <span class=\"vec\">QS</span> + <span class=\"vec\">ST</span> = <span class=\"vec\">QT</span> ⇒ <span class=\"vec\">ST</span> = <span class=\"vec\">QT</span> − <span class=\"vec\">QS</span> ✔<br>তিনটি উক্তিই সত্য।",
+    "fig": "<svg viewBox=\"0 0 300 190\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\" style=\"width:100%;max-width:340px;height:auto;display:block;margin:0 auto\" font-family=\"Inter, Hind Siliguri, sans-serif\"><defs><marker id=\"ah17\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto\"><path d=\"M0 0 L10 5 L0 10 z\" fill=\"#4f46e5\"/></marker></defs><polygon points=\"150,28 50,160 250,160\" fill=\"#eef2ff\" stroke=\"#334155\" stroke-width=\"1.6\" stroke-linejoin=\"round\"/><line x1=\"150\" y1=\"28\" x2=\"50\" y2=\"160\" stroke=\"#334155\" stroke-width=\"1.6\"/><line x1=\"50\" y1=\"160\" x2=\"250\" y2=\"160\" stroke=\"#334155\" stroke-width=\"1.6\"/><line x1=\"250\" y1=\"160\" x2=\"150\" y2=\"28\" stroke=\"#334155\" stroke-width=\"1.6\"/><line x1=\"200\" y1=\"94\" x2=\"100\" y2=\"94\" stroke=\"#64748b\" stroke-width=\"1.4\" stroke-dasharray=\"5 4\"/><circle cx=\"150\" cy=\"28\" r=\"2.8\" fill=\"#334155\"/><text x=\"150.0\" y=\"14.0\" text-anchor=\"middle\" dominant-baseline=\"central\" font-size=\"15\" font-weight=\"700\" fill=\"#0f172a\" stroke=\"#f8fafc\" stroke-width=\"4\" paint-order=\"stroke\">Q</text><circle cx=\"50\" cy=\"160\" r=\"2.8\" fill=\"#334155\"/><text x=\"37.2\" y=\"165.6\" text-anchor=\"middle\" dominant-baseline=\"central\" font-size=\"15\" font-weight=\"700\" fill=\"#0f172a\" stroke=\"#f8fafc\" stroke-width=\"4\" paint-order=\"stroke\">P</text><circle cx=\"250\" cy=\"160\" r=\"2.8\" fill=\"#334155\"/><text x=\"262.8\" y=\"165.6\" text-anchor=\"middle\" dominant-baseline=\"central\" font-size=\"15\" font-weight=\"700\" fill=\"#0f172a\" stroke=\"#f8fafc\" stroke-width=\"4\" paint-order=\"stroke\">R</text><circle cx=\"200\" cy=\"94\" r=\"2.8\" fill=\"#334155\"/><text x=\"212.8\" y=\"88.4\" text-anchor=\"middle\" dominant-baseline=\"central\" font-size=\"15\" font-weight=\"700\" fill=\"#0f172a\" stroke=\"#f8fafc\" stroke-width=\"4\" paint-order=\"stroke\">S</text><circle cx=\"100\" cy=\"94\" r=\"2.8\" fill=\"#334155\"/><text x=\"87.2\" y=\"88.4\" text-anchor=\"middle\" dominant-baseline=\"central\" font-size=\"15\" font-weight=\"700\" fill=\"#0f172a\" stroke=\"#f8fafc\" stroke-width=\"4\" paint-order=\"stroke\">T</text></svg>"
+  },
+  {
+    "id": 26,
+    "q": "P ও Q বিন্দুর অবস্থান ভেক্টর যথাক্রমে 5<span class=\"vec\">a</span> − 3<span class=\"vec\">b</span> এবং 2<span class=\"vec\">a</span> − <span class=\"vec\">b</span> হলে <span class=\"vec\">PQ</span> = কত? [ঢা. বো. ২০২৪]",
+    "qp": "P ও Q বিন্দুর অবস্থান ভেক্টর যথাক্রমে 5a⃗ − 3b⃗ এবং 2a⃗ − b⃗ হলে PQ⃗ = কত? [ঢা. বো. ২০২৪]",
+    "options": {
+      "a": "3<span class=\"vec\">a</span> − 2<span class=\"vec\">b</span>",
+      "b": "7<span class=\"vec\">a</span> − 4<span class=\"vec\">b</span>",
+      "c": "7<span class=\"vec\">a</span> + 4<span class=\"vec\">b</span>",
+      "d": "−3<span class=\"vec\">a</span> + 2<span class=\"vec\">b</span>"
+    },
+    "optionsP": {
+      "a": "3a⃗ − 2b⃗",
+      "b": "7a⃗ − 4b⃗",
+      "c": "7a⃗ + 4b⃗",
+      "d": "−3a⃗ + 2b⃗"
+    },
+    "ans": "d",
+    "exp": "<span class=\"vec\">PQ</span> = <span class=\"vec\">OQ</span> − <span class=\"vec\">OP</span><br>= (2<span class=\"vec\">a</span> − <span class=\"vec\">b</span>) − (5<span class=\"vec\">a</span> − 3<span class=\"vec\">b</span>)<br>= 2<span class=\"vec\">a</span> − <span class=\"vec\">b</span> − 5<span class=\"vec\">a</span> + 3<span class=\"vec\">b</span> = −3<span class=\"vec\">a</span> + 2<span class=\"vec\">b</span>।",
+    "fig": "<svg viewBox=\"0 0 300 190\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\" style=\"width:100%;max-width:340px;height:auto;display:block;margin:0 auto\" font-family=\"Inter, Hind Siliguri, sans-serif\"><defs><marker id=\"ah18\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto\"><path d=\"M0 0 L10 5 L0 10 z\" fill=\"#4f46e5\"/></marker></defs><line x1=\"60.9\" y1=\"148.2\" x2=\"108.2\" y2=\"53.6\" stroke=\"#4f46e5\" stroke-width=\"2\" marker-end=\"url(#ah18)\"/><line x1=\"61.9\" y1=\"149.5\" x2=\"236.1\" y2=\"101.1\" stroke=\"#4f46e5\" stroke-width=\"2\" marker-end=\"url(#ah18)\"/><line x1=\"111.9\" y1=\"50.7\" x2=\"236.3\" y2=\"98.6\" stroke=\"#4f46e5\" stroke-width=\"2\" marker-end=\"url(#ah18)\"/><circle cx=\"60\" cy=\"150\" r=\"2.8\" fill=\"#334155\"/><text x=\"48.0\" y=\"158.0\" text-anchor=\"middle\" dominant-baseline=\"central\" font-size=\"15\" font-weight=\"700\" fill=\"#0f172a\" stroke=\"#f8fafc\" stroke-width=\"4\" paint-order=\"stroke\">O</text><circle cx=\"110\" cy=\"50\" r=\"2.8\" fill=\"#334155\"/><text x=\"101.3\" y=\"39.1\" text-anchor=\"middle\" dominant-baseline=\"central\" font-size=\"15\" font-weight=\"700\" fill=\"#0f172a\" stroke=\"#f8fafc\" stroke-width=\"4\" paint-order=\"stroke\">P</text><circle cx=\"240\" cy=\"100\" r=\"2.8\" fill=\"#334155\"/><text x=\"254.0\" y=\"100.0\" text-anchor=\"middle\" dominant-baseline=\"central\" font-size=\"15\" font-weight=\"700\" fill=\"#0f172a\" stroke=\"#f8fafc\" stroke-width=\"4\" paint-order=\"stroke\">Q</text><text x=\"70\" y=\"95\" text-anchor=\"middle\" dominant-baseline=\"central\" font-size=\"13\" font-weight=\"700\" fill=\"#4f46e5\" stroke=\"#f8fafc\" stroke-width=\"4\" paint-order=\"stroke\">5a − 3b</text><text x=\"170\" y=\"148\" text-anchor=\"middle\" dominant-baseline=\"central\" font-size=\"13\" font-weight=\"700\" fill=\"#4f46e5\" stroke=\"#f8fafc\" stroke-width=\"4\" paint-order=\"stroke\">2a − b</text></svg>"
+  },
+  {
+    "id": 27,
+    "q": "M এবং N বিন্দু দুইটির অবস্থান ভেক্টর যথাক্রমে 7<span class=\"vec\">a</span> + 5<span class=\"vec\">b</span> এবং 3<span class=\"vec\">a</span> − 2<span class=\"vec\">b</span> হলে <span class=\"vec\">MN</span> = কোনটি? [দি. বো. ২০১৯]",
+    "qp": "M এবং N বিন্দু দুইটির অবস্থান ভেক্টর যথাক্রমে 7a⃗ + 5b⃗ এবং 3a⃗ − 2b⃗ হলে MN⃗ = কোনটি? [দি. বো. ২০১৯]",
+    "options": {
+      "a": "10<span class=\"vec\">a</span> + 3<span class=\"vec\">b</span>",
+      "b": "−4<span class=\"vec\">a</span> − 7<span class=\"vec\">b</span>",
+      "c": "4<span class=\"vec\">a</span> + 7<span class=\"vec\">b</span>",
+      "d": "10<span class=\"vec\">a</span> − 3<span class=\"vec\">b</span>"
+    },
+    "optionsP": {
+      "a": "10a⃗ + 3b⃗",
+      "b": "−4a⃗ − 7b⃗",
+      "c": "4a⃗ + 7b⃗",
+      "d": "10a⃗ − 3b⃗"
+    },
+    "ans": "b",
+    "exp": "<span class=\"vec\">MN</span> = <span class=\"vec\">ON</span> − <span class=\"vec\">OM</span><br>= (3<span class=\"vec\">a</span> − 2<span class=\"vec\">b</span>) − (7<span class=\"vec\">a</span> + 5<span class=\"vec\">b</span>)<br>= −4<span class=\"vec\">a</span> − 7<span class=\"vec\">b</span>।",
+    "fig": "<svg viewBox=\"0 0 300 190\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\" style=\"width:100%;max-width:340px;height:auto;display:block;margin:0 auto\" font-family=\"Inter, Hind Siliguri, sans-serif\"><defs><marker id=\"ah19\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto\"><path d=\"M0 0 L10 5 L0 10 z\" fill=\"#4f46e5\"/></marker></defs><line x1=\"60.9\" y1=\"148.2\" x2=\"108.2\" y2=\"53.6\" stroke=\"#4f46e5\" stroke-width=\"2\" marker-end=\"url(#ah19)\"/><line x1=\"61.9\" y1=\"149.5\" x2=\"236.1\" y2=\"101.1\" stroke=\"#4f46e5\" stroke-width=\"2\" marker-end=\"url(#ah19)\"/><line x1=\"111.9\" y1=\"50.7\" x2=\"236.3\" y2=\"98.6\" stroke=\"#4f46e5\" stroke-width=\"2\" marker-end=\"url(#ah19)\"/><circle cx=\"60\" cy=\"150\" r=\"2.8\" fill=\"#334155\"/><text x=\"48.0\" y=\"158.0\" text-anchor=\"middle\" dominant-baseline=\"central\" font-size=\"15\" font-weight=\"700\" fill=\"#0f172a\" stroke=\"#f8fafc\" stroke-width=\"4\" paint-order=\"stroke\">O</text><circle cx=\"110\" cy=\"50\" r=\"2.8\" fill=\"#334155\"/><text x=\"101.3\" y=\"39.1\" text-anchor=\"middle\" dominant-baseline=\"central\" font-size=\"15\" font-weight=\"700\" fill=\"#0f172a\" stroke=\"#f8fafc\" stroke-width=\"4\" paint-order=\"stroke\">M</text><circle cx=\"240\" cy=\"100\" r=\"2.8\" fill=\"#334155\"/><text x=\"254.0\" y=\"100.0\" text-anchor=\"middle\" dominant-baseline=\"central\" font-size=\"15\" font-weight=\"700\" fill=\"#0f172a\" stroke=\"#f8fafc\" stroke-width=\"4\" paint-order=\"stroke\">N</text><text x=\"62\" y=\"92\" text-anchor=\"middle\" dominant-baseline=\"central\" font-size=\"13\" font-weight=\"700\" fill=\"#4f46e5\" stroke=\"#f8fafc\" stroke-width=\"4\" paint-order=\"stroke\">7a + 5b</text><text x=\"175\" y=\"148\" text-anchor=\"middle\" dominant-baseline=\"central\" font-size=\"13\" font-weight=\"700\" fill=\"#4f46e5\" stroke=\"#f8fafc\" stroke-width=\"4\" paint-order=\"stroke\">3a − 2b</text></svg>"
+  },
+  {
+    "id": 28,
+    "q": "চিত্রে <span class=\"vec\">OA</span> = <span class=\"vec\">a</span>, <span class=\"vec\">OB</span> = <span class=\"vec\">b</span>। <span class=\"vec\">AB</span> = কত? [সি. বো. ২০১৭]",
+    "qp": "চিত্রে OA⃗ = a⃗, OB⃗ = b⃗। AB⃗ = কত? [সি. বো. ২০১৭]",
+    "options": {
+      "a": "2<span class=\"vec\">a</span>",
+      "b": "<span class=\"frac\"><span class=\"num\">1</span><span class=\"den\">2</span></span><span class=\"vec\">a</span> + <span class=\"vec\">b</span>",
+      "c": "<span class=\"vec\">a</span> + <span class=\"vec\">b</span>",
+      "d": "<span class=\"vec\">b</span> − <span class=\"vec\">a</span>"
+    },
+    "optionsP": {
+      "a": "2a⃗",
+      "b": "1/2a⃗ + b⃗",
+      "c": "a⃗ + b⃗",
+      "d": "b⃗ − a⃗"
+    },
+    "ans": "d",
+    "exp": "<span class=\"vec\">OA</span> + <span class=\"vec\">AB</span> = <span class=\"vec\">OB</span> ⇒ <span class=\"vec\">AB</span> = <span class=\"vec\">OB</span> − <span class=\"vec\">OA</span> = <span class=\"vec\">b</span> − <span class=\"vec\">a</span>।",
+    "fig": "<svg viewBox=\"0 0 300 190\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\" style=\"width:100%;max-width:340px;height:auto;display:block;margin:0 auto\" font-family=\"Inter, Hind Siliguri, sans-serif\"><defs><marker id=\"ah20\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto\"><path d=\"M0 0 L10 5 L0 10 z\" fill=\"#4f46e5\"/></marker></defs><polygon points=\"60,150 250,150 170,40\" fill=\"#eef2ff\" stroke=\"#334155\" stroke-width=\"1.6\" stroke-linejoin=\"round\"/><line x1=\"62.0\" y1=\"150.0\" x2=\"246.0\" y2=\"150.0\" stroke=\"#4f46e5\" stroke-width=\"2\" marker-end=\"url(#ah20)\"/><line x1=\"61.4\" y1=\"148.6\" x2=\"167.2\" y2=\"42.8\" stroke=\"#4f46e5\" stroke-width=\"2\" marker-end=\"url(#ah20)\"/><line x1=\"248.8\" y1=\"148.4\" x2=\"172.4\" y2=\"43.2\" stroke=\"#4f46e5\" stroke-width=\"2\" marker-end=\"url(#ah20)\"/><circle cx=\"60\" cy=\"150\" r=\"2.8\" fill=\"#334155\"/><text x=\"47.0\" y=\"155.2\" text-anchor=\"middle\" dominant-baseline=\"central\" font-size=\"15\" font-weight=\"700\" fill=\"#0f172a\" stroke=\"#f8fafc\" stroke-width=\"4\" paint-order=\"stroke\">O</text><circle cx=\"250\" cy=\"150\" r=\"2.8\" fill=\"#334155\"/><text x=\"262.8\" y=\"155.7\" text-anchor=\"middle\" dominant-baseline=\"central\" font-size=\"15\" font-weight=\"700\" fill=\"#0f172a\" stroke=\"#f8fafc\" stroke-width=\"4\" paint-order=\"stroke\">A</text><circle cx=\"170\" cy=\"40\" r=\"2.8\" fill=\"#334155\"/><text x=\"172.0\" y=\"26.1\" text-anchor=\"middle\" dominant-baseline=\"central\" font-size=\"15\" font-weight=\"700\" fill=\"#0f172a\" stroke=\"#f8fafc\" stroke-width=\"4\" paint-order=\"stroke\">B</text><text x=\"155\" y=\"168\" text-anchor=\"middle\" dominant-baseline=\"central\" font-size=\"13\" font-weight=\"700\" fill=\"#4f46e5\" stroke=\"#f8fafc\" stroke-width=\"4\" paint-order=\"stroke\">a</text><text x=\"100\" y=\"85\" text-anchor=\"middle\" dominant-baseline=\"central\" font-size=\"13\" font-weight=\"700\" fill=\"#4f46e5\" stroke=\"#f8fafc\" stroke-width=\"4\" paint-order=\"stroke\">b</text></svg>"
+  },
+  {
+    "id": 29,
+    "q": "PQRS ট্রাপিজিয়ামে PS ও QR এর মধ্যবিন্দু যথাক্রমে C ও D হলে <span class=\"vec\">CD</span> = কত? [ব. বো. ২০]",
+    "qp": "PQRS ট্রাপিজিয়ামে PS ও QR এর মধ্যবিন্দু যথাক্রমে C ও D হলে CD⃗ = কত? [ব. বো. ২০]",
+    "options": {
+      "a": "<span class=\"frac\"><span class=\"num\">1</span><span class=\"den\">2</span></span>(<span class=\"vec\">PQ</span> − <span class=\"vec\">SR</span>)",
+      "b": "(<span class=\"vec\">PQ</span> − <span class=\"vec\">SR</span>)",
+      "c": "<span class=\"frac\"><span class=\"num\">1</span><span class=\"den\">2</span></span>(<span class=\"vec\">PQ</span> + <span class=\"vec\">SR</span>)",
+      "d": "(<span class=\"vec\">PQ</span> + <span class=\"vec\">SR</span>)"
+    },
+    "optionsP": {
+      "a": "1/2(PQ⃗ − SR⃗)",
+      "b": "(PQ⃗ − SR⃗)",
+      "c": "1/2(PQ⃗ + SR⃗)",
+      "d": "(PQ⃗ + SR⃗)"
+    },
+    "ans": "c",
+    "exp": "ট্রাপিজিয়ামের অসমান্তরাল বাহুদ্বয়ের মধ্যবিন্দুর সংযোজক রেখা সমান্তরাল বাহুদ্বয়ের সমান্তরাল এবং তাদের যোগফলের অর্ধেক।<br>তাই <span class=\"vec\">CD</span> = <span class=\"frac\"><span class=\"num\">1</span><span class=\"den\">2</span></span>(<span class=\"vec\">PQ</span> + <span class=\"vec\">SR</span>)।",
+    "fig": "<svg viewBox=\"0 0 300 190\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\" style=\"width:100%;max-width:340px;height:auto;display:block;margin:0 auto\" font-family=\"Inter, Hind Siliguri, sans-serif\"><defs><marker id=\"ah21\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto\"><path d=\"M0 0 L10 5 L0 10 z\" fill=\"#4f46e5\"/></marker></defs><polygon points=\"50,150 260,150 215,50 100,50\" fill=\"#eef2ff\" stroke=\"#334155\" stroke-width=\"1.6\" stroke-linejoin=\"round\"/><line x1=\"50\" y1=\"150\" x2=\"260\" y2=\"150\" stroke=\"#334155\" stroke-width=\"1.6\"/><line x1=\"260\" y1=\"150\" x2=\"215\" y2=\"50\" stroke=\"#334155\" stroke-width=\"1.6\"/><line x1=\"215\" y1=\"50\" x2=\"100\" y2=\"50\" stroke=\"#334155\" stroke-width=\"1.6\"/><line x1=\"100\" y1=\"50\" x2=\"50\" y2=\"150\" stroke=\"#334155\" stroke-width=\"1.6\"/><line x1=\"75\" y1=\"100\" x2=\"237\" y2=\"100\" stroke=\"#e11d48\" stroke-width=\"2.4\"/><circle cx=\"50\" cy=\"150\" r=\"2.8\" fill=\"#334155\"/><text x=\"37.4\" y=\"156.0\" text-anchor=\"middle\" dominant-baseline=\"central\" font-size=\"15\" font-weight=\"700\" fill=\"#0f172a\" stroke=\"#f8fafc\" stroke-width=\"4\" paint-order=\"stroke\">P</text><circle cx=\"260\" cy=\"150\" r=\"2.8\" fill=\"#334155\"/><text x=\"272.6\" y=\"156.0\" text-anchor=\"middle\" dominant-baseline=\"central\" font-size=\"15\" font-weight=\"700\" fill=\"#0f172a\" stroke=\"#f8fafc\" stroke-width=\"4\" paint-order=\"stroke\">Q</text><circle cx=\"215\" cy=\"50\" r=\"2.8\" fill=\"#334155\"/><text x=\"225.8\" y=\"41.0\" text-anchor=\"middle\" dominant-baseline=\"central\" font-size=\"15\" font-weight=\"700\" fill=\"#0f172a\" stroke=\"#f8fafc\" stroke-width=\"4\" paint-order=\"stroke\">R</text><circle cx=\"100\" cy=\"50\" r=\"2.8\" fill=\"#334155\"/><text x=\"89.6\" y=\"40.6\" text-anchor=\"middle\" dominant-baseline=\"central\" font-size=\"15\" font-weight=\"700\" fill=\"#0f172a\" stroke=\"#f8fafc\" stroke-width=\"4\" paint-order=\"stroke\">S</text><circle cx=\"75\" cy=\"100\" r=\"2.8\" fill=\"#334155\"/><text x=\"61.0\" y=\"100.0\" text-anchor=\"middle\" dominant-baseline=\"central\" font-size=\"15\" font-weight=\"700\" fill=\"#0f172a\" stroke=\"#f8fafc\" stroke-width=\"4\" paint-order=\"stroke\">C</text><circle cx=\"237\" cy=\"100\" r=\"2.8\" fill=\"#334155\"/><text x=\"251.0\" y=\"100.0\" text-anchor=\"middle\" dominant-baseline=\"central\" font-size=\"15\" font-weight=\"700\" fill=\"#0f172a\" stroke=\"#f8fafc\" stroke-width=\"4\" paint-order=\"stroke\">D</text></svg>"
+  },
+  {
+    "id": 30,
+    "q": "P ও Q যথাক্রমে AB ও DC এর মধ্যবিন্দু হলে P বিন্দুর অবস্থান ভেক্টর কোনটি? (A, B, C, D এর অবস্থান ভেক্টর যথাক্রমে <span class=\"vec\">a</span>, <span class=\"vec\">b</span>, <span class=\"vec\">c</span>, <span class=\"vec\">d</span>) [রা. বো. ২০১৯]",
+    "qp": "P ও Q যথাক্রমে AB ও DC এর মধ্যবিন্দু হলে P বিন্দুর অবস্থান ভেক্টর কোনটি? (A, B, C, D এর অবস্থান ভেক্টর যথাক্রমে a⃗, b⃗, c⃗, d⃗) [রা. বো. ২০১৯]",
+    "options": {
+      "a": "<span class=\"frac\"><span class=\"num\"><span class=\"vec\">a</span> + <span class=\"vec\">b</span> − <span class=\"vec\">c</span></span><span class=\"den\">2</span></span>",
+      "b": "<span class=\"frac\"><span class=\"num\"><span class=\"vec\">b</span> − <span class=\"vec\">a</span></span><span class=\"den\">2</span></span>",
+      "c": "<span class=\"frac\"><span class=\"num\"><span class=\"vec\">a</span> − <span class=\"vec\">b</span></span><span class=\"den\">2</span></span>",
+      "d": "<span class=\"frac\"><span class=\"num\"><span class=\"vec\">a</span> + <span class=\"vec\">b</span></span><span class=\"den\">2</span></span>"
+    },
+    "optionsP": {
+      "a": "(a⃗ + b⃗ − c⃗)/2",
+      "b": "(b⃗ − a⃗)/2",
+      "c": "(a⃗ − b⃗)/2",
+      "d": "(a⃗ + b⃗)/2"
+    },
+    "ans": "d",
+    "exp": "A(<span class=\"vec\">a</span>) ও B(<span class=\"vec\">b</span>) এর মধ্যবিন্দুর অবস্থান ভেক্টর = <span class=\"frac\"><span class=\"num\"><span class=\"vec\">a</span> + <span class=\"vec\">b</span></span><span class=\"den\">2</span></span>।",
+    "fig": "<svg viewBox=\"0 0 300 200\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\" style=\"width:100%;max-width:340px;height:auto;display:block;margin:0 auto\" font-family=\"Inter, Hind Siliguri, sans-serif\"><defs><marker id=\"ah22\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto\"><path d=\"M0 0 L10 5 L0 10 z\" fill=\"#4f46e5\"/></marker></defs><polygon points=\"60,150 230,150 260,55 80,55\" fill=\"#eef2ff\" stroke=\"#334155\" stroke-width=\"1.6\" stroke-linejoin=\"round\"/><line x1=\"60\" y1=\"150\" x2=\"230\" y2=\"150\" stroke=\"#334155\" stroke-width=\"1.6\"/><line x1=\"230\" y1=\"150\" x2=\"260\" y2=\"55\" stroke=\"#334155\" stroke-width=\"1.6\"/><line x1=\"260\" y1=\"55\" x2=\"80\" y2=\"55\" stroke=\"#334155\" stroke-width=\"1.6\"/><line x1=\"80\" y1=\"55\" x2=\"60\" y2=\"150\" stroke=\"#334155\" stroke-width=\"1.6\"/><line x1=\"145\" y1=\"150\" x2=\"170\" y2=\"55\" stroke=\"#64748b\" stroke-width=\"1.4\" stroke-dasharray=\"5 4\"/><line x1=\"21.5\" y1=\"183.7\" x2=\"57.0\" y2=\"152.6\" stroke=\"#4f46e5\" stroke-width=\"2\" stroke-dasharray=\"6 4\" marker-end=\"url(#ah22)\"/><line x1=\"22.0\" y1=\"184.7\" x2=\"226.1\" y2=\"150.7\" stroke=\"#4f46e5\" stroke-width=\"2\" stroke-dasharray=\"6 4\" marker-end=\"url(#ah22)\"/><circle cx=\"60\" cy=\"150\" r=\"2.8\" fill=\"#334155\"/><text x=\"47.5\" y=\"156.3\" text-anchor=\"middle\" dominant-baseline=\"central\" font-size=\"15\" font-weight=\"700\" fill=\"#0f172a\" stroke=\"#f8fafc\" stroke-width=\"4\" paint-order=\"stroke\">A</text><circle cx=\"230\" cy=\"150\" r=\"2.8\" fill=\"#334155\"/><text x=\"241.4\" y=\"158.1\" text-anchor=\"middle\" dominant-baseline=\"central\" font-size=\"15\" font-weight=\"700\" fill=\"#0f172a\" stroke=\"#f8fafc\" stroke-width=\"4\" paint-order=\"stroke\">B</text><circle cx=\"260\" cy=\"55\" r=\"2.8\" fill=\"#334155\"/><text x=\"272.8\" y=\"49.3\" text-anchor=\"middle\" dominant-baseline=\"central\" font-size=\"15\" font-weight=\"700\" fill=\"#0f172a\" stroke=\"#f8fafc\" stroke-width=\"4\" paint-order=\"stroke\">C</text><circle cx=\"80\" cy=\"55\" r=\"2.8\" fill=\"#334155\"/><text x=\"67.8\" y=\"48.1\" text-anchor=\"middle\" dominant-baseline=\"central\" font-size=\"15\" font-weight=\"700\" fill=\"#0f172a\" stroke=\"#f8fafc\" stroke-width=\"4\" paint-order=\"stroke\">D</text><circle cx=\"145\" cy=\"150\" r=\"2.8\" fill=\"#334155\"/><text x=\"145.0\" y=\"165.0\" text-anchor=\"middle\" dominant-baseline=\"central\" font-size=\"15\" font-weight=\"700\" fill=\"#0f172a\" stroke=\"#f8fafc\" stroke-width=\"4\" paint-order=\"stroke\">P</text><circle cx=\"170\" cy=\"55\" r=\"2.8\" fill=\"#334155\"/><text x=\"170.0\" y=\"40.0\" text-anchor=\"middle\" dominant-baseline=\"central\" font-size=\"15\" font-weight=\"700\" fill=\"#0f172a\" stroke=\"#f8fafc\" stroke-width=\"4\" paint-order=\"stroke\">Q</text><circle cx=\"20\" cy=\"185\" r=\"2.8\" fill=\"#334155\"/><text x=\"17.0\" y=\"172.0\" text-anchor=\"middle\" dominant-baseline=\"central\" font-size=\"15\" font-weight=\"700\" fill=\"#0f172a\" stroke=\"#f8fafc\" stroke-width=\"4\" paint-order=\"stroke\">O</text></svg>"
+  },
+  {
+    "id": 31,
+    "q": "চিত্রে ABCD ট্রাপিজিয়ামে P ও Q যথাক্রমে BD ও AC এর মধ্যবিন্দু, যেখানে AB = 5 cm, CD = 7 cm। তাহলে PQ এর মান কত? [য. বো. ২০২০]",
+    "qp": "চিত্রে ABCD ট্রাপিজিয়ামে P ও Q যথাক্রমে BD ও AC এর মধ্যবিন্দু, যেখানে AB = 5 cm, CD = 7 cm। তাহলে PQ এর মান কত? [য. বো. ২০২০]",
+    "options": {
+      "a": "6 cm",
+      "b": "4 cm",
+      "c": "2 cm",
+      "d": "1 cm"
+    },
+    "optionsP": {
+      "a": "6 cm",
+      "b": "4 cm",
+      "c": "2 cm",
+      "d": "1 cm"
+    },
+    "ans": "d",
+    "exp": "কর্ণদ্বয়ের মধ্যবিন্দুর সংযোজক রেখার দৈর্ঘ্য = <span class=\"frac\"><span class=\"num\">1</span><span class=\"den\">2</span></span>(সমান্তরাল বাহুদ্বয়ের বিয়োগফল)<br>PQ = <span class=\"frac\"><span class=\"num\">1</span><span class=\"den\">2</span></span>(DC − AB) = <span class=\"frac\"><span class=\"num\">1</span><span class=\"den\">2</span></span>(7 − 5) = 1 cm।",
+    "fig": "<svg viewBox=\"0 0 300 190\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\" style=\"width:100%;max-width:340px;height:auto;display:block;margin:0 auto\" font-family=\"Inter, Hind Siliguri, sans-serif\"><defs><marker id=\"ah23\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto\"><path d=\"M0 0 L10 5 L0 10 z\" fill=\"#4f46e5\"/></marker></defs><polygon points=\"100,50 200,50 220,150 80,150\" fill=\"#eef2ff\" stroke=\"#334155\" stroke-width=\"1.6\" stroke-linejoin=\"round\"/><line x1=\"100\" y1=\"50\" x2=\"200\" y2=\"50\" stroke=\"#334155\" stroke-width=\"1.6\"/><line x1=\"200\" y1=\"50\" x2=\"220\" y2=\"150\" stroke=\"#334155\" stroke-width=\"1.6\"/><line x1=\"220\" y1=\"150\" x2=\"80\" y2=\"150\" stroke=\"#334155\" stroke-width=\"1.6\"/><line x1=\"80\" y1=\"150\" x2=\"100\" y2=\"50\" stroke=\"#334155\" stroke-width=\"1.6\"/><line x1=\"100\" y1=\"50\" x2=\"220\" y2=\"150\" stroke=\"#64748b\" stroke-width=\"1.4\" stroke-dasharray=\"5 4\"/><line x1=\"200\" y1=\"50\" x2=\"80\" y2=\"150\" stroke=\"#64748b\" stroke-width=\"1.4\" stroke-dasharray=\"5 4\"/><line x1=\"140\" y1=\"100\" x2=\"160\" y2=\"100\" stroke=\"#e11d48\" stroke-width=\"2.4\"/><circle cx=\"100\" cy=\"50\" r=\"2.8\" fill=\"#334155\"/><text x=\"90.1\" y=\"40.1\" text-anchor=\"middle\" dominant-baseline=\"central\" font-size=\"15\" font-weight=\"700\" fill=\"#0f172a\" stroke=\"#f8fafc\" stroke-width=\"4\" paint-order=\"stroke\">A</text><circle cx=\"200\" cy=\"50\" r=\"2.8\" fill=\"#334155\"/><text x=\"209.9\" y=\"40.1\" text-anchor=\"middle\" dominant-baseline=\"central\" font-size=\"15\" font-weight=\"700\" fill=\"#0f172a\" stroke=\"#f8fafc\" stroke-width=\"4\" paint-order=\"stroke\">B</text><circle cx=\"220\" cy=\"150\" r=\"2.8\" fill=\"#334155\"/><text x=\"231.4\" y=\"158.1\" text-anchor=\"middle\" dominant-baseline=\"central\" font-size=\"15\" font-weight=\"700\" fill=\"#0f172a\" stroke=\"#f8fafc\" stroke-width=\"4\" paint-order=\"stroke\">C</text><circle cx=\"80\" cy=\"150\" r=\"2.8\" fill=\"#334155\"/><text x=\"68.6\" y=\"158.1\" text-anchor=\"middle\" dominant-baseline=\"central\" font-size=\"15\" font-weight=\"700\" fill=\"#0f172a\" stroke=\"#f8fafc\" stroke-width=\"4\" paint-order=\"stroke\">D</text><circle cx=\"140\" cy=\"100\" r=\"2.8\" fill=\"#334155\"/><text x=\"127.0\" y=\"90.0\" text-anchor=\"middle\" dominant-baseline=\"central\" font-size=\"15\" font-weight=\"700\" fill=\"#0f172a\" stroke=\"#f8fafc\" stroke-width=\"4\" paint-order=\"stroke\">P</text><circle cx=\"160\" cy=\"100\" r=\"2.8\" fill=\"#334155\"/><text x=\"174.0\" y=\"110.0\" text-anchor=\"middle\" dominant-baseline=\"central\" font-size=\"15\" font-weight=\"700\" fill=\"#0f172a\" stroke=\"#f8fafc\" stroke-width=\"4\" paint-order=\"stroke\">Q</text><text x=\"150\" y=\"28\" text-anchor=\"middle\" dominant-baseline=\"central\" font-size=\"13\" font-weight=\"700\" fill=\"#4f46e5\" stroke=\"#f8fafc\" stroke-width=\"4\" paint-order=\"stroke\">5 cm</text><text x=\"150\" y=\"172\" text-anchor=\"middle\" dominant-baseline=\"central\" font-size=\"13\" font-weight=\"700\" fill=\"#4f46e5\" stroke=\"#f8fafc\" stroke-width=\"4\" paint-order=\"stroke\">7 cm</text></svg>"
+  },
+  {
+    "id": 32,
+    "q": "AB রেখাংশ C বিন্দুতে m : n অনুপাতে অন্তর্বিভক্ত হলে নিচের কোনটি সঠিক? [যেখানে A, B ও C বিন্দুর অবস্থান ভেক্টর যথাক্রমে <span class=\"vec\">a</span>, <span class=\"vec\">b</span> ও <span class=\"vec\">c</span>]",
+    "qp": "AB রেখাংশ C বিন্দুতে m : n অনুপাতে অন্তর্বিভক্ত হলে নিচের কোনটি সঠিক? [যেখানে A, B ও C বিন্দুর অবস্থান ভেক্টর যথাক্রমে a⃗, b⃗ ও c⃗]",
+    "options": {
+      "a": "<span class=\"vec\">c</span> = <span class=\"frac\"><span class=\"num\">n<span class=\"vec\">a</span> + m<span class=\"vec\">b</span></span><span class=\"den\">m + n</span></span>",
+      "b": "<span class=\"vec\">c</span> = <span class=\"frac\"><span class=\"num\">n<span class=\"vec\">a</span> − m<span class=\"vec\">b</span></span><span class=\"den\">m + n</span></span>",
+      "c": "<span class=\"vec\">c</span> = <span class=\"frac\"><span class=\"num\">m<span class=\"vec\">a</span> + m<span class=\"vec\">b</span></span><span class=\"den\">m − n</span></span>",
+      "d": "<span class=\"vec\">c</span> = <span class=\"frac\"><span class=\"num\">m<span class=\"vec\">a</span> + n<span class=\"vec\">b</span></span><span class=\"den\">m + n</span></span>"
+    },
+    "optionsP": {
+      "a": "c⃗ = (na⃗ + mb⃗)/(m + n)",
+      "b": "c⃗ = (na⃗ − mb⃗)/(m + n)",
+      "c": "c⃗ = (ma⃗ + mb⃗)/(m − n)",
+      "d": "c⃗ = (ma⃗ + nb⃗)/(m + n)"
+    },
+    "ans": "a",
+    "exp": "অন্তর্বিভক্ত করার সূত্র: C বিন্দু AB কে m : n অনুপাতে অন্তর্বিভক্ত করলে AC : CB = m : n<br>তাই <span class=\"vec\">c</span> = <span class=\"frac\"><span class=\"num\">m<span class=\"vec\">b</span> + n<span class=\"vec\">a</span></span><span class=\"den\">m + n</span></span> = <span class=\"frac\"><span class=\"num\">n<span class=\"vec\">a</span> + m<span class=\"vec\">b</span></span><span class=\"den\">m + n</span></span>।<br>(A এর সঙ্গে n এবং B এর সঙ্গে m গুণ হয়, কারণ C বিন্দু B এর কাছাকাছি হলে <span class=\"vec\">b</span> এর ওজন বেশি।)",
+    "fig": "<svg viewBox=\"0 0 300 120\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\" style=\"width:100%;max-width:340px;height:auto;display:block;margin:0 auto\" font-family=\"Inter, Hind Siliguri, sans-serif\"><defs><marker id=\"ah24\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto\"><path d=\"M0 0 L10 5 L0 10 z\" fill=\"#4f46e5\"/></marker></defs><line x1=\"40\" y1=\"80\" x2=\"130\" y2=\"80\" stroke=\"#334155\" stroke-width=\"1.6\"/><line x1=\"130\" y1=\"80\" x2=\"260\" y2=\"80\" stroke=\"#334155\" stroke-width=\"1.6\"/><circle cx=\"40\" cy=\"80\" r=\"2.8\" fill=\"#334155\"/><text x=\"40.0\" y=\"96.0\" text-anchor=\"middle\" dominant-baseline=\"central\" font-size=\"15\" font-weight=\"700\" fill=\"#0f172a\" stroke=\"#f8fafc\" stroke-width=\"4\" paint-order=\"stroke\">A</text><circle cx=\"130\" cy=\"80\" r=\"2.8\" fill=\"#334155\"/><text x=\"130.0\" y=\"96.0\" text-anchor=\"middle\" dominant-baseline=\"central\" font-size=\"15\" font-weight=\"700\" fill=\"#0f172a\" stroke=\"#f8fafc\" stroke-width=\"4\" paint-order=\"stroke\">C</text><circle cx=\"260\" cy=\"80\" r=\"2.8\" fill=\"#334155\"/><text x=\"260.0\" y=\"96.0\" text-anchor=\"middle\" dominant-baseline=\"central\" font-size=\"15\" font-weight=\"700\" fill=\"#0f172a\" stroke=\"#f8fafc\" stroke-width=\"4\" paint-order=\"stroke\">B</text><text x=\"85\" y=\"58\" text-anchor=\"middle\" dominant-baseline=\"central\" font-size=\"13\" font-weight=\"700\" fill=\"#4f46e5\" stroke=\"#f8fafc\" stroke-width=\"4\" paint-order=\"stroke\">m</text><text x=\"195\" y=\"58\" text-anchor=\"middle\" dominant-baseline=\"central\" font-size=\"13\" font-weight=\"700\" fill=\"#4f46e5\" stroke=\"#f8fafc\" stroke-width=\"4\" paint-order=\"stroke\">n</text></svg>"
+  },
+  {
+    "id": 33,
+    "q": "O মূলবিন্দু সাপেক্ষে A বিন্দুর অবস্থান ভেক্টর <span class=\"vec\">a</span> এবং B বিন্দুর অবস্থান ভেক্টর <span class=\"vec\">b</span> হয় এবং C বিন্দুটি AB রেখাংশকে 2 : 1 অনুপাতে অন্তর্বিভক্ত করে, তবে <span class=\"vec\">OC</span> নিচের কোনটি হবে? [ঢা. বো. ২০১৫]",
+    "qp": "O মূলবিন্দু সাপেক্ষে A বিন্দুর অবস্থান ভেক্টর a⃗ এবং B বিন্দুর অবস্থান ভেক্টর b⃗ হয় এবং C বিন্দুটি AB রেখাংশকে 2 : 1 অনুপাতে অন্তর্বিভক্ত করে, তবে OC⃗ নিচের কোনটি হবে? [ঢা. বো. ২০১৫]",
+    "options": {
+      "a": "<span class=\"vec\">a</span> − 2<span class=\"vec\">b</span>",
+      "b": "<span class=\"frac\"><span class=\"num\">2<span class=\"vec\">a</span> − <span class=\"vec\">b</span></span><span class=\"den\">2</span></span>",
+      "c": "<span class=\"frac\"><span class=\"num\">2<span class=\"vec\">a</span> + <span class=\"vec\">b</span></span><span class=\"den\">3</span></span>",
+      "d": "<span class=\"frac\"><span class=\"num\"><span class=\"vec\">a</span> + 2<span class=\"vec\">b</span></span><span class=\"den\">3</span></span>"
+    },
+    "optionsP": {
+      "a": "a⃗ − 2b⃗",
+      "b": "(2a⃗ − b⃗)/2",
+      "c": "(2a⃗ + b⃗)/3",
+      "d": "(a⃗ + 2b⃗)/3"
+    },
+    "ans": "d",
+    "exp": "m = 2, n = 1 বসিয়ে <span class=\"vec\">c</span> = <span class=\"frac\"><span class=\"num\">m<span class=\"vec\">b</span> + n<span class=\"vec\">a</span></span><span class=\"den\">m + n</span></span> = <span class=\"frac\"><span class=\"num\">2<span class=\"vec\">b</span> + 1·<span class=\"vec\">a</span></span><span class=\"den\">2 + 1</span></span> = <span class=\"frac\"><span class=\"num\"><span class=\"vec\">a</span> + 2<span class=\"vec\">b</span></span><span class=\"den\">3</span></span>।",
+    "fig": "<svg viewBox=\"0 0 300 190\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\" style=\"width:100%;max-width:340px;height:auto;display:block;margin:0 auto\" font-family=\"Inter, Hind Siliguri, sans-serif\"><defs><marker id=\"ah26\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto\"><path d=\"M0 0 L10 5 L0 10 z\" fill=\"#4f46e5\"/></marker></defs><line x1=\"40\" y1=\"70\" x2=\"260\" y2=\"70\" stroke=\"#334155\" stroke-width=\"1.6\"/><line x1=\"148.5\" y1=\"163.7\" x2=\"43.0\" y2=\"72.6\" stroke=\"#4f46e5\" stroke-width=\"2\" stroke-dasharray=\"6 4\" marker-end=\"url(#ah26)\"/><line x1=\"151.5\" y1=\"163.7\" x2=\"257.0\" y2=\"72.6\" stroke=\"#4f46e5\" stroke-width=\"2\" stroke-dasharray=\"6 4\" marker-end=\"url(#ah26)\"/><line x1=\"150.7\" y1=\"163.1\" x2=\"185.5\" y2=\"73.7\" stroke=\"#4f46e5\" stroke-width=\"2\" marker-end=\"url(#ah26)\"/><circle cx=\"150\" cy=\"165\" r=\"2.8\" fill=\"#334155\"/><text x=\"150.0\" y=\"179.0\" text-anchor=\"middle\" dominant-baseline=\"central\" font-size=\"15\" font-weight=\"700\" fill=\"#0f172a\" stroke=\"#f8fafc\" stroke-width=\"4\" paint-order=\"stroke\">O</text><circle cx=\"40\" cy=\"70\" r=\"2.8\" fill=\"#334155\"/><text x=\"36.0\" y=\"55.0\" text-anchor=\"middle\" dominant-baseline=\"central\" font-size=\"15\" font-weight=\"700\" fill=\"#0f172a\" stroke=\"#f8fafc\" stroke-width=\"4\" paint-order=\"stroke\">A</text><circle cx=\"187\" cy=\"70\" r=\"2.8\" fill=\"#334155\"/><text x=\"187.0\" y=\"55.0\" text-anchor=\"middle\" dominant-baseline=\"central\" font-size=\"15\" font-weight=\"700\" fill=\"#0f172a\" stroke=\"#f8fafc\" stroke-width=\"4\" paint-order=\"stroke\">C</text><circle cx=\"260\" cy=\"70\" r=\"2.8\" fill=\"#334155\"/><text x=\"264.0\" y=\"55.0\" text-anchor=\"middle\" dominant-baseline=\"central\" font-size=\"15\" font-weight=\"700\" fill=\"#0f172a\" stroke=\"#f8fafc\" stroke-width=\"4\" paint-order=\"stroke\">B</text><text x=\"113\" y=\"84\" text-anchor=\"middle\" dominant-baseline=\"central\" font-size=\"13\" font-weight=\"700\" fill=\"#4f46e5\" stroke=\"#f8fafc\" stroke-width=\"4\" paint-order=\"stroke\">2</text><text x=\"223\" y=\"84\" text-anchor=\"middle\" dominant-baseline=\"central\" font-size=\"13\" font-weight=\"700\" fill=\"#4f46e5\" stroke=\"#f8fafc\" stroke-width=\"4\" paint-order=\"stroke\">1</text></svg>"
+  },
+  {
+    "id": 34,
+    "q": "ভেক্টর 3<span class=\"vec\">a</span> − 2<span class=\"vec\">b</span> এর সমান্তরাল ভেক্টর কোনটি?",
+    "qp": "ভেক্টর 3a⃗ − 2b⃗ এর সমান্তরাল ভেক্টর কোনটি?",
+    "options": {
+      "a": "2<span class=\"vec\">a</span> + 3<span class=\"vec\">b</span>",
+      "b": "−3<span class=\"vec\">a</span> + 2<span class=\"vec\">b</span>",
+      "c": "2<span class=\"vec\">a</span> − 3<span class=\"vec\">b</span>",
+      "d": "<span class=\"vec\">a</span> + 3<span class=\"vec\">b</span>"
+    },
+    "optionsP": {
+      "a": "2a⃗ + 3b⃗",
+      "b": "−3a⃗ + 2b⃗",
+      "c": "2a⃗ − 3b⃗",
+      "d": "a⃗ + 3b⃗"
+    },
+    "ans": "b",
+    "exp": "কোনো ভেক্টরকে স্কেলার দিয়ে গুণ করলে সমান্তরাল ভেক্টর পাওয়া যায়।<br>(3<span class=\"vec\">a</span> − 2<span class=\"vec\">b</span>) × (−1) = −3<span class=\"vec\">a</span> + 2<span class=\"vec\">b</span>।<br>অন্য অপশনগুলো 3<span class=\"vec\">a</span> − 2<span class=\"vec\">b</span> এর কোনো স্কেলার গুণিতক নয়।"
+  },
+  {
+    "id": 35,
+    "q": "<span class=\"vec\">MN</span> = b·<span class=\"vec\">TS</span> হলে- [চ. বো. ২০১৯]\ni. MN ∥ TS\nii. MN ও TS এর দৈর্ঘ্য অসমান, যখন b ≠ 1\niii. <span class=\"vec\">MN</span> ও <span class=\"vec\">TS</span> এর দিক বিপরীত, যখন b < 0\nনিচের কোনটি সঠিক?",
+    "qp": "MN⃗ = b·TS⃗ হলে- [চ. বো. ২০১৯]\ni. MN ∥ TS\nii. MN ও TS এর দৈর্ঘ্য অসমান, যখন b ≠ 1\niii. MN⃗ ও TS⃗ এর দিক বিপরীত, যখন b < 0\nনিচের কোনটি সঠিক?",
+    "options": {
+      "a": "i ও ii",
+      "b": "i ও iii",
+      "c": "ii ও iii",
+      "d": "i, ii ও iii"
+    },
+    "optionsP": {
+      "a": "i ও ii",
+      "b": "i ও iii",
+      "c": "ii ও iii",
+      "d": "i, ii ও iii"
+    },
+    "ans": "b",
+    "exp": "<span class=\"vec\">MN</span> = b·<span class=\"vec\">TS</span> হলে MN ও TS সমান্তরাল ✔ (i)<br>b < 0 হলে দিক বিপরীত ✔ (iii)<br>ii: দৈর্ঘ্য অসমান হয় যখন |b| ≠ 1। b = −1 হলে b ≠ 1 হলেও দৈর্ঘ্য সমান থাকে, তাই ii সবসময় সত্য নয়।<br>তাই i ও iii সত্য।"
+  },
+  {
+    "id": 36,
+    "q": "<span class=\"vec\">PQ</span> = m·<span class=\"vec\">RS</span> হলে- [সি. বো. ২০২৪]\ni. PQ ∥ RS\nii. <span class=\"vec\">PQ</span> ও <span class=\"vec\">RS</span> সমমুখী হবে যখন m > 0\niii. <span class=\"vec\">PQ</span> ও <span class=\"vec\">RS</span> বিপরীতমুখী হবে যখন m < 0\nনিচের কোনটি সঠিক?",
+    "qp": "PQ⃗ = m·RS⃗ হলে- [সি. বো. ২০২৪]\ni. PQ ∥ RS\nii. PQ⃗ ও RS⃗ সমমুখী হবে যখন m > 0\niii. PQ⃗ ও RS⃗ বিপরীতমুখী হবে যখন m < 0\nনিচের কোনটি সঠিক?",
+    "options": {
+      "a": "i ও ii",
+      "b": "i ও iii",
+      "c": "ii ও iii",
+      "d": "i, ii ও iii"
+    },
+    "optionsP": {
+      "a": "i ও ii",
+      "b": "i ও iii",
+      "c": "ii ও iii",
+      "d": "i, ii ও iii"
+    },
+    "ans": "d",
+    "exp": "স্কেলার গুণের নিয়ম অনুযায়ী: <span class=\"vec\">PQ</span> = m·<span class=\"vec\">RS</span> হলে ভেক্টর দুটি সমান্তরাল ✔<br>m > 0 হলে দিক একই (সমমুখী) ✔<br>m < 0 হলে দিক বিপরীত (বিপরীতমুখী) ✔<br>তিনটি উক্তিই সত্য।"
+  }
+];
+
+    const TARGET_EMAIL = "akashtalukder1998@gmail.com";
+    const INSTRUCTOR_NAME = "AKASH";
+    const OPT_LABELS_BN = { a: "ক", b: "খ", c: "গ", d: "ঘ" };
+    const STORAGE_ATTEMPTS_KEY = "akash_plane_vector_36_attempts_v1";
+    const SESSION_ACTIVE_KEY = "akash_plane_vector_36_active_session_v1";
+
+    // Application State
+    const state = {
+      student: { name: "", roll: "" },
+      answers: {},
+      currentIndex: 0,
+      reviewFilter: "all",
+      attemptNumber: 1,
+      reloadCount: 0,
+      answerChangeCount: 0,
+      startTimeObj: null,
+      startTimeFormatted: "",
+      durationLimitSec: 0,
+      elapsedSeconds: 0,
+      timerInterval: null,
+      lastResult: null
+    };
+
+    // Bangla Digit & Ordinal Helpers
+    const BN_DIGITS = ["০", "১", "২", "৩", "৪", "৫", "৬", "৭", "৮", "৯"];
+    function toBnNum(val) {
+      return String(val).replace(/\d/g, (d) => BN_DIGITS[Number(d)]);
+    }
+
+    function getAttemptOrdinalBn(n) {
+      if (n === 1) return "১ম বার";
+      if (n === 2) return "২য় বার";
+      if (n === 3) return "৩য় বার";
+      if (n === 4) return "৪র্থ বার";
+      if (n === 5) return "৫ম বার";
+      return `${toBnNum(n)}তম বার`;
+    }
+
+    function getAttemptOrdinalEn(n) {
+      const mod100 = n % 100;
+      if (mod100 >= 11 && mod100 <= 13) return `${n}th Attempt`;
+      const mod10 = n % 10;
+      if (mod10 === 1) return `${n}st Attempt`;
+      if (mod10 === 2) return `${n}nd Attempt`;
+      if (mod10 === 3) return `${n}rd Attempt`;
+      return `${n}th Attempt`;
+    }
+
+    function formatBnTimestamp(dateObj) {
+      const monthsBn = [
+        "জানু", "ফেব্রু", "মার্চ", "এপ্রিল", "মে", "জুন",
+        "জুলাই", "আগস্ট", "সেপ্টে", "অক্টো", "নভে", "ডিসে"
+      ];
+      const day = toBnNum(String(dateObj.getDate()).padStart(2, "0"));
+      const month = monthsBn[dateObj.getMonth()];
+      const year = toBnNum(dateObj.getFullYear());
+      let hours = dateObj.getHours();
+      const ampm = hours >= 12 ? "PM" : "AM";
+      hours = hours % 12;
+      if (hours === 0) hours = 12;
+      const hh = toBnNum(String(hours).padStart(2, "0"));
+      const mm = toBnNum(String(dateObj.getMinutes()).padStart(2, "0"));
+      const ss = toBnNum(String(dateObj.getSeconds()).padStart(2, "0"));
+      return `${day} ${month}, ${year}, ${hh}:${mm}:${ss} ${ampm}`;
+    }
+
+    function formatDurationBn(totalSec) {
+      const mins = Math.floor(totalSec / 60);
+      const secs = totalSec % 60;
+      return `${toBnNum(mins)} মিনিট ${toBnNum(secs)} সেকেন্ড`;
+    }
+
+    function formatTimerDigital(totalSec) {
+      const mins = Math.floor(totalSec / 60);
+      const secs = totalSec % 60;
+      return `${String(mins).padStart(2, "0")}:${String(secs).padStart(2, "0")}`;
+    }
+
+    function generateVerificationCode(attemptNum, score, name, roll) {
+      const attPart = `ATT${attemptNum}`;
+      const scPart = `SC${String(score).padStart(2, "0")}`;
+      const seed = `${name}|${roll}|${attemptNum}|${score}|${Date.now()}`;
+      let hash = 2166136261;
+      for (let i = 0; i < seed.length; i++) {
+        hash ^= seed.charCodeAt(i);
+        hash = Math.imul(hash, 16777619);
+      }
+      const hex = (hash >>> 0).toString(16).toUpperCase().padStart(8, "0").slice(0, 4);
+      return `EXAM-${attPart}-${scPart}-${hex}`;
+    }
+
+    // LocalStorage & SessionStorage Tracking Helpers
+    function getStoredAttemptCount() {
+      try {
+        return Number(localStorage.getItem(STORAGE_ATTEMPTS_KEY) || "0");
+      } catch (e) {
+        return 0;
+      }
+    }
+
+    function incrementStoredAttemptCount() {
+      try {
+        const next = getStoredAttemptCount() + 1;
+        localStorage.setItem(STORAGE_ATTEMPTS_KEY, String(next));
+        return next;
+      } catch (e) {
+        return state.attemptNumber;
+      }
+    }
+
+    function saveActiveSession() {
+      try {
+        sessionStorage.setItem(
+          SESSION_ACTIVE_KEY,
+          JSON.stringify({
+            active: true,
+            student: state.student,
+            answers: state.answers,
+            currentIndex: state.currentIndex,
+            attemptNumber: state.attemptNumber,
+            reloadCount: state.reloadCount,
+            answerChangeCount: state.answerChangeCount,
+            startTimeMs: state.startTimeObj ? state.startTimeObj.getTime() : Date.now(),
+            startTimeFormatted: state.startTimeFormatted,
+            durationLimitSec: state.durationLimitSec
+          })
+        );
+      } catch (e) {
+        // Ignore storage restrictions
+      }
+    }
+
+    function clearActiveSession() {
+      try {
+        sessionStorage.removeItem(SESSION_ACTIVE_KEY);
+      } catch (e) {
+        // Ignore storage restrictions
+      }
+    }
+
+    // DOM References
+    const entryScreen = document.getElementById("entryScreen");
+    const examScreen = document.getElementById("examScreen");
+    const resultScreen = document.getElementById("resultScreen");
+    const examProgressBarWrap = document.getElementById("examProgressBarWrap");
+    const headerTimerBadge = document.getElementById("headerTimerBadge");
+    const questionsContainer = document.getElementById("questionsContainer");
+    const reviewContainer = document.getElementById("reviewContainer");
+
+    function showNotice(msg) {
+      const box = document.getElementById("globalNotice");
+      document.getElementById("globalNoticeText").innerHTML = msg;
+      box.classList.remove("hidden");
+    }
+
+    function hideNotice() {
+      document.getElementById("globalNotice").classList.add("hidden");
+    }
+
+    document.getElementById("closeNoticeBtn").addEventListener("click", hideNotice);
+
+    function stopExamTimer() {
+      if (state.timerInterval) {
+        clearInterval(state.timerInterval);
+        state.timerInterval = null;
+      }
+    }
+
+    function startExamTimer(limitSeconds, initialElapsed = 0) {
+      stopExamTimer();
+      state.durationLimitSec = limitSeconds;
+      state.elapsedSeconds = initialElapsed;
+
+      const timerEl = document.getElementById("liveTimerDisplay");
+      timerEl.textContent =
+        state.durationLimitSec > 0
+          ? formatTimerDigital(Math.max(0, state.durationLimitSec - state.elapsedSeconds))
+          : formatTimerDigital(state.elapsedSeconds);
+
+      state.timerInterval = setInterval(() => {
+        state.elapsedSeconds = Math.max(
+          0,
+          Math.floor((Date.now() - state.startTimeObj.getTime()) / 1000)
+        );
+        if (state.durationLimitSec > 0) {
+          const remaining = Math.max(0, state.durationLimitSec - state.elapsedSeconds);
+          timerEl.textContent = formatTimerDigital(remaining);
+          if (remaining === 0) {
+            stopExamTimer();
+            showNotice("⏰ নির্ধারিত সময় শেষ হয়েছে! আপনার পরীক্ষা স্বয়ংক্রিয়ভাবে জমা হচ্ছে...");
+            finalizeAndSubmitExam();
+          }
+        } else {
+          timerEl.textContent = formatTimerDigital(state.elapsedSeconds);
+        }
+      }, 1000);
+    }
+
+    function getAnsweredCount() {
+      return Object.keys(state.answers).length;
+    }
+
+    function updateProgressUI() {
+      const ansCount = getAnsweredCount();
+      const total = QUESTIONS.length;
+      const pct = Math.round((ansCount / total) * 100);
+
+      document.getElementById("answeredCountText").textContent = ansCount;
+      document.getElementById("bottomAnsweredCount").textContent = toBnNum(ansCount);
+      document.getElementById("currentQIndicator").textContent = toBnNum(state.currentIndex + 1);
+      document.getElementById("progressFill").style.width = `${pct}%`;
+
+      const prevBtn = document.getElementById("prevQuestionBtn");
+      const nextBtn = document.getElementById("nextQuestionBtn");
+      prevBtn.disabled = state.currentIndex <= 0;
+      if (state.currentIndex >= total - 1) {
+        nextBtn.textContent = "শেষ প্রশ্ন ✓";
+      } else {
+        nextBtn.textContent = "পরবর্তী প্রশ্ন →";
+      }
+    }
+
+    function goToQuestion(idx) {
+      const clamped = Math.max(0, Math.min(QUESTIONS.length - 1, idx));
+      state.currentIndex = clamped;
+      saveActiveSession();
+      renderExamQuestion();
+    }
+
+    function renderExamQuestion() {
+      questionsContainer.innerHTML = "";
+      const idx = state.currentIndex;
+      const qObj = QUESTIONS[idx];
+      if (!qObj) return;
+
+      const selectedOpt = state.answers[idx] || null;
+      const isAnswered = Boolean(selectedOpt);
+
+      const card = document.createElement("article");
+      card.id = `exam-q-${idx}`;
+      card.className = "card-box p-5 sm:p-6";
+
+      const headerRow = document.createElement("div");
+      headerRow.className = "flex items-center justify-between gap-2 mb-3";
+
+      const qStepTag = document.createElement("span");
+      qStepTag.className = "text-xs sm:text-sm font-bold text-indigo-600 mono-num";
+      qStepTag.textContent = `প্রশ্ন ${toBnNum(qObj.id)} / ৩৬`;
+
+      const badge = document.createElement("span");
+      badge.className = isAnswered
+        ? "text-xs font-bold px-3 py-1 rounded-full bg-indigo-100 text-indigo-800 shrink-0"
+        : "text-xs font-semibold px-3 py-1 rounded-full bg-slate-100 text-slate-600 shrink-0";
+      badge.textContent = isAnswered ? `উত্তর দেওয়া হয়েছে: ${OPT_LABELS_BN[selectedOpt]}` : "উত্তর দেওয়া হয়নি";
+
+      headerRow.appendChild(qStepTag);
+      headerRow.appendChild(badge);
+      card.appendChild(headerRow);
+
+      const qTitle = document.createElement("h3");
+      qTitle.className = "text-base sm:text-lg font-bold text-slate-900 leading-relaxed whitespace-pre-line mb-4";
+      qTitle.innerHTML = `${toBnNum(qObj.id)}। ${qObj.q}`;
+      card.appendChild(qTitle);
+
+      if (qObj.fig) {
+        const figBox = document.createElement("div");
+        figBox.className = "fig-box";
+        figBox.innerHTML = qObj.fig;
+        card.appendChild(figBox);
+      }
+
+      const optsGrid = document.createElement("div");
+      optsGrid.className = "grid grid-cols-1 gap-2.5";
+
+      ["a", "b", "c", "d"].forEach((optKey) => {
+        const optText = qObj.options[optKey];
+        const isSelected = selectedOpt === optKey;
+
+        const optBtn = document.createElement("button");
+        optBtn.type = "button";
+        optBtn.className = `option-row w-full text-left p-3.5 flex items-center gap-3 cursor-pointer ${
+          isSelected ? "selected" : ""
+        }`;
+        optBtn.setAttribute("aria-pressed", isSelected ? "true" : "false");
+
+        const optBadge = document.createElement("span");
+        optBadge.className =
+          "opt-badge w-8 h-8 text-sm font-bold flex items-center justify-center shrink-0";
+        optBadge.textContent = OPT_LABELS_BN[optKey];
+
+        const optLabel = document.createElement("span");
+        optLabel.className = "text-sm sm:text-base font-medium leading-snug break-words";
+        optLabel.innerHTML = optText;
+
+        optBtn.appendChild(optBadge);
+        optBtn.appendChild(optLabel);
+
+        optBtn.addEventListener("click", () => {
+          const prevChoice = state.answers[idx] || null;
+          if (prevChoice === optKey) {
+            delete state.answers[idx];
+            state.answerChangeCount += 1;
+          } else {
+            if (prevChoice !== null && prevChoice !== optKey) {
+              state.answerChangeCount += 1;
+            }
+            state.answers[idx] = optKey;
+          }
+          saveActiveSession();
+          updateProgressUI();
+
+          const nowSelected = state.answers[idx] || null;
+          badge.className = nowSelected
+            ? "text-xs font-bold px-3 py-1 rounded-full bg-indigo-100 text-indigo-800 shrink-0"
+            : "text-xs font-semibold px-3 py-1 rounded-full bg-slate-100 text-slate-600 shrink-0";
+          badge.textContent = nowSelected
+            ? `উত্তর দেওয়া হয়েছে: ${OPT_LABELS_BN[nowSelected]}`
+            : "উত্তর দেওয়া হয়নি";
+
+          optsGrid.querySelectorAll("button").forEach((b, bIdx) => {
+            const key = ["a", "b", "c", "d"][bIdx];
+            const active = nowSelected === key;
+            b.className = `option-row w-full text-left p-3.5 flex items-center gap-3 cursor-pointer ${
+              active ? "selected" : ""
+            }`;
+            b.setAttribute("aria-pressed", active ? "true" : "false");
+          });
+        });
+
+        optsGrid.appendChild(optBtn);
+      });
+
+      card.appendChild(optsGrid);
+      questionsContainer.appendChild(card);
+      updateProgressUI();
+    }
+
+    // Begin Exam Session Helper
+    function launchExamSession(isResume = false) {
+      entryScreen.classList.add("hidden");
+      resultScreen.classList.add("hidden");
+      examScreen.classList.remove("hidden");
+      examProgressBarWrap.classList.remove("hidden");
+      headerTimerBadge.classList.remove("hidden");
+
+      const metaText = `${state.student.name} (রোল: ${state.student.roll}) • ${getAttemptOrdinalBn(
+        state.attemptNumber
+      )} চেষ্টা`;
+      document.getElementById("headerStudentInfo").textContent = metaText;
+      document.getElementById("examCandidateMeta").textContent = metaText;
+
+      renderExamQuestion();
+
+      const elapsedSoFar = isResume
+        ? Math.max(0, Math.floor((Date.now() - state.startTimeObj.getTime()) / 1000))
+        : 0;
+      startExamTimer(state.durationLimitSec, elapsedSoFar);
+    }
+
+    // Restore Active Session if Page Reloaded Mid-Exam
+    (function initAppOnLoad() {
+      const prevAttempts = getStoredAttemptCount();
+      if (prevAttempts > 0) {
+        const badge = document.getElementById("previousAttemptBadge");
+        badge.textContent = `পূর্ববর্তী চেষ্টা: ${toBnNum(prevAttempts)} বার`;
+        badge.classList.remove("hidden");
+      }
+
+      try {
+        const savedRaw = sessionStorage.getItem(SESSION_ACTIVE_KEY);
+        if (savedRaw) {
+          const parsed = JSON.parse(savedRaw);
+          if (parsed && parsed.active && parsed.student && parsed.student.name) {
+            state.student = parsed.student;
+            state.answers = parsed.answers || {};
+            state.currentIndex = Number.isInteger(parsed.currentIndex)
+              ? Math.max(0, Math.min(QUESTIONS.length - 1, parsed.currentIndex))
+              : 0;
+            state.attemptNumber = parsed.attemptNumber || prevAttempts + 1;
+            state.reloadCount = (parsed.reloadCount || 0) + 1;
+            state.answerChangeCount = parsed.answerChangeCount || 0;
+            state.startTimeObj = new Date(parsed.startTimeMs || Date.now());
+            state.startTimeFormatted =
+              parsed.startTimeFormatted || formatBnTimestamp(state.startTimeObj);
+            state.durationLimitSec = parsed.durationLimitSec || 0;
+
+            saveActiveSession();
+            launchExamSession(true);
+            showNotice(
+              `⚠️ পরীক্ষা চলাকালীন পেজ রিলোড শনাক্ত হয়েছে (মোট রিলোড: ${toBnNum(
+                state.reloadCount
+              )} বার)। আপনার পূর্বের উত্তরসমূহ সংরক্ষিত আছে।`
+            );
+          }
+        }
+      } catch (e) {
+        // Ignore storage errors
+      }
+    })();
+
+    // Student Entry Form Submit
+    document.getElementById("studentEntryForm").addEventListener("submit", (e) => {
+      e.preventDefault();
+      hideNotice();
+
+      const nameInput = document.getElementById("studentName");
+      const rollInput = document.getElementById("studentRoll");
+      const durationSelect = document.getElementById("examDurationSelect");
+
+      const nameVal = nameInput.value.trim();
+      const rollVal = rollInput.value.trim();
+      const durationMinutes = Number(durationSelect ? durationSelect.value : 0);
+
+      let valid = true;
+      if (!nameVal) {
+        document.getElementById("nameError").classList.remove("hidden");
+        nameInput.focus();
+        valid = false;
+      } else {
+        document.getElementById("nameError").classList.add("hidden");
+      }
+
+      if (!rollVal) {
+        document.getElementById("rollError").classList.remove("hidden");
+        if (valid) rollInput.focus();
+        valid = false;
+      } else {
+        document.getElementById("rollError").classList.add("hidden");
+      }
+
+      if (!valid) return;
+
+      state.student = { name: nameVal, roll: rollVal };
+      state.answers = {};
+      state.currentIndex = 0;
+      state.attemptNumber = getStoredAttemptCount() + 1;
+      state.reloadCount = 0;
+      state.answerChangeCount = 0;
+      state.startTimeObj = new Date();
+      state.startTimeFormatted = formatBnTimestamp(state.startTimeObj);
+      state.durationLimitSec = durationMinutes > 0 ? durationMinutes * 60 : 0;
+
+      saveActiveSession();
+      launchExamSession(false);
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+
+    // Keep mobile zoom reset cleanly on input focus/blur
+    ["studentName", "studentRoll"].forEach((id) => {
+      const el = document.getElementById(id);
+      if (el) {
+        el.addEventListener("focus", () => {
+          el.style.zoom = "1";
+          el.style.transform = "none";
+        });
+        el.addEventListener("blur", () => {
+          if (window.visualViewport && window.visualViewport.scale > 1) {
+            window.scrollTo(window.scrollX, window.scrollY);
+          }
+        });
+      }
+    });
+
+    // Previous & Next Single-Question Navigation
+    document.getElementById("prevQuestionBtn").addEventListener("click", () => {
+      if (state.currentIndex > 0) {
+        goToQuestion(state.currentIndex - 1);
+      }
+    });
+
+    document.getElementById("nextQuestionBtn").addEventListener("click", () => {
+      if (state.currentIndex < QUESTIONS.length - 1) {
+        goToQuestion(state.currentIndex + 1);
+      } else {
+        handleRequestSubmit();
+      }
+    });
+
+    // Submit Confirmation Flow
+    function handleRequestSubmit() {
+      const answered = getAnsweredCount();
+      const total = QUESTIONS.length;
+      const unanswered = total - answered;
+      document.getElementById("confirmSubmitStats").innerHTML =
+        `আপনি <strong>${toBnNum(answered)}</strong> টি প্রশ্নের উত্তর দিয়েছেন এবং <strong>${toBnNum(
+          unanswered
+        )}</strong> টি প্রশ্ন উত্তরহীন রেখেছেন (মোট ৩৬টি)।`;
+      document.getElementById("confirmSubmitModal").classList.remove("hidden");
+    }
+
+    document.getElementById("topSubmitExamBtn").addEventListener("click", handleRequestSubmit);
+    document.getElementById("bottomSubmitExamBtn").addEventListener("click", handleRequestSubmit);
+    document.getElementById("cancelSubmitModalBtn").addEventListener("click", () => {
+      document.getElementById("confirmSubmitModal").classList.add("hidden");
+    });
+
+    // Finalize Exam, Compute Score, Update Verification Card & Send Mail
+    function finalizeAndSubmitExam() {
+      stopExamTimer();
+      clearActiveSession();
+      document.getElementById("confirmSubmitModal").classList.add("hidden");
+
+      const completedAttemptNum = incrementStoredAttemptCount();
+      const endTimeObj = new Date();
+      const endTimeFormatted = formatBnTimestamp(endTimeObj);
+      const totalElapsed = Math.max(
+        1,
+        Math.floor((endTimeObj.getTime() - state.startTimeObj.getTime()) / 1000)
+      );
+      const durationBn = formatDurationBn(totalElapsed);
+
+      let correct = 0;
+      let wrong = 0;
+      let unanswered = 0;
+
+      const detailedItems = QUESTIONS.map((qObj, idx) => {
+        const chosen = state.answers[idx] || null;
+        let status = "unanswered";
+        if (!chosen) {
+          unanswered += 1;
+          status = "unanswered";
+        } else if (chosen === qObj.ans) {
+          correct += 1;
+          status = "correct";
+        } else {
+          wrong += 1;
+          status = "wrong";
+        }
+
+        return {
+          id: qObj.id,
+          q: qObj.q,
+          fig: qObj.fig || "",
+          options: qObj.options,
+          chosen,
+          chosenText: chosen ? `${OPT_LABELS_BN[chosen]}. ${qObj.options[chosen]}` : "উত্তর দেননি",
+          ans: qObj.ans,
+          ansText: `${OPT_LABELS_BN[qObj.ans]}. ${qObj.options[qObj.ans]}`,
+          chosenPlain: chosen ? `${OPT_LABELS_BN[chosen]}. ${qObj.optionsP[chosen]}` : "উত্তর দেননি",
+          ansPlain: `${OPT_LABELS_BN[qObj.ans]}. ${qObj.optionsP[qObj.ans]}`,
+          exp: qObj.exp,
+          status
+        };
+      });
+
+      const total = QUESTIONS.length;
+      const percentage = ((correct / total) * 100).toFixed(2);
+      const verificationCode = generateVerificationCode(
+        completedAttemptNum,
+        correct,
+        state.student.name,
+        state.student.roll
+      );
+
+      const resultObj = {
+        instructor: INSTRUCTOR_NAME,
+        student: { ...state.student },
+        attemptNum: completedAttemptNum,
+        attemptBn: getAttemptOrdinalBn(completedAttemptNum),
+        attemptEn: getAttemptOrdinalEn(completedAttemptNum),
+        reloadCount: state.reloadCount,
+        answerChangeCount: state.answerChangeCount,
+        startTimeFormatted: state.startTimeFormatted,
+        endTimeFormatted,
+        durationBn,
+        verificationCode,
+        score: correct,
+        total,
+        percentage,
+        correct,
+        wrong,
+        unanswered,
+        items: detailedItems
+      };
+
+      state.lastResult = resultObj;
+      state.reviewFilter = "all";
+
+      // Switch UI Screens
+      examScreen.classList.add("hidden");
+      examProgressBarWrap.classList.add("hidden");
+      headerTimerBadge.classList.add("hidden");
+      resultScreen.classList.remove("hidden");
+
+      // Populate Top Emerald Verification Card
+      document.getElementById("attemptTopPill").textContent = `${resultObj.attemptBn} চেষ্টা ✓`;
+      document.getElementById("trkStudentName").textContent = resultObj.student.name;
+      document.getElementById("trkStudentRoll").textContent = resultObj.student.roll;
+      document.getElementById("trkAttemptText").textContent = `${resultObj.attemptBn} (${resultObj.attemptEn})`;
+      document.getElementById("trkReloadCount").textContent = `${toBnNum(resultObj.reloadCount)} বার`;
+      document.getElementById("trkChangeCount").textContent = `${toBnNum(resultObj.answerChangeCount)} বার`;
+      document.getElementById("trkTimeTaken").textContent = resultObj.durationBn;
+      document.getElementById("trkStartTime").textContent = resultObj.startTimeFormatted;
+      document.getElementById("trkEndTime").textContent = resultObj.endTimeFormatted;
+      document.getElementById("trkVerificationCode").textContent = resultObj.verificationCode;
+
+      // Populate Score Summary Card
+      document.getElementById("sumScoreText").textContent = `${toBnNum(correct)}/${toBnNum(total)}`;
+      document.getElementById("sumCorrectText").textContent = toBnNum(correct);
+      document.getElementById("sumWrongText").textContent = toBnNum(wrong);
+      document.getElementById("sumUnansweredText").textContent = toBnNum(unanswered);
+
+      const pctNum = Number(percentage);
+      const feedbackEl = document.getElementById("performanceFeedbackBox");
+      if (pctNum >= 80) {
+        feedbackEl.textContent = "অসাধারণ ফলাফল! সমতলীয় ভেক্টর অধ্যায়ে আপনার প্রস্তুতি অত্যন্ত দৃঢ়।";
+      } else if (pctNum >= 50) {
+        feedbackEl.textContent = "ভালো চেষ্টা! ভুল হওয়া প্রশ্নগুলোর ব্যাখ্যা নিচে দেখে নিলে আরও ভালো করবেন।";
+      } else {
+        feedbackEl.textContent = "এই অধ্যায়ের সমতলীয় ভেক্টর অংশগুলো পুনরায় পড়ে আবার চেষ্টা করুন।";
+      }
+
+      // Populate Filter Tab Counts
+      document.getElementById("tabAllCount").textContent = toBnNum(total);
+      document.getElementById("tabWrongCount").textContent = toBnNum(wrong);
+      document.getElementById("tabUnansweredCount").textContent = toBnNum(unanswered);
+      document.getElementById("tabCorrectCount").textContent = toBnNum(correct);
+
+      renderReviewList();
+      sendResultViaFormSubmit(resultObj, TARGET_EMAIL);
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    document.getElementById("confirmSubmitActionBtn").addEventListener("click", finalizeAndSubmitExam);
+
+    function buildEmailSummaryText(res) {
+      const wrongNums = res.items
+        .filter((it) => it.status === "wrong")
+        .map((it) => `${toBnNum(it.id)} (আপনার উত্তর: ${it.chosenPlain}, সঠিক: ${it.ansPlain})`)
+        .join("\n");
+
+      const unansweredNums = res.items
+        .filter((it) => it.status === "unanswered")
+        .map((it) => toBnNum(it.id))
+        .join(", ");
+
+      return [
+        `সমতলীয় ভেক্টর (মোট ৩৬টি প্রশ্ন)`,
+        `Instructor: ${res.instructor}`,
+        `Verification Code: ${res.verificationCode}`,
+        `----------------------------------------`,
+        `শিক্ষার্থীর নাম: ${res.student.name}`,
+        `রোল / আইডি: ${res.student.roll}`,
+        `মোট চেষ্টার সংখ্যা: ${res.attemptBn} (${res.attemptEn})`,
+        `পেজ রিলোড / রিফ্রেশ: ${toBnNum(res.reloadCount)} বার`,
+        `উত্তর পরিবর্তন: ${toBnNum(res.answerChangeCount)} বার`,
+        `ব্যয়িত সময়: ${res.durationBn}`,
+        `শুরু: ${res.startTimeFormatted}`,
+        `জমা: ${res.endTimeFormatted}`,
+        `----------------------------------------`,
+        `প্রাপ্ত নম্বর: ${toBnNum(res.score)} / ${toBnNum(res.total)} (${res.percentage}%)`,
+        `সঠিক উত্তর: ${toBnNum(res.correct)} | ভুল উত্তর: ${toBnNum(res.wrong)} | উত্তর দেননি: ${toBnNum(res.unanswered)}`,
+        `----------------------------------------`,
+        `ভুল উত্তরসমূহ (${toBnNum(res.wrong)}টি):`,
+        wrongNums || "নেই",
+        `----------------------------------------`,
+        `উত্তরহীন প্রশ্ন নম্বর (${toBnNum(res.unanswered)}টি): ${unansweredNums || "নেই"}`
+      ].join("\n");
+    }
+
+    async function sendResultViaFormSubmit(res, recipientEmail) {
+      const statusBox = document.getElementById("emailStatusMessage");
+      const mailtoBtn = document.getElementById("mailtoDirectBtn");
+
+      const subject = `Plane Vector MCQ Result | ${res.student.name} (Roll: ${res.student.roll}) | ${res.score}/${res.total} [${res.verificationCode}]`;
+      const summaryBody = buildEmailSummaryText(res);
+
+      mailtoBtn.href = `mailto:${encodeURIComponent(recipientEmail)}?subject=${encodeURIComponent(
+        subject
+      )}&body=${encodeURIComponent(summaryBody)}`;
+
+      statusBox.innerHTML = `⏳ <strong>${recipientEmail}</strong> মেইলে সম্পূর্ণ ফলাফল ও তথ্য পাঠানো হচ্ছে...`;
+
+      try {
+        const response = await fetch(`https://formsubmit.co/ajax/${encodeURIComponent(recipientEmail)}`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json"
+          },
+          body: JSON.stringify({
+            _subject: subject,
+            Instructor: res.instructor,
+            Verification_Code: res.verificationCode,
+            Student_Name: res.student.name,
+            Roll_ID: res.student.roll,
+            Attempt: `${res.attemptBn} (${res.attemptEn})`,
+            Page_Reloads: `${res.reloadCount}`,
+            Answer_Changes: `${res.answerChangeCount}`,
+            Time_Taken: res.durationBn,
+            Start_Time: res.startTimeFormatted,
+            Submit_Time: res.endTimeFormatted,
+            Score: `${res.score} / ${res.total} (${res.percentage}%)`,
+            Correct_Answers: `${res.correct}`,
+            Wrong_Answers: `${res.wrong}`,
+            Unanswered: `${res.unanswered}`,
+            Full_Report: summaryBody
+          })
+        });
+
+        const data = await response.json();
+        if (response.ok && (data.success === "true" || data.success === true)) {
+          statusBox.innerHTML = `✅ <strong>${recipientEmail}</strong> মেইলে সম্পূর্ণ ফলাফল ও তথ্য পাঠানো হয়েছে!<span class="block text-xs text-emerald-800 mt-0.5">(প্রথমবার ব্যবহারে FormSubmit থেকে আসা ভেরিফিকেশন লিংকটি ইনবক্স/স্প্যাম থেকে একবার Confirm করে নেবেন)</span>`;
+          return;
+        }
+        throw new Error("FormSubmit AJAX returned error");
+      } catch (err) {
+        statusBox.innerHTML = `✅ ফলাফল প্রস্তুত হয়েছে! স্বয়ংক্রিয় মেইল ব্লক হলে ডানপাশের <strong>"সরাসরি মেইল করুন"</strong> বাটনে ক্লিক করে <strong>${recipientEmail}</strong> ঠিকানায় পাঠিয়ে দিন।`;
+      }
+    }
+
+    document.getElementById("resendEmailBtn").addEventListener("click", () => {
+      if (!state.lastResult) return;
+      const mailVal = document.getElementById("instructorMailDisplay").value.trim() || TARGET_EMAIL;
+      sendResultViaFormSubmit(state.lastResult, mailVal);
+    });
+
+    // Render Detailed Review Cards with Explanations
+    function renderReviewList() {
+      if (!state.lastResult) return;
+      reviewContainer.innerHTML = "";
+
+      const filtered = state.lastResult.items.filter((it) => {
+        if (state.reviewFilter === "all") return true;
+        return it.status === state.reviewFilter;
+      });
+
+      if (filtered.length === 0) {
+        const emptyBox = document.createElement("div");
+        emptyBox.className = "card-box p-6 text-center text-sm font-semibold text-slate-600";
+        emptyBox.textContent = "এই ক্যাটাগরিতে কোনো প্রশ্ন নেই।";
+        reviewContainer.appendChild(emptyBox);
+        return;
+      }
+
+      filtered.forEach((it) => {
+        const card = document.createElement("article");
+        card.className = "card-box p-4 sm:p-6";
+
+        let statusBadgeClass = "bg-slate-100 text-slate-700";
+        let statusText = "উত্তরহীন";
+        if (it.status === "correct") {
+          statusBadgeClass = "bg-emerald-100 text-emerald-800";
+          statusText = "সঠিক উত্তর ✓";
+        } else if (it.status === "wrong") {
+          statusBadgeClass = "bg-rose-100 text-rose-800";
+          statusText = "ভুল উত্তর ✕";
+        }
+
+        const topRow = document.createElement("div");
+        topRow.className = "flex items-center justify-between gap-2 mb-2";
+
+        const qNumTag = document.createElement("span");
+        qNumTag.className = "text-xs sm:text-sm font-bold text-indigo-600";
+        qNumTag.textContent = `প্রশ্ন ${toBnNum(it.id)}`;
+
+        const statusBadge = document.createElement("span");
+        statusBadge.className = `text-xs font-bold px-3 py-1 rounded-full ${statusBadgeClass}`;
+        statusBadge.textContent = statusText;
+
+        topRow.appendChild(qNumTag);
+        topRow.appendChild(statusBadge);
+        card.appendChild(topRow);
+
+        const qTitle = document.createElement("h4");
+        qTitle.className = "text-sm sm:text-base font-bold text-slate-900 leading-relaxed whitespace-pre-line mb-3.5";
+        qTitle.innerHTML = it.q;
+        card.appendChild(qTitle);
+
+        if (it.fig) {
+          const figBox = document.createElement("div");
+          figBox.className = "fig-box";
+          figBox.innerHTML = it.fig;
+          card.appendChild(figBox);
+        }
+
+        // 4 Options List (ক, খ, গ, ঘ)
+        const optsWrap = document.createElement("div");
+        optsWrap.className = "space-y-2 mb-4";
+
+        ["a", "b", "c", "d"].forEach((k) => {
+          const isCorrect = it.ans === k;
+          const isChosen = it.chosen === k;
+
+          let rowStyle = "border border-slate-200 bg-white text-slate-800";
+          let tagHtml = "";
+
+          if (isCorrect && isChosen) {
+            rowStyle = "border-2 border-emerald-500 bg-emerald-50 text-emerald-950 font-bold";
+            tagHtml = `<span class="text-xs font-bold text-emerald-700 shrink-0">✓ আপনার ও সঠিক উত্তর</span>`;
+          } else if (isCorrect) {
+            rowStyle = "border-2 border-emerald-500 bg-emerald-50 text-emerald-950 font-bold";
+            tagHtml = `<span class="text-xs font-bold text-emerald-700 shrink-0">✓ সঠিক উত্তর</span>`;
+          } else if (isChosen) {
+            rowStyle = "border-2 border-rose-500 bg-rose-50 text-rose-950 font-semibold";
+            tagHtml = `<span class="text-xs font-bold text-rose-700 shrink-0">✕ আপনার ভুল উত্তর</span>`;
+          }
+
+          const optDiv = document.createElement("div");
+          optDiv.className = `rounded-xl px-3.5 py-2.5 text-xs sm:text-sm flex flex-wrap items-center justify-between gap-2 ${rowStyle}`;
+          optDiv.innerHTML = `<span><strong>${OPT_LABELS_BN[k]}.</strong> ${it.options[k]}</span>${tagHtml}`;
+          optsWrap.appendChild(optDiv);
+        });
+
+        card.appendChild(optsWrap);
+
+        // Explanation Box ("ব্যাখ্যা:")
+        const expBox = document.createElement("div");
+        expBox.className = "rounded-xl bg-indigo-50/75 border-l-4 border-indigo-600 p-3.5 text-xs sm:text-sm text-slate-800 leading-relaxed space-y-1";
+        expBox.innerHTML = `
+          <div class="font-bold text-indigo-950">
+            সঠিক উত্তর: <span class="text-emerald-700">${it.ansText}</span>
+            ${
+              it.status === "wrong"
+                ? `<span class="text-rose-700 font-semibold block sm:inline sm:ml-2">• আপনি দিয়েছিলেন: ${it.chosenText}</span>`
+                : ""
+            }
+          </div>
+          <div><strong class="text-indigo-800">ব্যাখ্যা:</strong> ${it.exp}</div>
+        `;
+        card.appendChild(expBox);
+
+        reviewContainer.appendChild(card);
+      });
+    }
+
+    // Filter Pills Click Handler
+    document.querySelectorAll(".review-filter-btn").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        state.reviewFilter = btn.dataset.reviewFilter;
+        document.querySelectorAll(".review-filter-btn").forEach((b) => {
+          const active = b.dataset.reviewFilter === state.reviewFilter;
+          b.className = active
+            ? "review-filter-btn px-4 py-2 rounded-full text-xs sm:text-sm font-bold bg-indigo-600 text-white shadow-xs cursor-pointer"
+            : "review-filter-btn px-4 py-2 rounded-full text-xs sm:text-sm font-bold bg-white text-slate-700 border border-slate-200 hover:bg-slate-50 cursor-pointer";
+        });
+        renderReviewList();
+      });
+    });
+
+    // Scroll to Review Section Button
+    document.getElementById("scrollToReviewBtn").addEventListener("click", () => {
+      document.getElementById("reviewSectionAnchor").scrollIntoView({ behavior: "smooth" });
+    });
+
+    // Retake Exam Button (Counts as New Attempt)
+    document.getElementById("retakeExamBtn").addEventListener("click", () => {
+      state.answers = {};
+      state.currentIndex = 0;
+      state.lastResult = null;
+      const prevAttempts = getStoredAttemptCount();
+      const badge = document.getElementById("previousAttemptBadge");
+      if (prevAttempts > 0) {
+        badge.textContent = `পূর্ববর্তী চেষ্টা: ${toBnNum(prevAttempts)} বার`;
+        badge.classList.remove("hidden");
+      }
+      resultScreen.classList.add("hidden");
+      entryScreen.classList.remove("hidden");
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+  </script>
+</body>
+</html>
