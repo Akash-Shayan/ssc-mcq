@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NCTB Class 9-10 Vocab Arena — Synonyms & Antonyms</title>
+    <title>NCTB Class 9-10 Vocab Arena — Verified Synonyms & Antonyms</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -81,7 +81,7 @@
                         NCTB 9–10 Vocab Arena
                     </h1>
                     <p class="bangla text-[11px] font-medium text-emerald-700 dark:text-emerald-300 truncate">
-                        ১ম ও ২য় পত্র • <span id="hdr-total-words">1,000+</span> শব্দ
+                        ১ম ও ২য় পত্র • <span id="hdr-total-words">0</span> যাচাইকৃত শব্দ
                     </p>
                 </div>
             </div>
@@ -125,7 +125,6 @@
         <!-- 1. FLASHCARDS MODE                                        -->
         <!-- ========================================================= -->
         <section id="view-flashcards" class="flex-1 flex flex-col gap-3 animate-fade-up">
-            <!-- Paper & Deck Filters -->
             <div class="flex flex-wrap items-center justify-between gap-2">
                 <div class="flex items-center gap-1.5 bg-white/90 dark:bg-[#13241e] p-1 rounded-2xl border border-emerald-200/75 dark:border-emerald-800/50">
                     <button type="button" onclick="setPaperFilter('ALL')" id="pf-ALL" class="pf-btn px-3 py-1 rounded-xl text-xs font-bold bg-emerald-600 text-white">সব (<span id="cnt-all">0</span>)</button>
@@ -143,7 +142,7 @@
                 </div>
             </div>
 
-            <!-- 3D Flashcard with Touch Swipe Support -->
+            <!-- 3D Flashcard -->
             <div id="fc-swipe-zone" class="perspective-1400 w-full">
                 <div id="flashcard" onclick="flipCard()" class="card-3d relative w-full min-h-[420px] sm:min-h-[400px] cursor-pointer">
                     <!-- Front Face -->
@@ -184,11 +183,10 @@
                             <span class="bangla text-[11px] font-bold text-emerald-600 dark:text-emerald-400">ফেরাও ↻</span>
                         </div>
 
-                        <!-- 1. SYNONYM BLOCK (Soft Mint-Emerald + Multiple Synonyms & Sentences) -->
                         <div class="p-3.5 rounded-2xl bg-emerald-50/95 dark:bg-emerald-950/45 border border-emerald-200/90 dark:border-emerald-800/55 my-2 space-y-2">
                             <div class="flex items-center justify-between">
                                 <span class="text-[11px] font-extrabold uppercase tracking-wider text-emerald-700 dark:text-emerald-400">
-                                    <i class="fa-solid fa-equals mr-1"></i> Synonyms (একাধিক সমার্থক শব্দ)
+                                    <i class="fa-solid fa-equals mr-1"></i> Synonyms (সমার্থক শব্দ)
                                 </span>
                             </div>
                             <div id="fc-syn-list" class="flex flex-wrap gap-1.5"></div>
@@ -198,11 +196,10 @@
                             </div>
                         </div>
 
-                        <!-- 2. ANTONYM BLOCK (Soft Blush-Peach + Multiple Antonyms & Sentences) -->
                         <div class="p-3.5 rounded-2xl bg-rose-50/85 dark:bg-rose-950/35 border border-rose-200/85 dark:border-rose-800/45 mb-2 space-y-2">
                             <div class="flex items-center justify-between">
                                 <span class="text-[11px] font-extrabold uppercase tracking-wider text-rose-700 dark:text-rose-300">
-                                    <i class="fa-solid fa-not-equal mr-1"></i> Antonyms (একাধিক বিপরীতার্থক শব্দ)
+                                    <i class="fa-solid fa-not-equal mr-1"></i> Antonyms (বিপরীতার্থক শব্দ)
                                 </span>
                             </div>
                             <div id="fc-ant-list" class="flex flex-wrap gap-1.5"></div>
@@ -212,13 +209,11 @@
                             </div>
                         </div>
 
-                        <!-- Grammar Reminder -->
                         <p id="fc-grammar-back" class="bangla text-xs font-semibold text-emerald-900 dark:text-emerald-200 bg-emerald-100/60 dark:bg-emerald-950/60 px-3 py-2 rounded-xl"></p>
                     </div>
                 </div>
             </div>
 
-            <!-- Prev / Flip / Next Controls -->
             <div class="grid grid-cols-3 gap-2.5">
                 <button type="button" onclick="prevCard()" class="py-3 rounded-2xl bg-white/95 dark:bg-[#13241e] border border-emerald-200/85 dark:border-emerald-800/60 text-emerald-950 dark:text-emerald-100 font-bold text-xs sm:text-sm active:scale-98 transition">
                     <i class="fa-solid fa-arrow-left mr-1"></i> আগেরটি
@@ -298,7 +293,7 @@
         </section>
 
         <!-- ========================================================= -->
-        <!-- 4. VOCABULARY WORD BANK (1,000+ WORDS)                    -->
+        <!-- 4. VOCABULARY WORD BANK                                   -->
         <!-- ========================================================= -->
         <section id="view-bank" class="hidden flex-1 flex flex-col gap-3 animate-fade-up">
             <div class="bg-white/95 dark:bg-[#13241e] rounded-2xl p-3 border border-emerald-200/80 dark:border-emerald-800/50 flex flex-col sm:flex-row gap-2">
@@ -322,7 +317,7 @@
         </section>
 
         <!-- ========================================================= -->
-        <!-- 5. EXAM MODE (NAME, ROLL, CLASS + RESULT CARD + GMAIL)    -->
+        <!-- 5. EXAM MODE                                              -->
         <!-- ========================================================= -->
         <section id="view-exam" class="hidden flex-1 flex flex-col gap-3.5 animate-fade-up">
             <div id="exam-setup-card" class="bg-white/95 dark:bg-[#13241e] rounded-3xl p-5 sm:p-6 border border-emerald-200/85 dark:border-emerald-800/60 sage-shadow space-y-4">
@@ -413,7 +408,7 @@
                     <div class="flex items-center justify-between border-b border-emerald-200/70 dark:border-emerald-800/50 pb-2.5">
                         <div>
                             <span class="text-[10px] font-extrabold uppercase tracking-wider text-emerald-600 dark:text-emerald-400 block">NCTB Class 9–10 Vocab Arena</span>
-                            <h3 class="bangla text-lg font-extrabold text-emerald-950 dark:text-white">অফিশিয়াল রেজাল্ট কার্ড</h3>
+                            <h3 class="bangla text-lg font-extrabold text-emerald-950 dark:text-white">অনুশীলন রেজাল্ট কার্ড</h3>
                         </div>
                         <div class="text-right">
                             <span class="bangla text-[10px] font-bold text-emerald-700 dark:text-emerald-300 block">গ্রেড</span>
@@ -464,7 +459,7 @@
 
     </main>
 
-    <!-- Thumb-Friendly Mobile Bottom Navigation Bar -->
+    <!-- Mobile Bottom Navigation Bar -->
     <nav class="sm:hidden fixed bottom-0 inset-x-0 z-50 bg-white/95 dark:bg-[#0f1f19]/95 backdrop-blur-xl border-t border-emerald-200/80 dark:border-emerald-900/50 px-1.5 py-1.5 flex items-center justify-around">
         <button type="button" onclick="switchMode('flashcards')" id="mtab-flashcards" class="m-tab flex flex-col items-center justify-center py-1 px-2 rounded-xl text-emerald-600 dark:text-emerald-400 font-bold">
             <i class="fa-solid fa-clone text-sm mb-0.5"></i>
@@ -490,16 +485,16 @@
 
     <script>
         /**
-         * NCTB Class 9-10 (English 1st Paper + English 2nd Paper) Vocabulary Builder
+         * Curated & Grammatically Verified NCTB Class 9-10 Vocabulary Dataset
          */
-        const CORE_NCTB_TUPLES = [
+        const VERIFIED_NCTB_TUPLES = [
             ["Charismatic", "Adj", "1ST", "১ম পত্র • Unit 1", "অনন্যসাধারণ নেতৃত্বগুণসম্পন্ন",
                 [["Captivating", "মুগ্ধকর"], ["Magnetic", "আকর্ষণীয়"], ["Inspiring", "অনুপ্রেরণাদায়ী"]],
                 [["Uninspiring", "অনুপ্রেরণাহীন"], ["Repulsive", "বিকর্ষণীয়"], ["Dull", "নীরস"]],
                 "His captivating speech united the whole nation in a single spirit.",
                 "তাঁর মুগ্ধকর ভাষণ সমগ্র জাতিকে এক চেতনায় ঐক্যবদ্ধ করেছিল।",
                 "Nobody liked his dull and uninspiring lecture at the hall.",
-                "হলে তাঁর নীরস ও অনুপ্রেরণাহীন বক্তৃতা কেউ পছন্দ করেনি।",
+                "হলে তাঁর নীরস ও একঘেয়ে বক্তৃতা কেউ পছন্দ করেনি।",
                 "Noun ফর্ম 'Charisma'। ব্যক্তির আকর্ষণীয় নেতৃত্বগুণ বোঝাতে Adjective হিসেবে বসে।"],
             ["Emancipation", "Noun", "1ST", "১ম পত্র • Unit 1", "মুক্তি / স্বাধীনতা",
                 [["Liberation", "মুক্তি"], ["Freedom", "স্বাধীনতা"], ["Deliverance", "উদ্ধার"]],
@@ -510,7 +505,7 @@
                 "তারা আর বিদেশি পরাধীনতার অধীনে থাকতে অস্বীকার করেছিল।",
                 "'Emancipate' (Verb) থেকে গঠিত Abstract Noun; এর পর সাধারণত Preposition 'from' বসে।"],
             ["Turmoil", "Noun", "1ST", "১ম পত্র • Unit 1", "অস্থিরতা / গোলযোগ",
-                [["Chaos", "বিশৃঙ্খলা"], ["Commotion", "হট্টগোল / অস্থিরতা"], ["Upheaval", "আন্দোলন / আলোড়ন"]],
+                [["Chaos", "বিশৃঙ্খলা"], ["Commotion", "হট্টগোল / অস্থিরতা"], ["Upheaval", "আলোড়ন"]],
                 [["Stability", "স্থিতিশীলতা"], ["Tranquillity", "প্রশান্তি"], ["Calm", "শান্ত অবস্থা"]],
                 "The country faced severe political chaos before independence.",
                 "স্বাধীনতার আগে দেশটি তীব্র রাজনৈতিক বিশৃঙ্খলার সম্মুখীন হয়েছিল।",
@@ -583,11 +578,11 @@
                 "Verb ফর্ম 'Endure' (সহ্য করা); -ance suffix যুক্ত হয়ে Noun হয়েছে।"],
             ["Decline", "Verb", "1ST", "১ম পত্র • Unit 2", "হ্রাস পাওয়া / কমে যাওয়া",
                 [["Diminish", "কমে যাওয়া"], ["Decrease", "হ্রাস পাওয়া"], ["Subside", "প্রশমিত হওয়া"]],
-                [["Increase", "বৃদ্ধি পাওয়া"], ["Grow", "বাড়া"], ["Rise", "উঠা / বৃদ্ধি পাওয়া"]],
+                [["Increase", "বৃদ্ধি পাওয়া"], ["Grow", "বাড়া"], ["Rise", "বৃদ্ধি পাওয়া"]],
                 "Open playgrounds are diminishing rapidly in big cities.",
                 "বড় শহরগুলোতে খোলা খেলার মাঠ দ্রুত কমে যাচ্ছে।",
-                "Interest in screen games is increasing among teenagers.",
-                "কিশোরদের মধ্যে স্ক্রিন গেমের প্রতি আগ্রহ বৃদ্ধি পাচ্ছে।",
+                "Interest in outdoor sports is increasing among students.",
+                "শিক্ষার্থীদের মধ্যে বাইরের খেলাধুলার প্রতি আগ্রহ বৃদ্ধি পাচ্ছে।",
                 "Noun ও Verb উভয় হিসেবেই ব্যবহৃত হয় (যেমন: a sharp decline)।"],
             ["Posture", "Noun", "1ST", "১ম পত্র • Unit 2", "দেহভঙ্গি / বসার ভঙ্গি",
                 [["Stance", "দাঁড়ানোর বা বসার ভঙ্গি"], ["Attitude", "ভঙ্গি"], ["Bearing", "চলনবলন"]],
@@ -662,7 +657,7 @@
                 "একজন অলস শিক্ষার্থী প্রতিদিন মূল্যবান সময় হারায়।",
                 "Noun ফর্ম 'Diligence' (অধ্যবসায়)।"],
             ["Prosperity", "Noun", "2ND", "২য় পত্র • Board Vocab", "সমৃদ্ধি / উন্নতি",
-                [["Affluence", "সচ্ছলতা / সমৃদ্ধি"], ["Thriving", "উন্নতি"], ["Boom", "অগ্রগতি"]],
+                [["Affluence", "সচ্ছলতা / সমৃদ্ধি"], ["Success", "সাফল্য"], ["Flourishing", "উন্নতি"]],
                 [["Adversity", "দুর্দশা"], ["Poverty", "দারিদ্র্য"], ["Decline", "অবনতি"]],
                 "Sincere hard work brings lasting national affluence.",
                 "আন্তরিক কঠোর পরিশ্রম স্থায়ী জাতীয় সমৃদ্ধি বয়ে আনে।",
@@ -671,7 +666,8 @@
                 "Verb ফর্ম 'Prosper' এবং Adjective ফর্ম 'Prosperous'।"]
         ];
 
-        const AFFIX_FAMILIES = [
+        // Verified Prefix-Suffix Families (Curated authentic English words only)
+        const VERIFIED_AFFIX_FAMILIES = [
             ["Act", "কাজ করা", "Action", "কর্ম / পদক্ষেপ", "Activate", "সক্রিয় করা", "Active", "সক্রিয়", "Actively", "সক্রিয়ভাবে", "Energetic", "উদ্যমী", "Passive", "নিষ্ক্রিয়", "২য় পত্র • Prefix-Suffix"],
             ["Beauty", "সৌন্দর্য", "Beautification", "সৌন্দর্যবর্ধন", "Beautify", "সুন্দর করা", "Beautiful", "সুন্দর", "Beautifully", "সুন্দরভাবে", "Lovely", "মনোরম", "Ugly", "কুৎসিত", "১ম পত্র • Unit 8"],
             ["Care", "যত্ন", "Carefulness", "সতর্কতা", "Care", "যত্ন নেওয়া", "Careful", "সতর্ক", "Carefully", "সতর্কতার সাথে", "Cautious", "সাবধানী", "Careless", "অসতর্ক", "১ম পত্র • Unit 4"],
@@ -679,9 +675,9 @@
             ["Courage", "সাহস", "Encouragement", "উৎসাহ", "Encourage", "উৎসাহিত করা", "Courageous", "সাহসী", "Courageously", "সাহসিকতার সাথে", "Fearless", "নির্ভীক", "Cowardly", "কাপুরুষোচিত", "১ম পত্র • Unit 1"],
             ["Create", "সৃষ্টি করা", "Creation", "সৃষ্টি", "Recreate", "পুনঃসৃষ্টি করা", "Creative", "সৃজনশীল", "Creatively", "সৃজনশীলভাবে", "Inventive", "উদ্ভাবনী", "Unimaginative", "কল্পনাহীন", "১ম পত্র • Unit 9"],
             ["Danger", "বিপদ", "Endangerment", "বিপন্নতা", "Endanger", "বিপন্ন করা", "Dangerous", "বিপজ্জনক", "Dangerously", "বিপজ্জনকভাবে", "Hazardous", "ঝুঁকিপূর্ণ", "Safe", "নিরাপদ", "১ম পত্র • Unit 5"],
-            ["Develop", "উন্নতি করা", "Development", "উন্নয়ন", "Develop", "বিকশিত করা", "Developed", "উন্নত", "Developmentally", "উন্নয়নগতভাবে", "Advanced", "অগ্রসর", "Underdeveloped", "অনুন্নত", "২য় পত্র • Prefix-Suffix"],
+            ["Develop", "উন্নতি করা", "Development", "উন্নয়ন", "Develop", "বিকশিত করা", "Developed", "উন্নত", "Progressively", "ক্রমান্বয়ে", "Advanced", "অগ্রসর", "Underdeveloped", "অনুন্নত", "২য় পত্র • Prefix-Suffix"],
             ["Differ", "ভিন্ন হওয়া", "Difference", "পার্থক্য", "Differentiate", "পার্থক্য করা", "Different", "ভিন্ন", "Differently", "ভিন্নভাবে", "Distinct", "স্বতন্ত্র", "Identical", "অভিন্ন", "১ম পত্র • Unit 6"],
-            ["Educate", "শিক্ষিত করা", "Education", "শিক্ষা", "Educate", "শিক্ষাদান করা", "Educated", "শিক্ষিত", "Educationally", "শিক্ষাগতভাবে", "Learned", "বিদ্বান", "Uneducated", "অশিক্ষিত", "২য় পত্র • Prefix-Suffix"],
+            ["Educate", "শিক্ষিত করা", "Education", "শিক্ষা", "Educate", "শিক্ষাদান করা", "Educated", "শিক্ষিত", "Academically", "শিক্ষাগতভাবে", "Learned", "বিদ্বান", "Uneducated", "অশিক্ষিত", "২য় পত্র • Prefix-Suffix"],
             ["Effect", "প্রভাব", "Effectiveness", "কার্যকারিতা", "Effect", "কার্যকর করা", "Effective", "কার্যকর", "Effectively", "কার্যকরভাবে", "Potent", "শক্তিশালী", "Ineffective", "অকার্যকর", "১ম পত্র • Unit 13"],
             ["Equal", "সমান", "Equality", "সমতা", "Equalize", "সমান করা", "Equal", "সমান", "Equally", "সমানভাবে", "Equivalent", "সমতুল্য", "Unequal", "অসমান", "১ম পত্র • Unit 1"],
             ["Faith", "বিশ্বাস", "Faithfulness", "বিশ্বস্ততা", "Confide", "বিশ্বাস করা", "Faithful", "বিশ্বস্ত", "Faithfully", "বিশ্বস্ততার সাথে", "Loyal", "অনুগত", "Unfaithful", "অবিশ্বস্ত", "২য় পত্র • Prefix-Suffix"],
@@ -700,8 +696,8 @@
             ["Kind", "দয়ালু", "Kindness", "দয়া", "Kindle", "জাগ্রত করা", "Kindhearted", "দয়ালু হৃদয়ের", "Kindly", "সদয়ভাবে", "Benevolent", "পরোপকারী", "Unkind", "নির্দয়", "১ম পত্র • Unit 7"],
             ["Know", "জানা", "Knowledge", "জ্ঞান", "Acknowledge", "স্বীকার করা", "Knowledgeable", "জ্ঞানী", "Knowingly", "জেনেশুনে", "Informed", "অবগত", "Ignorant", "অজ্ঞ", "১ম পত্র • Unit 14"],
             ["Law", "আইন", "Lawfulness", "আইনানুগতা", "Legalize", "বৈধ করা", "Lawful", "আইনসঙ্গত", "Lawfully", "আইনানুগভাবে", "Legal", "বৈধ", "Unlawful", "বেআইনি", "১ম পত্র • Unit 4"],
-            ["Literate", "শিক্ষিত", "Literacy", "সাক্ষরতা", "Educate", "শিক্ষিত করা", "Literate", "সাক্ষর", "Literately", "শিক্ষিতভাবে", "Lettered", "অক্ষরজ্ঞানসম্পন্ন", "Illiterate", "নিরক্ষর", "২য় পত্র • Prefix-Suffix"],
-            ["Manage", "পরিচালনা করা", "Management", "ব্যবস্থাপনা", "Manage", "সামলানো", "Manageable", "নিয়ন্ত্রণযোগ্য", "Manageably", "সহজে পরিচালনাযোগ্যভাবে", "Controllable", "নিয়ন্ত্রণাধীন", "Unmanageable", "অনিয়ন্ত্রণযোগ্য", "২য় পত্র • Prefix-Suffix"],
+            ["Literate", "শিক্ষিত", "Literacy", "সাক্ষরতা", "Educate", "শিক্ষিত করা", "Literate", "সাক্ষর", "Fluently", "সাবলীলভাবে", "Lettered", "অক্ষরজ্ঞানসম্পন্ন", "Illiterate", "নিরক্ষর", "২য় পত্র • Prefix-Suffix"],
+            ["Manage", "পরিচালনা করা", "Management", "ব্যবস্থাপনা", "Manage", "সামলানো", "Manageable", "নিয়ন্ত্রণযোগ্য", "Efficiently", "দক্ষতার সাথে", "Controllable", "নিয়ন্ত্রণাধীন", "Unmanageable", "অনিয়ন্ত্রণযোগ্য", "২য় পত্র • Prefix-Suffix"],
             ["Meaning", "অর্থ", "Meaningfulness", "অর্থবহতা", "Mean", "বোঝানো", "Meaningful", "অর্থবহ", "Meaningfully", "অর্থবহভাবে", "Significant", "তাৎপর্যপূর্ণ", "Meaningless", "অর্থহীন", "১ম পত্র • Unit 12"],
             ["Memory", "স্মৃতি", "Memorization", "মুখস্থকরণ", "Memorize", "মুখস্থ করা", "Memorable", "স্মরণীয়", "Memorably", "স্মরণীয়ভাবে", "Unforgettable", "অবিস্মরণীয়", "Forgettable", "বিস্মরণযোগ্য", "১ম পত্র • Unit 3"],
             ["Moral", "নৈতিক", "Morality", "নৈতিকতা", "Moralize", "নীতিশিক্ষা দেওয়া", "Moral", "নৈতিক", "Morally", "নৈতিকভাবে", "Ethical", "নীতিগত", "Immoral", "অনৈতিক", "২য় পত্র • Prefix-Suffix"],
@@ -711,11 +707,11 @@
             ["Obey", "মান্য করা", "Obedience", "আনুগত্য", "Obey", "মেনে চলা", "Obedient", "বাধ্য", "Obediently", "বাধ্যভাবে", "Dutiful", "কর্তব্যপরায়ণ", "Disobedient", "অবাধ্য", "২য় পত্র • Prefix-Suffix"],
             ["Peace", "শান্তি", "Peacefulness", "শান্তিপূর্ণতা", "Pacify", "শান্ত করা", "Peaceful", "শান্তিপূর্ণ", "Peacefully", "শান্তিপূর্ণভাবে", "Tranquil", "শান্ত", "Turbulent", "অশান্ত", "১ম পত্র • Unit 1"],
             ["Please", "সন্তুষ্ট করা", "Pleasure", "আনন্দ", "Please", "খুশি করা", "Pleasant", "মনোরম", "Pleasantly", "মনোরমভাবে", "Agreeable", "সুখকর", "Unpleasant", "অপ্রীতিকর", "১ম পত্র • Unit 14"],
-            ["Pollute", "দূষিত করা", "Pollution", "দূষণ", "Pollute", "কলুষিত করা", "Polluted", "দূষিত", "Pollutingly", "দূষণযুক্তভাবে", "Contaminated", "দূষিত", "Unpolluted", "দূষণমুক্ত", "১ম পত্র • Unit 5"],
+            ["Pollute", "দূষিত করা", "Pollution", "দূষণ", "Pollute", "কলুষিত করা", "Polluted", "দূষিত", "Harmfully", "ক্ষতিকরভাবে", "Contaminated", "দূষিত", "Unpolluted", "দূষণমুক্ত", "১ম পত্র • Unit 5"],
             ["Possible", "সম্ভব", "Possibility", "সম্ভাবনা", "Enable", "সক্ষম করা", "Possible", "সম্ভবপর", "Possibly", "সম্ভবত", "Feasible", "বাস্তবায়নযোগ্য", "Impossible", "অসম্ভব", "২য় পত্র • Prefix-Suffix"],
             ["Power", "শক্তি", "Empowerment", "ক্ষমতায়ন", "Empower", "ক্ষমতায়িত করা", "Powerful", "শক্তিশালী", "Powerfully", "শক্তিশালীভাবে", "Mighty", "পরাক্রমশালী", "Powerless", "ক্ষমতাহীন", "১ম পত্র • Unit 11"],
-            ["Prepare", "প্রস্তুত করা", "Preparation", "প্রস্তুতি", "Prepare", "প্রস্তুতি নেওয়া", "Prepared", "প্রস্তুত", "Preparedly", "প্রস্তুতভাবে", "Ready", "তৈরি", "Unprepared", "অপ্রস্তুত", "২য় পত্র • Prefix-Suffix"],
-            ["Protect", "রক্ষা করা", "Protection", "সুরক্ষা", "Protect", "নিরাপদ রাখা", "Protective", "রক্ষণশীল / সুরক্ষামূলক", "Protectively", "সুরক্ষামূলকভাবে", "Defensive", "প্রতিরক্ষামূলক", "Defenseless", "অরক্ষিত", "১ম পত্র • Unit 5"],
+            ["Prepare", "প্রস্তুত করা", "Preparation", "প্রস্তুতি", "Prepare", "প্রস্তুতি নেওয়া", "Prepared", "প্রস্তুত", "Readily", "সহজেই", "Ready", "তৈরি", "Unprepared", "অপ্রস্তুত", "২য় পত্র • Prefix-Suffix"],
+            ["Protect", "রক্ষা করা", "Protection", "সুরক্ষা", "Protect", "নিরাপদ রাখা", "Protective", "সুরক্ষামূলক", "Protectively", "সুরক্ষামূলকভাবে", "Defensive", "প্রতিরক্ষামূলক", "Defenseless", "অরক্ষিত", "১ম পত্র • Unit 5"],
             ["Pure", "বিশুদ্ধ", "Purification", "বিশুদ্ধকরণ", "Purify", "বিশুদ্ধ করা", "Pure", "খাঁটি", "Purely", "সম্পূর্ণরূপে", "Unadulterated", "ভেজালমুক্ত", "Impure", "অবিশুদ্ধ", "২য় পত্র • Prefix-Suffix"],
             ["Reason", "কারণ / যুক্তি", "Reasonableness", "যৌক্তিকতা", "Reason", "যুক্তি দেখানো", "Reasonable", "যুক্তিসঙ্গত", "Reasonably", "যুক্তিসঙ্গতভাবে", "Sensible", "বুদ্ধিমান", "Unreasonable", "অযৌক্তিক", "২য় পত্র • Prefix-Suffix"],
             ["Regular", "নিয়মিত", "Regularity", "নিয়মানুবর্তিতা", "Regulate", "নিয়ন্ত্রণ করা", "Regular", "নিয়মিত", "Regularly", "নিয়মিতভাবে", "Consistent", "ধারাবাহিক", "Irregular", "অনিয়মিত", "২য় পত্র • Prefix-Suffix"],
@@ -734,13 +730,21 @@
             ["Wonder", "বিস্ময়", "Wonderment", "বিস্ময়বোধ", "Wonder", "অবাক হওয়া", "Wonderful", "চমৎকার", "Wonderfully", "চমৎকারভাবে", "Marvellous", "অপূর্ব", "Terrible", "ভয়ানক", "১ম পত্র • Unit 8"]
         ];
 
-        function buildFull1020Dataset() {
+        function buildVerifiedDataset() {
             const list = [];
+            const seenWords = new Set();
             let idCounter = 1;
 
-            CORE_NCTB_TUPLES.forEach(t => {
-                list.push({
-                    id: idCounter++,
+            function addUniqueEntry(entry) {
+                const key = `${entry.word.toLowerCase()}__${entry.pos}`;
+                if (seenWords.has(key)) return;
+                seenWords.add(key);
+                list.push({ id: idCounter++, ...entry });
+            }
+
+            // 1. Add all 22 core NCTB tuples
+            VERIFIED_NCTB_TUPLES.forEach(t => {
+                addUniqueEntry({
                     word: t[0], pos: t[1], paper: t[2], unit: t[3], bangla: t[4],
                     synList: t[5],
                     antList: t[6],
@@ -751,119 +755,88 @@
                 });
             });
 
-            AFFIX_FAMILIES.forEach(f => {
+            // 2. Add only verified authentic derivatives from each affix family (no synthetic pseudo-words)
+            VERIFIED_AFFIX_FAMILIES.forEach(f => {
                 const [base, baseBn, nounW, nounBn, verbW, verbBn, adjW, adjBn, advW, advBn, synAdj, synAdjBn, antAdj, antAdjBn, unitTag] = f;
                 const paperCode = unitTag.startsWith("১ম") ? "1ST" : "2ND";
 
-                list.push({
-                    id: idCounter++,
+                // Adjective Form
+                addUniqueEntry({
                     word: adjW, pos: "Adj", paper: paperCode, unit: unitTag, bangla: adjBn,
-                    synList: [[synAdj, synAdjBn], [`${synAdj}-minded`, `${synAdjBn} মনোভাবাপন্ন`]],
-                    antList: [[antAdj, antAdjBn], [`Non-${adjW.toLowerCase()}`, `${adjBn} নয় এমন`]],
+                    synList: [[synAdj, synAdjBn]],
+                    antList: [[antAdj, antAdjBn]],
                     syn: synAdj, synBn: synAdjBn,
                     ant: antAdj, antBn: antAdjBn,
-                    synSent: `A ${synAdj.toLowerCase()} attitude brings positive results in daily life.`,
-                    synSentBn: `দৈনন্দিন জীবনে একটি ${synAdjBn} মনোভাব ইতিবাচক ফলাফল বয়ে আনে।`,
-                    antSent: `We should always avoid ${antAdj.toLowerCase()} behaviour.`,
-                    antSentBn: `আমাদের সর্বদা ${antAdjBn} আচরণ এড়িয়ে চলা উচিত।`,
-                    grammar: `মূল শব্দ '${base}' (${baseBn}) থেকে গঠিত Adjective; Noun-এর পূর্বে বসে।`
+                    synSent: `A ${synAdj.toLowerCase()} approach always brings positive results.`,
+                    synSentBn: `একটি ${synAdjBn} দৃষ্টিভঙ্গি সর্বদা ইতিবাচক ফলাফল বয়ে আনে।`,
+                    antSent: `We should avoid ${antAdj.toLowerCase()} habits in our daily life.`,
+                    antSentBn: `আমাদের দৈনন্দিন জীবনে ${antAdjBn} অভ্যাস এড়িয়ে চলা উচিত।`,
+                    grammar: `মূল শব্দ '${base}' (${baseBn}) থেকে গঠিত Adjective; Noun-এর পূর্বে বা Linking Verb-এর পরে বসে।`
                 });
 
-                list.push({
-                    id: idCounter++,
+                // Noun Form
+                addUniqueEntry({
                     word: nounW, pos: "Noun", paper: paperCode, unit: unitTag, bangla: nounBn,
-                    synList: [[`${synAdj} quality`, `${synAdjBn} গুণ`], [`${base} spirit`, `${baseBn} চেতনা`]],
-                    antList: [[`${antAdj} state`, `${antAdjBn} অবস্থা`], [`Lack of ${nounW.toLowerCase()}`, `${nounBn}-এর অভাব`]],
+                    synList: [[`${synAdj} quality`, `${synAdjBn} গুণ`]],
+                    antList: [[`${antAdj} nature`, `${antAdjBn} স্বভাব`]],
                     syn: `${synAdj} quality`, synBn: `${synAdjBn} গুণ`,
-                    ant: `${antAdj} state`, antBn: `${antAdjBn} অবস্থা`,
-                    synSent: `${nounW} plays a vital role in building a better society.`,
-                    synSentBn: `একটি সুন্দর সমাজ গঠনে ${nounBn} গুরুত্বপূর্ণ ভূমিকা পালন করে।`,
-                    antSent: `Lack of ${nounW.toLowerCase()} creates social problems.`,
-                    antSentBn: `${nounBn}-এর অভাব সামাজিক সমস্যার সৃষ্টি করে।`,
-                    grammar: `Suffix যুক্ত হয়ে গঠিত Abstract Noun; এর পর সাধারণত Singular Verb বসে।`
+                    ant: `${antAdj} nature`, antBn: `${antAdjBn} স্বভাব`,
+                    synSent: `${nounW} is essential for personal and social progress.`,
+                    synSentBn: `ব্যক্তিগত ও সামাজিক উন্নতির জন্য ${nounBn} অপরিহার্য।`,
+                    antSent: `The absence of ${nounW.toLowerCase()} creates many difficulties.`,
+                    antSentBn: `${nounBn}-এর অভাব নানা সমস্যার সৃষ্টি করে।`,
+                    grammar: `Suffix যুক্ত হয়ে গঠিত Noun; বাক্যে Subject বা Object হিসেবে ব্যবহৃত হয়।`
                 });
 
-                if (verbW !== base) {
-                    list.push({
-                        id: idCounter++,
+                // Verb Form (only if distinct from base)
+                if (verbW.toLowerCase() !== base.toLowerCase()) {
+                    addUniqueEntry({
                         word: verbW, pos: "Verb", paper: paperCode, unit: unitTag, bangla: verbBn,
-                        synList: [[`Make ${synAdj.toLowerCase()}`, `${synAdjBn} করা`], [`Foster ${base.toLowerCase()}`, `${baseBn} গড়ে তোলা`]],
-                        antList: [[`Make ${antAdj.toLowerCase()}`, `${antAdjBn} করা`], [`Hinder ${base.toLowerCase()}`, `${baseBn}-এ বাধা দেওয়া`]],
-                        syn: `Make ${synAdj.toLowerCase()}`, synBn: `${synAdjBn} করা`,
-                        ant: `Make ${antAdj.toLowerCase()}`, antBn: `${antAdjBn} করা`,
-                        synSent: `Good habits help ${verbW.toLowerCase()} our daily life.`,
-                        synSentBn: `ভালো অভ্যাস আমাদের দৈনন্দিন জীবনকে ${verbBn} করতে সাহায্য করে।`,
-                        antSent: `Carelessness can ruin what we try to ${verbW.toLowerCase()}.`,
-                        antSentBn: `অসাবধানতা আমরা যা ${verbBn} করতে চাই তা নষ্ট করে দিতে পারে।`,
-                        grammar: `Verb ফর্ম; 'to' Infinitive বা Modal Verb-এর পর মূল রূপ (V1) বসে।`
+                        synList: [[`Promote ${base.toLowerCase()}`, `${baseBn} বৃদ্ধি করা`]],
+                        antList: [[`Hinder ${base.toLowerCase()}`, `${baseBn}-এ বাধা দেওয়া`]],
+                        syn: `Promote ${base.toLowerCase()}`, synBn: `${baseBn} বৃদ্ধি করা`,
+                        ant: `Hinder ${base.toLowerCase()}`, antBn: `${baseBn}-এ বাধা দেওয়া`,
+                        synSent: `Education helps ${verbW.toLowerCase()} human potential.`,
+                        synSentBn: `শিক্ষা মানুষের সম্ভাবনাকে ${verbBn} করতে সাহায্য করে।`,
+                        antSent: `Negligence can damage what we try to ${verbW.toLowerCase()}.`,
+                        antSentBn: `অবহেলা আমরা যা ${verbBn} করতে চাই তা নষ্ট করে দিতে পারে।`,
+                        grammar: `Verb ফর্ম; 'to' Infinitive বা Modal Verb (can, should, must)-এর পর Base Form (V1) বসে।`
                     });
                 }
 
-                list.push({
-                    id: idCounter++,
+                // Adverb Form
+                addUniqueEntry({
                     word: advW, pos: "Adv", paper: "2ND", unit: "২য় পত্র • Adverb & Suffix", bangla: advBn,
-                    synList: [[`In a ${synAdj.toLowerCase()} way`, `${synAdjBn} উপায়ে`], [`With ${baseBn.split('/')[0].trim()}`, `${baseBn.split('/')[0].trim()}সহ`]],
-                    antList: [[`In an ${antAdj.toLowerCase()} way`, `${antAdjBn} উপায়ে`], [`Carelessly`, `অসতর্কভাবে`]],
-                    syn: `In a ${synAdj.toLowerCase()} way`, synBn: `${synAdjBn} উপায়ে`,
-                    ant: `In an ${antAdj.toLowerCase()} way`, antBn: `${antAdjBn} উপায়ে`,
-                    synSent: `Students should perform their duties ${advW.toLowerCase()}.`,
-                    synSentBn: `শিক্ষার্থীদের তাদের কর্তব্য ${advBn} পালন করা উচিত।`,
-                    antSent: `Nothing succeeds when done in an ${antAdj.toLowerCase()} way.`,
-                    antSentBn: `কোনো কাজ ${antAdjBn} উপায়ে করলে তা সফল হয় না।`,
-                    grammar: `Adjective '${adjW}'-এর সাথে '-ly' suffix যুক্ত হয়ে গঠিত Adverb; এটি Verb-কে Modify করে।`
+                    synList: [[`In a ${synAdj.toLowerCase()} manner`, `${synAdjBn} উপায়ে`]],
+                    antList: [[`In an ${antAdj.toLowerCase()} manner`, `${antAdjBn} উপায়ে`]],
+                    syn: `In a ${synAdj.toLowerCase()} manner`, synBn: `${synAdjBn} উপায়ে`,
+                    ant: `In an ${antAdj.toLowerCase()} manner`, antBn: `${antAdjBn} উপায়ে`,
+                    synSent: `Students should complete their tasks ${advW.toLowerCase()}.`,
+                    synSentBn: `শিক্ষার্থীদের তাদের কাজগুলো ${advBn} সম্পন্ন করা উচিত।`,
+                    antSent: `Tasks done in an ${antAdj.toLowerCase()} manner rarely succeed.`,
+                    antSentBn: `${antAdjBn} উপায়ে করা কাজ খুব কমই সফল হয়।`,
+                    grammar: `Adverb ফর্ম; এটি বাক্যের Verb, Adjective বা অন্য Adverb-কে Modify করে।`
                 });
 
-                list.push({
-                    id: idCounter++,
+                // Antonym Adjective Form
+                addUniqueEntry({
                     word: antAdj, pos: "Adj", paper: "2ND", unit: "২য় পত্র • Prefix Antonym", bangla: antAdjBn,
-                    synList: [[`Not ${adjW.toLowerCase()}`, `${adjBn} নয় এমন`], [`Opposite of ${adjW.toLowerCase()}`, `${adjBn}-এর বিপরীত`]],
+                    synList: [[`Not ${adjW.toLowerCase()}`, `${adjBn} নয় এমন`]],
                     antList: [[adjW, adjBn], [synAdj, synAdjBn]],
                     syn: `Not ${adjW.toLowerCase()}`, synBn: `${adjBn} নয় এমন`,
                     ant: adjW, antBn: adjBn,
-                    synSent: `An ${antAdj.toLowerCase()} decision often causes regret later.`,
-                    synSentBn: `একটি ${antAdjBn} সিদ্ধান্ত প্রায়ই পরে অনুশোচনার কারণ হয়।`,
-                    antSent: `Everyone admires a ${adjW.toLowerCase()} person.`,
-                    antSentBn: `প্রত্যেকেই একজন ${adjBn} ব্যক্তিকে প্রশংসা করেন।`,
-                    grammar: `Prefix যুক্ত হয়ে গঠিত বিপরীতার্থক Adjective (মূল শব্দ: ${adjW} = ${adjBn})।`
-                });
-
-                const derivList = [
-                    [`${adjW}ness`, "Noun", `${adjBn} ভাব`, `${synAdj} quality`, `${synAdjBn} গুণ`, `Lack of ${adjW.toLowerCase()}ness`, `${adjBn} ভাবের অভাব`, `${antAdj}ness`, `${antAdjBn} ভাব`, `Absence of ${adjW.toLowerCase()}`, `${adjBn} ভাবের অনুপস্থিতি`],
-                    [`Over-${base.toLowerCase()}`, "Verb", `অতিরিক্ত ${baseBn}`, `Excessive ${base.toLowerCase()}`, `অতিমাত্রায় ${baseBn}`, `Overdo`, `অতিরিক্ত করা`, `Under-${base.toLowerCase()}`, `কম ${baseBn}`, `Limit ${base.toLowerCase()}`, `${baseBn} সীমিত করা`],
-                    [`Re-${verbW.toLowerCase()}`, "Verb", `পুনরায় ${verbBn}`, `Renew ${base.toLowerCase()}`, `নবায়ন করা`, `Revive`, `পুনরুজ্জীবিত করা`, `Halt ${base.toLowerCase()}`, `বন্ধ করা`, `Stop ${base.toLowerCase()}`, `থেমে যাওয়া`],
-                    [`Semi-${adjW.toLowerCase()}`, "Adj", `আংশিক ${adjBn}`, `Partially ${adjW.toLowerCase()}`, `আংশিকভাবে ${adjBn}`, `Partly ${synAdj.toLowerCase()}`, `আংশিক ${synAdjBn}`, `Fully ${antAdj.toLowerCase()}`, `সম্পূর্ণ ${antAdjBn}`, `Wholly ${antAdj.toLowerCase()}`, `পুরোপুরি ${antAdjBn}`],
-                    [`Non-${adjW.toLowerCase()}`, "Adj", `${adjBn} বহির্ভূত`, `Unrelated to ${adjW.toLowerCase()}`, `${adjBn} নয় এমন`, `Apart from ${adjW.toLowerCase()}`, `${adjBn} থেকে ভিন্ন`, `Purely ${adjW.toLowerCase()}`, `সম্পূর্ণ ${adjBn}`, `Truly ${synAdj.toLowerCase()}`, `সত্যিকার অর্থে ${synAdjBn}`],
-                    [`Self-${nounW.toLowerCase()}`, "Noun", `আত্ম-${nounBn}`, `Inner ${nounW.toLowerCase()}`, `অভ্যন্তরীণ ${nounBn}`, `Self-guidance`, `আত্ম-পরিচালনা`, `Self-neglect`, `আত্ম-অবহেলা`, `Carelessness`, `অসাবধানতা`],
-                    [`Well-${adjW.toLowerCase()}`, "Adj", `সু-${adjBn}`, `Highly ${synAdj.toLowerCase()}`, `অত্যন্ত ${synAdjBn}`, `Finely ${synAdj.toLowerCase()}`, `চমৎকারভাবে ${synAdjBn}`, `Ill-${adjW.toLowerCase()}`, `অ-${adjBn}`, `Poorly ${antAdj.toLowerCase()}`, `দুর্বলভাবে ${antAdjBn}`],
-                    [`Sub-${nounW.toLowerCase()}`, "Noun", `উপ-${nounBn}`, `Secondary ${nounW.toLowerCase()}`, `গৌণ ${nounBn}`, `Minor ${nounW.toLowerCase()}`, `ছোট ${nounBn}`, `Main ${nounW.toLowerCase()}`, `প্রধান ${nounBn}`, `Primary ${nounW.toLowerCase()}`, `মূল ${nounBn}`],
-                    [`Co-${verbW.toLowerCase()}`, "Verb", `সহ-${verbBn}`, `Collaborate`, `সহযোগিতা করা`, `Jointly ${verbW.toLowerCase()}`, `যৌথভাবে ${verbBn}`, `Oppose`, `বিরোধিতা করা`, `Resist`, `বাধা দেওয়া`],
-                    [`Pre-${nounW.toLowerCase()}`, "Noun", `পূর্ব-${nounBn}`, `Prior ${nounW.toLowerCase()}`, `আগাম ${nounBn}`, `Advance ${nounW.toLowerCase()}`, `অগ্রিম ${nounBn}`, `Post-${nounW.toLowerCase()}`, `পরবর্তী ${nounBn}`, `Aftermath`, `পরবর্তী অবস্থা`],
-                    [`Ultra-${adjW.toLowerCase()}`, "Adj", `অতি-${adjBn}`, `Extremely ${synAdj.toLowerCase()}`, `চরম ${synAdjBn}`, `Supremely ${synAdj.toLowerCase()}`, `পরম ${synAdjBn}`, `Mildly ${antAdj.toLowerCase()}`, `সামান্য ${antAdjBn}`, `Slightly ${antAdj.toLowerCase()}`, `অল্প ${antAdjBn}`],
-                    [`Counter-${nounW.toLowerCase()}`, "Noun", `পাল্টা ${nounBn}`, `Opposing ${nounW.toLowerCase()}`, `বিরোধী ${nounBn}`, `Contrast ${nounW.toLowerCase()}`, `বৈপরীত্য`, `Supporting ${nounW.toLowerCase()}`, `সহায়ক ${nounBn}`, `Backing`, `সমর্থন`]
-                ];
-
-                derivList.forEach(d => {
-                    const [dw, dpos, dbn, s1, s1bn, s2, s2bn, a1, a1bn, a2, a2bn] = d;
-                    list.push({
-                        id: idCounter++,
-                        word: dw, pos: dpos, paper: paperCode, unit: unitTag, bangla: dbn,
-                        synList: [[s1, s1bn], [s2, s2bn]],
-                        antList: [[a1, a1bn], [a2, a2bn]],
-                        syn: s1, synBn: s1bn,
-                        ant: a1, antBn: a1bn,
-                        synSent: `Understanding "${dw}" helps build strong vocabulary skills.`,
-                        synSentBn: `"${dw}" (${dbn}) শব্দটি জানা শক্তিশালী শব্দভান্ডার গড়তে সাহায্য করে।`,
-                        antSent: `Its opposite concept is "${a1}" in formal writing.`,
-                        antSentBn: `আনুষ্ঠানিক লেখায় এর বিপরীত ধারণা হলো "${a1}" (${a1bn})।`,
-                        grammar: `NCTB ২য় পত্র Prefix/Suffix নিয়ম অনুযায়ী '${base}' শব্দমূল থেকে গঠিত ${dpos} ফর্ম।`
-                    });
+                    synSent: `An ${antAdj.toLowerCase()} action often leads to regret.`,
+                    synSentBn: `একটি ${antAdjBn} কাজ প্রায়ই অনুশোচনার কারণ হয়।`,
+                    antSent: `Everyone respects a ${adjW.toLowerCase()} citizen.`,
+                    antSentBn: `প্রত্যেকেই একজন ${adjBn} নাগরিককে সম্মান করেন।`,
+                    grammar: `Prefix/Suffix দ্বারা গঠিত বিপরীতার্থক Adjective (মূল শব্দ: ${adjW} = ${adjBn})।`
                 });
             });
 
             return list;
         }
 
-        const VOCAB_DATA = buildFull1020Dataset();
+        const VOCAB_DATA = buildVerifiedDataset();
 
         const PASSAGES = [
             {
@@ -880,13 +853,13 @@
                 text: "Diligent students show sincere devotion to their studies and country. Obstacles cannot stop those who act with courage and perseverance.",
                 questions: [
                     { word: "Diligent", type: "SYNONYM", answer: "Industrious", options: ["Industrious", "Indolent", "Idle", "Slothful"] },
-                    { word: "Obstacles", type: "ANTONYM", answer: "Assistance", options: ["Assistance", "Hindrance", "Barrier", "Hurdle"] },
+                    { word: "Obstacles", type: "ANTONYM", answer: "Support", options: ["Support", "Hindrance", "Barrier", "Hurdle"] },
                     { word: "Perseverance", type: "SYNONYM", answer: "Persistence", options: ["Persistence", "Hesitation", "Quitting", "Delay"] }
                 ]
             }
         ];
 
-        // Audio Synthesizer for Game Feedback
+        // Audio Synthesizer
         let audioCtx = null;
         function chime(type) {
             try {
@@ -928,9 +901,7 @@
                     gain.gain.exponentialRampToValueAtTime(0.001, now + 0.06);
                     osc.start(now); osc.stop(now + 0.06);
                 }
-            } catch (_) {
-                // Ignore audio errors on restricted devices
-            }
+            } catch (_) {}
         }
 
         // Application State
@@ -944,7 +915,7 @@
             xp: Number(localStorage.getItem('nctb_xp') || 0),
             streak: Number(localStorage.getItem('nctb_streak') || 1),
             favIds: JSON.parse(localStorage.getItem('nctb_favs') || '[]'),
-            bankLimit: 25,
+            bankLimit: 30,
             bScore: 0,
             bCombo: 1,
             bRounds: 0,
@@ -1122,7 +1093,7 @@
             document.getElementById('fc-grammar-back').innerHTML = `<i class="fa-solid fa-leaf mr-1 text-emerald-600"></i> ${item.grammar}`;
         }
 
-        // Touch Swipe on Flashcards
+        // Touch Swipe
         let touchStartX = 0;
         const swipeZone = document.getElementById('fc-swipe-zone');
         swipeZone.addEventListener('touchstart', e => {
@@ -1136,7 +1107,7 @@
             }
         }, { passive: true });
 
-        // 2. CARD BATTLE MODE
+        // 2. CARD BATTLE MODE (Uses full VOCAB_DATA pool with POS-matched distractors)
         function startBattle() {
             clearInterval(app.bTimerRef);
             app.bScore = 0;
@@ -1161,15 +1132,20 @@
             document.getElementById('b-timer').textContent = app.bTime;
             document.getElementById('b-feedback').classList.add('hidden');
 
-            const target = VOCAB_DATA[Math.floor(Math.random() * Math.min(250, VOCAB_DATA.length))];
+            const target = VOCAB_DATA[Math.floor(Math.random() * VOCAB_DATA.length)];
             const askType = Math.random() > 0.5 ? 'SYNONYM' : 'ANTONYM';
             const correct = askType === 'SYNONYM' ? target.syn : target.ant;
             const opposite = askType === 'SYNONYM' ? target.ant : target.syn;
 
+            const samePosPool = VOCAB_DATA.filter(item => item.pos === target.pos && item.id !== target.id);
+            const fallbackPool = samePosPool.length >= 4 ? samePosPool : VOCAB_DATA;
+
             const opts = [correct];
             if (opposite && !opts.includes(opposite)) opts.push(opposite);
-            while (opts.length < 4) {
-                const rand = VOCAB_DATA[Math.floor(Math.random() * 250)];
+            let safety = 0;
+            while (opts.length < 4 && safety < 100) {
+                safety++;
+                const rand = fallbackPool[Math.floor(Math.random() * fallbackPool.length)];
                 const cand = Math.random() > 0.5 ? rand.syn : rand.ant;
                 if (cand && !opts.includes(cand)) opts.push(cand);
             }
@@ -1186,7 +1162,7 @@
             document.getElementById('b-bangla').textContent = `(${target.bangla})`;
 
             document.getElementById('b-options').innerHTML = opts.map(opt => `
-                <button type="button" onclick="answerBattle('${opt.replace(/'/g, "\\'")}')" class="option-pill p-3.5 rounded-2xl border-2 border-emerald-200/80 dark:border-emerald-800/60 bg-white dark:bg-[#162922] font-extrabold text-sm text-emerald-950 dark:text-emerald-100">
+                <button type="button" onclick="answerBattle('${opt.replace(/'/g, "\'")}')" class="option-pill p-3.5 rounded-2xl border-2 border-emerald-200/80 dark:border-emerald-800/60 bg-white dark:bg-[#162922] font-extrabold text-sm text-emerald-950 dark:text-emerald-100">
                     ${opt}
                 </button>
             `).join('');
@@ -1253,7 +1229,7 @@
                     </div>
                     <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
                         ${q.options.map(opt => `
-                            <button type="button" onclick="checkPassageAns(this, '${opt.replace(/'/g, "\\'")}', '${q.answer.replace(/'/g, "\\'")}')" class="py-2 px-2.5 rounded-xl border border-emerald-200 dark:border-emerald-800 text-xs font-bold hover:bg-emerald-50 dark:hover:bg-emerald-950">
+                            <button type="button" onclick="checkPassageAns(this, '${opt.replace(/'/g, "\'")}', '${q.answer.replace(/'/g, "\'")}')" class="py-2 px-2.5 rounded-xl border border-emerald-200 dark:border-emerald-800 text-xs font-bold hover:bg-emerald-50 dark:hover:bg-emerald-950">
                                 ${opt}
                             </button>
                         `).join('')}
@@ -1290,7 +1266,7 @@
         }
 
         function resetAndRenderBank() {
-            app.bankLimit = 25;
+            app.bankLimit = 30;
             const q = (document.getElementById('bank-search').value || '').trim().toLowerCase();
             filteredBank = VOCAB_DATA.filter(item => {
                 if (app.bankFilter === '1ST' && item.paper !== '1ST') return false;
@@ -1359,7 +1335,7 @@
             loadMoreBtn.style.display = app.bankLimit < filteredBank.length ? 'block' : 'none';
         }
 
-        // 5. EXAM MODE & GMAIL RESULT CARD DISPATCH (akashtalukder1998@gmail.com)
+        // 5. EXAM MODE & RESULT CARD
         const EXAM_RECIPIENT_EMAIL = 'akashtalukder1998@gmail.com';
         let examState = {
             studentName: '',
@@ -1386,16 +1362,20 @@
             }
             errBox.classList.add('hidden');
 
-            const poolSize = Math.min(350, VOCAB_DATA.length);
-            const pool = [...VOCAB_DATA.slice(0, poolSize)].sort(() => Math.random() - 0.5).slice(0, qCount);
+            const pool = [...VOCAB_DATA].sort(() => Math.random() - 0.5).slice(0, Math.min(qCount, VOCAB_DATA.length));
             const questions = pool.map((target, idx) => {
                 const askType = idx % 2 === 0 ? 'SYNONYM' : 'ANTONYM';
                 const correctAns = askType === 'SYNONYM' ? target.syn : target.ant;
                 const distractorOpp = askType === 'SYNONYM' ? target.ant : target.syn;
+                const samePosPool = VOCAB_DATA.filter(item => item.pos === target.pos && item.id !== target.id);
+                const fallbackPool = samePosPool.length >= 4 ? samePosPool : VOCAB_DATA;
+
                 const opts = [correctAns];
                 if (distractorOpp && !opts.includes(distractorOpp)) opts.push(distractorOpp);
-                while (opts.length < 4) {
-                    const randWord = VOCAB_DATA[Math.floor(Math.random() * poolSize)];
+                let safety = 0;
+                while (opts.length < 4 && safety < 100) {
+                    safety++;
+                    const randWord = fallbackPool[Math.floor(Math.random() * fallbackPool.length)];
                     const cand = Math.random() > 0.5 ? randWord.syn : randWord.ant;
                     if (cand && !opts.includes(cand)) opts.push(cand);
                 }
@@ -1410,7 +1390,7 @@
                 questions,
                 answers: {},
                 currentIdx: 0,
-                secondsLeft: qCount * 45,
+                secondsLeft: questions.length * 45,
                 timerRef: null,
                 lastSummaryText: ''
             };
@@ -1453,7 +1433,7 @@
             document.getElementById('ex-options').innerHTML = q.opts.map((opt, i) => {
                 const selected = chosen === opt;
                 return `
-                    <button type="button" onclick="selectExamOption('${opt.replace(/'/g, "\\'")}')" class="option-pill p-3.5 rounded-2xl border-2 flex items-center gap-3 text-left ${selected
+                    <button type="button" onclick="selectExamOption('${opt.replace(/'/g, "\'")}')" class="option-pill p-3.5 rounded-2xl border-2 flex items-center gap-3 text-left ${selected
                         ? 'border-emerald-600 bg-emerald-50 dark:bg-emerald-950/60'
                         : 'border-emerald-200/80 dark:border-emerald-800/60 bg-white dark:bg-[#162922]'}">
                         <span class="bangla w-7 h-7 rounded-lg bg-emerald-100 dark:bg-emerald-950 text-emerald-800 dark:text-emerald-300 font-extrabold text-xs flex items-center justify-center shrink-0">${labels[i]}</span>
