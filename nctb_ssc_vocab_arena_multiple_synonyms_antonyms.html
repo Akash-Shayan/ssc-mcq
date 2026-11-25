@@ -42,14 +42,14 @@
       --bg-card: #FFFFFF;
       --border-soft: #DCE9DF;
       --accent-sage: #2D6A4F;
-    /* }
+    }
 
     html.dark {
       --bg-canvas: #0B120E;
       --bg-card: #121C16;
       --border-soft: #223328;
       --accent-sage: #52B788;
-    } */
+    }
 
     body {
       font-family: 'Plus Jakarta Sans', 'Hind Siliguri', system-ui, -apple-system, sans-serif;
@@ -190,6 +190,18 @@
             </kbd>
           </button>
 
+          <!-- Cute Exam / Test Yourself Shortcut Button -->
+          <button
+            type="button"
+            onclick="openExamMode()"
+            aria-label="পরীক্ষা দিন"
+            title="Test Yourself / পরীক্ষা দিন"
+            class="min-h-[44px] px-3 sm:px-3.5 rounded-full bg-[#2D6A4F] hover:bg-[#23553E] active:scale-[0.96] dark:bg-[#40916C] dark:hover:bg-[#357A5B] text-white shadow-xs flex items-center gap-1.5 transition-all duration-150 cursor-pointer"
+          >
+            <svg class="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+            <span class="text-xs font-semibold font-bn">পরীক্ষা</span>
+          </button>
+
           <!-- Resume Saved Progress -->
           <button
             id="resume-btn"
@@ -203,7 +215,7 @@
           </button>
 
           <!-- Minimal Download HTML Button -->
-          <button
+          <!-- <button
             id="header-download-btn"
             type="button"
             onclick="downloadSingleHtml()"
@@ -213,7 +225,7 @@
           >
             <svg class="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>
             <span class="hidden md:inline text-xs font-semibold font-bn">HTML</span>
-          </button>
+          </button> -->
 
           <!-- Minimal Theme Toggle -->
           <button
@@ -338,6 +350,11 @@
         <button type="button" onclick="switchView('quiz')" id="view-btn-quiz" class="view-btn min-h-[40px] px-3.5 sm:px-4 rounded-full text-xs sm:text-sm font-semibold transition-all duration-150 active:scale-[0.97] flex items-center gap-1.5 whitespace-nowrap shrink-0 font-bn cursor-pointer">
           <svg class="w-3.5 h-3.5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
           <span>কুইজ গেম</span>
+        </button>
+
+        <button type="button" onclick="switchView('exam')" id="view-btn-exam" class="view-btn min-h-[40px] px-3.5 sm:px-4 rounded-full text-xs sm:text-sm font-semibold transition-all duration-150 active:scale-[0.97] flex items-center gap-1.5 whitespace-nowrap shrink-0 font-bn cursor-pointer">
+          <svg class="w-3.5 h-3.5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+          <span>পরীক্ষা (Test)</span>
         </button>
 
         <button type="button" onclick="switchView('list')" id="view-btn-list" class="view-btn min-h-[40px] px-3.5 sm:px-4 rounded-full text-xs sm:text-sm font-semibold transition-all duration-150 active:scale-[0.97] flex items-center gap-1.5 whitespace-nowrap shrink-0 font-bn cursor-pointer">
@@ -630,6 +647,369 @@
       </div>
     </section>
 
+    <!-- ===================================================================== -->
+    <!-- VIEW 4: STUDENT SELF-TEST / EXAM MODE (FULL OR CHAPTERWISE + RESULT)  -->
+    <!-- ===================================================================== -->
+    <section id="view-exam" class="hidden max-w-3xl mx-auto space-y-4 pb-6">
+
+      <!-- SUB-VIEW A: EXAM SETUP CARD -->
+      <div id="exam-setup-card" class="bg-white dark:bg-[#121C16] rounded-3xl border border-[#DCE9DF] dark:border-[#223328] shadow-[0_6px_28px_-8px_rgba(32,78,56,0.08)] p-5 sm:p-8 space-y-5 relative overflow-hidden">
+        <svg class="pointer-events-none absolute -top-10 -right-10 w-44 h-44 text-[#2D6A4F] opacity-[0.04] dark:opacity-[0.06] rotate-12" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+          <path d="M26 6C16.5 6.5 9.5 12.2 8 23.5C18.5 22.8 25 16.5 26 6Z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" fill="currentColor" fill-opacity="0.12"/>
+          <path d="M7.5 24.5C11.5 19 16.5 14.5 23 10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+
+        <div class="space-y-1 relative z-10">
+          <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-semibold bg-[#E4F2E8] text-[#245C42] dark:bg-[#193022] dark:text-[#95D5B2] border border-[#CBE4D3] dark:border-[#294A36] font-bn">
+            স্ব-মূল্যায়ন পরীক্ষা (Test Yourself)
+          </span>
+          <h2 class="text-xl sm:text-2xl font-bold text-[#16241C] dark:text-white font-bn pt-1">
+            পূর্ণাঙ্গ বা অধ্যায়ভিত্তিক পরীক্ষা দিন
+          </h2>
+          <p class="text-xs sm:text-sm text-[#557160] dark:text-[#96B0A0] font-bn">
+            পরীক্ষা শেষে রেজাল্ট কার্ড, প্রতিটি প্রশ্নের ব্যাখ্যা এবং ইমেইলে (akashtalukder1998@gmail.com) ফলাফল পাঠানোর সুবিধা পাবেন।
+          </p>
+        </div>
+
+        <!-- Student Name & Roll -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 font-bn relative z-10">
+          <div class="space-y-1.5">
+            <label for="exam-student-name" class="block text-xs font-semibold text-[#557160] dark:text-[#96B0A0]">
+              শিক্ষার্থীর নাম (Student Name)
+            </label>
+            <input
+              id="exam-student-name"
+              type="text"
+              placeholder="আপনার নাম লিখুন..."
+              class="w-full min-h-[44px] rounded-2xl bg-[#F6FAF7] dark:bg-[#18261E] border border-[#D4E4D8] dark:border-[#283D30] px-3.5 py-2 text-sm font-medium text-[#16241C] dark:text-[#E8F1EB] focus:outline-none focus:ring-2 focus:ring-[#52B788]/50"
+            />
+          </div>
+          <div class="space-y-1.5">
+            <label for="exam-student-roll" class="block text-xs font-semibold text-[#557160] dark:text-[#96B0A0]">
+              শ্রেণি / রোল নম্বর (ঐচ্ছিক)
+            </label>
+            <input
+              id="exam-student-roll"
+              type="text"
+              placeholder="যেমন: SSC Batch · Roll 12"
+              class="w-full min-h-[44px] rounded-2xl bg-[#F6FAF7] dark:bg-[#18261E] border border-[#D4E4D8] dark:border-[#283D30] px-3.5 py-2 text-sm font-medium text-[#16241C] dark:text-[#E8F1EB] focus:outline-none focus:ring-2 focus:ring-[#52B788]/50"
+            />
+          </div>
+        </div>
+
+        <!-- Scope Selector: Full vs Chapterwise -->
+        <div class="space-y-2 font-bn relative z-10">
+          <span class="block text-xs font-semibold text-[#557160] dark:text-[#96B0A0]">
+            পরীক্ষার ধরন নির্বাচন করুন
+          </span>
+          <div class="grid grid-cols-2 gap-2.5">
+            <button
+              id="exam-scope-full"
+              type="button"
+              onclick="setExamScope('FULL')"
+              class="min-h-[48px] px-4 rounded-2xl border text-xs sm:text-sm font-semibold transition-all duration-150 active:scale-[0.97] flex items-center justify-center gap-2 cursor-pointer"
+            >
+              <svg class="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
+              <span>পূর্ণাঙ্গ (Full Syllabus)</span>
+            </button>
+            <button
+              id="exam-scope-chapter"
+              type="button"
+              onclick="setExamScope('CHAPTER')"
+              class="min-h-[48px] px-4 rounded-2xl border text-xs sm:text-sm font-semibold transition-all duration-150 active:scale-[0.97] flex items-center justify-center gap-2 cursor-pointer"
+            >
+              <svg class="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></svg>
+              <span>অধ্যায়ভিত্তিক (Chapterwise)</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Paper & Optional Chapter Dropdown -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 font-bn relative z-10">
+          <div class="space-y-1.5">
+            <label for="exam-paper-select" class="block text-xs font-semibold text-[#557160] dark:text-[#96B0A0]">
+              সিলেবাস / পেপার নির্বাচন
+            </label>
+            <select
+              id="exam-paper-select"
+              onchange="onExamPaperChange(this.value)"
+              class="w-full min-h-[44px] rounded-2xl bg-[#F6FAF7] dark:bg-[#18261E] border border-[#D4E4D8] dark:border-[#283D30] px-3.5 py-2 text-sm font-medium text-[#16241C] dark:text-[#E8F1EB] focus:outline-none focus:ring-2 focus:ring-[#52B788]/50"
+            >
+              <option value="ALL_NCTB">মূল বই (১ম + ২য় পত্র)</option>
+              <option value="1st Paper">English 1st Paper (Unit 1–14)</option>
+              <option value="2nd Paper">English 2nd Paper (Grammar)</option>
+              <option value="Extra 1500">Extra 1500+ SSC Words</option>
+              <option value="COMBINED_ALL">সব একসাথে (Combined All)</option>
+            </select>
+          </div>
+
+          <div id="exam-chapter-wrap" class="hidden space-y-1.5">
+            <label for="exam-chapter-select" class="block text-xs font-semibold text-[#557160] dark:text-[#96B0A0]">
+              নির্দিষ্ট অধ্যায় / টপিক (Chapter)
+            </label>
+            <select
+              id="exam-chapter-select"
+              onchange="updateExamSetupSummary()"
+              class="w-full min-h-[44px] rounded-2xl bg-[#F6FAF7] dark:bg-[#18261E] border border-[#D4E4D8] dark:border-[#283D30] px-3.5 py-2 text-sm font-medium text-[#16241C] dark:text-[#E8F1EB] focus:outline-none focus:ring-2 focus:ring-[#52B788]/50"
+            ></select>
+          </div>
+        </div>
+
+        <!-- Question Count + Question Type -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 font-bn relative z-10">
+          <div class="space-y-2">
+            <span class="block text-xs font-semibold text-[#557160] dark:text-[#96B0A0]">
+              প্রশ্নের সংখ্যা (Questions)
+            </span>
+            <div class="flex flex-wrap gap-1.5">
+              <button type="button" onclick="setExamCount(10)" data-ecount="10" class="exam-count-btn min-h-[40px] px-3.5 rounded-full text-xs font-semibold border transition cursor-pointer font-mono-num">10</button>
+              <button type="button" onclick="setExamCount(20)" data-ecount="20" class="exam-count-btn min-h-[40px] px-3.5 rounded-full text-xs font-semibold border transition cursor-pointer font-mono-num">20</button>
+              <button type="button" onclick="setExamCount(30)" data-ecount="30" class="exam-count-btn min-h-[40px] px-3.5 rounded-full text-xs font-semibold border transition cursor-pointer font-mono-num">30</button>
+              <button type="button" onclick="setExamCount(50)" data-ecount="50" class="exam-count-btn min-h-[40px] px-3.5 rounded-full text-xs font-semibold border transition cursor-pointer font-mono-num">50</button>
+              <button type="button" onclick="setExamCount(9999)" data-ecount="9999" class="exam-count-btn min-h-[40px] px-3.5 rounded-full text-xs font-semibold border transition cursor-pointer">সব (All)</button>
+            </div>
+          </div>
+
+          <div class="space-y-2">
+            <span class="block text-xs font-semibold text-[#557160] dark:text-[#96B0A0]">
+              প্রশ্নের প্যাটার্ন (Format)
+            </span>
+            <div class="flex flex-wrap gap-1.5">
+              <button type="button" onclick="setExamFormat('MEANING')" id="exam-fmt-meaning" class="min-h-[40px] px-3.5 rounded-full text-xs font-semibold border transition cursor-pointer">বাংলা অর্থ</button>
+              <button type="button" onclick="setExamFormat('MIXED')" id="exam-fmt-mixed" class="min-h-[40px] px-3.5 rounded-full text-xs font-semibold border transition cursor-pointer">মিশ্র (অর্থ + Synonym)</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pool Preview & Start Button -->
+        <div class="pt-2 border-t border-[#E4EFE7] dark:border-[#203227] flex flex-col sm:flex-row sm:items-center justify-between gap-3 relative z-10">
+          <p id="exam-setup-summary" class="text-xs text-[#557160] dark:text-[#96B0A0] font-bn">
+            প্রস্তুত করা হচ্ছে...
+          </p>
+          <button
+            type="button"
+            onclick="startExam()"
+            class="min-h-[48px] px-6 rounded-2xl bg-[#2D6A4F] hover:bg-[#23553E] active:scale-[0.97] dark:bg-[#40916C] dark:hover:bg-[#357A5B] text-white font-semibold text-sm flex items-center justify-center gap-2 transition shadow-sm font-bn cursor-pointer"
+          >
+            <span>পরীক্ষা শুরু করুন</span>
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- SUB-VIEW B: ACTIVE EXAM RUNNER -->
+      <div id="exam-running-card" class="hidden bg-white dark:bg-[#121C16] rounded-3xl border border-[#DCE9DF] dark:border-[#223328] shadow-[0_6px_28px_-8px_rgba(32,78,56,0.08)] p-5 sm:p-7 space-y-5">
+        <!-- Exam Top Bar -->
+        <div class="flex flex-wrap items-center justify-between gap-2 pb-3 border-b border-[#EAF2EC] dark:border-[#1E2E24]">
+          <div class="space-y-0.5">
+            <div class="flex items-center gap-2 text-xs text-[#557160] dark:text-[#96B0A0]">
+              <span id="exam-q-counter" class="font-mono-num font-bold text-[#245C42] dark:text-[#8CD4B0]">প্রশ্ন 1 / 20</span>
+              <span aria-hidden="true">·</span>
+              <span id="exam-answered-counter" class="font-bn">উত্তর: 0</span>
+            </div>
+            <p id="exam-scope-label" class="text-[11px] text-[#6B8575] dark:text-[#829C8C] font-bn truncate max-w-[230px] sm:max-w-sm">Full Exam</p>
+          </div>
+
+          <div class="flex items-center gap-2">
+            <span id="exam-timer-badge" class="inline-flex items-center gap-1.5 min-h-[38px] px-3 rounded-full bg-[#EDF6F0] dark:bg-[#17281E] text-[#245C42] dark:text-[#8CD4B0] border border-[#CFE3D5] dark:border-[#284232] text-xs font-mono-num font-semibold">
+              <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              <span id="exam-timer-text">00:00</span>
+            </span>
+
+            <button
+              type="button"
+              onclick="submitExam()"
+              class="min-h-[38px] px-3.5 rounded-full bg-[#2D6A4F] hover:bg-[#23553E] active:scale-[0.96] dark:bg-[#40916C] text-white text-xs font-semibold font-bn transition cursor-pointer"
+            >
+              জমা দিন
+            </button>
+          </div>
+        </div>
+
+        <!-- Exam Progress Bar -->
+        <div class="w-full h-1.5 bg-[#E6F0E9] dark:bg-[#1C2A21] rounded-full overflow-hidden">
+          <div id="exam-progress-bar" class="h-full bg-gradient-to-r from-[#52B788] to-[#2D6A4F] rounded-full transition-all duration-300" style="width: 0%"></div>
+        </div>
+
+        <!-- Question Pills Navigator -->
+        <div id="exam-q-pills" class="flex items-center gap-1.5 overflow-x-auto no-scrollbar pb-1"></div>
+
+        <!-- Active Question Card -->
+        <div class="relative rounded-2xl bg-[#F6FAF7] dark:bg-[#17251D] p-5 border border-[#E1EDE4] dark:border-[#24382B] space-y-2">
+          <span id="exam-q-pos" class="absolute top-4 right-4 px-2.5 py-1 rounded-xl text-[11px] font-bold uppercase border">Noun</span>
+          <p id="exam-q-prompt" class="text-xs font-semibold text-[#2D6A4F] dark:text-[#8CD4B0] font-bn pr-20">
+            নিচের শব্দটির সঠিক বাংলা অর্থ কোনটি?
+          </p>
+          <div class="flex items-center gap-2.5 flex-wrap pr-16">
+            <h3 id="exam-q-word" class="text-2xl sm:text-4xl font-extrabold text-[#16241C] dark:text-white break-words">Word</h3>
+            <button
+              type="button"
+              onclick="speakExamCurrentWord()"
+              aria-label="Listen word"
+              class="min-h-[40px] min-w-[40px] rounded-full bg-[#E6F3EA] hover:bg-[#D5ECDD] dark:bg-[#1B3325] text-[#245C42] dark:text-[#8CD4B0] flex items-center justify-center transition cursor-pointer"
+            >
+              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+            </button>
+          </div>
+          <p id="exam-q-meta" class="text-xs text-[#557160] dark:text-[#96B0A0] font-bn">উচ্চারণ · অধ্যায়</p>
+        </div>
+
+        <!-- 4 Option Buttons -->
+        <div id="exam-options" class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 font-bn"></div>
+
+        <!-- Exam Bottom Navigation -->
+        <div class="flex items-center justify-between gap-2 pt-1 font-bn">
+          <button
+            id="exam-prev-btn"
+            type="button"
+            onclick="goExamQuestion(examState.currentIdx - 1)"
+            class="min-h-[46px] px-4 rounded-2xl bg-[#F4F9F5] hover:bg-[#E7F2EA] active:scale-[0.96] dark:bg-[#18261E] dark:hover:bg-[#213328] border border-[#D4E4D8] dark:border-[#283C30] text-xs sm:text-sm font-semibold flex items-center gap-2 transition cursor-pointer disabled:opacity-40"
+          >
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>
+            <span>পূর্ববর্তী</span>
+          </button>
+
+          <button
+            id="exam-next-btn"
+            type="button"
+            onclick="goExamNextOrSubmit()"
+            class="min-h-[46px] px-5 rounded-2xl bg-[#2D6A4F] hover:bg-[#23553E] active:scale-[0.96] dark:bg-[#40916C] dark:hover:bg-[#357A5B] text-white text-xs sm:text-sm font-semibold flex items-center gap-2 transition cursor-pointer"
+          >
+            <span id="exam-next-btn-text">পরবর্তী প্রশ্ন</span>
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- SUB-VIEW C: RESULT CARD + EMAIL DELIVERY + FULL EXPLANATIONS -->
+      <div id="exam-result-wrap" class="hidden space-y-5">
+        <!-- Official Light-Green Botanical Result Card -->
+        <div id="exam-result-card" class="bg-gradient-to-br from-white via-[#F9FCF9] to-[#EDF6F0] dark:from-[#121C16] dark:via-[#14221A] dark:to-[#182C21] rounded-3xl border border-[#BBDAC4] dark:border-[#2C4E3A] shadow-[0_10px_36px_-10px_rgba(32,78,56,0.14)] p-5 sm:p-8 space-y-5 relative overflow-hidden">
+          <svg class="pointer-events-none absolute -bottom-8 -right-8 w-48 h-48 text-[#2D6A4F] opacity-[0.05] dark:opacity-[0.08] rotate-12" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+            <path d="M26 6C16.5 6.5 9.5 12.2 8 23.5C18.5 22.8 25 16.5 26 6Z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" fill="currentColor" fill-opacity="0.12"/>
+            <path d="M7.5 24.5C11.5 19 16.5 14.5 23 10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+
+          <!-- Top Certificate Header -->
+          <div class="flex flex-wrap items-start justify-between gap-4 pb-4 border-b border-[#DCEBE0] dark:border-[#243D2E] relative z-10">
+            <div class="space-y-1 font-bn">
+              <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-[#E0F1E6] text-[#1D5B41] dark:bg-[#1B3A29] dark:text-[#95D5B2] border border-[#C2E2CE] dark:border-[#2E5941]">
+                EXAM RESULT CARD · NCTB SSC
+              </span>
+              <h2 id="res-student-title" class="text-xl sm:text-2xl font-bold text-[#16241C] dark:text-white pt-1">
+                শিক্ষার্থী
+              </h2>
+              <p id="res-meta-line" class="text-xs text-[#557160] dark:text-[#96B0A0]">
+                Full Syllabus · 00:00
+              </p>
+            </div>
+
+            <!-- Score & Grade Pill -->
+            <div class="flex items-center gap-3 bg-white/90 dark:bg-[#111D16] px-4 py-3 rounded-2xl border border-[#CFE4D6] dark:border-[#284534] shadow-xs">
+              <div class="text-right">
+                <div id="res-pct" class="text-2xl sm:text-3xl font-extrabold text-[#245C42] dark:text-[#8CD4B0] font-mono-num leading-none">0%</div>
+                <div id="res-remark" class="text-[11px] font-semibold text-[#557160] dark:text-[#96B0A0] font-bn mt-1">ফলাফল</div>
+              </div>
+              <div id="res-grade-badge" class="w-12 h-12 rounded-2xl bg-[#2D6A4F] dark:bg-[#40916C] text-white flex items-center justify-center font-extrabold text-lg font-mono-num">
+                A+
+              </div>
+            </div>
+          </div>
+
+          <!-- 4 Metric Boxes -->
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5 text-center font-bn relative z-10">
+            <div class="rounded-2xl bg-white/85 dark:bg-[#142219] p-3 border border-[#E1EDE4] dark:border-[#23382B]">
+              <div id="res-total" class="text-xl font-bold text-[#16241C] dark:text-white font-mono-num">0</div>
+              <div class="text-xs text-[#557160] dark:text-[#96B0A0]">মোট প্রশ্ন</div>
+            </div>
+            <div class="rounded-2xl bg-[#E8F6ED] dark:bg-[#163022] p-3 border border-[#C6E6D1] dark:border-[#27513B]">
+              <div id="res-correct" class="text-xl font-bold text-[#1D6342] dark:text-[#8CD4B0] font-mono-num">0</div>
+              <div class="text-xs text-[#2D6A4F] dark:text-[#8CD4B0]">সঠিক উত্তর</div>
+            </div>
+            <div class="rounded-2xl bg-[#FCF0EE] dark:bg-[#311C1A] p-3 border border-[#EED0CB] dark:border-[#562F2B]">
+              <div id="res-wrong" class="text-xl font-bold text-[#943B31] dark:text-[#F0ADA5] font-mono-num">0</div>
+              <div class="text-xs text-[#943B31] dark:text-[#E5A298]">ভুল উত্তর</div>
+            </div>
+            <div class="rounded-2xl bg-[#F5F4E9] dark:bg-[#272416] p-3 border border-[#E6E0C3] dark:border-[#423C22]">
+              <div id="res-skipped" class="text-xl font-bold text-[#7A6118] dark:text-[#E5CF80] font-mono-num">0</div>
+              <div class="text-xs text-[#786A3B] dark:text-[#C8BA84]">উত্তর দেওয়া হয়নি</div>
+            </div>
+          </div>
+
+          <!-- Email Result Card Actions -->
+          <div class="pt-2 space-y-2.5 font-bn relative z-10">
+            <div class="flex flex-wrap items-center gap-2">
+              <button
+                type="button"
+                onclick="sendResultViaMailApp()"
+                class="min-h-[46px] px-4 rounded-2xl bg-[#2D6A4F] hover:bg-[#23553E] active:scale-[0.97] dark:bg-[#40916C] dark:hover:bg-[#357A5B] text-white text-xs sm:text-sm font-semibold flex items-center gap-2 transition cursor-pointer"
+              >
+                <svg class="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                <span>ইমেইলে পাঠান (Email App)</span>
+              </button>
+
+              <button
+                id="exam-web-email-btn"
+                type="button"
+                onclick="sendResultViaWebEmail()"
+                class="min-h-[46px] px-4 rounded-2xl bg-[#E4F2E8] hover:bg-[#D4EBD9] active:scale-[0.97] dark:bg-[#193325] dark:hover:bg-[#214431] text-[#1D563B] dark:text-[#98DFBA] border border-[#BFE0CA] dark:border-[#2C563E] text-xs sm:text-sm font-semibold flex items-center gap-2 transition cursor-pointer"
+              >
+                <svg class="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg>
+                <span>ডাইরেক্ট ওয়েব ইমেইল</span>
+              </button>
+
+              <button
+                type="button"
+                onclick="copyExamResult()"
+                class="min-h-[46px] px-4 rounded-2xl bg-white hover:bg-[#EFF7F1] active:scale-[0.97] dark:bg-[#16231B] dark:hover:bg-[#1E3025] text-[#284434] dark:text-[#CBE0D3] border border-[#D4E4D8] dark:border-[#263C2E] text-xs sm:text-sm font-semibold flex items-center gap-2 transition cursor-pointer"
+              >
+                <svg class="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+                <span>কপি করুন</span>
+              </button>
+            </div>
+
+            <div class="flex flex-wrap items-center justify-between gap-2 pt-1">
+              <p id="exam-email-status" class="text-[11px] text-[#557160] dark:text-[#92AD9C]">
+                প্রাপক: <span class="font-mono-num font-semibold text-[#245C42] dark:text-[#8CD4B0]">akashtalukder1998@gmail.com</span>
+              </p>
+              <div class="flex items-center gap-2">
+                <button
+                  type="button"
+                  onclick="retakeSameExam()"
+                  class="min-h-[40px] px-3.5 rounded-full bg-white hover:bg-[#EFF7F1] dark:bg-[#16231B] border border-[#D4E4D8] dark:border-[#263C2E] text-xs font-semibold text-[#245C42] dark:text-[#8CD4B0] transition cursor-pointer"
+                >
+                  পুনরায় দিন
+                </button>
+                <button
+                  type="button"
+                  onclick="resetExamToSetup()"
+                  class="min-h-[40px] px-3.5 rounded-full bg-[#2D6A4F] hover:bg-[#23553E] dark:bg-[#40916C] text-white text-xs font-semibold transition cursor-pointer"
+                >
+                  নতুন পরীক্ষা
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Question-by-Question Explanations Header + Filter -->
+        <div class="flex flex-wrap items-center justify-between gap-2.5 pt-2 font-bn">
+          <h3 class="text-base sm:text-lg font-bold text-[#16241C] dark:text-white">
+            প্রশ্নোত্তর ও বিস্তারিত ব্যাখ্যা
+          </h3>
+          <div class="flex items-center gap-1.5 overflow-x-auto no-scrollbar">
+            <button type="button" onclick="setExamReviewFilter('ALL')" id="rev-filter-ALL" class="min-h-[38px] px-3 rounded-full text-xs font-semibold border transition cursor-pointer">সব</button>
+            <button type="button" onclick="setExamReviewFilter('WRONG')" id="rev-filter-WRONG" class="min-h-[38px] px-3 rounded-full text-xs font-semibold border transition cursor-pointer">ভুল উত্তর</button>
+            <button type="button" onclick="setExamReviewFilter('CORRECT')" id="rev-filter-CORRECT" class="min-h-[38px] px-3 rounded-full text-xs font-semibold border transition cursor-pointer">সঠিক উত্তর</button>
+          </div>
+        </div>
+
+        <!-- Explanations List -->
+        <div id="exam-explanations-list" class="space-y-3"></div>
+      </div>
+
+    </section>
+
     <!-- Quiet Minimal Footer -->
     <footer id="app-footer" class="pt-4 pb-6 border-t border-[#E4EFE7] dark:border-[#1E2E24] flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-[#647F6E] dark:text-[#829C8C] font-bn">
       <span>NCTB SSC Vocabulary Master · Class 9–10 &amp; Board Lexicon</span>
@@ -639,8 +1019,8 @@
         download="vacab.html"
         class="inline-flex items-center gap-1.5 min-h-[36px] px-3 rounded-full bg-[#EDF6F0] hover:bg-[#DFEFE4] dark:bg-[#16251C] dark:hover:bg-[#1E3327] text-[#245C42] dark:text-[#8CD4B0] border border-[#D4E6DA] dark:border-[#263F30] font-medium transition"
       >
-        <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>
-        <span>Single HTML ডাউনলোড</span>
+        <!-- <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>
+        <span>Single HTML ডাউনলোড</span> -->
       </a>
     </footer>
   </main>
@@ -2893,9 +3273,10 @@
 
     function switchView(viewName) {
       state.currentView = viewName;
-      ["flashcard", "quiz", "list"].forEach(v => {
+      ["flashcard", "quiz", "exam", "list"].forEach(v => {
         const sec = document.getElementById("view-" + v);
         const btn = document.getElementById("view-btn-" + v);
+        if (!sec || !btn) return;
         if (v === viewName) {
           sec.classList.remove("hidden");
           btn.className = "view-btn min-h-[40px] px-3.5 sm:px-4 rounded-full text-xs sm:text-sm font-semibold transition-all duration-150 active:scale-[0.97] flex items-center gap-1.5 whitespace-nowrap shrink-0 font-bn cursor-pointer bg-[#2D6A4F] text-white dark:bg-[#40916C]";
@@ -2905,6 +3286,14 @@
         }
       });
       renderAll();
+    }
+
+    function openExamMode() {
+      switchView("exam");
+      if (examState.phase === "SETUP") {
+        syncExamSetupFromCurrent();
+      }
+      document.getElementById("view-exam")?.scrollIntoView({ behavior: "smooth", block: "start" });
     }
 
     function updateStatsBar() {
@@ -2951,6 +3340,8 @@
         renderFlashcard();
       } else if (state.currentView === "quiz") {
         renderQuiz();
+      } else if (state.currentView === "exam") {
+        renderExamView();
       } else if (state.currentView === "list") {
         renderDictionaryList();
       }
@@ -3130,6 +3521,667 @@
         }
       }
     });
+
+    // =====================================================================
+    // STUDENT SELF-TEST / EXAM ENGINE (FULL OR CHAPTERWISE + EMAIL RESULT)
+    // =====================================================================
+    const EXAM_EMAIL_TARGET = "akashtalukder1998@gmail.com";
+
+    let examState = {
+      phase: "SETUP",            // 'SETUP' | 'RUNNING' | 'RESULT'
+      scope: "FULL",             // 'FULL' | 'CHAPTER'
+      paper: "ALL_NCTB",
+      chapter: "ALL",
+      count: 20,
+      format: "MEANING",         // 'MEANING' | 'MIXED'
+      questions: [],             // Array of { item, type, prompt, options, correctAnswer, chosenAnswer }
+      currentIdx: 0,
+      startedAt: 0,
+      elapsedSeconds: 0,
+      timerId: null,
+      reviewFilter: "ALL",       // 'ALL' | 'WRONG' | 'CORRECT'
+      lastResultSummary: null
+    };
+
+    function getExamPool() {
+      let pool = VOCABULARY_DATABASE.filter(w => {
+        if (examState.paper === "ALL_NCTB") {
+          return w.paper === "1st Paper" || w.paper === "2nd Paper";
+        }
+        if (examState.paper !== "COMBINED_ALL" && w.paper !== examState.paper) {
+          return false;
+        }
+        return true;
+      });
+      if (examState.scope === "CHAPTER" && examState.chapter && examState.chapter !== "ALL") {
+        pool = pool.filter(w => w.unit === examState.chapter);
+      }
+      return pool;
+    }
+
+    function populateExamChapters() {
+      const sel = document.getElementById("exam-chapter-select");
+      if (!sel) return;
+      let pool = VOCABULARY_DATABASE.filter(w => {
+        if (examState.paper === "ALL_NCTB") {
+          return w.paper === "1st Paper" || w.paper === "2nd Paper";
+        }
+        if (examState.paper !== "COMBINED_ALL" && w.paper !== examState.paper) {
+          return false;
+        }
+        return true;
+      });
+      const counts = {};
+      pool.forEach(w => { counts[w.unit] = (counts[w.unit] || 0) + 1; });
+      const keys = Object.keys(counts);
+      sel.innerHTML = "";
+      keys.forEach(u => {
+        const opt = document.createElement("option");
+        opt.value = u;
+        opt.textContent = u + " (" + counts[u] + " শব্দ)";
+        sel.appendChild(opt);
+      });
+      if (!keys.includes(examState.chapter)) {
+        examState.chapter = keys[0] || "ALL";
+      }
+      sel.value = examState.chapter;
+    }
+
+    function syncExamSetupFromCurrent() {
+      examState.paper = state.paperFilter || "ALL_NCTB";
+      const paperSel = document.getElementById("exam-paper-select");
+      if (paperSel) paperSel.value = examState.paper;
+      populateExamChapters();
+      if (state.unitFilter && state.unitFilter !== "ALL") {
+        examState.scope = "CHAPTER";
+        examState.chapter = state.unitFilter;
+        const chSel = document.getElementById("exam-chapter-select");
+        if (chSel) chSel.value = state.unitFilter;
+      }
+      updateExamSetupUI();
+    }
+
+    function setExamScope(scope) {
+      examState.scope = scope;
+      if (scope === "CHAPTER") {
+        populateExamChapters();
+      }
+      updateExamSetupUI();
+    }
+
+    function onExamPaperChange(val) {
+      examState.paper = val;
+      populateExamChapters();
+      updateExamSetupUI();
+    }
+
+    function setExamCount(n) {
+      examState.count = n;
+      updateExamSetupUI();
+    }
+
+    function setExamFormat(fmt) {
+      examState.format = fmt;
+      updateExamSetupUI();
+    }
+
+    function updateExamSetupSummary() {
+      const chSel = document.getElementById("exam-chapter-select");
+      if (chSel && examState.scope === "CHAPTER") {
+        examState.chapter = chSel.value;
+      }
+      const pool = getExamPool();
+      const targetCount = examState.count >= 9999 ? pool.length : Math.min(examState.count, pool.length);
+      const scopeName = examState.scope === "FULL"
+        ? "পূর্ণাঙ্গ (" + examState.paper + ")"
+        : (examState.chapter || "অধ্যায়");
+      const summaryEl = document.getElementById("exam-setup-summary");
+      if (summaryEl) {
+        summaryEl.textContent = scopeName + " — মোট " + pool.length + " শব্দের মধ্য থেকে " + targetCount + "টি প্রশ্নের পরীক্ষা।";
+      }
+    }
+
+    function updateExamSetupUI() {
+      const activePill = "min-h-[48px] px-4 rounded-2xl border text-xs sm:text-sm font-semibold transition-all duration-150 active:scale-[0.97] flex items-center justify-center gap-2 cursor-pointer bg-[#2D6A4F] text-white border-[#2D6A4F] dark:bg-[#40916C]";
+      const idlePill = "min-h-[48px] px-4 rounded-2xl border text-xs sm:text-sm font-semibold transition-all duration-150 active:scale-[0.97] flex items-center justify-center gap-2 cursor-pointer bg-[#F6FAF7] hover:bg-[#EAF5EE] text-[#355240] border-[#D4E4D8] dark:bg-[#17251D] dark:text-[#98B2A2] dark:border-[#263B2E]";
+
+      document.getElementById("exam-scope-full").className = examState.scope === "FULL" ? activePill : idlePill;
+      document.getElementById("exam-scope-chapter").className = examState.scope === "CHAPTER" ? activePill : idlePill;
+
+      const chWrap = document.getElementById("exam-chapter-wrap");
+      if (examState.scope === "CHAPTER") {
+        chWrap.classList.remove("hidden");
+      } else {
+        chWrap.classList.add("hidden");
+      }
+
+      document.querySelectorAll(".exam-count-btn").forEach(btn => {
+        const c = parseInt(btn.dataset.ecount, 10);
+        if (c === examState.count) {
+          btn.className = "exam-count-btn min-h-[40px] px-3.5 rounded-full text-xs font-semibold border transition cursor-pointer font-mono-num bg-[#2D6A4F] text-white border-[#2D6A4F] dark:bg-[#40916C]";
+        } else {
+          btn.className = "exam-count-btn min-h-[40px] px-3.5 rounded-full text-xs font-semibold border transition cursor-pointer font-mono-num bg-[#F6FAF7] hover:bg-[#EAF5EE] text-[#4C6857] border-[#D4E4D8] dark:bg-[#17251D] dark:text-[#98B2A2] dark:border-[#263B2E]";
+        }
+      });
+
+      const activeFmt = "min-h-[40px] px-3.5 rounded-full text-xs font-semibold border transition cursor-pointer bg-[#E3F2E8] text-[#194E35] border-[#A7D7BA] dark:bg-[#1E3A2A] dark:text-[#A0E3BF] dark:border-[#346449]";
+      const idleFmt = "min-h-[40px] px-3.5 rounded-full text-xs font-semibold border transition cursor-pointer bg-[#F6FAF7] hover:bg-[#EAF5EE] text-[#4C6857] border-[#D4E4D8] dark:bg-[#17251D] dark:text-[#98B2A2] dark:border-[#263B2E]";
+      document.getElementById("exam-fmt-meaning").className = examState.format === "MEANING" ? activeFmt : idleFmt;
+      document.getElementById("exam-fmt-mixed").className = examState.format === "MIXED" ? activeFmt : idleFmt;
+
+      updateExamSetupSummary();
+    }
+
+    function stopExamTimer() {
+      if (examState.timerId) {
+        clearInterval(examState.timerId);
+        examState.timerId = null;
+      }
+    }
+
+    function formatDuration(sec) {
+      const m = Math.floor(sec / 60);
+      const s = sec % 60;
+      return String(m).padStart(2, "0") + ":" + String(s).padStart(2, "0");
+    }
+
+    function shuffleArray(arr) {
+      const copy = [...arr];
+      for (let i = copy.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [copy[i], copy[j]] = [copy[j], copy[i]];
+      }
+      return copy;
+    }
+
+    function buildExamQuestionForItem(item, index) {
+      const canSynonym = examState.format === "MIXED" && index % 3 === 2 && item.synonyms && item.synonyms !== "N/A";
+      let type = "MEANING";
+      let prompt = "নিচের শব্দটির সঠিক বাংলা অর্থ কোনটি?";
+      let correctAnswer = item.meaning_bn;
+
+      if (canSynonym) {
+        const firstSyn = item.synonyms.split(",")[0].trim();
+        if (firstSyn && firstSyn.toLowerCase() !== item.word.toLowerCase()) {
+          type = "SYNONYM";
+          prompt = "নিচের শব্দটির সঠিক সমার্থক শব্দ (Synonym) কোনটি?";
+          correctAnswer = firstSyn;
+        }
+      }
+
+      const distractors = [];
+      const db = VOCABULARY_DATABASE;
+      let tries = 0;
+      while (distractors.length < 3 && tries < 260) {
+        tries++;
+        const rand = db[Math.floor(Math.random() * db.length)];
+        if (rand.id === item.id) continue;
+        if (type === "SYNONYM") {
+          const cand = (rand.synonyms && rand.synonyms !== "N/A")
+            ? rand.synonyms.split(",")[0].trim()
+            : rand.word;
+          if (cand && cand.toLowerCase() !== correctAnswer.toLowerCase() && !distractors.includes(cand)) {
+            distractors.push(cand);
+          }
+        } else {
+          if (rand.meaning_bn && rand.meaning_bn !== correctAnswer && !distractors.includes(rand.meaning_bn)) {
+            distractors.push(rand.meaning_bn);
+          }
+        }
+      }
+
+      return {
+        item,
+        type,
+        prompt,
+        correctAnswer,
+        options: shuffleArray([...distractors, correctAnswer]),
+        chosenAnswer: null
+      };
+    }
+
+    function startExam() {
+      const pool = getExamPool();
+      if (pool.length === 0) {
+        showToast("নির্বাচিত অধ্যায়ে কোনো শব্দ পাওয়া যায়নি।");
+        return;
+      }
+
+      const shuffled = shuffleArray(pool);
+      const totalQ = examState.count >= 9999 ? shuffled.length : Math.min(examState.count, shuffled.length);
+      const selectedItems = shuffled.slice(0, totalQ);
+
+      examState.questions = selectedItems.map((it, idx) => buildExamQuestionForItem(it, idx));
+      examState.currentIdx = 0;
+      examState.phase = "RUNNING";
+      examState.elapsedSeconds = 0;
+      examState.startedAt = Date.now();
+      examState.reviewFilter = "ALL";
+      examState.lastResultSummary = null;
+
+      stopExamTimer();
+      document.getElementById("exam-timer-text").textContent = "00:00";
+      examState.timerId = setInterval(() => {
+        examState.elapsedSeconds = Math.floor((Date.now() - examState.startedAt) / 1000);
+        const tEl = document.getElementById("exam-timer-text");
+        if (tEl) tEl.textContent = formatDuration(examState.elapsedSeconds);
+      }, 1000);
+
+      renderExamView();
+      showToast(totalQ + "টি প্রশ্নের পরীক্ষা শুরু হয়েছে! শুভকামনা।");
+    }
+
+    function speakExamCurrentWord() {
+      const q = examState.questions[examState.currentIdx];
+      if (q) speakWordText(q.item.word);
+    }
+
+    function renderExamView() {
+      const setupCard = document.getElementById("exam-setup-card");
+      const runCard = document.getElementById("exam-running-card");
+      const resWrap = document.getElementById("exam-result-wrap");
+
+      setupCard.classList.add("hidden");
+      runCard.classList.add("hidden");
+      resWrap.classList.add("hidden");
+
+      if (examState.phase === "SETUP") {
+        setupCard.classList.remove("hidden");
+        updateExamSetupUI();
+      } else if (examState.phase === "RUNNING") {
+        runCard.classList.remove("hidden");
+        renderExamQuestion();
+      } else if (examState.phase === "RESULT") {
+        resWrap.classList.remove("hidden");
+        renderExamResult();
+      }
+    }
+
+    function renderExamQuestion() {
+      const total = examState.questions.length;
+      if (total === 0) return;
+      const q = examState.questions[examState.currentIdx];
+      const answeredCount = examState.questions.filter(x => x.chosenAnswer !== null).length;
+
+      document.getElementById("exam-q-counter").textContent = "প্রশ্ন " + (examState.currentIdx + 1) + " / " + total;
+      document.getElementById("exam-answered-counter").textContent = "উত্তর: " + answeredCount + "/" + total;
+      document.getElementById("exam-scope-label").textContent =
+        examState.scope === "FULL" ? "পূর্ণাঙ্গ পরীক্ষা · " + examState.paper : examState.chapter;
+
+      const pct = Math.round(((examState.currentIdx + 1) / total) * 100);
+      document.getElementById("exam-progress-bar").style.width = pct + "%";
+
+      // Navigator Pills
+      const pillsWrap = document.getElementById("exam-q-pills");
+      pillsWrap.innerHTML = "";
+      examState.questions.forEach((itemQ, idx) => {
+        const b = document.createElement("button");
+        b.type = "button";
+        const isCurrent = idx === examState.currentIdx;
+        const isAns = itemQ.chosenAnswer !== null;
+        let cls = "min-w-[34px] h-[34px] px-2 rounded-full text-xs font-mono-num font-semibold border transition shrink-0 cursor-pointer ";
+        if (isCurrent) {
+          cls += "bg-[#2D6A4F] text-white border-[#2D6A4F] dark:bg-[#40916C]";
+        } else if (isAns) {
+          cls += "bg-[#E3F2E8] text-[#194E35] border-[#A7D7BA] dark:bg-[#1B3828] dark:text-[#98DFBA] dark:border-[#2E5C42]";
+        } else {
+          cls += "bg-[#F6FAF7] text-[#557160] border-[#DCE9DF] dark:bg-[#17251D] dark:text-[#8CA897] dark:border-[#24382B]";
+        }
+        b.className = cls;
+        b.textContent = String(idx + 1);
+        b.onclick = () => goExamQuestion(idx);
+        pillsWrap.appendChild(b);
+      });
+
+      // Question Card
+      const qPos = document.getElementById("exam-q-pos");
+      qPos.textContent = q.item.pos;
+      qPos.className = "absolute top-4 right-4 px-2.5 py-1 rounded-xl text-[11px] font-bold uppercase border " + getPosBadgeClasses(q.item.pos);
+      document.getElementById("exam-q-prompt").textContent = q.prompt;
+      document.getElementById("exam-q-word").textContent = q.item.word;
+      document.getElementById("exam-q-meta").textContent = "উচ্চারণ: " + q.item.pronunciation + " · " + q.item.unit;
+
+      // Options
+      const optWrap = document.getElementById("exam-options");
+      optWrap.innerHTML = "";
+      q.options.forEach((optText, idx) => {
+        const isPicked = q.chosenAnswer === optText;
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = isPicked
+          ? "min-h-[54px] text-left p-3.5 rounded-2xl border-2 border-[#2D6A4F] bg-[#E3F2E8] text-[#154A30] dark:bg-[#1A3929] dark:border-[#52B788] dark:text-[#C5F0D8] transition-all duration-150 active:scale-[0.98] flex items-center gap-3 font-semibold text-sm sm:text-base cursor-pointer"
+          : "min-h-[54px] text-left p-3.5 rounded-2xl border border-[#D9E8DD] bg-white hover:border-[#52B788] hover:bg-[#F3FAF5] dark:bg-[#15221B] dark:border-[#263B2E] dark:hover:border-[#52B788] transition-all duration-150 active:scale-[0.98] flex items-center gap-3 font-semibold text-sm sm:text-base cursor-pointer";
+        btn.innerHTML =
+          '<span class="w-7 h-7 rounded-full border flex items-center justify-center text-xs font-mono-num font-bold shrink-0 ' +
+          (isPicked
+            ? "bg-[#2D6A4F] text-white border-[#2D6A4F] dark:bg-[#40916C]"
+            : "bg-[#EFF6F1] dark:bg-[#203328] border-[#CFE2D5] dark:border-[#2E4838]") +
+          '">' +
+          String.fromCharCode(65 + idx) +
+          '</span><span class="leading-snug">' +
+          escapeHtml(optText) +
+          "</span>";
+        btn.onclick = () => selectExamOption(optText);
+        optWrap.appendChild(btn);
+      });
+
+      document.getElementById("exam-prev-btn").disabled = examState.currentIdx <= 0;
+      const nextTextEl = document.getElementById("exam-next-btn-text");
+      nextTextEl.textContent = examState.currentIdx >= total - 1 ? "পরীক্ষা জমা দিন" : "পরবর্তী প্রশ্ন";
+    }
+
+    function selectExamOption(optText) {
+      const q = examState.questions[examState.currentIdx];
+      if (!q) return;
+      q.chosenAnswer = optText;
+      renderExamQuestion();
+    }
+
+    function goExamQuestion(idx) {
+      if (idx < 0 || idx >= examState.questions.length) return;
+      examState.currentIdx = idx;
+      renderExamQuestion();
+    }
+
+    function goExamNextOrSubmit() {
+      if (examState.currentIdx >= examState.questions.length - 1) {
+        submitExam();
+      } else {
+        examState.currentIdx += 1;
+        renderExamQuestion();
+      }
+    }
+
+    function getExamGrade(pct) {
+      if (pct >= 80) return { grade: "A+", remark: "অসাধারণ ফলাফল!" };
+      if (pct >= 70) return { grade: "A", remark: "খুবই ভালো!" };
+      if (pct >= 60) return { grade: "A-", remark: "সন্তোষজনক ফলাফল!" };
+      if (pct >= 50) return { grade: "B", remark: "ভালো, আরও এগোতে পারবেন" };
+      if (pct >= 33) return { grade: "C", remark: "উত্তীর্ণ, নিয়মিত অনুশীলন করুন" };
+      return { grade: "F", remark: "আরও অনুশীলন প্রয়োজন" };
+    }
+
+    function submitExam() {
+      stopExamTimer();
+      examState.elapsedSeconds = Math.max(1, Math.floor((Date.now() - examState.startedAt) / 1000));
+      let correct = 0;
+      let wrong = 0;
+      let skipped = 0;
+
+      examState.questions.forEach(q => {
+        if (q.chosenAnswer === null) {
+          skipped++;
+        } else if (q.chosenAnswer === q.correctAnswer) {
+          correct++;
+          state.learnedIds.add(q.item.id);
+        } else {
+          wrong++;
+        }
+      });
+
+      saveProgressState();
+      updateStatsBar();
+
+      const total = examState.questions.length;
+      const pct = total > 0 ? Math.round((correct / total) * 100) : 0;
+      const { grade, remark } = getExamGrade(pct);
+      const studentName = (document.getElementById("exam-student-name")?.value || "").trim() || "শিক্ষার্থী";
+      const studentRoll = (document.getElementById("exam-student-roll")?.value || "").trim();
+      const scopeLabel = examState.scope === "FULL"
+        ? "Full Syllabus (" + examState.paper + ")"
+        : "Chapterwise: " + examState.chapter;
+
+      examState.lastResultSummary = {
+        studentName,
+        studentRoll,
+        scopeLabel,
+        total,
+        correct,
+        wrong,
+        skipped,
+        pct,
+        grade,
+        remark,
+        duration: formatDuration(examState.elapsedSeconds),
+        dateStr: new Date().toLocaleString()
+      };
+
+      examState.phase = "RESULT";
+      renderExamView();
+      showToast("পরীক্ষা সম্পন্ন! আপনার স্কোর " + correct + "/" + total + " (" + pct + "%)");
+    }
+
+    function setExamReviewFilter(f) {
+      examState.reviewFilter = f;
+      renderExamExplanations();
+    }
+
+    function renderExamResult() {
+      const r = examState.lastResultSummary;
+      if (!r) return;
+
+      document.getElementById("res-student-title").textContent =
+        r.studentRoll ? r.studentName + " (" + r.studentRoll + ")" : r.studentName;
+      document.getElementById("res-meta-line").textContent =
+        r.scopeLabel + " · সময়: " + r.duration + " · " + r.dateStr;
+      document.getElementById("res-pct").textContent = r.pct + "%";
+      document.getElementById("res-remark").textContent = r.remark;
+      document.getElementById("res-grade-badge").textContent = r.grade;
+      document.getElementById("res-total").textContent = r.total;
+      document.getElementById("res-correct").textContent = r.correct;
+      document.getElementById("res-wrong").textContent = r.wrong;
+      document.getElementById("res-skipped").textContent = r.skipped;
+
+      document.getElementById("exam-email-status").innerHTML =
+        'প্রাপক: <span class="font-mono-num font-semibold text-[#245C42] dark:text-[#8CD4B0]">' + EXAM_EMAIL_TARGET + "</span>";
+
+      renderExamExplanations();
+    }
+
+    function renderExamExplanations() {
+      const r = examState.lastResultSummary;
+      const counts = {
+        ALL: examState.questions.length,
+        WRONG: examState.questions.filter(q => q.chosenAnswer !== q.correctAnswer).length,
+        CORRECT: examState.questions.filter(q => q.chosenAnswer === q.correctAnswer).length
+      };
+
+      const activeChip = "min-h-[38px] px-3 rounded-full text-xs font-semibold border transition cursor-pointer bg-[#2D6A4F] text-white border-[#2D6A4F] dark:bg-[#40916C]";
+      const idleChip = "min-h-[38px] px-3 rounded-full text-xs font-semibold border transition cursor-pointer bg-white text-[#4C6857] border-[#DCE9DF] dark:bg-[#121C16] dark:text-[#98B2A2] dark:border-[#223328]";
+
+      document.getElementById("rev-filter-ALL").className = examState.reviewFilter === "ALL" ? activeChip : idleChip;
+      document.getElementById("rev-filter-WRONG").className = examState.reviewFilter === "WRONG" ? activeChip : idleChip;
+      document.getElementById("rev-filter-CORRECT").className = examState.reviewFilter === "CORRECT" ? activeChip : idleChip;
+
+      document.getElementById("rev-filter-ALL").textContent = "সব (" + counts.ALL + ")";
+      document.getElementById("rev-filter-WRONG").textContent = "ভুল / স্কিপ (" + counts.WRONG + ")";
+      document.getElementById("rev-filter-CORRECT").textContent = "সঠিক (" + counts.CORRECT + ")";
+
+      const list = document.getElementById("exam-explanations-list");
+      list.innerHTML = "";
+
+      const rows = examState.questions
+        .map((q, idx) => ({ q, idx }))
+        .filter(({ q }) => {
+          if (examState.reviewFilter === "CORRECT") return q.chosenAnswer === q.correctAnswer;
+          if (examState.reviewFilter === "WRONG") return q.chosenAnswer !== q.correctAnswer;
+          return true;
+        });
+
+      if (rows.length === 0) {
+        list.innerHTML =
+          '<div class="bg-white dark:bg-[#121C16] rounded-3xl p-6 border border-[#DCE9DF] dark:border-[#223328] text-center text-sm text-[#557160] dark:text-[#96B0A0] font-bn">এই ফিল্টারে কোনো প্রশ্ন নেই।</div>';
+        return;
+      }
+
+      rows.forEach(({ q, idx }) => {
+        const isCorrect = q.chosenAnswer === q.correctAnswer;
+        const isSkipped = q.chosenAnswer === null;
+        const statusPill = isCorrect
+          ? '<span class="px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-[#E4F4EA] text-[#1B5E3F] dark:bg-[#193827] dark:text-[#95D5B2]">✓ সঠিক</span>'
+          : isSkipped
+          ? '<span class="px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-[#F5F2DF] text-[#7A6118] dark:bg-[#2F2A16] dark:text-[#E5CF80]">উত্তর দেওয়া হয়নি</span>'
+          : '<span class="px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-[#FBECE9] text-[#8F342A] dark:bg-[#381E1B] dark:text-[#F2ACA4]">✕ ভুল</span>';
+
+        const card = document.createElement("article");
+        card.className = "bg-white dark:bg-[#121C16] rounded-3xl p-4 sm:p-5 border border-[#DCE9DF] dark:border-[#223328] space-y-3";
+        const safeWordAttr = q.item.word.replace(/\\/g, "\\\\").replace(/'/g, "\\'");
+
+        card.innerHTML =
+          '<div class="flex items-start justify-between gap-2">' +
+            '<div class="space-y-1 min-w-0">' +
+              '<div class="flex items-center gap-2 flex-wrap">' +
+                '<span class="text-xs font-mono-num font-bold text-[#2D6A4F] dark:text-[#8CD4B0]">Q#' + (idx + 1) + "</span>" +
+                statusPill +
+                '<span class="px-2 py-0.5 rounded-lg text-[10px] font-bold uppercase border ' + getPosBadgeClasses(q.item.pos) + '">' + escapeHtml(q.item.pos) + "</span>" +
+              "</div>" +
+              '<div class="flex items-center gap-2 pt-0.5">' +
+                '<h4 class="text-lg sm:text-xl font-bold text-[#16241C] dark:text-white">' + escapeHtml(q.item.word) + "</h4>" +
+                '<button type="button" onclick="speakWordText(\'' + safeWordAttr + '\')" aria-label="Pronounce" class="min-h-[34px] min-w-[34px] rounded-full bg-[#EFF7F1] hover:bg-[#DFEFE4] dark:bg-[#1A2A21] text-[#245C42] dark:text-[#8CD4B0] flex items-center justify-center transition cursor-pointer">' +
+                  '<svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>' +
+                "</button>" +
+                '<span class="text-xs text-[#647F6E] dark:text-[#8CA897] font-bn">(' + escapeHtml(q.item.pronunciation) + ")</span>" +
+              "</div>" +
+            "</div>" +
+            '<span class="text-[11px] text-[#6B8575] dark:text-[#829C8C] font-bn text-right max-w-[140px] truncate">' + escapeHtml(q.item.unit) + "</span>" +
+          "</div>" +
+          '<div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs sm:text-sm font-bn">' +
+            '<div class="rounded-2xl p-2.5 border ' + (isCorrect ? "bg-[#ECF6EF] border-[#C8E6D2] text-[#174D32] dark:bg-[#173324] dark:border-[#2C5A41] dark:text-[#B9EAD0]" : "bg-[#FCF1EF] border-[#ECC8C2] text-[#7D2B22] dark:bg-[#331D1B] dark:border-[#5C312C] dark:text-[#F2C7C1]") + '">' +
+              '<span class="block text-[11px] opacity-80">আপনার উত্তর:</span>' +
+              '<strong>' + escapeHtml(q.chosenAnswer || "উত্তর দেওয়া হয়নি") + "</strong>" +
+            "</div>" +
+            '<div class="rounded-2xl p-2.5 border bg-[#ECF6EF] border-[#C8E6D2] text-[#174D32] dark:bg-[#173324] dark:border-[#2C5A41] dark:text-[#B9EAD0]">' +
+              '<span class="block text-[11px] opacity-80">সঠিক উত্তর:</span>' +
+              "<strong>" + escapeHtml(q.correctAnswer) + "</strong>" +
+            "</div>" +
+          "</div>" +
+          '<div class="rounded-2xl bg-[#F6FAF7] dark:bg-[#17251D] p-3 border border-[#E2EDE5] dark:border-[#24382B] font-bn space-y-1 text-xs sm:text-sm">' +
+            '<p class="text-[#1D3528] dark:text-[#E2EFE7]"><strong>ব্যাখ্যা:</strong> ' + escapeHtml(q.item.explanation_bn) + "</p>" +
+            '<p class="text-[#236345] dark:text-[#8CD4B0] font-sans text-xs"><strong>Synonyms:</strong> ' + escapeHtml(q.item.synonyms) + ' · <strong class="text-[#944237] dark:text-[#E5A298]">Antonyms:</strong> ' + escapeHtml(q.item.antonyms) + "</p>" +
+            '<p class="text-[#3C5848] dark:text-[#A9C4B4] font-sans text-xs pt-0.5">“' + escapeHtml(q.item.example_en) + '” — <span class="font-bn">' + escapeHtml(q.item.example_bn) + "</span></p>" +
+          "</div>";
+        list.appendChild(card);
+      });
+    }
+
+    function buildExamEmailText() {
+      const r = examState.lastResultSummary;
+      if (!r) return { subject: "", body: "" };
+      const subject = "NCTB SSC Vocabulary Result Card - " + r.studentName + " (" + r.pct + "% " + r.grade + ")";
+      const lines = [
+        "NCTB SSC VOCABULARY MASTER - EXAM RESULT CARD",
+        "==============================================",
+        "Student: " + r.studentName + (r.studentRoll ? " (" + r.studentRoll + ")" : ""),
+        "Exam Scope: " + r.scopeLabel,
+        "Date: " + r.dateStr,
+        "Time Taken: " + r.duration,
+        "Score: " + r.correct + " / " + r.total + " (" + r.pct + "%) | Grade: " + r.grade,
+        "Correct: " + r.correct + " | Wrong: " + r.wrong + " | Skipped: " + r.skipped,
+        "",
+        "QUESTION REVIEW & EXPLANATIONS:",
+        "----------------------------------------------"
+      ];
+
+      examState.questions.slice(0, 35).forEach((q, i) => {
+        const mark = q.chosenAnswer === q.correctAnswer ? "[CORRECT]" : (q.chosenAnswer === null ? "[SKIPPED]" : "[WRONG]");
+        lines.push(
+          "Q" + (i + 1) + ". " + q.item.word + " (" + q.item.pos + ") " + mark,
+          "   Your Answer: " + (q.chosenAnswer || "None") + " | Correct: " + q.correctAnswer,
+          "   Explanation: " + q.item.explanation_bn
+        );
+      });
+      if (examState.questions.length > 35) {
+        lines.push("... +" + (examState.questions.length - 35) + " more questions reviewed in app.");
+      }
+
+      return { subject, body: lines.join("\n") };
+    }
+
+    function sendResultViaMailApp() {
+      const { subject, body } = buildExamEmailText();
+      if (!subject) return;
+      const mailBody = body.length > 1750 ? body.slice(0, 1750) + "\n...(Full report copied to clipboard)" : body;
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(body).catch(() => {});
+      }
+      const mailtoHref =
+        "mailto:" + EXAM_EMAIL_TARGET +
+        "?subject=" + encodeURIComponent(subject) +
+        "&body=" + encodeURIComponent(mailBody);
+
+      const a = document.createElement("a");
+      a.href = mailtoHref;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+
+      document.getElementById("exam-email-status").innerHTML =
+        '✓ ইমেইল অ্যাপ ড্রাফট খোলা হয়েছে (<span class="font-mono-num font-semibold">' + EXAM_EMAIL_TARGET + "</span>) এবং রেজাল্ট কপি করা হয়েছে।";
+      showToast("ইমেইল অ্যাপ খোলা হয়েছে ও ফলাফল কপি হয়েছে!");
+    }
+
+    async function sendResultViaWebEmail() {
+      const r = examState.lastResultSummary;
+      if (!r) return;
+      const { subject, body } = buildExamEmailText();
+      const btn = document.getElementById("exam-web-email-btn");
+      const statusEl = document.getElementById("exam-email-status");
+      btn.disabled = true;
+      statusEl.textContent = "ওয়েব ইমেইল পাঠানো হচ্ছে (" + EXAM_EMAIL_TARGET + ")...";
+
+      try {
+        const res = await fetch("https://formsubmit.co/ajax/" + EXAM_EMAIL_TARGET, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json"
+          },
+          body: JSON.stringify({
+            _subject: subject,
+            student: r.studentName + (r.studentRoll ? " (" + r.studentRoll + ")" : ""),
+            scope: r.scopeLabel,
+            score: r.correct + "/" + r.total + " (" + r.pct + "% - " + r.grade + ")",
+            duration: r.duration,
+            report: body
+          })
+        });
+        const data = await res.json().catch(() => ({}));
+        if (res.ok && (data.success === "true" || data.success === true)) {
+          statusEl.textContent = "✓ রেজাল্ট কার্ড সফলভাবে " + EXAM_EMAIL_TARGET + " ঠিকানায় পাঠানো হয়েছে!";
+          showToast("রেজাল্ট কার্ড ইমেইলে পাঠানো হয়েছে!");
+        } else {
+          statusEl.textContent = "নোট: " + EXAM_EMAIL_TARGET + " ইনবক্সে প্রথমবার ভেরিফিকেশন লিংক অ্যাপ্রুভ করুন অথবা 'ইমেইলে পাঠান' বাটন ব্যবহার করুন।";
+          showToast("ওয়েব সেন্ড ভেরিফিকেশন বা অফলাইন — ইমেইল অ্যাপ বাটন ব্যবহার করুন।");
+        }
+      } catch (err) {
+        statusEl.textContent = "ইন্টারনেট সংযোগ বা ব্রাউজার ব্লকের কারণে ডাইরেক্ট সেন্ড হয়নি — 'ইমেইলে পাঠান' বাটন ব্যবহার করুন।";
+        showToast("ইমেইল অ্যাপ বা কপি বাটন ব্যবহার করুন।");
+      } finally {
+        btn.disabled = false;
+      }
+    }
+
+    function copyExamResult() {
+      const { body } = buildExamEmailText();
+      if (!body) return;
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(body).then(() => {
+          showToast("সম্পূর্ণ রেজাল্ট কার্ড ও ব্যাখ্যা কপি হয়েছে!");
+        }).catch(() => {
+          showToast("কপি করতে পারেননি — ইমেইলে পাঠান বাটন চেষ্টা করুন।");
+        });
+      }
+    }
+
+    function retakeSameExam() {
+      startExam();
+    }
+
+    function resetExamToSetup() {
+      stopExamTimer();
+      examState.phase = "SETUP";
+      renderExamView();
+    }
 
     async function downloadSingleHtml() {
       try {
