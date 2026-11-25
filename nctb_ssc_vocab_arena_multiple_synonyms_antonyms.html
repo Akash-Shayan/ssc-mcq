@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SSC English Vocabulary Mastery — Complete Combined Edition</title>
+    <title>SSC English Vocabulary Mastery</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <script>
@@ -55,7 +55,7 @@
                         <h1 class="text-lg sm:text-xl font-bold tracking-tight">SSC English Vocabulary</h1>
                         <span id="total-badge" class="bg-amber-400 text-slate-900 text-xs font-extrabold px-2 py-0.5 rounded-full">0 Words</span>
                     </div>
-                    <p class="text-xs text-indigo-100 font-bn">NCTB 1st & 2nd Paper + Extra Word Vault (সব একসাথে)</p>
+                    <p class="text-xs text-indigo-100 font-bn">NCTB 1st & 2nd Paper + Extra Word Vault</p>
                 </div>
             </div>
 
@@ -75,10 +75,7 @@
 
         <!-- Dataset Switcher Tabs -->
         <div class="bg-white dark:bg-slate-800 p-2 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-700 flex flex-wrap gap-1.5">
-            <button onclick="switchDataset('all')" id="tab-all" class="ds-tab flex-1 min-w-[110px] py-2 px-3 rounded-xl text-xs sm:text-sm font-semibold font-bn transition bg-indigo-600 text-white shadow-sm">
-                🌐 সব একসাথে
-            </button>
-            <button onclick="switchDataset('main')" id="tab-main" class="ds-tab flex-1 min-w-[110px] py-2 px-3 rounded-xl text-xs sm:text-sm font-semibold font-bn transition text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700">
+            <button onclick="switchDataset('main')" id="tab-main" class="ds-tab flex-1 min-w-[110px] py-2 px-3 rounded-xl text-xs sm:text-sm font-semibold font-bn transition bg-indigo-600 text-white shadow-sm">
                 📘 মূল বই (NCTB)
             </button>
             <button onclick="switchDataset('paper1')" id="tab-paper1" class="ds-tab flex-1 min-w-[120px] py-2 px-3 rounded-xl text-xs sm:text-sm font-semibold font-bn transition text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700">
@@ -89,6 +86,9 @@
             </button>
             <button onclick="switchDataset('extra')" id="tab-extra" class="ds-tab flex-1 min-w-[120px] py-2 px-3 rounded-xl text-xs sm:text-sm font-semibold font-bn transition text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700">
                 💎 Extra Word Vault
+            </button>
+            <button onclick="switchDataset('all')" id="tab-all" class="ds-tab flex-1 min-w-[110px] py-2 px-3 rounded-xl text-xs sm:text-sm font-semibold font-bn transition text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700">
+                🌐 সব একসাথে
             </button>
         </div>
 
@@ -316,11 +316,11 @@
     </main>
 
     <footer class="text-center py-4 text-xs text-slate-400 font-bn border-t border-slate-200 dark:border-slate-800 mt-8">
-        SSC English Vocabulary Mastery • NCTB Class 9–10 1st Paper, 2nd Paper & Extra Word Vault (All-in-One)
+        SSC English Vocabulary Mastery • NCTB Class 9–10 1st Paper, 2nd Paper & Extra Word Vault
     </footer>
 
 <script>
-// Complete Combined & Deduplicated SSC Vocabulary Database
+// Complete Curated & Deduplicated SSC Vocabulary Database
 const RAW_VOCABULARY = [
     // --- NCTB 1st Paper (Units 1 - 14) ---
     { word: "Emancipation", pos: "Noun", bn: "মুক্তি, স্বাধীনতা, বন্ধনমুক্তি", paper: "1st Paper", unit: "Unit 1: Father of the Nation", exp: "আইনি, সামাজিক বা রাজনৈতিক বন্দিদশা থেকে মুক্তি লাভ।", syn: "liberation, freedom, release", ant: "slavery, captivity, bondage", exEn: "Bangabandhu fought for the emancipation of the Bengali nation.", exBn: "বঙ্গবন্ধু বাঙালি জাতির মুক্তির জন্য সংগ্রাম করেছিলেন।" },
@@ -384,9 +384,9 @@ const VOCAB_DB = (() => {
     return unique;
 })();
 
-// State Management (Defaulting to 'all' — সব একসাথে)
+// State Management
 let state = {
-    dataset: 'all',
+    dataset: 'main',
     mode: 'flashcard',
     unit: 'ALL',
     onlyBookmarked: false,
