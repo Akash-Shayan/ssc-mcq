@@ -42,29 +42,145 @@
       --bg-card: #FFFFFF;
       --border-soft: #DCE9DF;
       --accent-sage: #2D6A4F;
+      --t-bg: #F6FAF7;
+      --t-card: #FFFFFF;
+      --t-soft: #F2F8F4;
+      --t-border: #DCE9DF;
+      --t-accent: #2D6A4F;
+      --t-btn: #2D6A4F;
+      --t-glow-1: rgba(167, 219, 186, 0.22);
+      --t-glow-2: rgba(183, 228, 199, 0.16);
     }
 
-    html.dark {
-      --bg-canvas: #0B120E;
-      --bg-card: #121C16;
-      --border-soft: #223328;
-      --accent-sage: #52B788;
+    html.dark[data-theme="light-dark"] {
+      --t-bg: #21272B;
+      --t-card: #2A3237;
+      --t-soft: #333C42;
+      --t-border: #414D55;
+      --t-accent: #8FD4B6;
+      --t-btn: #3B725B;
+      --t-glow-1: rgba(143, 212, 182, 0.13);
+      --t-glow-2: rgba(167, 219, 186, 0.09);
+    }
+
+    html.dark[data-theme="dark-purple"] {
+      --t-bg: #221E2F;
+      --t-card: #2C273D;
+      --t-soft: #352F4A;
+      --t-border: #473F63;
+      --t-accent: #C9BAFF;
+      --t-btn: #6C54A3;
+      --t-glow-1: rgba(201, 186, 255, 0.16);
+      --t-glow-2: rgba(176, 152, 245, 0.11);
+    }
+
+    html.dark[data-theme="dark-pink"] {
+      --t-bg: #281E27;
+      --t-card: #342733;
+      --t-soft: #40303E;
+      --t-border: #564053;
+      --t-accent: #F6B2CB;
+      --t-btn: #9C5173;
+      --t-glow-1: rgba(246, 178, 203, 0.16);
+      --t-glow-2: rgba(244, 152, 190, 0.11);
+    }
+
+    html.dark[data-theme="dark-teal"] {
+      --t-bg: #1D262D;
+      --t-card: #26323B;
+      --t-soft: #303E49;
+      --t-border: #3F5160;
+      --t-accent: #8ADAD7;
+      --t-btn: #33767A;
+      --t-glow-1: rgba(138, 218, 215, 0.15);
+      --t-glow-2: rgba(152, 198, 240, 0.10);
     }
 
     body {
       font-family: 'Plus Jakarta Sans', 'Hind Siliguri', system-ui, -apple-system, sans-serif;
-      background-color: var(--bg-canvas);
+      background-color: var(--t-bg);
       background-image:
-        radial-gradient(circle at 12% 0%, rgba(167, 219, 186, 0.22) 0%, transparent 45%),
-        radial-gradient(circle at 92% 18%, rgba(183, 228, 199, 0.16) 0%, transparent 40%);
+        radial-gradient(circle at 12% 0%, var(--t-glow-1) 0%, transparent 45%),
+        radial-gradient(circle at 92% 18%, var(--t-glow-2) 0%, transparent 40%);
       overflow-x: hidden;
       -webkit-tap-highlight-color: transparent;
     }
 
-    html.dark body {
-      background-image:
-        radial-gradient(circle at 12% 0%, rgba(45, 106, 79, 0.16) 0%, transparent 45%),
-        radial-gradient(circle at 92% 18%, rgba(64, 145, 108, 0.10) 0%, transparent 40%);
+    /* Harmonized Surface & Accent Overrides for Soft Light-Dark Themes */
+    html.dark[data-theme] header {
+      background-color: color-mix(in srgb, var(--t-bg) 88%, transparent) !important;
+      border-color: var(--t-border) !important;
+    }
+    html.dark[data-theme] .dark\:bg-\[\#121C16\],
+    html.dark[data-theme] .dark\:bg-\[\#142219\],
+    html.dark[data-theme] .dark\:bg-\[\#131F18\],
+    html.dark[data-theme] .dark\:bg-\[\#111D16\] {
+      background-color: var(--t-card) !important;
+    }
+    html.dark[data-theme] .dark\:bg-\[\#18261E\],
+    html.dark[data-theme] .dark\:bg-\[\#17251D\],
+    html.dark[data-theme] .dark\:bg-\[\#17231C\],
+    html.dark[data-theme] .dark\:bg-\[\#15221B\],
+    html.dark[data-theme] .dark\:bg-\[\#16231B\],
+    html.dark[data-theme] .dark\:bg-\[\#19281F\],
+    html.dark[data-theme] .dark\:bg-\[\#16281E\],
+    html.dark[data-theme] .dark\:bg-\[\#193022\],
+    html.dark[data-theme] .dark\:bg-\[\#1A2A21\],
+    html.dark[data-theme] .dark\:bg-\[\#1C2A21\],
+    html.dark[data-theme] .dark\:bg-\[\#1D3024\],
+    html.dark[data-theme] .dark\:bg-\[\#203328\],
+    html.dark[data-theme] .dark\:bg-\[\#1E3327\],
+    html.dark[data-theme] .dark\:bg-\[\#1B3325\],
+    html.dark[data-theme] .dark\:bg-\[\#1A3324\],
+    html.dark[data-theme] .dark\:bg-\[\#17281E\] {
+      background-color: var(--t-soft) !important;
+    }
+    html.dark[data-theme] .dark\:from-\[\#121C16\],
+    html.dark[data-theme] .dark\:via-\[\#14221A\] {
+      --tw-gradient-from: var(--t-card) !important;
+      --tw-gradient-via: var(--t-card) !important;
+    }
+    html.dark[data-theme] .dark\:to-\[\#16271D\],
+    html.dark[data-theme] .dark\:to-\[\#182C21\] {
+      --tw-gradient-to: var(--t-soft) !important;
+    }
+    html.dark[data-theme] .dark\:border-\[\#223328\],
+    html.dark[data-theme] .dark\:border-\[\#24382B\],
+    html.dark[data-theme] .dark\:border-\[\#283D30\],
+    html.dark[data-theme] .dark\:border-\[\#263B2E\],
+    html.dark[data-theme] .dark\:border-\[\#263C2E\],
+    html.dark[data-theme] .dark\:border-\[\#2F523D\],
+    html.dark[data-theme] .dark\:border-\[\#2C4E3A\],
+    html.dark[data-theme] .dark\:border-\[\#1E2E24\],
+    html.dark[data-theme] .dark\:border-\[\#1B2B21\],
+    html.dark[data-theme] .dark\:border-\[\#243B2C\],
+    html.dark[data-theme] .dark\:border-\[\#233529\],
+    html.dark[data-theme] .dark\:border-\[\#23382B\],
+    html.dark[data-theme] .dark\:border-\[\#25372B\],
+    html.dark[data-theme] .dark\:border-\[\#274030\],
+    html.dark[data-theme] .dark\:border-\[\#294A36\],
+    html.dark[data-theme] .dark\:border-\[\#2A4234\],
+    html.dark[data-theme] .dark\:border-\[\#2E4838\],
+    html.dark[data-theme] .dark\:border-\[\#243D2E\],
+    html.dark[data-theme] .dark\:border-\[\#284534\],
+    html.dark[data-theme] .dark\:border-\[\#203227\] {
+      border-color: var(--t-border) !important;
+    }
+    html.dark[data-theme] .dark\:bg-\[\#40916C\] {
+      background-color: var(--t-btn) !important;
+      border-color: var(--t-btn) !important;
+    }
+    html.dark[data-theme] .dark\:bg-\[\#3A8462\] {
+      background-color: var(--t-btn) !important;
+      border-color: var(--t-btn) !important;
+    }
+    html.dark[data-theme] .dark\:text-\[\#8CD4B0\],
+    html.dark[data-theme] .dark\:text-\[\#95D5B2\] {
+      color: var(--t-accent) !important;
+    }
+    html.dark[data-theme] #progress-bar,
+    html.dark[data-theme] #exam-progress-bar {
+      background: linear-gradient(to right, var(--t-accent), var(--t-btn)) !important;
     }
 
     .font-bn {
@@ -227,15 +343,19 @@
             <span class="hidden md:inline text-xs font-semibold font-bn">HTML</span>
           </button> -->
 
-          <!-- Minimal Theme Toggle -->
+          <!-- Cute Multi-Theme Switcher Button -->
           <button
+            id="theme-toggle-btn"
             type="button"
             onclick="toggleDarkMode()"
-            aria-label="Toggle Theme"
-            class="min-h-[44px] min-w-[44px] rounded-full bg-white hover:bg-[#EAF5EE] active:scale-[0.96] dark:bg-[#142219] dark:hover:bg-[#1C3023] text-[#2F4F3C] dark:text-[#A5C9B3] border border-[#DCE9DF] dark:border-[#243B2C] flex items-center justify-center transition-all duration-150 cursor-pointer"
+            aria-label="থিম পরিবর্তন করুন"
+            title="থিম পরিবর্তন করুন (Light / Light Dark / Dark Purple / Dark Pink / Dark Teal)"
+            class="min-h-[44px] min-w-[44px] sm:px-3 rounded-full bg-white hover:bg-[#EAF5EE] active:scale-[0.96] dark:bg-[#142219] dark:hover:bg-[#1C3023] text-[#2F4F3C] dark:text-[#E8F1EB] border border-[#DCE9DF] dark:border-[#243B2C] flex items-center justify-center gap-1.5 transition-all duration-150 cursor-pointer"
           >
-            <svg id="theme-icon-moon" class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
-            <svg id="theme-icon-sun" class="w-4 h-4 hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
+            <span id="theme-swatch-dot" class="w-2.5 h-2.5 rounded-full bg-[#52B788] border border-black/10 dark:border-white/25 shrink-0"></span>
+            <svg id="theme-icon-moon" class="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+            <svg id="theme-icon-sun" class="w-4 h-4 hidden shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
+            <span id="theme-label" class="hidden lg:inline text-[11px] font-semibold font-bn">Mint</span>
           </button>
         </div>
       </div>
@@ -1013,15 +1133,15 @@
     <!-- Quiet Minimal Footer -->
     <footer id="app-footer" class="pt-4 pb-6 border-t border-[#E4EFE7] dark:border-[#1E2E24] flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-[#647F6E] dark:text-[#829C8C] font-bn">
       <span>NCTB SSC Vocabulary Master · Class 9–10 &amp; Board Lexicon</span>
-      <a
+      <!-- <a
         id="download-html-link"
         href="/vacab.html"
         download="vacab.html"
         class="inline-flex items-center gap-1.5 min-h-[36px] px-3 rounded-full bg-[#EDF6F0] hover:bg-[#DFEFE4] dark:bg-[#16251C] dark:hover:bg-[#1E3327] text-[#245C42] dark:text-[#8CD4B0] border border-[#D4E6DA] dark:border-[#263F30] font-medium transition"
       >
-        <!-- <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>
-        <span>Single HTML ডাউনলোড</span> -->
-      </a>
+        <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>
+        <span>Single HTML ডাউনলোড</span>
+      </a> -->
     </footer>
   </main>
 
@@ -2698,12 +2818,8 @@
             state.lastSavedContext = parsed.lastSavedContext;
           }
         }
-        const savedTheme = localStorage.getItem(THEME_KEY);
-        if (savedTheme === "dark") {
-          applyTheme(true);
-        } else {
-          applyTheme(false);
-        }
+        const savedTheme = localStorage.getItem(THEME_KEY) || "light";
+        applyTheme(savedTheme);
       } catch (e) {
         console.warn("Could not read saved progress:", e);
       }
@@ -3350,29 +3466,56 @@
       }
     }
 
-    function applyTheme(isDark) {
+    const THEME_LIST = [
+      { id: "light", label: "Mint Light", dot: "#52B788", dark: false },
+      { id: "light-dark", label: "Light Dark", dot: "#8FD4B6", dark: true },
+      { id: "dark-purple", label: "Dark Purple", dot: "#C9BAFF", dark: true },
+      { id: "dark-pink", label: "Dark Pink", dot: "#F6B2CB", dark: true },
+      { id: "dark-teal", label: "Dark Teal", dot: "#8ADAD7", dark: true }
+    ];
+    let currentThemeId = "light";
+
+    function applyTheme(themeOrBool) {
+      let id = "light";
+      if (themeOrBool === true || themeOrBool === "dark") {
+        id = "light-dark";
+      } else if (typeof themeOrBool === "string" && THEME_LIST.some(t => t.id === themeOrBool)) {
+        id = themeOrBool;
+      }
+      currentThemeId = id;
+      const cfg = THEME_LIST.find(t => t.id === id) || THEME_LIST[0];
+
       const html = document.documentElement;
       const moon = document.getElementById("theme-icon-moon");
       const sun = document.getElementById("theme-icon-sun");
-      if (isDark) {
+      const dot = document.getElementById("theme-swatch-dot");
+      const lbl = document.getElementById("theme-label");
+
+      if (cfg.dark) {
         html.classList.add("dark");
         html.classList.remove("light");
-        moon.classList.add("hidden");
-        sun.classList.remove("hidden");
+        html.setAttribute("data-theme", cfg.id);
+        if (moon) moon.classList.add("hidden");
+        if (sun) sun.classList.remove("hidden");
       } else {
         html.classList.remove("dark");
         html.classList.add("light");
-        moon.classList.remove("hidden");
-        sun.classList.add("hidden");
+        html.removeAttribute("data-theme");
+        if (moon) moon.classList.remove("hidden");
+        if (sun) sun.classList.add("hidden");
       }
+      if (dot) dot.style.backgroundColor = cfg.dot;
+      if (lbl) lbl.textContent = cfg.label;
     }
 
     function toggleDarkMode() {
-      const nextDark = !document.documentElement.classList.contains("dark");
-      applyTheme(nextDark);
+      const idx = THEME_LIST.findIndex(t => t.id === currentThemeId);
+      const next = THEME_LIST[(idx + 1) % THEME_LIST.length];
+      applyTheme(next.id);
       try {
-        localStorage.setItem(THEME_KEY, nextDark ? "dark" : "light");
+        localStorage.setItem(THEME_KEY, next.id);
       } catch (e) {}
+      showToast("থিম পরিবর্তন হয়েছে: " + next.label);
     }
 
     // =====================================================================
