@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NCTB Class 9-10 Vocab Arena — Synonyms & Antonyms</title>
+    <title>NCTB Class 9-10 Vocab Arena — Synonyms & Antonyms (1000+ Words)</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -29,42 +29,28 @@
             overflow-x: hidden;
             -webkit-tap-highlight-color: transparent;
         }
-        .bangla {
-            font-family: 'Hind Siliguri', 'Plus Jakarta Sans', sans-serif;
-        }
+        .bangla { font-family: 'Hind Siliguri', 'Plus Jakarta Sans', sans-serif; }
         .sage-shadow {
             box-shadow: 0 12px 30px -10px rgba(34, 92, 68, 0.14), 0 4px 12px -4px rgba(180, 110, 105, 0.08);
         }
-        .perspective-1400 {
-            perspective: 1400px;
-        }
+        .perspective-1400 { perspective: 1400px; }
         .card-3d {
             transform-style: preserve-3d;
             transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
         }
-        .card-3d.is-flipped {
-            transform: rotateY(180deg);
-        }
+        .card-3d.is-flipped { transform: rotateY(180deg); }
         .card-face {
             backface-visibility: hidden;
             -webkit-backface-visibility: hidden;
         }
-        .card-back {
-            transform: rotateY(180deg);
-        }
-        .option-pill {
-            transition: transform 0.14s ease, border-color 0.2s ease, background-color 0.2s ease;
-        }
-        .option-pill:active {
-            transform: scale(0.98);
-        }
+        .card-back { transform: rotateY(180deg); }
+        .option-pill { transition: transform 0.14s ease, border-color 0.2s ease, background-color 0.2s ease; }
+        .option-pill:active { transform: scale(0.98); }
         @keyframes fadeUp {
             from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
         }
-        .animate-fade-up {
-            animation: fadeUp 0.28s ease-out forwards;
-        }
+        .animate-fade-up { animation: fadeUp 0.28s ease-out forwards; }
     </style>
 </head>
 <body class="min-h-screen bg-gradient-to-br from-[#eef7f1] via-[#f7fbf8] to-[#fdf4f0] dark:from-[#0c1a15] dark:via-[#10221b] dark:to-[#182420] text-emerald-950 dark:text-emerald-50 pb-24 sm:pb-8">
@@ -81,7 +67,7 @@
                         NCTB 9–10 Vocab Arena
                     </h1>
                     <p class="bangla text-[11px] font-medium text-emerald-700 dark:text-emerald-300 truncate">
-                        ১ম ও ২য় পত্র • <span id="hdr-total-words">280+</span> যাচাইকৃত শব্দ
+                        ১ম ও ২য় পত্র • <span id="hdr-total-words">0</span> যাচাইকৃত বোর্ড শব্দ
                     </p>
                 </div>
             </div>
@@ -90,7 +76,7 @@
                 <div class="px-2.5 py-1 rounded-full bg-emerald-100/90 dark:bg-emerald-950/80 text-emerald-800 dark:text-emerald-300 text-xs font-extrabold border border-emerald-200/80 dark:border-emerald-800/60">
                     <i class="fa-solid fa-star text-amber-500 mr-1"></i><span id="hud-xp">0</span> XP
                 </div>
-                <div class="hidden xs:flex sm:flex px-2.5 py-1 rounded-full bg-rose-50 dark:bg-rose-950/60 text-rose-700 dark:text-rose-300 text-xs font-extrabold border border-rose-200/80 dark:border-rose-800/50">
+                <div class="hidden sm:flex px-2.5 py-1 rounded-full bg-rose-50 dark:bg-rose-950/60 text-rose-700 dark:text-rose-300 text-xs font-extrabold border border-rose-200/80 dark:border-rose-800/50">
                     <i class="fa-solid fa-fire text-rose-500 mr-1"></i><span id="hud-streak">0</span>d
                 </div>
                 <button type="button" onclick="toggleTheme()" aria-label="Toggle Theme" class="w-9 h-9 rounded-full bg-emerald-50 dark:bg-emerald-950/70 border border-emerald-200/80 dark:border-emerald-800/60 text-emerald-800 dark:text-emerald-200 flex items-center justify-center text-xs">
@@ -122,28 +108,67 @@
     <main class="max-w-4xl mx-auto px-3.5 sm:px-6 pt-3.5 flex flex-col gap-3.5">
 
         <!-- ========================================================= -->
-        <!-- 1. FLASHCARDS MODE                                        -->
+        <!-- 1. FLASHCARDS MODE (WITH JUMP-TO-NUMBER & UNIT FILTER)    -->
         <!-- ========================================================= -->
         <section id="view-flashcards" class="flex-1 flex flex-col gap-3 animate-fade-up">
-            <!-- Paper & Deck Filters -->
-            <div class="flex flex-wrap items-center justify-between gap-2">
-                <div class="flex items-center gap-1.5 bg-white/90 dark:bg-[#13241e] p-1 rounded-2xl border border-emerald-200/75 dark:border-emerald-800/50">
-                    <button type="button" onclick="setPaperFilter('ALL')" id="pf-ALL" class="pf-btn px-3 py-1 rounded-xl text-xs font-bold bg-emerald-600 text-white">সব (<span id="cnt-all">0</span>)</button>
-                    <button type="button" onclick="setPaperFilter('1ST')" id="pf-1ST" class="pf-btn px-3 py-1 rounded-xl text-xs font-bold text-emerald-900 dark:text-emerald-200">১ম পত্র (<span id="cnt-1st">0</span>)</button>
-                    <button type="button" onclick="setPaperFilter('2ND')" id="pf-2ND" class="pf-btn px-3 py-1 rounded-xl text-xs font-bold text-emerald-900 dark:text-emerald-200">২য় পত্র (<span id="cnt-2nd">0</span>)</button>
+            <!-- Paper, Unit & Jump Controls -->
+            <div class="flex flex-col gap-2 bg-white/85 dark:bg-[#13241e]/90 p-2.5 rounded-2xl border border-emerald-200/75 dark:border-emerald-800/50">
+                <div class="flex flex-wrap items-center justify-between gap-2">
+                    <!-- Paper Filter -->
+                    <div class="flex items-center gap-1 bg-emerald-50/80 dark:bg-emerald-950/60 p-1 rounded-xl border border-emerald-200/60 dark:border-emerald-800/50">
+                        <button type="button" onclick="setPaperFilter('ALL')" id="pf-ALL" class="pf-btn px-2.5 py-1 rounded-lg text-xs font-bold bg-emerald-600 text-white">সব (<span id="cnt-all">0</span>)</button>
+                        <button type="button" onclick="setPaperFilter('1ST')" id="pf-1ST" class="pf-btn px-2.5 py-1 rounded-lg text-xs font-bold text-emerald-900 dark:text-emerald-200">১ম পত্র (<span id="cnt-1st">0</span>)</button>
+                        <button type="button" onclick="setPaperFilter('2ND')" id="pf-2ND" class="pf-btn px-2.5 py-1 rounded-lg text-xs font-bold text-emerald-900 dark:text-emerald-200">২য় পত্র (<span id="cnt-2nd">0</span>)</button>
+                    </div>
+
+                    <!-- Chapter / Unit Filter for 1st Paper -->
+                    <div class="flex items-center gap-1.5">
+                        <select id="fc-unit-select" onchange="setUnitFilter(this.value)" class="bangla px-2.5 py-1.5 rounded-xl bg-white dark:bg-[#0e1d18] border border-emerald-200 dark:border-emerald-800 text-xs font-bold text-emerald-900 dark:text-emerald-100 outline-none">
+                            <option value="ALL_UNITS">সকল অধ্যায় (All Units)</option>
+                            <option value="Unit 1">Unit 1: Father of the Nation</option>
+                            <option value="Unit 2">Unit 2: Pastimes</option>
+                            <option value="Unit 3">Unit 3: Events and Festivals</option>
+                            <option value="Unit 4">Unit 4: Are We Aware?</option>
+                            <option value="Unit 5">Unit 5: Nature and Environment</option>
+                            <option value="Unit 6">Unit 6: Our Neighbours</option>
+                            <option value="Unit 7">Unit 7: People Who Stand Out</option>
+                            <option value="Unit 8">Unit 8: World Heritage</option>
+                            <option value="Unit 9">Unit 9: Unconventional Jobs</option>
+                            <option value="Unit 10">Unit 10: Dreams</option>
+                            <option value="Unit 11">Unit 11: Renewable Energy</option>
+                            <option value="Unit 12">Unit 12: Roots</option>
+                            <option value="Unit 13">Unit 13: Media and Modes of E-Communication</option>
+                            <option value="Unit 14">Unit 14: Pleasure and Purpose</option>
+                        </select>
+                    </div>
                 </div>
 
-                <div class="flex items-center gap-2">
-                    <span class="text-xs font-extrabold text-emerald-800 dark:text-emerald-300">
-                        <span id="fc-index">1</span> / <span id="fc-total">0</span>
-                    </span>
-                    <button type="button" onclick="shuffleDeck()" class="px-3 py-1.5 rounded-xl bg-rose-50 dark:bg-rose-950/50 text-rose-700 dark:text-rose-300 border border-rose-200/80 dark:border-rose-800/50 text-xs font-bold">
-                        <i class="fa-solid fa-shuffle mr-1"></i> এলোমেলো
-                    </button>
+                <!-- Jump to Specific Word Number + Counter + Shuffle -->
+                <div class="flex flex-wrap items-center justify-between gap-2 pt-1.5 border-t border-emerald-100 dark:border-emerald-900/50">
+                    <div class="flex items-center gap-1.5">
+                        <span class="bangla text-xs font-bold text-emerald-800 dark:text-emerald-300">
+                            শব্দ নং: <span id="fc-index" class="text-emerald-600 dark:text-emerald-400 font-black">1</span> / <span id="fc-total">0</span>
+                        </span>
+                        <div class="flex items-center gap-1 ml-2">
+                            <input type="number" id="fc-jump-input" min="1" placeholder="নং লিখুন (যেমন: 100)" onkeydown="if(event.key==='Enter') jumpToCard()" class="bangla w-32 sm:w-36 px-2.5 py-1 rounded-lg bg-emerald-50/70 dark:bg-emerald-950/60 border border-emerald-300/80 dark:border-emerald-700 text-xs font-bold text-emerald-950 dark:text-white outline-none focus:border-emerald-600">
+                            <button type="button" onclick="jumpToCard()" class="bangla px-2.5 py-1 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold transition">
+                                যান
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center gap-1.5">
+                        <button type="button" onclick="resetOrder()" class="bangla px-2.5 py-1 rounded-lg bg-emerald-100/80 dark:bg-emerald-950 text-emerald-800 dark:text-emerald-300 text-xs font-bold" title="ক্রমানুসারে সাজান">
+                            <i class="fa-solid fa-arrow-down-1-9 mr-1"></i> ক্রম
+                        </button>
+                        <button type="button" onclick="shuffleDeck()" class="bangla px-2.5 py-1 rounded-lg bg-rose-50 dark:bg-rose-950/50 text-rose-700 dark:text-rose-300 border border-rose-200/80 dark:border-rose-800/50 text-xs font-bold">
+                            <i class="fa-solid fa-shuffle mr-1"></i> এলোমেলো
+                        </button>
+                    </div>
                 </div>
             </div>
 
-            <!-- 3D Flashcard with Touch Swipe Support -->
+            <!-- 3D Flashcard -->
             <div id="fc-swipe-zone" class="perspective-1400 w-full">
                 <div id="flashcard" onclick="flipCard()" class="card-3d relative w-full min-h-[420px] sm:min-h-[400px] cursor-pointer">
                     <!-- Front Face -->
@@ -152,12 +177,16 @@
                             <span id="fc-unit" class="bangla px-3 py-1 rounded-full bg-emerald-100/90 dark:bg-emerald-950 text-emerald-800 dark:text-emerald-300 text-xs font-bold">
                                 ১ম পত্র • Unit 1
                             </span>
-                            <span id="fc-pos" class="px-2.5 py-1 rounded-full bg-rose-50 dark:bg-rose-950/60 text-rose-700 dark:text-rose-300 text-xs font-extrabold border border-rose-200/70 dark:border-rose-800/50">
+                            <!-- Parts of Speech Corner Badge -->
+                            <span id="fc-pos" class="px-3 py-1 rounded-full bg-rose-50 dark:bg-rose-950/60 text-rose-700 dark:text-rose-300 text-xs font-extrabold border border-rose-200/70 dark:border-rose-800/50">
                                 Adj
                             </span>
                         </div>
 
                         <div class="text-center my-auto py-4 space-y-2">
+                            <div class="inline-block px-2.5 py-0.5 rounded-full bg-emerald-50 dark:bg-emerald-950/70 text-[11px] font-bold text-emerald-600 dark:text-emerald-400">
+                                #<span id="fc-card-number">1</span>
+                            </div>
                             <h2 id="fc-word-front" class="text-3xl sm:text-5xl font-black tracking-tight text-emerald-950 dark:text-white">
                                 Charismatic
                             </h2>
@@ -176,21 +205,20 @@
 
                     <!-- Back Face -->
                     <div class="card-face card-back absolute inset-0 bg-white/95 dark:bg-[#13241e] rounded-3xl p-4 sm:p-6 border border-emerald-200/85 dark:border-emerald-800/60 sage-shadow flex flex-col justify-between overflow-y-auto">
-                        <div class="flex items-baseline justify-between gap-2 pb-1.5 border-b border-emerald-100 dark:border-emerald-900/50">
-                            <div>
+                        <div class="flex items-center justify-between gap-2 pb-1.5 border-b border-emerald-100 dark:border-emerald-900/50">
+                            <div class="flex items-center flex-wrap gap-1.5">
                                 <span id="fc-word-back" class="text-lg sm:text-xl font-black text-emerald-950 dark:text-white">Charismatic</span>
-                                <span id="fc-bangla-mini" class="bangla text-xs sm:text-sm font-bold text-emerald-700 dark:text-emerald-300 ml-1.5">(অনন্যসাধারণ নেতৃত্বগুণসম্পন্ন)</span>
+                                <span id="fc-bangla-mini" class="bangla text-xs sm:text-sm font-bold text-emerald-700 dark:text-emerald-300">(অনন্যসাধারণ নেতৃত্বগুণসম্পন্ন)</span>
+                                <span id="fc-pos-back" class="px-2 py-0.5 rounded-full bg-rose-50 dark:bg-rose-950/60 text-rose-700 dark:text-rose-300 text-[11px] font-extrabold border border-rose-200/70">Adj</span>
                             </div>
-                            <span class="bangla text-[11px] font-bold text-emerald-600 dark:text-emerald-400">ফেরাও ↻</span>
+                            <span class="bangla text-[11px] font-bold text-emerald-600 dark:text-emerald-400 shrink-0">ফেরাও ↻</span>
                         </div>
 
-                        <!-- 1. SYNONYM BLOCK (Soft Mint-Emerald + Multiple Synonyms & Sentences) -->
+                        <!-- SYNONYM BLOCK -->
                         <div class="p-3.5 rounded-2xl bg-emerald-50/95 dark:bg-emerald-950/45 border border-emerald-200/90 dark:border-emerald-800/55 my-2 space-y-2">
-                            <div class="flex items-center justify-between">
-                                <span class="text-[11px] font-extrabold uppercase tracking-wider text-emerald-700 dark:text-emerald-400">
-                                    <i class="fa-solid fa-equals mr-1"></i> Synonyms (একাধিক সমার্থক শব্দ)
-                                </span>
-                            </div>
+                            <span class="text-[11px] font-extrabold uppercase tracking-wider text-emerald-700 dark:text-emerald-400 block">
+                                <i class="fa-solid fa-equals mr-1"></i> Synonyms (সমার্থক শব্দ)
+                            </span>
                             <div id="fc-syn-list" class="flex flex-wrap gap-1.5"></div>
                             <div class="pt-1.5 border-t border-emerald-200/65 dark:border-emerald-800/45 space-y-1">
                                 <p id="fc-syn-sent" class="text-xs sm:text-sm font-semibold text-slate-800 dark:text-slate-100 leading-snug"></p>
@@ -198,13 +226,11 @@
                             </div>
                         </div>
 
-                        <!-- 2. ANTONYM BLOCK (Soft Blush-Peach + Multiple Antonyms & Sentences) -->
+                        <!-- ANTONYM BLOCK -->
                         <div class="p-3.5 rounded-2xl bg-rose-50/85 dark:bg-rose-950/35 border border-rose-200/85 dark:border-rose-800/45 mb-2 space-y-2">
-                            <div class="flex items-center justify-between">
-                                <span class="text-[11px] font-extrabold uppercase tracking-wider text-rose-700 dark:text-rose-300">
-                                    <i class="fa-solid fa-not-equal mr-1"></i> Antonyms (একাধিক বিপরীতার্থক শব্দ)
-                                </span>
-                            </div>
+                            <span class="text-[11px] font-extrabold uppercase tracking-wider text-rose-700 dark:text-rose-300 block">
+                                <i class="fa-solid fa-not-equal mr-1"></i> Antonyms (বিপরীতার্থক শব্দ)
+                            </span>
                             <div id="fc-ant-list" class="flex flex-wrap gap-1.5"></div>
                             <div class="pt-1.5 border-t border-rose-200/65 dark:border-rose-800/40 space-y-1">
                                 <p id="fc-ant-sent" class="text-xs sm:text-sm font-semibold text-slate-800 dark:text-slate-100 leading-snug"></p>
@@ -212,7 +238,7 @@
                             </div>
                         </div>
 
-                        <!-- Grammar Reminder -->
+                        <!-- Grammar Note -->
                         <p id="fc-grammar-back" class="bangla text-xs font-semibold text-emerald-900 dark:text-emerald-200 bg-emerald-100/60 dark:bg-emerald-950/60 px-3 py-2 rounded-xl"></p>
                     </div>
                 </div>
@@ -220,38 +246,73 @@
 
             <!-- Prev / Flip / Next Controls -->
             <div class="grid grid-cols-3 gap-2.5">
-                <button type="button" onclick="prevCard()" class="py-3 rounded-2xl bg-white/95 dark:bg-[#13241e] border border-emerald-200/85 dark:border-emerald-800/60 text-emerald-950 dark:text-emerald-100 font-bold text-xs sm:text-sm active:scale-98 transition">
+                <button type="button" onclick="prevCard()" class="py-3 rounded-2xl bg-white/95 dark:bg-[#13241e] border border-emerald-200/85 dark:border-emerald-800/60 text-emerald-950 dark:text-emerald-100 font-bold text-xs sm:text-sm transition">
                     <i class="fa-solid fa-arrow-left mr-1"></i> আগেরটি
                 </button>
-                <button type="button" onclick="flipCard()" class="py-3 rounded-2xl bg-gradient-to-r from-emerald-600 to-teal-600 text-white font-extrabold text-xs sm:text-sm shadow-sm active:scale-98 transition">
+                <button type="button" onclick="flipCard()" class="py-3 rounded-2xl bg-gradient-to-r from-emerald-600 to-teal-600 text-white font-extrabold text-xs sm:text-sm shadow-sm transition">
                     <i class="fa-solid fa-rotate mr-1"></i> উল্টাও
                 </button>
-                <button type="button" onclick="nextCard()" class="py-3 rounded-2xl bg-white/95 dark:bg-[#13241e] border border-emerald-200/85 dark:border-emerald-800/60 text-emerald-950 dark:text-emerald-100 font-bold text-xs sm:text-sm active:scale-98 transition">
+                <button type="button" onclick="nextCard()" class="py-3 rounded-2xl bg-white/95 dark:bg-[#13241e] border border-emerald-200/85 dark:border-emerald-800/60 text-emerald-950 dark:text-emerald-100 font-bold text-xs sm:text-sm transition">
                     পরেরটি <i class="fa-solid fa-arrow-right ml-1"></i>
                 </button>
             </div>
         </section>
 
         <!-- ========================================================= -->
-        <!-- 2. CARD BATTLE (SPEED MATCH GAME)                         -->
+        <!-- 2. CARD BATTLE (SPEED MATCH GAME + JUMP + POS CORNER)     -->
         <!-- ========================================================= -->
         <section id="view-battle" class="hidden flex-1 flex flex-col gap-3 animate-fade-up">
+            <!-- Battle Filter & Jump Bar -->
+            <div class="flex flex-wrap items-center justify-between gap-2 bg-white/85 dark:bg-[#13241e]/90 p-2.5 rounded-2xl border border-emerald-200/75 dark:border-emerald-800/50">
+                <div class="flex items-center gap-1.5">
+                    <span class="bangla text-xs font-bold text-emerald-800 dark:text-emerald-300">
+                        কার্ড নং: <span id="b-card-idx" class="font-black text-emerald-600">1</span> / <span id="b-card-total">0</span>
+                    </span>
+                    <input type="number" id="b-jump-input" min="1" placeholder="নং লিখুন" onkeydown="if(event.key==='Enter') jumpToBattleCard()" class="bangla w-24 px-2 py-1 rounded-lg bg-emerald-50/70 dark:bg-emerald-950/60 border border-emerald-300/80 dark:border-emerald-700 text-xs font-bold outline-none">
+                    <button type="button" onclick="jumpToBattleCard()" class="bangla px-2.5 py-1 rounded-lg bg-emerald-600 text-white text-xs font-bold">যান</button>
+                </div>
+
+                <select id="b-unit-select" onchange="setBattleUnitFilter(this.value)" class="bangla px-2.5 py-1 rounded-xl bg-white dark:bg-[#0e1d18] border border-emerald-200 dark:border-emerald-800 text-xs font-bold outline-none">
+                    <option value="ALL_UNITS">সকল অধ্যায় (All)</option>
+                    <option value="1ST">শুধু ১ম পত্র</option>
+                    <option value="2ND">শুধু ২য় পত্র</option>
+                    <option value="Unit 1">Unit 1</option>
+                    <option value="Unit 2">Unit 2</option>
+                    <option value="Unit 3">Unit 3</option>
+                    <option value="Unit 4">Unit 4</option>
+                    <option value="Unit 5">Unit 5</option>
+                    <option value="Unit 6">Unit 6</option>
+                    <option value="Unit 7">Unit 7</option>
+                    <option value="Unit 8">Unit 8</option>
+                    <option value="Unit 9">Unit 9</option>
+                    <option value="Unit 10">Unit 10</option>
+                    <option value="Unit 11">Unit 11</option>
+                    <option value="Unit 12">Unit 12</option>
+                    <option value="Unit 13">Unit 13</option>
+                    <option value="Unit 14">Unit 14</option>
+                </select>
+            </div>
+
             <div class="bg-white/95 dark:bg-[#13241e] rounded-3xl p-4 sm:p-6 border border-emerald-200/85 dark:border-emerald-800/60 sage-shadow space-y-4">
                 <div class="flex items-center justify-between text-xs font-extrabold">
                     <span class="px-3 py-1 rounded-full bg-emerald-100 dark:bg-emerald-950 text-emerald-800 dark:text-emerald-300">
                         স্কোর: <span id="b-score">0</span> (<span id="b-combo">x1</span>)
                     </span>
-                    <span class="px-3 py-1 rounded-full bg-rose-50 dark:bg-rose-950/60 text-rose-700 dark:text-rose-300 border border-rose-200/70">
-                        <i class="fa-regular fa-clock mr-1"></i><span id="b-timer">15</span>s
+                    <!-- Corner Parts of Speech Badge on Card Game -->
+                    <span id="b-pos" class="px-3 py-1 rounded-full bg-rose-50 dark:bg-rose-950/60 text-rose-700 dark:text-rose-300 border border-rose-200/70 font-extrabold">
+                        Adj
                     </span>
                 </div>
 
                 <div class="text-center py-2 space-y-1.5">
-                    <span id="b-ask-badge" class="inline-block px-3.5 py-1 rounded-full text-xs font-black uppercase tracking-wider bg-emerald-600 text-white">
-                        SYNONYM MATCH
-                    </span>
-                    <h2 id="b-word" class="text-3xl sm:text-4xl font-black text-emerald-950 dark:text-white pt-1">Diligent</h2>
-                    <p id="b-bangla" class="bangla text-base font-bold text-emerald-700 dark:text-emerald-300">(পরিশ্রমী / অধ্যবসায়ী)</p>
+                    <div class="flex items-center justify-center gap-2">
+                        <span id="b-unit-badge" class="bangla px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-emerald-100 dark:bg-emerald-950 text-emerald-800 dark:text-emerald-300">Unit 1</span>
+                        <span id="b-ask-badge" class="inline-block px-3.5 py-1 rounded-full text-xs font-black uppercase tracking-wider bg-emerald-600 text-white">
+                            SYNONYM MATCH
+                        </span>
+                    </div>
+                    <h2 id="b-word" class="text-3xl sm:text-4xl font-black text-emerald-950 dark:text-white pt-1">Charismatic</h2>
+                    <p id="b-bangla" class="bangla text-base font-bold text-emerald-700 dark:text-emerald-300">(অনন্যসাধারণ নেতৃত্বগুণসম্পন্ন)</p>
                 </div>
 
                 <div id="b-options" class="grid grid-cols-1 sm:grid-cols-2 gap-2.5"></div>
@@ -266,698 +327,211 @@
             </div>
         </section>
 
-        <!-- Battle End Summary -->
-        <section id="view-battle-end" class="hidden flex-1 flex flex-col gap-3 animate-fade-up">
-            <div class="bg-white/95 dark:bg-[#13241e] rounded-3xl p-6 border border-emerald-200/85 dark:border-emerald-800/60 sage-shadow text-center space-y-4">
-                <div class="w-14 h-14 mx-auto rounded-2xl bg-emerald-100 dark:bg-emerald-950 text-emerald-600 dark:text-emerald-300 flex items-center justify-center text-2xl">
-                    <i class="fa-solid fa-trophy"></i>
-                </div>
-                <h2 class="bangla text-2xl font-extrabold text-emerald-950 dark:text-white">রাউন্ড সম্পন্ন!</h2>
-                <p id="be-summary" class="bangla text-sm font-bold text-emerald-800 dark:text-emerald-200"></p>
-                <button type="button" onclick="startBattle()" class="px-6 py-3 rounded-2xl bg-gradient-to-r from-emerald-600 to-teal-600 text-white font-extrabold text-sm">
-                    আবার খেলো
-                </button>
-            </div>
-        </section>
-
         <!-- ========================================================= -->
-        <!-- 3. SSC BOARD PASSAGE DRILL                                -->
+        <!-- 3. PASSAGE CONTEXT DRILL (SSC BOARD STYLE)                -->
         <!-- ========================================================= -->
         <section id="view-board" class="hidden flex-1 flex flex-col gap-3 animate-fade-up">
             <div class="bg-white/95 dark:bg-[#13241e] rounded-3xl p-4 sm:p-6 border border-emerald-200/85 dark:border-emerald-800/60 sage-shadow space-y-4">
                 <div class="flex items-center justify-between">
-                    <span id="bp-title" class="text-xs font-extrabold uppercase tracking-wider text-emerald-700 dark:text-emerald-300"></span>
-                    <span class="bangla text-xs font-bold text-rose-600 dark:text-rose-300">SSC ২য় পত্র অনুশীলন</span>
+                    <span class="bangla text-xs font-extrabold text-emerald-700 dark:text-emerald-300">
+                        <i class="fa-solid fa-pen-nib mr-1"></i> SSC বোর্ড প্যাসেজ প্র্যাক্টিস
+                    </span>
+                    <span id="bd-pos" class="px-3 py-1 rounded-full bg-rose-50 dark:bg-rose-950/60 text-rose-700 dark:text-rose-300 text-xs font-extrabold border border-rose-200/70">Noun</span>
                 </div>
-                <p id="bp-text" class="text-sm sm:text-base leading-relaxed font-medium text-slate-800 dark:text-slate-100 p-4 rounded-2xl bg-emerald-50/70 dark:bg-emerald-950/40 border border-emerald-200/60 dark:border-emerald-800/40"></p>
-                <div id="bp-questions" class="space-y-3"></div>
-                <button type="button" onclick="loadPassage()" class="w-full py-3 rounded-2xl bg-emerald-600 text-white font-bold text-xs sm:text-sm">
-                    নতুন প্যাসেজ দেখুন <i class="fa-solid fa-rotate-right ml-1"></i>
-                </button>
+                <div id="bd-passage" class="p-4 rounded-2xl bg-emerald-50/80 dark:bg-emerald-950/45 border border-emerald-200/75 text-sm sm:text-base leading-relaxed font-medium"></div>
+                <div id="bd-options" class="grid grid-cols-1 sm:grid-cols-2 gap-2.5"></div>
+                <div id="bd-feedback" class="hidden bangla p-3.5 rounded-2xl bg-emerald-100/70 dark:bg-emerald-950/60 text-xs space-y-2">
+                    <p id="bd-fb-text" class="font-semibold"></p>
+                    <button type="button" onclick="nextBoardDrill()" class="px-4 py-2 rounded-xl bg-emerald-600 text-white font-bold">পরের প্রশ্ন</button>
+                </div>
             </div>
         </section>
 
         <!-- ========================================================= -->
-        <!-- 4. VOCABULARY WORD BANK (VERIFIED WORDS)                  -->
+        <!-- 4. VOCABULARY BANK (SEARCH + UNIT + NUMBER)               -->
         <!-- ========================================================= -->
         <section id="view-bank" class="hidden flex-1 flex flex-col gap-3 animate-fade-up">
-            <div class="bg-white/95 dark:bg-[#13241e] rounded-2xl p-3 border border-emerald-200/80 dark:border-emerald-800/50 flex flex-col sm:flex-row gap-2">
-                <div class="relative flex-1">
-                    <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-emerald-600 text-xs"></i>
-                    <input type="text" id="bank-search" oninput="resetAndRenderBank()" placeholder="ইংরেজি বা বাংলা শব্দ খুঁজুন..." class="bangla w-full pl-9 pr-3 py-2 rounded-xl bg-emerald-50/70 dark:bg-emerald-950/50 border border-emerald-200/80 dark:border-emerald-800/50 text-xs sm:text-sm font-semibold focus:outline-none">
-                </div>
-                <div class="flex gap-1.5">
-                    <button type="button" onclick="setBankFilter('ALL')" id="bf-ALL" class="bf-btn px-3 py-2 rounded-xl text-xs font-bold bg-emerald-600 text-white">সব</button>
-                    <button type="button" onclick="setBankFilter('1ST')" id="bf-1ST" class="bf-btn px-3 py-2 rounded-xl text-xs font-bold bg-emerald-50 dark:bg-emerald-950 text-emerald-900 dark:text-emerald-200">১ম পত্র</button>
-                    <button type="button" onclick="setBankFilter('2ND')" id="bf-2ND" class="bf-btn px-3 py-2 rounded-xl text-xs font-bold bg-emerald-50 dark:bg-emerald-950 text-emerald-900 dark:text-emerald-200">২য় পত্র</button>
-                    <button type="button" onclick="setBankFilter('FAV')" id="bf-FAV" class="bf-btn px-3 py-2 rounded-xl text-xs font-bold bg-rose-50 dark:bg-rose-950/50 text-rose-700 dark:text-rose-300"><i class="fa-solid fa-heart"></i></button>
-                </div>
+            <div class="flex flex-wrap gap-2">
+                <input type="text" id="bank-search" oninput="renderBank()" placeholder="ইংরেজি শব্দ, বাংলা অর্থ বা ক্রমিক নং লিখুন..." class="bangla flex-1 min-w-[200px] px-4 py-2.5 rounded-2xl bg-white/95 dark:bg-[#13241e] border border-emerald-200 dark:border-emerald-800 text-xs sm:text-sm font-semibold outline-none">
+                <select id="bank-unit" onchange="renderBank()" class="bangla px-3 py-2.5 rounded-2xl bg-white/95 dark:bg-[#13241e] border border-emerald-200 dark:border-emerald-800 text-xs font-bold outline-none">
+                    <option value="ALL">সকল অধ্যায় ও পত্র</option>
+                    <option value="1ST">১ম পত্র (সব অধ্যায়)</option>
+                    <option value="2ND">২য় পত্র (বোর্ড ভোকাবুলারি)</option>
+                    <option value="Unit 1">Unit 1</option>
+                    <option value="Unit 2">Unit 2</option>
+                    <option value="Unit 3">Unit 3</option>
+                    <option value="Unit 4">Unit 4</option>
+                    <option value="Unit 5">Unit 5</option>
+                    <option value="Unit 6">Unit 6</option>
+                    <option value="Unit 7">Unit 7</option>
+                    <option value="Unit 8">Unit 8</option>
+                    <option value="Unit 9">Unit 9</option>
+                    <option value="Unit 10">Unit 10</option>
+                    <option value="Unit 11">Unit 11</option>
+                    <option value="Unit 12">Unit 12</option>
+                    <option value="Unit 13">Unit 13</option>
+                    <option value="Unit 14">Unit 14</option>
+                </select>
             </div>
-
-            <div id="bank-list" class="space-y-2.5 pb-4"></div>
-
-            <button type="button" id="btn-load-more" onclick="loadMoreBank()" class="w-full py-3 rounded-2xl bg-emerald-100 dark:bg-emerald-950/80 text-emerald-800 dark:text-emerald-300 font-bold text-xs border border-emerald-200 dark:border-emerald-800 active:scale-98 transition">
-                আরও শব্দ দেখুন <i class="fa-solid fa-chevron-down ml-1"></i>
-            </button>
+            <div id="bank-list" class="grid grid-cols-1 sm:grid-cols-2 gap-3"></div>
         </section>
 
         <!-- ========================================================= -->
-        <!-- 5. EXAM MODE (NAME, ROLL, CLASS + RESULT CARD + GMAIL)    -->
+        <!-- 5. MODEL EXAM MODE                                        -->
         <!-- ========================================================= -->
-        <section id="view-exam" class="hidden flex-1 flex flex-col gap-3.5 animate-fade-up">
-            <div id="exam-setup-card" class="bg-white/95 dark:bg-[#13241e] rounded-3xl p-5 sm:p-6 border border-emerald-200/85 dark:border-emerald-800/60 sage-shadow space-y-4">
-                <div class="flex items-center gap-3 border-b border-emerald-100 dark:border-emerald-900/50 pb-3.5">
-                    <div class="w-11 h-11 rounded-2xl bg-gradient-to-tr from-emerald-600 to-teal-500 text-white flex items-center justify-center text-lg shadow-sm">
-                        <i class="fa-solid fa-file-signature"></i>
-                    </div>
-                    <div>
-                        <h2 class="bangla text-lg sm:text-xl font-extrabold text-emerald-950 dark:text-white">নিজেকে যাচাই করো (Exam Mode)</h2>
-                        <p class="bangla text-xs text-emerald-800/80 dark:text-emerald-300/80">পরীক্ষা শুরুর আগে তোমার নাম, রোল নম্বর ও শ্রেণি লিখে রেজিস্ট্রেশন সম্পন্ন করো।</p>
-                    </div>
+        <section id="view-exam" class="hidden flex-1 flex flex-col gap-3 animate-fade-up">
+            <div class="bg-white/95 dark:bg-[#13241e] rounded-3xl p-5 border border-emerald-200/85 dark:border-emerald-800/60 sage-shadow space-y-4">
+                <div class="flex items-center justify-between">
+                    <h3 class="bangla text-base font-extrabold">মডেল টেস্ট (১০ নম্বরের কুইজ)</h3>
+                    <button type="button" onclick="startExam()" class="bangla px-3.5 py-1.5 rounded-xl bg-emerald-600 text-white text-xs font-bold">নতুন পরীক্ষা শুরু</button>
                 </div>
-
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                    <div>
-                        <label class="bangla block text-xs font-bold text-emerald-900 dark:text-emerald-200 mb-1">শিক্ষার্থীর নাম (Student Name) *</label>
-                        <input type="text" id="exam-name" placeholder="যেমন: ফাল্গুনী তালুকদার" class="bangla w-full px-3.5 py-2.5 rounded-xl bg-emerald-50/75 dark:bg-emerald-950/60 border border-emerald-200 dark:border-emerald-800 text-sm font-semibold focus:outline-none focus:border-emerald-500">
-                    </div>
-                    <div>
-                        <label class="bangla block text-xs font-bold text-emerald-900 dark:text-emerald-200 mb-1">রোল নম্বর (Roll No.) *</label>
-                        <input type="text" id="exam-roll" placeholder="যেমন: 104" class="w-full px-3.5 py-2.5 rounded-xl bg-emerald-50/75 dark:bg-emerald-950/60 border border-emerald-200 dark:border-emerald-800 text-sm font-semibold focus:outline-none focus:border-emerald-500">
-                    </div>
-                    <div>
-                        <label class="bangla block text-xs font-bold text-emerald-900 dark:text-emerald-200 mb-1">শ্রেণি (Class)</label>
-                        <select id="exam-class" class="bangla w-full px-3.5 py-2.5 rounded-xl bg-emerald-50/75 dark:bg-emerald-950/60 border border-emerald-200 dark:border-emerald-800 text-sm font-bold text-emerald-950 dark:text-emerald-100 focus:outline-none">
-                            <option value="Class 9 (নবম শ্রেণি)">Class 9 (নবম শ্রেণি)</option>
-                            <option value="Class 10 (দশম শ্রেণি)">Class 10 (দশম শ্রেণি)</option>
-                            <option value="SSC Candidate (এসএসসি পরীক্ষার্থী)">SSC Candidate (এসএসসি পরীক্ষার্থী)</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label class="bangla block text-xs font-bold text-emerald-900 dark:text-emerald-200 mb-1">প্রশ্নের সংখ্যা (Total Questions)</label>
-                        <select id="exam-qcount" class="bangla w-full px-3.5 py-2.5 rounded-xl bg-emerald-50/75 dark:bg-emerald-950/60 border border-emerald-200 dark:border-emerald-800 text-sm font-bold text-emerald-950 dark:text-emerald-100 focus:outline-none">
-                            <option value="10">১০টি প্রশ্ন</option>
-                            <option value="20" selected>২০টি প্রশ্ন</option>
-                            <option value="30">৩০টি প্রশ্ন</option>
-                        </select>
-                    </div>
-                </div>
-
-                <p id="exam-form-error" class="hidden bangla text-xs font-bold text-rose-600 dark:text-rose-400 bg-rose-50 dark:bg-rose-950/40 px-3 py-2 rounded-xl border border-rose-200 dark:border-rose-800/50">
-                    <i class="fa-solid fa-circle-exclamation mr-1"></i> অনুগ্রহ করে তোমার নাম এবং রোল নম্বর লিখো।
-                </p>
-
-                <button type="button" onclick="beginExam()" class="w-full py-3.5 rounded-2xl bg-gradient-to-r from-emerald-600 to-teal-600 text-white font-extrabold text-sm shadow-md shadow-emerald-600/20 active:scale-98 transition">
-                    <i class="fa-solid fa-play mr-1.5"></i> পরীক্ষা শুরু করুন
-                </button>
-            </div>
-
-            <div id="exam-runner-card" class="hidden bg-white/95 dark:bg-[#13241e] rounded-3xl p-4 sm:p-6 border border-emerald-200/85 dark:border-emerald-800/60 sage-shadow space-y-4">
-                <div class="flex flex-wrap items-center justify-between gap-2 border-b border-emerald-100 dark:border-emerald-900/50 pb-3">
-                    <div class="text-xs font-bold text-emerald-900 dark:text-emerald-200">
-                        <span id="ex-badge-info" class="bangla">নাম: — | রোল: —</span>
-                    </div>
-                    <div class="flex items-center gap-3 text-xs font-extrabold">
-                        <span class="text-emerald-700 dark:text-emerald-300">প্রশ্ন <span id="ex-q-num">1</span>/<span id="ex-q-total">20</span></span>
-                        <span class="px-2.5 py-1 rounded-full bg-rose-50 dark:bg-rose-950/50 text-rose-600 dark:text-rose-300 border border-rose-200/70">
-                            <i class="fa-regular fa-clock mr-1"></i><span id="ex-clock">15:00</span>
-                        </span>
-                    </div>
-                </div>
-
-                <div class="p-4 rounded-2xl bg-emerald-50/80 dark:bg-emerald-950/45 border border-emerald-200/70 dark:border-emerald-800/50 text-center space-y-1">
-                    <span id="ex-ask-label" class="bangla inline-block px-3 py-0.5 rounded-full text-xs font-extrabold bg-emerald-600 text-white">
-                        SYNONYM বাছাই করো
-                    </span>
-                    <h3 id="ex-word" class="text-2xl sm:text-3xl font-black text-emerald-950 dark:text-white pt-1">Diligent</h3>
-                    <p id="ex-bangla" class="bangla text-sm font-bold text-emerald-700 dark:text-emerald-300">(পরিশ্রমী / অধ্যবসায়ী)</p>
-                </div>
-
-                <div id="ex-options" class="grid grid-cols-1 sm:grid-cols-2 gap-2.5"></div>
-
-                <div class="flex items-center justify-between pt-2">
-                    <button type="button" onclick="prevExamQuestion()" id="ex-btn-prev" class="px-4 py-2.5 rounded-xl bg-emerald-100 dark:bg-emerald-950/70 text-emerald-900 dark:text-emerald-200 text-xs font-bold disabled:opacity-40">
-                        <i class="fa-solid fa-chevron-left mr-1"></i> আগের প্রশ্ন
-                    </button>
-                    <button type="button" onclick="nextExamQuestion()" id="ex-btn-next" class="px-5 py-2.5 rounded-xl bg-emerald-600 text-white text-xs font-bold">
-                        পরবর্তী প্রশ্ন <i class="fa-solid fa-chevron-right ml-1"></i>
-                    </button>
-                    <button type="button" onclick="submitExam()" id="ex-btn-submit" class="hidden px-5 py-2.5 rounded-xl bg-gradient-to-r from-rose-500 to-rose-600 text-white text-xs font-extrabold shadow">
-                        <i class="fa-solid fa-paper-plane mr-1"></i> পরীক্ষা জমা দিন
-                    </button>
-                </div>
-            </div>
-
-            <div id="exam-result-card" class="hidden bg-white/95 dark:bg-[#13241e] rounded-3xl p-5 sm:p-6 border border-emerald-200/85 dark:border-emerald-800/60 sage-shadow space-y-4">
-                <div id="result-card-capture" class="p-5 rounded-2xl bg-gradient-to-br from-[#f5fbf7] via-white to-[#fdf5f2] dark:from-[#142720] dark:to-[#1b2e26] border-2 border-emerald-300/80 dark:border-emerald-700/60 space-y-3">
-                    <div class="flex items-center justify-between border-b border-emerald-200/70 dark:border-emerald-800/50 pb-2.5">
-                        <div>
-                            <span class="text-[10px] font-extrabold uppercase tracking-wider text-emerald-600 dark:text-emerald-400 block">NCTB Class 9–10 Vocab Arena</span>
-                            <h3 class="bangla text-lg font-extrabold text-emerald-950 dark:text-white">অনুশীলন রেজাল্ট কার্ড</h3>
-                        </div>
-                        <div class="text-right">
-                            <span class="bangla text-[10px] font-bold text-emerald-700 dark:text-emerald-300 block">গ্রেড</span>
-                            <span id="rc-grade" class="text-2xl font-black text-emerald-600 dark:text-emerald-400">A+</span>
-                        </div>
-                    </div>
-
-                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs">
-                        <div class="p-2.5 rounded-xl bg-white/90 dark:bg-emerald-950/60 border border-emerald-100 dark:border-emerald-800/40">
-                            <span class="bangla text-[10px] text-emerald-600 block">নাম</span>
-                            <strong id="rc-name" class="bangla text-emerald-950 dark:text-white">—</strong>
-                        </div>
-                        <div class="p-2.5 rounded-xl bg-white/90 dark:bg-emerald-950/60 border border-emerald-100 dark:border-emerald-800/40">
-                            <span class="bangla text-[10px] text-emerald-600 block">রোল</span>
-                            <strong id="rc-roll" class="text-emerald-950 dark:text-white">—</strong>
-                        </div>
-                        <div class="p-2.5 rounded-xl bg-white/90 dark:bg-emerald-950/60 border border-emerald-100 dark:border-emerald-800/40">
-                            <span class="bangla text-[10px] text-emerald-600 block">শ্রেণি</span>
-                            <strong id="rc-class" class="bangla text-emerald-950 dark:text-white">—</strong>
-                        </div>
-                        <div class="p-2.5 rounded-xl bg-white/90 dark:bg-emerald-950/60 border border-emerald-100 dark:border-emerald-800/40">
-                            <span class="bangla text-[10px] text-emerald-600 block">স্কোর ও শতাংশ</span>
-                            <strong id="rc-score" class="text-emerald-700 dark:text-emerald-300">0/0 (0%)</strong>
-                        </div>
-                    </div>
-                    <p id="rc-timestamp" class="text-[11px] text-emerald-800/75 dark:text-emerald-300/75"></p>
-                </div>
-
-                <p id="rc-action-msg" class="hidden bangla text-xs font-bold text-emerald-700 dark:text-emerald-300 bg-emerald-50 dark:bg-emerald-950/50 px-3 py-2 rounded-xl"></p>
-
-                <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
-                    <a id="rc-gmail-link" href="#" target="_blank" rel="noopener noreferrer" class="py-3 px-4 rounded-2xl bg-gradient-to-r from-emerald-600 to-teal-600 text-white font-extrabold text-xs text-center shadow-md flex items-center justify-center gap-1.5">
-                        <i class="fa-solid fa-envelope"></i> Gmail-এ রেজাল্ট পাঠান
-                    </a>
-                    <button type="button" onclick="downloadResultCardPNG()" class="py-3 px-4 rounded-2xl bg-rose-50 dark:bg-rose-950/45 border border-rose-200 dark:border-rose-800/50 text-rose-700 dark:text-rose-300 font-bold text-xs flex items-center justify-center gap-1.5">
-                        <i class="fa-solid fa-download"></i> PNG কার্ড ডাউনলোড
-                    </button>
-                    <button type="button" onclick="copyResultSummary()" class="py-3 px-4 rounded-2xl bg-emerald-100 dark:bg-emerald-950/75 text-emerald-900 dark:text-emerald-200 font-bold text-xs flex items-center justify-center gap-1.5">
-                        <i class="fa-solid fa-copy"></i> রেজাল্ট কপি করুন
-                    </button>
-                </div>
-
-                <button type="button" onclick="resetExamForm()" class="w-full py-2.5 rounded-xl border border-emerald-200 dark:border-emerald-800 text-xs font-bold text-emerald-800 dark:text-emerald-300">
-                    <i class="fa-solid fa-rotate-right mr-1"></i> নতুন পরীক্ষা দিন
-                </button>
+                <div id="exam-container" class="space-y-4"></div>
+                <button type="button" id="exam-submit-btn" onclick="submitExam()" class="hidden bangla w-full py-3 rounded-2xl bg-emerald-600 text-white font-extrabold text-sm">উত্তর জমা দিন</button>
+                <div id="exam-result" class="hidden bangla p-4 rounded-2xl bg-emerald-50 dark:bg-emerald-950/60 border border-emerald-300 font-bold text-sm text-center"></div>
             </div>
         </section>
-
     </main>
 
-    <!-- Thumb-Friendly Mobile Bottom Navigation Bar -->
-    <nav class="sm:hidden fixed bottom-0 inset-x-0 z-50 bg-white/95 dark:bg-[#0f1f19]/95 backdrop-blur-xl border-t border-emerald-200/80 dark:border-emerald-900/50 px-1.5 py-1.5 flex items-center justify-around">
-        <button type="button" onclick="switchMode('flashcards')" id="mtab-flashcards" class="m-tab flex flex-col items-center justify-center py-1 px-2 rounded-xl text-emerald-600 dark:text-emerald-400 font-bold">
-            <i class="fa-solid fa-clone text-sm mb-0.5"></i>
-            <span class="bangla text-[10px]">কার্ড</span>
+    <!-- Mobile Bottom Navigation Bar -->
+    <nav class="sm:hidden fixed bottom-0 inset-x-0 z-40 bg-white/95 dark:bg-[#0f1f19]/95 backdrop-blur-lg border-t border-emerald-200/80 dark:border-emerald-900/60 px-2 py-1.5 flex justify-around">
+        <button type="button" onclick="switchMode('flashcards')" id="mtab-flashcards" class="m-tab flex flex-col items-center py-1 px-2 rounded-xl text-emerald-600 font-extrabold text-[10px]">
+            <i class="fa-solid fa-clone text-sm mb-0.5"></i> ফ্ল্যাশকার্ড
         </button>
-        <button type="button" onclick="switchMode('battle')" id="mtab-battle" class="m-tab flex flex-col items-center justify-center py-1 px-2 rounded-xl text-emerald-950/55 dark:text-emerald-200/55 font-semibold">
-            <i class="fa-solid fa-bolt text-sm mb-0.5"></i>
-            <span class="bangla text-[10px]">গেম</span>
+        <button type="button" onclick="switchMode('battle')" id="mtab-battle" class="m-tab flex flex-col items-center py-1 px-2 rounded-xl text-emerald-900/60 dark:text-emerald-200/60 font-bold text-[10px]">
+            <i class="fa-solid fa-bolt text-sm mb-0.5"></i> কার্ড গেম
         </button>
-        <button type="button" onclick="switchMode('board')" id="mtab-board" class="m-tab flex flex-col items-center justify-center py-1 px-2 rounded-xl text-emerald-950/55 dark:text-emerald-200/55 font-semibold">
-            <i class="fa-solid fa-pen-nib text-sm mb-0.5"></i>
-            <span class="bangla text-[10px]">প্যাসেজ</span>
+        <button type="button" onclick="switchMode('board')" id="mtab-board" class="m-tab flex flex-col items-center py-1 px-2 rounded-xl text-emerald-900/60 dark:text-emerald-200/60 font-bold text-[10px]">
+            <i class="fa-solid fa-pen-nib text-sm mb-0.5"></i> প্যাসেজ
         </button>
-        <button type="button" onclick="switchMode('bank')" id="mtab-bank" class="m-tab flex flex-col items-center justify-center py-1 px-2 rounded-xl text-emerald-950/55 dark:text-emerald-200/55 font-semibold">
-            <i class="fa-solid fa-book-open text-sm mb-0.5"></i>
-            <span class="bangla text-[10px]">শব্দকোষ</span>
+        <button type="button" onclick="switchMode('bank')" id="mtab-bank" class="m-tab flex flex-col items-center py-1 px-2 rounded-xl text-emerald-900/60 dark:text-emerald-200/60 font-bold text-[10px]">
+            <i class="fa-solid fa-book-open text-sm mb-0.5"></i> শব্দকোষ
         </button>
-        <button type="button" onclick="switchMode('exam')" id="mtab-exam" class="m-tab flex flex-col items-center justify-center py-1 px-2 rounded-xl text-emerald-950/55 dark:text-emerald-200/55 font-semibold">
-            <i class="fa-solid fa-file-signature text-sm mb-0.5"></i>
-            <span class="bangla text-[10px]">পরীক্ষা</span>
+        <button type="button" onclick="switchMode('exam')" id="mtab-exam" class="m-tab flex flex-col items-center py-1 px-2 rounded-xl text-emerald-900/60 dark:text-emerald-200/60 font-bold text-[10px]">
+            <i class="fa-solid fa-file-signature text-sm mb-0.5"></i> পরীক্ষা
         </button>
     </nav>
 
     <script>
         /**
-         * NCTB Class 9-10 (English 1st Paper + English 2nd Paper) Vocabulary Builder
-         * Verified, Authentic & Grammatically Accurate Dataset (No Artificial Derivatives)
+         * NCTB Class 9-10 English 1st Paper (Unit 1 - Unit 14) & 2nd Paper Vocabulary Database
+         * Format: [Word, POS, Paper, UnitLabel, BanglaMeaning, SynonymsArray, AntonymsArray, SynSentenceEn, SynSentenceBn, AntSentenceEn, AntSentenceBn, GrammarNote]
          */
-        const CORE_NCTB_TUPLES = [
-            ["Charismatic", "Adj", "1ST", "১ম পত্র • Unit 1", "অনন্যসাধারণ নেতৃত্বগুণসম্পন্ন",
-                [["Captivating", "মুগ্ধকর"], ["Magnetic", "আকর্ষণীয়"], ["Inspiring", "অনুপ্রেরণাদায়ী"]],
-                [["Uninspiring", "অনুপ্রেরণাহীন"], ["Repulsive", "বিকর্ষণীয়"], ["Dull", "নীরস"]],
-                "His captivating speech united the whole nation in a single spirit.",
-                "তাঁর মুগ্ধকর ভাষণ সমগ্র জাতিকে এক চেতনায় ঐক্যবদ্ধ করেছিল।",
-                "Nobody liked his dull and uninspiring lecture at the hall.",
-                "হলে তাঁর নীরস ও একঘেয়ে বক্তৃতা কেউ পছন্দ করেনি।",
-                "Noun ফর্ম 'Charisma'। ব্যক্তির আকর্ষণীয় নেতৃত্বগুণ বোঝাতে Adjective হিসেবে বসে।"],
-            ["Emancipation", "Noun", "1ST", "১ম পত্র • Unit 1", "মুক্তি / স্বাধীনতা",
-                [["Liberation", "মুক্তি"], ["Freedom", "স্বাধীনতা"], ["Deliverance", "উদ্ধার"]],
-                [["Subjugation", "পরাধীনতা"], ["Captivity", "বন্দিদশা"], ["Bondage", "দাসত্ব"]],
-                "The people fought bravely for their liberation from oppression.",
-                "জনগণ নিপীড়ন থেকে মুক্তির জন্য সাহসিকতার সাথে লড়াই করেছিল।",
-                "They refused to live under foreign subjugation any longer.",
-                "তারা আর বিদেশি পরাধীনতার অধীনে থাকতে অস্বীকার করেছিল।",
-                "'Emancipate' (Verb) থেকে গঠিত Abstract Noun; এর পর সাধারণত Preposition 'from' বসে।"],
-            ["Turmoil", "Noun", "1ST", "১ম পত্র • Unit 1", "অস্থিরতা / গোলযোগ",
-                [["Chaos", "বিশৃঙ্খলা"], ["Commotion", "হট্টগোল / অস্থিরতা"], ["Upheaval", "আন্দোলন / আলোড়ন"]],
-                [["Stability", "স্থিতিশীলতা"], ["Tranquillity", "প্রশান্তি"], ["Calm", "শান্ত অবস্থা"]],
-                "The country faced severe political chaos before independence.",
-                "স্বাধীনতার আগে দেশটি তীব্র রাজনৈতিক বিশৃঙ্খলার সম্মুখীন হয়েছিল।",
-                "Peace and stability gradually returned after liberation.",
-                "মুক্তির পর ধীরে ধীরে শান্তি ও স্থিতিশীলতা ফিরে আসে।",
-                "Uncountable Noun; তাই এর পূর্বে 'a/an' বসে না (যেমন: in turmoil)।"],
-            ["Oppression", "Noun", "1ST", "১ম পত্র • Unit 1", "নিপীড়ন / অত্যাচার",
-                [["Tyranny", "স্বৈরাচার"], ["Persecution", "নির্যাতন"], ["Suppression", "দমনপীড়ন"]],
-                [["Justice", "ন্যায়বিচার"], ["Liberty", "স্বাধীনতা"], ["Fairness", "ন্যায্যতা"]],
-                "Brave citizens protested strongly against tyranny and injustice.",
-                "সাহসী নাগরিকরা স্বৈরাচার ও অবিচারের বিরুদ্ধে তীব্র প্রতিবাদ করেছিল।",
-                "Every citizen deserves equality, liberty, and justice.",
-                "প্রতিটি নাগরিক সমতা, স্বাধীনতা ও ন্যায়বিচার পাওয়ার যোগ্য।",
-                "Verb ফর্ম 'Oppress' এবং Adjective ফর্ম 'Oppressive'।"],
-            ["Sovereignty", "Noun", "1ST", "১ম পত্র • Unit 1", "সার্বভৌমত্ব",
-                [["Autonomy", "স্বায়ত্তশাসন"], ["Independence", "স্বাধীনতা"], ["Supremacy", "সর্বময় ক্ষমতা"]],
-                [["Subordination", "অধীনতা"], ["Dependence", "নির্ভরশীলতা"], ["Servitude", "দাসত্ব"]],
-                "A free nation always protects its hard-earned autonomy.",
-                "একটি স্বাধীন জাতি সর্বদা তার কষ্টার্জিত স্বায়ত্তশাসন রক্ষা করে।",
-                "They rejected the life of subordination and fear.",
-                "তারা অধীনতা ও ভয়ের জীবন প্রত্যাখ্যান করেছিল।",
-                "Adjective ফর্ম 'Sovereign' (যেমন: a sovereign state)।"],
-            ["Genocide", "Noun", "1ST", "১ম পত্র • Unit 1", "গণহত্যা",
-                [["Massacre", "হত্যাকাণ্ড"], ["Slaughter", "নির্মম হত্যা"], ["Carnage", "রক্তপাত"]],
-                [["Preservation", "সংরক্ষণ"], ["Protection", "সুরক্ষা"], ["Rescue", "উদ্ধার"]],
-                "History remembers the brutal massacre of innocent people.",
-                "ইতিহাস নিরপরাধ মানুষের নৃশংস হত্যাকাণ্ডকে স্মরণ করে।",
-                "International laws aim at the preservation of human life.",
-                "আন্তর্জাতিক আইন মানবজীবন সংরক্ষণের লক্ষ্য রাখে।",
-                "গ্রিক 'genos' (জাতি) + ল্যাটিন 'caedere' (হত্যা) মিলে গঠিত Noun।"],
-            ["Unparalleled", "Adj", "1ST", "১ম পত্র • Unit 1", "অতুলনীয় / অদ্বিতীয়",
-                [["Matchless", "অতুলনীয়"], ["Peerless", "অনন্য"], ["Incomparable", "তুলনাহীন"]],
-                [["Ordinary", "সাধারণ"], ["Commonplace", "মামুলি"], ["Inferior", "নিম্নমানের"]],
-                "Her sacrifice for the motherland remains matchless in history.",
-                "মাতৃভূমির জন্য তাঁর ত্যাগ ইতিহাসে অতুলনীয় হয়ে আছে।",
-                "It was just an ordinary morning in the quiet village.",
-                "শান্ত গ্রামটিতে সেটি ছিল একটি সাধারণ সকাল মাত্র।",
-                "'Un-' prefix যুক্ত হয়ে নেতিবাচক গঠন তৈরি করলেও অর্থ ইতিবাচক (যার তুলনা নেই)।"],
-            ["Instigate", "Verb", "1ST", "১ম পত্র • Unit 1", "উসকে দেওয়া / প্ররোচিত করা",
-                [["Provoke", "উত্তেজিত করা"], ["Incite", "প্ররোচিত করা"], ["Foment", "উসকে দেওয়া"]],
-                [["Pacify", "শান্ত করা"], ["Appease", "প্রশমিত করা"], ["Calm", "শান্ত করা"]],
-                "False rumours often provoke unnecessary public tension.",
-                "মিথ্যা গুজব প্রায়ই অপ্রয়োজনীয় জনমনে উত্তেজনা সৃষ্টি করে।",
-                "The headmaster tried to pacify the agitated crowd.",
-                "প্রধান শিক্ষক উত্তেজিত জনতাকে শান্ত করার চেষ্টা করেছিলেন।",
-                "Transitive Verb; এর পর সরাসরি Object বসে এবং Noun ফর্ম 'Instigation'।"],
-            ["Recreation", "Noun", "1ST", "১ম পত্র • Unit 2", "বিনোদন / চিত্তবিনোদন",
-                [["Amusement", "আনন্দ / বিনোদন"], ["Entertainment", "বিনোদন"], ["Leisure", "অবসর বিনোদন"]],
-                [["Drudgery", "একঘেয়ে খাটুনি"], ["Toil", "কঠোর শ্রম"], ["Monotony", "একঘেয়েমি"]],
-                "Reading storybooks is a wholesome source of amusement.",
-                "গল্পের বই পড়া আনন্দের একটি নির্মল উৎস।",
-                "Outdoor games relieve students from daily drudgery.",
-                "বাইরের খেলাধুলা শিক্ষার্থীদের দৈনন্দিন একঘেয়ে খাটুনি থেকে মুক্তি দেয়।",
-                "Re- (পুনরায়) + creation (সৃষ্টি) মিলে গঠিত; Adjective ফর্ম 'Recreational'।"],
-            ["Sedentary", "Adj", "1ST", "১ম পত্র • Unit 2", "অলস / বসে থাকা সংক্রান্ত",
-                [["Inactive", "নিষ্ক্রিয়"], ["Stationary", "স্থির / বসে থাকা"], ["Sluggish", "মন্থর"]],
-                [["Active", "সক্রিয়"], ["Energetic", "কর্মঠ"], ["Lively", "প্রাণবন্ত"]],
-                "An inactive lifestyle harms both body and mind.",
-                "নিষ্ক্রিয় জীবনযাপন শরীর ও মন উভয়েরই ক্ষতি করে।",
-                "Children should remain active in open air every afternoon.",
-                "শিশুদের প্রতিদিন বিকেলে খোলা বাতাসে সক্রিয় থাকা উচিত।",
-                "সাধারণত 'sedentary lifestyle' বা 'sedentary job' Collocation হিসেবে ব্যবহৃত হয়।"],
-            ["Endurance", "Noun", "1ST", "১ম পত্র • Unit 2", "সহনশীলতা / দম",
-                [["Stamina", "শারীরিক সহনশক্তি"], ["Fortitude", "মনের দৃঢ়তা"], ["Perseverance", "অধ্যবসায়"]],
-                [["Fragility", "ভঙ্গুরতা"], ["Weakness", "দুর্বলতা"], ["Frailness", "ক্ষীণতা"]],
-                "Regular running builds strong physical stamina and balance.",
-                "নিয়মিত দৌড়ানো শক্তিশালী শারীরিক সহনশক্তি ও ভারসাম্য গড়ে তোলে।",
-                "Lack of exercise leads to physical weakness over time.",
-                "ব্যায়ামের অভাব সময়ের সাথে সাথে শারীরিক দুর্বলতার দিকে নিয়ে যায়।",
-                "Verb ফর্ম 'Endure' (সহ্য করা); -ance suffix যুক্ত হয়ে Noun হয়েছে।"],
-            ["Decline", "Verb", "1ST", "১ম পত্র • Unit 2", "হ্রাস পাওয়া / কমে যাওয়া",
-                [["Diminish", "কমে যাওয়া"], ["Decrease", "হ্রাস পাওয়া"], ["Subside", "প্রশমিত হওয়া"]],
-                [["Increase", "বৃদ্ধি পাওয়া"], ["Grow", "বাড়া"], ["Rise", "উঠা / বৃদ্ধি পাওয়া"]],
-                "Open playgrounds are diminishing rapidly in big cities.",
-                "বড় শহরগুলোতে খোলা খেলার মাঠ দ্রুত কমে যাচ্ছে।",
-                "Interest in screen games is increasing among teenagers.",
-                "কিশোরদের মধ্যে স্ক্রিন গেমের প্রতি আগ্রহ বৃদ্ধি পাচ্ছে।",
-                "Noun ও Verb উভয় হিসেবেই ব্যবহৃত হয় (যেমন: a sharp decline)।"],
-            ["Posture", "Noun", "1ST", "১ম পত্র • Unit 2", "দেহভঙ্গি / বসার ভঙ্গি",
-                [["Stance", "দাঁড়ানোর বা বসার ভঙ্গি"], ["Attitude", "ভঙ্গি"], ["Bearing", "চলনবলন"]],
-                [["Slouch", "কুঁজো হয়ে বসা"], ["Stoop", "নুয়ে থাকা"], ["Crouch", "গুটিসুটি মারা"]],
-                "Yoga improves spinal alignment and healthy body stance.",
-                "যোগব্যায়াম মেরুদণ্ডের বিন্যাস ও সুস্থ দেহভঙ্গি উন্নত করে।",
-                "Avoid a bad slouch while reading at a study table.",
-                "পড়ার টেবিলে বই পড়ার সময় কুঁজো হয়ে বসা এড়িয়ে চলো।",
-                "Countable ও Uncountable উভয়ভাবেই ব্যবহৃত হতে পারে।"],
-            ["Fervour", "Noun", "1ST", "১ম পত্র • Unit 3", "উদ্দীপনা / প্রবল উৎসাহ",
-                [["Enthusiasm", "প্রবল আগ্রহ"], ["Ardour", "উদ্দীপনা"], ["Zeal", "উৎসাহ"]],
-                [["Apathy", "উদাসীনতা"], ["Indifference", "অনীহা"], ["Sluggishness", "জড়তা"]],
-                "Students joined the cultural rally with great enthusiasm.",
-                "শিক্ষার্থীরা প্রবল আগ্রহ নিয়ে সাংস্কৃতিক র‍্যালিতে যোগ দিয়েছিল।",
-                "Apathy toward social duties harms the community.",
-                "সামাজিক দায়িত্বের প্রতি উদাসীনতা সমাজের ক্ষতি করে।",
-                "ব্রিটিশ বানান 'Fervour' এবং আমেরিকান বানান 'Fervor'।"],
-            ["Illuminate", "Verb", "1ST", "১ম পত্র • Unit 3", "আলোকিত করা",
-                [["Brighten", "উজ্জ্বল করা"], ["Lighten", "আলো ফেলা"], ["Enlighten", "আলোকিত করা"]],
-                [["Darken", "অন্ধকার করা"], ["Dim", "ম্লান করা"], ["Cloud", "আচ্ছন্ন করা"]],
-                "Colourful lamps brighten the streets during festival nights.",
-                "উৎসবের রাতে রঙিন বাতি রাস্তাগুলো উজ্জ্বল করে তোলে।",
-                "Thick storm clouds began to darken the evening sky.",
-                "ঘন ঝড়ের মেঘ সন্ধ্যার আকাশকে অন্ধকার করতে শুরু করল।",
-                "Noun ফর্ম 'Illumination' (আলোকসজ্জা), যা উৎসবে বহুল ব্যবহৃত।"],
-            ["Commemorate", "Verb", "1ST", "১ম পত্র • Unit 3", "স্মরণ করা / উদযাপন করা",
-                [["Honour", "সম্মান জানানো"], ["Celebrate", "উদযাপন করা"], ["Memorialize", "স্মরণীয় করা"]],
-                [["Forget", "ভুলে যাওয়া"], ["Neglect", "অবহেলা করা"], ["Disregard", "উপেক্ষা করা"]],
-                "We gather solemnly to honour our language martyrs.",
-                "আমরা আমাদের ভাষা শহীদদের সম্মান জানাতে গম্ভীরভাবে সমবেত হই।",
-                "A grateful nation never forgets its noble sacrifices.",
-                "একটি কৃতজ্ঞ জাতি কখনো তার মহৎ আত্মত্যাগ ভোলে না।",
-                "কোনো ঐতিহাসিক ঘটনা বা ব্যক্তিকে শ্রদ্ধার সাথে স্মরণ করতে বসে।"],
-            ["Solidarity", "Noun", "1ST", "১ম পত্র • Unit 3", "সংহতি / একতা",
-                [["Unity", "একতা"], ["Harmony", "সম্প্রীতি"], ["Fellowship", "ভ্রাতৃত্ব"]],
-                [["Division", "বিভাজন"], ["Discord", "বিরোধ"], ["Hostility", "শত্রুতা"]],
-                "Unity among workers brought a historic victory.",
-                "শ্রমিকদের মধ্যকার একতা একটি ঐতিহাসিক বিজয় এনেছিল।",
-                "Internal division weakens any collective movement.",
-                "অভ্যন্তরীণ বিভাজন যেকোনো সম্মিলিত আন্দোলনকে দুর্বল করে দেয়।",
-                "Preposition 'with' গ্রহণ করে (যেমন: solidarity with the workers)।"],
-            ["Homage", "Noun", "1ST", "১ম পত্র • Unit 3", "শ্রদ্ধাঞ্জলি / সম্মান",
-                [["Tribute", "শ্রদ্ধা"], ["Reverence", "গভীর শ্রদ্ধা"], ["Deference", "সম্মান"]],
-                [["Disrespect", "অসম্মান"], ["Contempt", "অবজ্ঞা"], ["Scorn", "ঘৃণা"]],
-                "People paid floral tribute at the Shaheed Minar at dawn.",
-                "ভোরবেলা মানুষ শহীদ মিনারে পুষ্পস্তবক অর্পণ করে শ্রদ্ধা জানিয়েছে।",
-                "We must never show disrespect to elders or teachers.",
-                "আমাদের কখনো গুরুজন বা শিক্ষকদের প্রতি অসম্মান দেখানো উচিত নয়।",
-                "'Pay homage to' একটি স্থায়ী ইংরেজি Collocation।"],
-            ["Reckless", "Adj", "1ST", "১ম পত্র • Unit 4", "বেপরোয়া / অসতর্ক",
-                [["Careless", "অসতর্ক"], ["Heedless", "বেপরোয়া"], ["Rash", "হঠকারী"]],
-                [["Cautious", "সতর্ক"], ["Prudent", "বিচক্ষণ"], ["Careful", "সাবধানী"]],
-                "Careless driving causes tragic and avoidable road crashes.",
-                "অসতর্ক গাড়ি চালানো মর্মান্তিক ও এড়ানো যায় এমন সড়ক দুর্ঘটনা ঘটায়।",
-                "A cautious driver always obeys traffic rules on highways.",
-                "একজন সতর্ক চালক মহাসড়কে সর্বদা ট্রাফিক নিয়ম মেনে চলেন।",
-                "'-less' suffix যুক্ত Adjective; এর Adverb ফর্ম 'Recklessly'।"],
-            ["Mitigate", "Verb", "1ST", "১ম পত্র • Unit 4", "প্রশমিত করা / কমানো",
-                [["Alleviate", "লাঘব করা"], ["Lessen", "কমানো"], ["Abate", "হ্রাস করা"]],
-                [["Aggravate", "বাড়িয়ে তোলা"], ["Worsen", "আরও খারাপ করা"], ["Intensify", "তীব্রতর করা"]],
-                "Tree plantation helps alleviate seasonal heat and pollution.",
-                "বৃক্ষরোপণ মৌসুমি তাপ ও দূষণ লাঘব করতে সাহায্য করে।",
-                "Untreated factory smoke aggravates respiratory illnesses.",
-                "অপরিশোধিত কারখানার ধোঁয়া শ্বাসকষ্টজনিত রোগ আরও বাড়িয়ে তোলে।",
-                "আনুষ্ঠানিক ইংরেজিতে 'reduce' বা 'lessen'-এর পরিবর্তে ব্যবহৃত শক্তিশালী Verb।"],
-            ["Diligent", "Adj", "2ND", "২য় পত্র • Board Vocab", "পরিশ্রমী / অধ্যবসায়ী",
-                [["Industrious", "পরিশ্রমী"], ["Assiduous", "অধ্যবসায়ী"], ["Hardworking", "কঠোর পরিশ্রমী"]],
-                [["Indolent", "অলস"], ["Idle", "কাজকর্মহীন"], ["Slothful", "অলস"]],
-                "An industrious student always shines in board examinations.",
-                "একজন পরিশ্রমী শিক্ষার্থী বোর্ড পরীক্ষায় সর্বদা ভালো ফল করে।",
-                "An indolent learner misses valuable time every day.",
-                "একজন অলস শিক্ষার্থী প্রতিদিন মূল্যবান সময় হারায়।",
-                "Noun ফর্ম 'Diligence' (অধ্যবসায়)।"],
-            ["Prosperity", "Noun", "2ND", "২য় পত্র • Board Vocab", "সমৃদ্ধি / উন্নতি",
-                [["Affluence", "সচ্ছলতা / সমৃদ্ধি"], ["Success", "সাফল্য"], ["Boom", "অগ্রগতি"]],
-                [["Adversity", "দুর্দশা"], ["Poverty", "দারিদ্র্য"], ["Decline", "অবনতি"]],
-                "Sincere hard work brings lasting national affluence.",
-                "আন্তরিক কঠোর পরিশ্রম স্থায়ী জাতীয় সমৃদ্ধি বয়ে আনে।",
-                "True friends stand beside us in times of adversity.",
-                "প্রকৃত বন্ধুরা দুর্দশার সময় আমাদের পাশে দাঁড়ায়।",
-                "Verb ফর্ম 'Prosper' এবং Adjective ফর্ম 'Prosperous'।"]
+        const NCTB_WORDS = [
+            // --- UNIT 1: FATHER OF THE NATION ---
+            ["Charismatic", "Adj", "1ST", "১ম পত্র • Unit 1", "অনন্যসাধারণ নেতৃত্বগুণসম্পন্ন", [["Captivating", "মুগ্ধকর"], ["Magnetic", "আকর্ষণীয়"], ["Inspiring", "অনুপ্রেরণাদায়ী"]], [["Uninspiring", "অনুপ্রেরণাহীন"], ["Repulsive", "বিকর্ষণীয়"], ["Dull", "নীরস"]], "His captivating speech united the whole nation.", "তাঁর মুগ্ধকর ভাষণ সমগ্র জাতিকে ঐক্যবদ্ধ করেছিল।", "Nobody liked his dull and uninspiring lecture.", "তাঁর নীরস বক্তৃতা কেউ পছন্দ করেনি।", "Noun ফর্ম 'Charisma'। ব্যক্তির আকর্ষণীয় নেতৃত্বগুণ বোঝাতে Adjective হিসেবে বসে।"],
+            ["Emancipation", "Noun", "1ST", "১ম পত্র • Unit 1", "মুক্তি / স্বাধীনতা", [["Liberation", "মুক্তি"], ["Freedom", "স্বাধীনতা"], ["Deliverance", "উদ্ধার"]], [["Subjugation", "পরাধীনতা"], ["Captivity", "বন্দিদশা"], ["Bondage", "দাসত্ব"]], "People fought bravely for their liberation from oppression.", "জনগণ নিপীড়ন থেকে মুক্তির জন্য সাহসিকতার সাথে লড়াই করেছিল।", "They refused to live under foreign subjugation.", "তারা বিদেশি পরাধীনতার অধীনে থাকতে অস্বীকার করেছিল।", "'Emancipate' (Verb) থেকে গঠিত Noun; এর পর সাধারণত 'from' বসে।"],
+            ["Turmoil", "Noun", "1ST", "১ম পত্র • Unit 1", "অস্থিরতা / গোলযোগ", [["Chaos", "বিশৃঙ্খলা"], ["Commotion", "হট্টগোল"], ["Upheaval", "আলোড়ন"]], [["Stability", "স্থিতিশীলতা"], ["Tranquillity", "প্রশান্তি"], ["Calm", "শান্ত অবস্থা"]], "The country faced severe political chaos before 1971.", "১৯৭১ সালের আগে দেশটি তীব্র রাজনৈতিক বিশৃঙ্খলার মুখে পড়েছিল।", "Peace and stability gradually returned after liberation.", "মুক্তির পর ধীরে ধীরে শান্তি ও স্থিতিশীলতা ফিরে আসে।", "Uncountable Noun; তাই এর পূর্বে 'a/an' বসে না (যেমন: in turmoil)।"],
+            ["Oppression", "Noun", "1ST", "১ম পত্র • Unit 1", "নিপীড়ন / অত্যাচার", [["Tyranny", "স্বৈরাচার"], ["Persecution", "নির্যাতন"], ["Suppression", "দমনপীড়ন"]], [["Justice", "ন্যায়বিচার"], ["Liberty", "স্বাধীনতা"], ["Fairness", "ন্যায্যতা"]], "Brave citizens protested against tyranny and injustice.", "সাহসী নাগরিকরা স্বৈরাচার ও অবিচারের বিরুদ্ধে প্রতিবাদ করেছিল।", "Every citizen deserves equality and justice.", "প্রতিটি নাগরিক সমতা ও ন্যায়বিচার পাওয়ার যোগ্য।", "Verb ফর্ম 'Oppress' এবং Adjective ফর্ম 'Oppressive'।"],
+            ["Sovereignty", "Noun", "1ST", "১ম পত্র • Unit 1", "সার্বভৌমত্ব", [["Autonomy", "স্বায়ত্তশাসন"], ["Independence", "স্বাধীনতা"], ["Supremacy", "সর্বময় ক্ষমতা"]], [["Subordination", "অধীনতা"], ["Dependence", "নির্ভরশীলতা"], ["Servitude", "দাসত্ব"]], "A free nation always protects its hard-earned autonomy.", "একটি স্বাধীন জাতি সর্বদা তার কষ্টার্জিত স্বায়ত্তশাসন রক্ষা করে।", "They rejected the life of subordination.", "তারা অধীনতার জীবন প্রত্যাখ্যান করেছিল।", "Adjective ফর্ম 'Sovereign' (যেমন: a sovereign state)।"],
+            ["Genocide", "Noun", "1ST", "১ম পত্র • Unit 1", "গণহত্যা", [["Massacre", "হত্যাকাণ্ড"], ["Slaughter", "নিধন"], ["Carnage", "রক্তপাত"]], [["Preservation", "সংরক্ষণ"], ["Protection", "সুরক্ষা"], ["Salvation", "রক্ষা"]], "The occupation army carried out a brutal massacre in 1971.", "দখলদার বাহিনী ১৯৭১ সালে নির্মম হত্যাকাণ্ড চালিয়েছিল।", "International law works for the protection of civilians.", "আন্তর্জাতিক আইন বেসামরিক নাগরিকদের সুরক্ষায় কাজ করে।", "'Geno' (জাতি) + 'cide' (হত্যা) মিলে গঠিত Noun।"],
+            ["Exile", "Noun", "1ST", "১ম পত্র • Unit 1", "নির্বাসন", [["Banishment", "দেশান্তর"], ["Expulsion", "বহিষ্কার"], ["Deportation", "নির্বাসন"]], [["Return", "প্রত্যাবর্তন"], ["Homecoming", "স্বদেশ প্রত্যাবর্তন"], ["Repatriation", "স্বদেশে ফেরত আনা"]], "Many leaders had to live in banishment during the war.", "যুদ্ধের সময় অনেক নেতাকে নির্বাসনে থাকতে হয়েছিল।", "His historic homecoming inspired millions of people.", "তাঁর ঐতিহাসিক স্বদেশ প্রত্যাবর্তন লক্ষ লক্ষ মানুষকে অনুপ্রাণিত করেছিল।", "Noun ও Verb উভয় হিসেবেই ব্যবহৃত হয়।"],
+            ["Reconciliation", "Noun", "1ST", "১ম পত্র • Unit 1", "পুনর্মিলন / মীমাংসা", [["Harmony", "সম্প্রীতি"], ["Accord", "সমঝোতা"], ["Settlement", "মীমাংসা"]], [["Estrangement", "বিচ্ছেদ"], ["Hostility", "শত্রুতা"], ["Discord", "বিরোধ"]], "Dialogue helps build harmony between rival groups.", "সংলাপ প্রতিদ্বন্দ্বী দলগুলোর মধ্যে সম্প্রীতি গড়তে সাহায্য করে।", "Long hostility destroyed peace in the region.", "দীর্ঘ শত্রুতা অঞ্চলটির শান্তি নষ্ট করেছিল।", "Verb ফর্ম 'Reconcile'।"],
+
+            // --- UNIT 2: PASTIMES ---
+            ["Pastime", "Noun", "1ST", "১ম পত্র • Unit 2", "অবসর বিনোদন / শখ", [["Hobby", "শখ"], ["Recreation", "বিনোদন"], ["Leisure", "অবসর"]], [["Drudgery", "একঘেয়ে খাটুনি"], ["Toil", "কঠোর শ্রম"], ["Chore", "নিত্যকাজ"]], "Gardening is a healthy recreation for students.", "বাগান করা শিক্ষার্থীদের জন্য একটি স্বাস্থ্যকর বিনোদন।", "Daily factory toil left him exhausted.", "প্রতিদিনের কারখানার কঠোর শ্রম তাকে ক্লান্ত করে তুলত।", "বানান সতর্কতা: 'Pastime' শব্দে একটি 's' এবং একটি 't' থাকে।"],
+            ["Connoisseur", "Noun", "1ST", "১ম পত্র • Unit 2", "সমঝদার / গুণগ্রাহী ব্যক্তি", [["Expert", "বিশেষজ্ঞ"], ["Specialist", "বিশারদ"], ["Critic", "সমালোচক"]], [["Novice", "নবিশ"], ["Amateur", "অপেশাদার"], ["Ignoramus", "অজ্ঞ ব্যক্তি"]], "He is an expert in classical music and fine arts.", "তিনি শাস্ত্রীয় সংগীত ও চারুকলার একজন বিশেষজ্ঞ।", "As a novice, she needed guidance in painting.", "নবিশ হিসেবে চিত্রকলায় তার নির্দেশনার প্রয়োজন ছিল।", "বাক্যে Countable Noun হিসেবে এর আগে 'a' বসে।"],
+            ["Captivate", "Verb", "1ST", "১ম পত্র • Unit 2", "মুগ্ধ করা / বিমোহিত করা", [["Enchant", "বিমোহিত করা"], ["Fascinate", "আকৃষ্ট করা"], ["Charm", "মুগ্ধ করা"]], [["Repel", "বিকর্ষণ করা"], ["Bore", "বিরক্ত করা"], ["Disgust", "বিতৃষ্ণা জন্মানো"]], "The natural beauty of Sylhet enchants every visitor.", "সিলেটের প্রাকৃতিক সৌন্দর্য প্রতিটি দর্শনার্থীকে বিমোহিত করে।", "Long speeches without facts often bore the audience.", "তথ্যহীন দীর্ঘ বক্তৃতা প্রায়ই শ্রোতাদের বিরক্ত করে।", "Adjective ফর্ম 'Captivating' এবং Noun 'Captivation'।"],
+            ["Sedentary", "Adj", "1ST", "১ম পত্র • Unit 2", "আসীন / কায়িক শ্রমহীন", [["Inactive", "নিষ্ক্রিয়"], ["Stationary", "স্থির"], ["Deskbound", "ডেস্কে আবদ্ধ"]], [["Active", "সক্রিয়"], ["Energetic", "কর্মচঞ্চল"], ["Mobile", "সচল"]], "An inactive lifestyle increases the risk of obesity.", "নিষ্ক্রিয় জীবনযাপন স্থূলতার ঝুঁকি বাড়ায়।", "Regular exercise keeps our body active and fit.", "নিয়মিত ব্যায়াম আমাদের শরীরকে সক্রিয় ও সুস্থ রাখে।", "সাধারণত 'sedentary lifestyle' বা 'sedentary job' হিসেবে ব্যবহৃত হয়।"],
+            ["Spontaneous", "Adj", "1ST", "১ম পত্র • Unit 2", "স্বতঃস্ফূর্ত", [["Voluntary", "স্বেচ্ছাপ্রণোদিত"], ["Natural", "স্বাভাবিক"], ["Impulsive", "আবেগপ্রবণ"]], [["Forced", "জোরপূর্বক"], ["Artificial", "কৃত্রিম"], ["Planned", "পরিকল্পিত"]], "The audience gave a voluntary applause after the play.", "নাটকের পর দর্শকরা স্বতঃস্ফূর্ত করতালি দিয়েছিল।", "Her forced smile could not hide her sadness.", "তার কৃত্রিম হাসি তার দুঃখ লুকাতে পারেনি।", "Adverb ফর্ম 'Spontaneously'।"],
+
+            // --- UNIT 3: EVENTS AND FESTIVALS ---
+            ["Commemorate", "Verb", "1ST", "১ম পত্র • Unit 3", "স্মরণ করা / উদযাপন করা", [["Celebrate", "উদযাপন করা"], ["Honour", "সম্মান জানানো"], ["Observe", "পালন করা"]], [["Forget", "ভুলে যাওয়া"], ["Ignore", "উপেক্ষা করা"], ["Neglect", "অবহেলা করা"]], "We observe 21st February with deep respect.", "আমরা গভীর শ্রদ্ধার সাথে ২১শে ফেব্রুয়ারি পালন করি।", "We must never forget the sacrifice of our martyrs.", "আমাদের শহীদদের আত্মত্যাগ কখনোই ভুলে যাওয়া উচিত নয়।", "Noun ফর্ম 'Commemoration' এবং Adjective 'Commemorative'।"],
+            ["Fervour", "Noun", "1ST", "১ম পত্র • Unit 3", "উদ্দীপনা / আবেগ", [["Zeal", "উৎসাহ"], ["Enthusiasm", "উদ্দীপনা"], ["Passion", "তীব্র আবেগ"]], [["Apathy", "উদাসীনতা"], ["Indifference", "নির্লিপ্ততা"], ["Coldness", "শীতলতা"]], "People celebrated Pahela Baishakh with great zeal.", "মানুষ ব্যাপক উৎসাহের সাথে পহেলা বৈশাখ উদযাপন করেছে।", "Public apathy can weaken social movements.", "জনগণের উদাসীনতা সামাজিক আন্দোলনকে দুর্বল করতে পারে।", "British বানান 'Fervour', American বানান 'Fervor'।"],
+            ["Tribute", "Noun", "1ST", "১ম পত্র • Unit 3", "শ্রদ্ধাঞ্জলি", [["Homage", "শ্রদ্ধা"], ["Respect", "সম্মান"], ["Salute", "অভিবাদন"]], [["Disrespect", "অসম্মান"], ["Contempt", "অবজ্ঞা"], ["Insult", "অপমান"]], "Thousands gathered at the Shaheed Minar to pay homage.", "শ্রদ্ধা জানাতে হাজার হাজার মানুষ শহীদ মিনারে সমবেত হয়েছিল।", "Showing contempt for elders is bad manners.", "বড়দের প্রতি অবজ্ঞা দেখানো অসদাচরণ।", "সাধারণত 'pay tribute to' Phrase হিসেবে ব্যবহৃত হয়।"],
+            ["Illuminate", "Verb", "1ST", "১ম পত্র • Unit 3", "আলোকিত করা", [["Brighten", "উজ্জ্বল করা"], ["Light up", "আলোকিত করা"], ["Enlighten", "জ্ঞানদান করা"]], [["Darken", "অন্ধকার করা"], ["Dim", "ম্লান করা"], ["Obscure", "আড়াল করা"]], "Colorful lamps brighten the streets during festivals.", "উৎসবের সময় রঙিন বাতি রাস্তাগুলো উজ্জ্বল করে তোলে।", "Thick clouds darkened the evening sky.", "ঘন মেঘ সন্ধ্যার আকাশ অন্ধকার করে দিয়েছিল।", "Noun ফর্ম 'Illumination'।"],
+            ["Procession", "Noun", "1ST", "১ম পত্র • Unit 3", "শোভাযাত্রা / মিছিল", [["Parade", "কুচকাওয়াজ / শোভাযাত্রা"], ["March", "পদযাত্রা"], ["Rally", "সমাবেশ"]], [["Dispersal", "ছত্রভঙ্গ হওয়া"], ["Retreat", "পিছু হটা"], ["Scatter", "ছড়িয়ে পড়া"]], "Students joined the Mongol Shobhajatra parade.", "শিক্ষার্থীরা মঙ্গল শোভাযাত্রায় যোগ দিয়েছিল।", "Rain caused the sudden dispersal of the crowd.", "বৃষ্টির কারণে জনতা হঠাৎ ছত্রভঙ্গ হয়ে যায়।", "Noun হিসেবে এর আগে 'a' বসে (যেমন: bring out a procession)।"],
+
+            // --- UNIT 4: ARE WE AWARE? ---
+            ["Deplorable", "Adj", "1ST", "১ম পত্র • Unit 4", "শোচনীয় / দুঃখজনক", [["Pathetic", "করুণ"], ["Miserable", "দুর্দশাগ্রস্ত"], ["Wretched", "শোচনীয়"]], [["Admirable", "প্রশংসনীয়"], ["Commendable", "সাধুবাদযোগ্য"], ["Excellent", "চমৎকার"]], "The flood victims lived in miserable conditions.", "বন্যার্তরা দুর্দশাগ্রস্ত অবস্থায় বসবাস করছিল।", "Her admirable courage saved two children.", "তার প্রশংসনীয় সাহস দুটি শিশুকে বাঁচিয়েছিল।", "'Deplore' (Verb) থেকে গঠিত Adjective।"],
+            ["Mitigate", "Verb", "1ST", "১ম পত্র • Unit 4", "প্রশমিত করা / কমানো", [["Alleviate", "লাঘব করা"], ["Reduce", "কমানো"], ["Lessen", "হ্রাস করা"]], [["Aggravate", "তীব্রতর করা"], ["Intensify", "বাড়িয়ে দেওয়া"], ["Worsen", "অধিকতর খারাপ করা"]], "Planting trees helps reduce air pollution.", "বৃক্ষরোপণ বায়ুদূষণ কমাতে সাহায্য করে।", "Heavy traffic can aggravate noise pollution.", "অতিরিক্ত যানজট শব্দদূষণ আরও বাড়িয়ে দিতে পারে।", "Noun ফর্ম 'Mitigation'।"],
+            ["Hazardous", "Adj", "1ST", "১ম পত্র • Unit 4", "বিপজ্জনক / ঝুঁকিপূর্ণ", [["Dangerous", "বিপজ্জনক"], ["Perilous", "ঝুঁকিপূর্ণ"], ["Risky", "বিপদসংকুল"]], [["Safe", "নিরাপদ"], ["Harmless", "ক্ষতিহীন"], ["Secure", "সুরক্ষিত"]], "Chemical waste is dangerous for river ecosystems.", "রাসায়নিক বর্জ্য নদীর বাস্তুতন্ত্রের জন্য বিপজ্জনক।", "Clean drinking water is essential for a safe life.", "নিরাপদ জীবনের জন্য বিশুদ্ধ পানীয় জল অপরিহার্য।", "Noun ফর্ম 'Hazard'।"],
+            ["Congestion", "Noun", "1ST", "১ম পত্র • Unit 4", "যানজট / ভিড়", [["Gridlock", "অচলাবস্থা"], ["Crowding", "ভিড়"], ["Jam", "জট"]], [["Clearance", "ফাঁকা অবস্থা"], ["Flow", "স্বাভাবিক প্রবাহ"], ["Openness", "উন্মুক্ততা"]], "Traffic gridlock wastes thousands of working hours daily.", "যানজট প্রতিদিন হাজার হাজার কর্মঘণ্টা নষ্ট করে।", "Wide roads ensure smooth traffic flow.", "প্রশস্ত রাস্তা যানবাহনের স্বাভাবিক প্রবাহ নিশ্চিত করে।", "Adjective ফর্ম 'Congested' (যেমন: congested roads)।"],
+
+            // --- UNIT 5: NATURE AND ENVIRONMENT ---
+            ["Erosion", "Noun", "1ST", "১ম পত্র • Unit 5", "ক্ষয় / নদীভাঙন", [["Decay", "ক্ষয়"], ["Wearing away", "ক্ষয়ে যাওয়া"], ["Abrasion", "ঘর্ষণজনিত ক্ষয়"]], [["Accumulation", "সঞ্চয়"], ["Deposit", "পলি জমা"], ["Growth", "বৃদ্ধি"]], "Riverbank decay makes thousands of families homeless.", "নদীভাঙন হাজার হাজার পরিবারকে গৃহহীন করে।", "Silt deposit increases the fertility of delta lands.", "পলি জমা বদ্বীপ অঞ্চলের জমির উর্বরতা বাড়ায়।", "Verb ফর্ম 'Erode'।"],
+            ["Deforestation", "Noun", "1ST", "১ম পত্র • Unit 5", "বন উজাড়করণ", [["Logging", "গাছ কাটা"], ["Clearing", "বন পরিষ্কারকরণ"], ["Felling", "বৃক্ষনিধন"]], [["Afforestation", "বনায়ন"], ["Reforestation", "পুনঃবনায়ন"], ["Plantation", "বৃক্ষরোপণ"]], "Indiscriminate logging destroys wildlife habitats.", "নির্বিচারে গাছ কাটা বন্যপ্রাণীর আবাসস্থল ধ্বংস করে।", "Coastal afforestation protects us from cyclones.", "উপকূলীয় বনায়ন আমাদের ঘূর্ণিঝড় থেকে রক্ষা করে।", "বিপরীত শব্দ 'Afforestation' পরীক্ষার জন্য অত্যন্ত গুরুত্বপূর্ণ।"],
+            ["Adverse", "Adj", "1ST", "১ম পত্র • Unit 5", "প্রতিকূল / ক্ষতিকর", [["Unfavourable", "প্রতিকূল"], ["Hostile", "বিরূপ"], ["Harmful", "ক্ষতিকর"]], [["Favourable", "অনুকূল"], ["Beneficial", "উপকারী"], ["Helpful", "সহায়ক"]], "Climate change has unfavourable effects on agriculture.", "জলবায়ু পরিবর্তনের ফলে কৃষিতে প্রতিকূল প্রভাব পড়ছে।", "Favourable weather helped farmers get a bumper harvest.", "অনুকূল আবহাওয়া কৃষকদের বাম্পার ফলন পেতে সাহায্য করেছিল।", "'Adverse' (প্রতিকূল) এবং 'Averse' (অনিচ্ছুক) দুটি ভিন্ন শব্দ।"],
+            ["Biodiversity", "Noun", "1ST", "১ম পত্র • Unit 5", "জীববৈচিত্র্য", [["Variety", "বৈচিত্র্য"], ["Ecological diversity", "বাস্তুতান্ত্রিক বৈচিত্র্য"], ["Flora and fauna", "উদ্ভিদ ও প্রাণীকুল"]], [["Uniformity", "একরূপতা"], ["Monoculture", "একক চাষ"], ["Sameness", "অভিন্নতা"]], "The Sundarbans is famous for its rich variety of species.", "সুন্দরবন তার সমৃদ্ধ প্রজাতির বৈচিত্র্যের জন্য বিখ্যাত।", "Industrial monoculture reduces soil fertility.", "শিল্পভিত্তিক একক চাষ মাটির উর্বরতা কমায়।", "Uncountable Noun হিসেবে ব্যবহৃত হয়।"],
+            ["Adapt", "Verb", "1ST", "১ম পত্র • Unit 5", "খাপ খাওয়ানো / মানিয়ে নেওয়া", [["Adjust", "মানিয়ে নেওয়া"], ["Acclimatize", "পরিবেশের সাথে খাপ খাওয়ানো"], ["Conform", "অনুযায়ী চলা"]], [["Resist", "প্রতিরোধ করা"], ["Reject", "প্রত্যাখ্যান করা"], ["Clash", "বিরোধ করা"]], "Animals must adjust to changing environmental conditions.", "প্রাণীদের পরিবর্তনশীল পরিবেশের সাথে মানিয়ে নিতে হয়।", "Rigid systems often resist necessary reforms.", "কঠোর ব্যবস্থাগুলো প্রায়ই প্রয়োজনীয় সংস্কার প্রতিরোধ করে।", "'Adapt' (মানিয়ে নেওয়া) এবং 'Adopt' (দত্তক নেওয়া/গ্রহণ করা) গুলিয়ে ফেলবেন না।"],
+
+            // --- UNIT 6: OUR NEIGHBOURS ---
+            ["Heritage", "Noun", "1ST", "১ম পত্র • Unit 6", "ঐতিহ্য", [["Tradition", "ঐতিহ্য / প্রথা"], ["Legacy", "উত্তরাধিকার"], ["Culture", "সংস্কৃতি"]], [["Modernity", "আধুনিকতা"], ["Novelty", "নতুনত্ব"], ["Innovation", "নবপ্রবর্তন"]], "We should preserve our rich cultural tradition.", "আমাদের সমৃদ্ধ সাংস্কৃতিক ঐতিহ্য সংরক্ষণ করা উচিত।", "Every generation brings innovation to art.", "প্রতিটি প্রজন্ম শিল্পকলায় নতুনত্ব নিয়ে আসে।", "সাধারণত Singular হিসেবে ব্যবহৃত হয়।"],
+            ["Vibrant", "Adj", "1ST", "১ম পত্র • Unit 6", "প্রাণবন্ত / উজ্জ্বল", [["Lively", "প্রাণবন্ত"], ["Vivid", "উজ্জ্বল"], ["Dynamic", "গতিশীল"]], [["Dull", "নীরস"], ["Lifeless", "প্রাণহীন"], ["Gloomy", "বিষণ্ণ"]], "Dhaka is a lively city full of cultural events.", "ঢাকা সাংস্কৃতিক অনুষ্ঠানে ভরপুর একটি প্রাণবন্ত শহর।", "The abandoned house looked dark and lifeless.", "পরিত্যক্ত বাড়িটি অন্ধকার ও প্রাণহীন দেখাচ্ছিল।", "Noun ফর্ম 'Vibrancy'।"],
+            ["Picturesque", "Adj", "1ST", "১ম পত্র • Unit 6", "ছবির মতো সুন্দর", [["Scenic", "নয়নাভিরাম"], ["Charming", "মনোরম"], ["Attractive", "আকর্ষণীয়"]], [["Ugly", "কুৎসিত"], ["Unattractive", "অনাকর্ষণীয়"], ["Dreary", "নীরস"]], "Nepal is known for its scenic mountain valleys.", "নেপাল তার নয়নাভিরাম পর্বত উপত্যকার জন্য পরিচিত।", "Smoke made the industrial town look dreary.", "ধোঁয়া শিল্পশহরটিকে নীরস করে তুলেছিল।", "প্রাকৃতিক দৃশ্য বা স্থানের সৌন্দর্য বর্ণনায় ব্যবহৃত হয়।"],
+
+            // --- UNIT 7: PEOPLE WHO STAND OUT ---
+            ["Humanitarian", "Adj", "1ST", "১ম পত্র • Unit 7", "মানবতাবাদী / জনহিতৈষী", [["Compassionate", "দয়ালু"], ["Philanthropic", "জনহিতৈষী"], ["Benevolent", "পরোপকারী"]], [["Cruel", "নিষ্ঠুর"], ["Selfish", "স্বার্থপর"], ["Inhumane", "অমানবিক"]], "Mother Teresa was famous for her compassionate service.", "মাদার তেরেসা তাঁর দয়ালু সেবার জন্য বিখ্যাত ছিলেন।", "Selfish people rarely think about the poor.", "স্বার্থপর মানুষেরা খুব কমই দরিদ্রদের কথা ভাবে।", "Noun ও Adjective উভয় রূপেই বসে।"],
+            ["Destitute", "Adj", "1ST", "১ম পত্র • Unit 7", "নিঃস্ব / অতিদরিদ্র", [["Impoverished", "দরিদ্র"], ["Needy", "অভাবী"], ["Penniless", "কপর্দকহীন"]], [["Affluent", "বিত্তশালী"], ["Wealthy", "ধনী"], ["Prosperous", "সমৃদ্ধ"]], "She dedicated her life to helping needy children.", "তিনি অভাবী শিশুদের সাহায্যে তাঁর জীবন উৎসর্গ করেছিলেন।", "Affluent citizens should support community schools.", "বিত্তশালী নাগরিকদের স্থানীয় বিদ্যালয়গুলোকে সহায়তা করা উচিত।", "'The destitute' বলতে সমগ্র নিঃস্ব শ্রেণিকে বোঝায় (Plural verb নেয়)।"],
+            ["Pioneer", "Noun", "1ST", "১ম পত্র • Unit 7", "অগ্রদূত / পথিকৃৎ", [["Trailblazer", "পথপ্রদর্শক"], ["Founder", "প্রতিষ্ঠাতা"], ["Innovator", "উদ্ভাবক"]], [["Follower", "অনুসারী"], ["Imitator", "অনুকরণকারী"], ["Successor", "উত্তরসূরি"]], "Begum Rokeya was a trailblazer of women's education.", "বেগম রোকেয়া নারী শিক্ষার একজন পথপ্রদর্শক ছিলেন।", "Millions became followers of her noble ideals.", "লক্ষ লক্ষ মানুষ তাঁর মহৎ আদর্শের অনুসারী হয়েছিল।", "Noun ও Verb উভয় হিসেবে ব্যবহৃত হয়।"],
+            ["Compassion", "Noun", "1ST", "১ম পত্র • Unit 7", "সমবেদনা / করুণা", [["Sympathy", "সহানুভূতি"], ["Empathy", "সহমর্মিতা"], ["Kindness", "দয়া"]], [["Cruelty", "নিষ্ঠুরতা"], ["Ruthlessness", "নির্দয়তা"], ["Indifference", "উদাসীনতা"]], "True humanity lies in kindness toward the suffering.", "দুর্দশাগ্রস্তদের প্রতি দয়ার মধ্যেই প্রকৃত মানবতা নিহিত।", "Cruelty to animals is a punishable offence.", "প্রাণীদের প্রতি নিষ্ঠুরতা একটি দণ্ডনীয় অপরাধ।", "Adjective ফর্ম 'Compassionate'।"],
+
+            // --- UNIT 8: WORLD HERITAGE ---
+            ["Monument", "Noun", "1ST", "১ম পত্র • Unit 8", "স্মৃতিসৌধ / স্থাপত্য", [["Memorial", "স্মৃতিস্তম্ভ"], ["Shrine", "পবিত্র স্থান"], ["Edifice", "বিশাল অট্টালিকা"]], [["Ruin", "ধ্বংসাবশেষ"], ["Wreckage", "ভগ্নাবশেষ"], ["Oblivion", "বিস্মৃতি"]], "The National Memorial honours our freedom fighters.", "জাতীয় স্মৃতিসৌধ আমাদের মুক্তিযোদ্ধাদের সম্মান জানায়।", "Neglect turned the ancient palace into a ruin.", "অবহেলা প্রাচীন প্রাসাদটিকে ধ্বংসাবশেষে পরিণত করেছিল।", "Adjective ফর্ম 'Monumental' (বিশাল/স্মরণীয়)।"],
+            ["Exquisite", "Adj", "1ST", "১ম পত্র • Unit 8", "অপরূপ / সূক্ষ্ম কারুকার্যময়", [["Magnificent", "অপূর্ব"], ["Elegant", "মার্জিত"], ["Delicate", "সূক্ষ্ম"]], [["Crude", "অমার্জিত"], ["Clumsy", "বেঢপ"], ["Ordinary", "সাধারণ"]], "The Shat Gambuj Mosque displays magnificent terracotta art.", "ষাট গম্বুজ মসজিদ অপূর্ব টেরাকোটা শিল্প প্রদর্শন করে।", "Crude tools were replaced by modern machines.", "অমার্জিত যন্ত্রপাতির জায়গায় আধুনিক যন্ত্র এসেছে।", "Adverb ফর্ম 'Exquisitely'।"],
+            ["Preserve", "Verb", "1ST", "১ম পত্র • Unit 8", "সংরক্ষণ করা", [["Conserve", "সংরক্ষণ করা"], ["Protect", "রক্ষা করা"], ["Safeguard", "সুরক্ষিত রাখা"]], [["Destroy", "ধ্বংস করা"], ["Damage", "ক্ষতি করা"], ["Abandon", "পরিত্যাগ করা"]], "We must conserve historical sites for future generations.", "ভবিষ্যৎ প্রজন্মের জন্য আমাদের ঐতিহাসিক স্থানগুলো সংরক্ষণ করতে হবে।", "Pollution can severely damage ancient monuments.", "দূষণ প্রাচীন স্থাপত্যগুলোর মারাত্মক ক্ষতি করতে পারে।", "Noun ফর্ম 'Preservation'।"],
+
+            // --- UNIT 9 & 10: UNCONVENTIONAL JOBS & DREAMS ---
+            ["Aspiration", "Noun", "1ST", "১ম পত্র • Unit 10", "উচ্চাকাঙ্ক্ষা / প্রবল আকাঙ্ক্ষা", [["Ambition", "উচ্চাশা"], ["Desire", "আকাঙ্ক্ষা"], ["Goal", "লক্ষ্য"]], [["Apathy", "অনীহা"], ["Despair", "হতাশা"], ["Contentment", "আত্মতুষ্টি"]], "Every young student should have a noble ambition.", "প্রতিটি তরুণ শিক্ষার্থীর একটি মহৎ উচ্চাশা থাকা উচিত।", "Failure must not lead us into despair.", "ব্যর্থতা যেন আমাদের হতাশার দিকে নিয়ে না যায়।", "Verb ফর্ম 'Aspire' (এর পর 'to' বা 'after' বসে)।"],
+            ["Perseverance", "Noun", "1ST", "১ম পত্র • Unit 10", "অধ্যবসায়", [["Persistence", "দৃঢ়তা"], ["Determination", "সংকল্প"], ["Diligence", "পরিশ্রম"]], [["Laziness", "অলসতা"], ["Idleness", "নিষ্ক্রিয়তা"], ["Surrender", "আত্মসমর্পণ"]], "Success comes through hard work and persistence.", "কঠোর পরিশ্রম ও দৃঢ়তার মাধ্যমেই সাফল্য আসে।", "Laziness is the biggest obstacle to progress.", "অলসতা উন্নতির পথে সবচেয়ে বড় বাধা।", "Verb ফর্ম 'Persevere'।"],
+            ["Entrepreneur", "Noun", "1ST", "১ম পত্র • Unit 9", "উদ্যোক্তা", [["Founder", "প্রতিষ্ঠাতা"], ["Organizer", "সংগঠক"], ["Businessman", "ব্যবসায়ী"]], [["Employee", "কর্মচারী"], ["Consumer", "ভোক্তা"], ["Dependent", "নির্ভরশীল"]], "A young organizer started an eco-friendly business.", "একজন তরুণ সংগঠক পরিবেশবান্ধব ব্যবসা শুরু করেছিলেন।", "An employee follows the instructions of the company.", "একজন কর্মচারী প্রতিষ্ঠানের নির্দেশনা অনুসরণ করেন।", "Adjective ফর্ম 'Entrepreneurial'।"],
+
+            // --- UNIT 11, 12, 13, 14: ENERGY, ROOTS, MEDIA & LITERATURE ---
+            ["Renewable", "Adj", "1ST", "১ম পত্র • Unit 11", "নবায়নযোগ্য", [["Sustainable", "টেকসই"], ["Inexhaustible", "অফুরন্ত"], ["Replenishable", "পূরণযোগ্য"]], [["Finite", "সীমিত"], ["Exhaustible", "নিঃশেষযোগ্য"], ["Non-renewable", "অনবায়নযোগ্য"]], "Solar power is a sustainable source of clean energy.", "সৌরশক্তি পরিচ্ছন্ন জ্বালানির একটি টেকসই উৎস।", "Fossil fuels are finite and cause pollution.", "জীবাশ্ম জ্বালানি সীমিত এবং দূষণ ঘটায়।", "Verb ফর্ম 'Renew'।"],
+            ["Nostalgia", "Noun", "1ST", "১ম পত্র • Unit 12", "স্মৃতিকাতরতা / ঘরকাতরতা", [["Homesickness", "গৃহকাতরতা"], ["Longing", "আকুলতা"], ["Reminiscence", "স্মৃতিচারণ"]], [["Forgetfulness", "বিস্মৃতি"], ["Indifference", "নির্লিপ্ততা"], ["Detachment", "নির্লিপ্তি"]], "Village festivals evoke deep longing for our roots.", "গ্রামীণ উৎসবগুলো আমাদের শিকড়ের প্রতি গভীর আকুলতা জাগায়।", "Time slowly brings detachment from old memories.", "সময় ধীরে ধীরে পুরনো স্মৃতি থেকে নির্লিপ্তি আনে।", "Adjective ফর্ম 'Nostalgic'।"],
+            ["Ubiquitous", "Adj", "1ST", "১ম পত্র • Unit 13", "সর্বব্যাপী / সর্বত্র বিদ্যমান", [["Omnipresent", "সর্বত্র বিরাজমান"], ["Universal", "সর্বজনীন"], ["Pervasive", "ব্যাপক"]], [["Rare", "বিরল"], ["Scarce", "দুর্লভ"], ["Absent", "অনুপস্থিত"]], "Smartphones have become universal in modern communication.", "আধুনিক যোগাযোগে স্মার্টফোন সর্বজনীন হয়ে উঠেছে।", "Printed telegrams are now rare in daily life.", "দৈনন্দিন জীবনে ছাপানো টেলিগ্রাম এখন বিরল।", "Adjective হিসেবে Noun-এর আগে বসে।"],
+            ["Benevolent", "Adj", "1ST", "১ম পত্র • Unit 14", "দয়ালু / পরোপকারী", [["Kind", "দয়ালু"], ["Generous", "উদার"], ["Charitable", "দানশীল"]], [["Malevolent", "অনিষ্টকারী"], ["Cruel", "নিষ্ঠুর"], ["Stingy", "কৃপণ"]], "A generous merchant funded the village library.", "একজন উদার বণিক গ্রামের পাঠাগারটির অর্থায়ন করেছিলেন।", "A stingy person refuses to help others in need.", "একজন কৃপণ ব্যক্তি প্রয়োজনের সময় অন্যদের সাহায্য করতে অস্বীকার করে।", "Noun ফর্ম 'Benevolence'।"],
+
+            // --- 2ND PAPER: SSC BOARD EXAM FREQUENT VOCABULARY ---
+            ["Diligent", "Adj", "2ND", "২য় পত্র • Board Vocab", "পরিশ্রমী / অধ্যবসায়ী", [["Industrious", "পরিশ্রমী"], ["Assiduous", "অধ্যবসায়ী"], ["Hardworking", "কঠোর পরিশ্রমী"]], [["Lazy", "অলস"], ["Indolent", "আলসে"], ["Idle", "নিষ্ক্রিয়"]], "An industrious student always prepares lessons on time.", "একজন পরিশ্রমী শিক্ষার্থী সর্বদা সময়মতো পড়া তৈরি করে।", "Indolent habits prevent learners from achieving good results.", "আলসে অভ্যাস শিক্ষার্থীদের ভালো ফল অর্জনে বাধা দেয়।", "Noun ফর্ম 'Diligence' এবং Adverb ফর্ম 'Diligently'।"],
+            ["Altruism", "Noun", "2ND", "২য় পত্র • Board Vocab", "পরার্থপরতা / পরোপকারিতা", [["Selflessness", "নিঃস্বার্থপরতা"], ["Philanthropy", "মানবপ্রেম"], ["Generosity", "উদারতা"]], [["Selfishness", "স্বার্থপরতা"], ["Egoism", "আত্মকেন্দ্রিকতা"], ["Greed", "লোভ"]], "True social service requires selflessness and empathy.", "প্রকৃত সমাজসেবার জন্য নিঃস্বার্থপরতা ও সহমর্মিতা প্রয়োজন।", "Selfishness creates division in human society.", "স্বার্থপরতা মানবসমাজে বিভেদ সৃষ্টি করে।", "Adjective ফর্ম 'Altruistic'।"],
+            ["Abundant", "Adj", "2ND", "২য় পত্র • Board Vocab", "প্রচুর / পর্যাপ্ত", [["Plentiful", "প্রচুর"], ["Ample", "যথেষ্ট"], ["Copious", "বিপুল"]], [["Scarce", "দুর্লভ"], ["Deficient", "অপ্রতুল"], ["Meagre", "স্বল্প"]], "Bangladesh has plentiful water resources in the monsoon.", "বর্ষাকালে বাংলাদেশের প্রচুর পানিসম্পদ থাকে।", "Pure water becomes scarce during severe droughts.", "তীব্র খরার সময় বিশুদ্ধ পানি দুর্লভ হয়ে পড়ে।", "Noun ফর্ম 'Abundance'।"],
+            ["Adversity", "Noun", "2ND", "২য় পত্র • Board Vocab", "দুর্দশা / বিপদ", [["Hardship", "কষ্ট"], ["Misfortune", "দুর্ভাগ্য"], ["Calamity", "বিপর্যয়"]], [["Prosperity", "সমৃদ্ধি"], ["Fortune", "সৌভাগ্য"], ["Success", "সাফল্য"]], "Courage helps us overcome every hardship in life.", "সাহস আমাদের জীবনের প্রতিটি কষ্ট জয় করতে সাহায্য করে।", "Honest labour brings lasting prosperity.", "সৎ শ্রম স্থায়ী সমৃদ্ধি বয়ে আনে।", "Adjective ফর্ম 'Adverse'।"],
+            ["Ambiguous", "Adj", "2ND", "২য় পত্র • Board Vocab", "দ্ব্যর্থবোধক / অস্পষ্ট", [["Vague", "অস্পষ্ট"], ["Unclear", "অবোধগম্য"], ["Equivocal", "সন্দেহজনক"]], [["Clear", "স্পষ্ট"], ["Explicit", "সুস্পষ্ট"], ["Unambiguous", "দ্ব্যর্থহীন"]], "Avoid vague statements in exam answers.", "পরীক্ষার উত্তরে অস্পষ্ট বক্তব্য এড়িয়ে চলো।", "The teacher gave explicit instructions before the test.", "শিক্ষক পরীক্ষার আগে সুস্পষ্ট নির্দেশনা দিয়েছিলেন।", "Noun ফর্ম 'Ambiguity'।"],
+            ["Candid", "Adj", "2ND", "২য় পত্র • Board Vocab", "অকপট / স্পষ্টভাষী", [["Frank", "খোলামেলা"], ["Sincere", "আন্তরিক"], ["Outspoken", "স্পষ্টভাষী"]], [["Deceitful", "প্রতারক"], ["Evasive", "এড়িয়ে যাওয়া"], ["Secretive", "গোপনপ্রবণ"]], "Everyone appreciates a frank and honest opinion.", "প্রত্যেকেই খোলামেলা ও সৎ মতামতের প্রশংসা করে।", "His evasive reply raised doubts among the committee.", "তার এড়িয়ে যাওয়া উত্তর কমিটির মধ্যে সন্দেহ সৃষ্টি করেছিল।", "Adverb ফর্ম 'Candidly'।"],
+            ["Eradicate", "Verb", "2ND", "২য় পত্র • Board Vocab", "নির্মূল করা / উচ্ছেদ করা", [["Eliminate", "দূর করা"], ["Uproot", "উৎপাটন করা"], ["Exterminate", "নির্মূল করা"]], [["Establish", "প্রতিষ্ঠা করা"], ["Foster", "লালন করা"], ["Preserve", "রক্ষা করা"]], "Education is essential to eliminate illiteracy.", "নিরক্ষরতা দূর করতে শিক্ষা অপরিহার্য।", "Good books foster moral values in young minds.", "ভালো বই তরুণ মনে নৈতিক মূল্যবোধ লালন করে।", "Noun ফর্ম 'Eradication'।"],
+            ["Frugal", "Adj", "2ND", "২য় পত্র • Board Vocab", "মিতব্যয়ী", [["Thrifty", "মিতব্যয়ী"], ["Economical", "সাশ্রয়ী"], ["Prudent", "বিচক্ষণ"]], [["Extravagant", "অপব্যয়ী"], ["Wasteful", "অপচয়কারী"], ["Lavish", "বিলাসবহুল"]], "A thrifty family saves money for emergencies.", "একটি মিতব্যয়ী পরিবার জরুরি প্রয়োজনের জন্য অর্থ সঞ্চয় করে।", "Extravagant spending quickly drains savings.", "অপব্যয়ী খরচ দ্রুত সঞ্চয় শেষ করে দেয়।", "Noun ফর্ম 'Frugality'।"],
+            ["Gregarious", "Adj", "2ND", "২য় পত্র • Board Vocab", "মিশুক / সমাজপ্রিয়", [["Sociable", "মিশুক"], ["Outgoing", "বহির্মুখী"], ["Friendly", "বন্ধুত্বপূর্ণ"]], [["Introverted", "অন্তর্মুখী"], ["Solitary", "একাকী"], ["Shy", "লাজুক"]], "Human beings are naturally sociable creatures.", "মানুষ স্বভাবতই মিশুক প্রাণী।", "A solitary life makes people lonely.", "একাকী জীবন মানুষকে নিঃসঙ্গ করে তোলে।", "বাক্যে Adjective হিসেবে বসে।"],
+            ["Inevitable", "Adj", "2ND", "২য় পত্র • Board Vocab", "অনিবার্য", [["Unavoidable", "অপরিহার্য"], ["Certain", "নিশ্চিত"], ["Inescapable", "অবশ্যম্ভাবী"]], [["Avoidable", "এড়ানো যায় এমন"], ["Preventable", "প্রতিরোধযোগ্য"], ["Uncertain", "অনিশ্চিত"]], "Change is an unavoidable part of human life.", "পরিবর্তন মানবজীবনের একটি অনিবার্য অংশ।", "Many road accidents are easily preventable.", "অনেক সড়ক দুর্ঘটনা সহজেই প্রতিরোধযোগ্য।", "Adverb ফর্ম 'Inevitably'।"],
+            ["Magnanimous", "Adj", "2ND", "২য় পত্র • Board Vocab", "মহানুভব / উদার", [["Generous", "উদার"], ["Noble", "মহৎ"], ["Forgiving", "ক্ষমাশীল"]], [["Petty", "সংকীর্ণমনা"], ["Mean", "নীচ"], ["Vindictive", "প্রতিহিংসাপরায়ণ"]], "A noble leader forgives the mistakes of others.", "একজন মহৎ নেতা অন্যদের ভুল ক্ষমা করে দেন।", "Petty quarrels destroy unity in a team.", "সংকীর্ণ ঝগড়া দলের একতা নষ্ট করে।", "Noun ফর্ম 'Magnanimity'।"],
+            ["Pragmatic", "Adj", "2ND", "২য় পত্র • Board Vocab", "বাস্তববাদী / ব্যবহারিক", [["Practical", "বাস্তবসম্মত"], ["Realistic", "বাস্তববাদী"], ["Sensible", "বুদ্ধিমান"]], [["Idealistic", "আদর্শবাদী"], ["Impractical", "অবাস্তব"], ["Visionary", "কাল্পনিক"]], "We need practical solutions to solve urban problems.", "শহুরে সমস্যা সমাধানে আমাদের বাস্তবসম্মত সমাধান প্রয়োজন।", "Impractical plans fail during execution.", "অবাস্তব পরিকল্পনা বাস্তবায়নের সময় ব্যর্থ হয়।", "Noun ফর্ম 'Pragmatism'।"],
+            ["Resilient", "Adj", "2ND", "২য় পত্র • Board Vocab", "স্থিতিস্থাপক / ঘুরে দাঁড়াতে সক্ষম", [["Flexible", "নমনীয়"], ["Tough", "দৃঢ়"], ["Adaptable", "অভিযোজনক্ষম"]], [["Fragile", "ভঙ্গুর"], ["Weak", "দুর্বল"], ["Brittle", "ঠুনকো"]], "Bangladeshi farmers are remarkably tough against floods.", "বাংলাদেশের কৃষকরা বন্যার বিরুদ্ধে অসাধারণভাবে দৃঢ়।", "Fragile ecosystems need careful protection.", "ভঙ্গুর বাস্তুতন্ত্রের যত্নশীল সুরক্ষা প্রয়োজন।", "Noun ফর্ম 'Resilience'।"],
+            ["Venerable", "Adj", "2ND", "২য় পত্র • Board Vocab", "শ্রদ্ধেয় / সম্মানীয়", [["Respectable", "সম্মানীয়"], ["Esteemed", "শ্রদ্ধাভাজন"], ["Revered", "পূজনীয়"]], [["Despicable", "ঘৃণিত"], ["Disreputable", "অসম্মানজনক"], ["Contemptible", "নিন্দনীয়"]], "Our teachers are esteemed builders of the nation.", "আমাদের শিক্ষকরা জাতির শ্রদ্ধাভাজন কারিগর।", "Corruption is a despicable crime in society.", "দুর্নীতি সমাজে একটি ঘৃণিত অপরাধ।", "Verb ফর্ম 'Venerate'।"],
+            ["Zealous", "Adj", "2ND", "২য় পত্র • Board Vocab", "উৎসাহী / উদ্দীপ্ত", [["Enthusiastic", "উৎসাহী"], ["Passionate", "আবেগপ্রবণ"], ["Eager", "আগ্রহী"]], [["Apathetic", "উদাসীন"], ["Indifferent", "নির্লিপ্ত"], ["Lukewarm", "নিরুৎসাহ"]], "Enthusiastic volunteers cleaned the entire school campus.", "উৎসাহী স্বেচ্ছাসেবকরা পুরো বিদ্যালয় প্রাঙ্গণ পরিষ্কার করেছিল।", "An apathetic attitude slows down teamwork.", "উদাসীন মনোভাব দলগত কাজের গতি কমিয়ে দেয়।", "Noun ফর্ম 'Zeal'।"]
         ];
 
-        // Verified Real Word Families (Only authentic, dictionary-standard words & natural sentences)
-        const AFFIX_FAMILIES = [
-            ["Act", "কাজ করা", "Action", "কর্ম / পদক্ষেপ", "Activate", "সক্রিয় করা", "Active", "সক্রিয়", "Actively", "সক্রিয়ভাবে", "Energetic", "উদ্যমী", "Passive", "নিষ্ক্রিয়", "২য় পত্র • Prefix-Suffix"],
-            ["Beauty", "সৌন্দর্য", "Beautification", "সৌন্দর্যবর্ধন", "Beautify", "সুন্দর করা", "Beautiful", "সুন্দর", "Beautifully", "সুন্দরভাবে", "Lovely", "মনোরম", "Ugly", "কুৎসিত", "১ম পত্র • Unit 8"],
-            ["Care", "যত্ন", "Carefulness", "সতর্কতা", "Care", "যত্ন নেওয়া", "Careful", "সতর্ক", "Carefully", "সতর্কতার সাথে", "Cautious", "সাবধানী", "Careless", "অসতর্ক", "১ম পত্র • Unit 4"],
-            ["Comfort", "আরাম", "Comfort", "স্বস্তি", "Comfort", "সান্ত্বনা দেওয়া", "Comfortable", "আরামদায়ক", "Comfortably", "আরামে", "Cozy", "স্বস্তিদায়ক", "Uncomfortable", "অস্বস্তিকর", "১ম পত্র • Unit 2"],
-            ["Courage", "সাহস", "Encouragement", "উৎসাহ", "Encourage", "উৎসাহিত করা", "Courageous", "সাহসী", "Courageously", "সাহসিকতার সাথে", "Fearless", "নির্ভীক", "Cowardly", "কাপুরুষোচিত", "১ম পত্র • Unit 1"],
-            ["Create", "সৃষ্টি করা", "Creation", "সৃষ্টি", "Recreate", "পুনঃসৃষ্টি করা", "Creative", "সৃজনশীল", "Creatively", "সৃজনশীলভাবে", "Inventive", "উদ্ভাবনী", "Unimaginative", "কল্পনাহীন", "১ম পত্র • Unit 9"],
-            ["Danger", "বিপদ", "Endangerment", "বিপন্নতা", "Endanger", "বিপন্ন করা", "Dangerous", "বিপজ্জনক", "Dangerously", "বিপজ্জনকভাবে", "Hazardous", "ঝুঁকিপূর্ণ", "Safe", "নিরাপদ", "১ম পত্র • Unit 5"],
-            ["Develop", "উন্নতি করা", "Development", "উন্নয়ন", "Develop", "বিকশিত করা", "Developed", "উন্নত", "Progressively", "ক্রমান্বয়ে", "Advanced", "অগ্রসর", "Underdeveloped", "অনুন্নত", "২য় পত্র • Prefix-Suffix"],
-            ["Differ", "ভিন্ন হওয়া", "Difference", "পার্থক্য", "Differentiate", "পার্থক্য করা", "Different", "ভিন্ন", "Differently", "ভিন্নভাবে", "Distinct", "স্বতন্ত্র", "Identical", "অভিন্ন", "১ম পত্র • Unit 6"],
-            ["Educate", "শিক্ষিত করা", "Education", "শিক্ষা", "Educate", "শিক্ষাদান করা", "Educated", "শিক্ষিত", "Educationally", "শিক্ষাগতভাবে", "Learned", "বিদ্বান", "Uneducated", "অশিক্ষিত", "২য় পত্র • Prefix-Suffix"],
-            ["Effect", "প্রভাব", "Effectiveness", "কার্যকারিতা", "Effect", "কার্যকর করা", "Effective", "কার্যকর", "Effectively", "কার্যকরভাবে", "Potent", "শক্তিশালী", "Ineffective", "অকার্যকর", "১ম পত্র • Unit 13"],
-            ["Equal", "সমান", "Equality", "সমতা", "Equalize", "সমান করা", "Equal", "সমান", "Equally", "সমানভাবে", "Equivalent", "সমতুল্য", "Unequal", "অসমান", "১ম পত্র • Unit 1"],
-            ["Faith", "বিশ্বাস", "Faithfulness", "বিশ্বস্ততা", "Confide", "বিশ্বাস করা", "Faithful", "বিশ্বস্ত", "Faithfully", "বিশ্বস্ততার সাথে", "Loyal", "অনুগত", "Unfaithful", "অবিশ্বস্ত", "২য় পত্র • Prefix-Suffix"],
-            ["Fortune", "ভাগ্য", "Fortune", "সৌভাগ্য", "Fortify", "শক্তিশালী করা", "Fortunate", "ভাগ্যবান", "Fortunately", "সৌভাগ্যক্রমে", "Lucky", "সৌভাগ্যবান", "Unfortunate", "দুর্ভাগা", "২য় পত্র • Prefix-Suffix"],
-            ["Friend", "বন্ধু", "Friendship", "বন্ধুত্ব", "Befriend", "বন্ধুত্ব করা", "Friendly", "বন্ধুত্বপূর্ণ", "Amicably", "সৌহার্দ্যপূর্ণভাবে", "Cordial", "আন্তরিক", "Unfriendly", "অবন্ধুসুলভ", "১ম পত্র • Unit 6"],
-            ["Glory", "গৌরব", "Glorification", "গৌরবান্বিতকরণ", "Glorify", "গৌরবান্বিত করা", "Glorious", "গৌরবময়", "Gloriously", "গৌরবের সাথে", "Illustrious", "প্রসিদ্ধ", "Inglorious", "অগৌরবময়", "১ম পত্র • Unit 3"],
-            ["Harm", "ক্ষতি", "Harmfulness", "ক্ষতিকর দিক", "Harm", "ক্ষতি করা", "Harmful", "ক্ষতিকর", "Harmfully", "ক্ষতিকরভাবে", "Detrimental", "অনিষ্টকর", "Harmless", "নিরীহ", "১ম পত্র • Unit 5"],
-            ["Health", "স্বাস্থ্য", "Healthiness", "সুস্থতা", "Heal", "সুস্থ করা", "Healthy", "স্বাস্থ্যকর", "Healthily", "স্বাস্থ্যকরভাবে", "Wholesome", "স্বাস্থ্যপ্রদ", "Unhealthy", "অস্বাস্থ্যকর", "১ম পত্র • Unit 2"],
-            ["Help", "সাহায্য", "Helpfulness", "উপকারিতা", "Help", "সাহায্য করা", "Helpful", "সহায়ক", "Helpfully", "সহায়কভাবে", "Supportive", "সহযোগী", "Helpless", "অসহায়", "১ম পত্র • Unit 7"],
-            ["Honour", "সম্মান", "Honour", "মর্যাদা", "Honour", "সম্মান করা", "Honourable", "সম্মানীয়", "Honourably", "সম্মানের সাথে", "Respectable", "শ্রদ্ধেয়", "Dishonourable", "অসম্মানজনক", "১ম পত্র • Unit 3"],
-            ["Hope", "আশা", "Hopefulness", "আশাবাদ", "Hope", "আশা করা", "Hopeful", "আশাবাদী", "Hopefully", "আশাবাদীভাবে", "Optimistic", "আশাবাদী", "Hopeless", "হতাশ", "১ম পত্র • Unit 10"],
-            ["Human", "মানব", "Humanity", "মানবতা", "Humanize", "মানবিক করা", "Humane", "মানবিক", "Humanely", "মানবিকভাবে", "Kind", "দয়ালু", "Inhumane", "অমানবিক", "১ম পত্র • Unit 7"],
-            ["Industry", "পরিশ্রম / শিল্প", "Industrialization", "শিল্পায়ন", "Industrialize", "শিল্পায়িত করা", "Industrious", "পরিশ্রমী", "Industriously", "পরিশ্রমের সাথে", "Diligent", "অধ্যবসায়ী", "Lazy", "অলস", "২য় পত্র • Prefix-Suffix"],
-            ["Joy", "আনন্দ", "Enjoyment", "উপভোগ", "Enjoy", "উপভোগ করা", "Joyful", "আনন্দময়", "Joyfully", "আনন্দের সাথে", "Delightful", "মনোরম", "Sorrowful", "দুঃখময়", "১ম পত্র • Unit 14"],
-            ["Justice", "ন্যায়বিচার", "Justification", "ন্যায্যতা", "Justify", "ন্যায্যতা প্রমাণ করা", "Just", "ন্যায়সঙ্গত", "Justly", "ন্যায়সঙ্গতভাবে", "Fair", "ন্যায্য", "Unjust", "অন্যায়", "১ম পত্র • Unit 1"],
-            ["Kind", "দয়ালু", "Kindness", "দয়া", "Kindle", "জাগ্রত করা", "Kindhearted", "দয়ালু হৃদয়ের", "Kindly", "সদয়ভাবে", "Benevolent", "পরোপকারী", "Unkind", "নির্দয়", "১ম পত্র • Unit 7"],
-            ["Know", "জানা", "Knowledge", "জ্ঞান", "Acknowledge", "স্বীকার করা", "Knowledgeable", "জ্ঞানী", "Knowingly", "জেনেশুনে", "Informed", "অবগত", "Ignorant", "অজ্ঞ", "১ম পত্র • Unit 14"],
-            ["Law", "আইন", "Lawfulness", "আইনানুগতা", "Legalize", "বৈধ করা", "Lawful", "আইনসঙ্গত", "Lawfully", "আইনানুগভাবে", "Legal", "বৈধ", "Unlawful", "বেআইনি", "১ম পত্র • Unit 4"],
-            ["Literate", "শিক্ষিত", "Literacy", "সাক্ষরতা", "Educate", "শিক্ষিত করা", "Literate", "সাক্ষর", "Scholarly", "পাণ্ডিত্যপূর্ণভাবে", "Lettered", "অক্ষরজ্ঞানসম্পন্ন", "Illiterate", "নিরক্ষর", "২য় পত্র • Prefix-Suffix"],
-            ["Manage", "পরিচালনা করা", "Management", "ব্যবস্থাপনা", "Manage", "সামলানো", "Manageable", "নিয়ন্ত্রণযোগ্য", "Manageably", "সহজে পরিচালনাযোগ্যভাবে", "Controllable", "নিয়ন্ত্রণাধীন", "Unmanageable", "অনিয়ন্ত্রণযোগ্য", "২য় পত্র • Prefix-Suffix"],
-            ["Meaning", "অর্থ", "Meaningfulness", "অর্থবহতা", "Mean", "বোঝানো", "Meaningful", "অর্থবহ", "Meaningfully", "অর্থবহভাবে", "Significant", "তাৎপর্যপূর্ণ", "Meaningless", "অর্থহীন", "১ম পত্র • Unit 12"],
-            ["Memory", "স্মৃতি", "Memorization", "মুখস্থকরণ", "Memorize", "মুখস্থ করা", "Memorable", "স্মরণীয়", "Memorably", "স্মরণীয়ভাবে", "Unforgettable", "অবিস্মরণীয়", "Forgettable", "বিস্মরণযোগ্য", "১ম পত্র • Unit 3"],
-            ["Moral", "নৈতিক", "Morality", "নৈতিকতা", "Moralize", "নীতিশিক্ষা দেওয়া", "Moral", "নৈতিক", "Morally", "নৈতিকভাবে", "Ethical", "নীতিগত", "Immoral", "অনৈতিক", "২য় পত্র • Prefix-Suffix"],
-            ["Nation", "জাতি", "Nationality", "জাতীয়তা", "Nationalize", "জাতীয়করণ করা", "National", "জাতীয়", "Nationally", "জাতীয়ভাবে", "Domestic", "দেশীয়", "International", "আন্তর্জাতিক", "১ম পত্র • Unit 1"],
-            ["Nature", "প্রকৃতি", "Naturalization", "স্বাভাবিকীকরণ", "Naturalize", "স্বাভাবিক করা", "Natural", "প্রাকৃতিক", "Naturally", "স্বাভাবিকভাবে", "Organic", "স্বাভাবিক", "Unnatural", "অস্বাভাবিক", "১ম পত্র • Unit 5"],
-            ["Necessity", "প্রয়োজনীয়তা", "Necessity", "প্রয়োজন", "Necessitate", "প্রয়োজনীয় করা", "Necessary", "প্রয়োজনীয়", "Necessarily", "অবশ্যম্ভাবীভাবে", "Essential", "অপরিহার্য", "Unnecessary", "অপ্রয়োজনীয়", "২য় পত্র • Prefix-Suffix"],
-            ["Obey", "মান্য করা", "Obedience", "আনুগত্য", "Obey", "মেনে চলা", "Obedient", "বাধ্য", "Obediently", "বাধ্যভাবে", "Dutiful", "কর্তব্যপরায়ণ", "Disobedient", "অবাধ্য", "২য় পত্র • Prefix-Suffix"],
-            ["Peace", "শান্তি", "Peacefulness", "শান্তিপূর্ণতা", "Pacify", "শান্ত করা", "Peaceful", "শান্তিপূর্ণ", "Peacefully", "শান্তিপূর্ণভাবে", "Tranquil", "শান্ত", "Turbulent", "অশান্ত", "১ম পত্র • Unit 1"],
-            ["Please", "সন্তুষ্ট করা", "Pleasure", "আনন্দ", "Please", "খুশি করা", "Pleasant", "মনোরম", "Pleasantly", "মনোরমভাবে", "Agreeable", "সুখকর", "Unpleasant", "অপ্রীতিকর", "১ম পত্র • Unit 14"],
-            ["Pollute", "দূষিত করা", "Pollution", "দূষণ", "Pollute", "কলুষিত করা", "Polluted", "দূষিত", "Harmfully", "ক্ষতিকরভাবে", "Contaminated", "দূষিত", "Unpolluted", "দূষণমুক্ত", "১ম পত্র • Unit 5"],
-            ["Possible", "সম্ভব", "Possibility", "সম্ভাবনা", "Enable", "সক্ষম করা", "Possible", "সম্ভবপর", "Possibly", "সম্ভবত", "Feasible", "বাস্তবায়নযোগ্য", "Impossible", "অসম্ভব", "২য় পত্র • Prefix-Suffix"],
-            ["Power", "শক্তি", "Empowerment", "ক্ষমতায়ন", "Empower", "ক্ষমতায়িত করা", "Powerful", "শক্তিশালী", "Powerfully", "শক্তিশালীভাবে", "Mighty", "পরাক্রমশালী", "Powerless", "ক্ষমতাহীন", "১ম পত্র • Unit 11"],
-            ["Prepare", "প্রস্তুত করা", "Preparation", "প্রস্তুতি", "Prepare", "প্রস্তুতি নেওয়া", "Prepared", "প্রস্তুত", "Readily", "প্রস্তুতভাবে", "Ready", "তৈরি", "Unprepared", "অপ্রস্তুত", "২য় পত্র • Prefix-Suffix"],
-            ["Protect", "রক্ষা করা", "Protection", "সুরক্ষা", "Protect", "নিরাপদ রাখা", "Protective", "সুরক্ষামূলক", "Protectively", "সুরক্ষামূলকভাবে", "Defensive", "প্রতিরক্ষামূলক", "Defenseless", "অরক্ষিত", "১ম পত্র • Unit 5"],
-            ["Pure", "বিশুদ্ধ", "Purification", "বিশুদ্ধকরণ", "Purify", "বিশুদ্ধ করা", "Pure", "খাঁটি", "Purely", "সম্পূর্ণরূপে", "Unadulterated", "ভেজালমুক্ত", "Impure", "অবিশুদ্ধ", "২য় পত্র • Prefix-Suffix"],
-            ["Reason", "কারণ / যুক্তি", "Reasonableness", "যৌক্তিকতা", "Reason", "যুক্তি দেখানো", "Reasonable", "যুক্তিসঙ্গত", "Reasonably", "যুক্তিসঙ্গতভাবে", "Sensible", "বুদ্ধিমান", "Unreasonable", "অযৌক্তিক", "২য় পত্র • Prefix-Suffix"],
-            ["Regular", "নিয়মিত", "Regularity", "নিয়মানুবর্তিতা", "Regulate", "নিয়ন্ত্রণ করা", "Regular", "নিয়মিত", "Regularly", "নিয়মিতভাবে", "Consistent", "ধারাবাহিক", "Irregular", "অনিয়মিত", "২য় পত্র • Prefix-Suffix"],
-            ["Rely", "নির্ভর করা", "Reliability", "নির্ভরযোগ্যতা", "Rely", "ভরসা করা", "Reliable", "নির্ভরযোগ্য", "Reliably", "নির্ভরযোগ্যভাবে", "Dependable", "বিশ্বস্ত", "Unreliable", "অনির্ভরযোগ্য", "১ম পত্র • Unit 11"],
-            ["Respect", "শ্রদ্ধা", "Respectability", "সম্মানযোগ্যতা", "Respect", "শ্রদ্ধা করা", "Respectful", "শ্রদ্ধাশীল", "Respectfully", "শ্রদ্ধার সাথে", "Deferential", "বিনীত", "Disrespectful", "অশ্রদ্ধাশীল", "১ম পত্র • Unit 3"],
-            ["Safe", "নিরাপদ", "Safety", "নিরাপত্তা", "Safeguard", "সুরক্ষা দেওয়া", "Safe", "নিরাপদ", "Safely", "নিরাপদে", "Secure", "সুরক্ষিত", "Unsafe", "অনিরাপদ", "১ম পত্র • Unit 4"],
-            ["Satisfy", "সন্তুষ্ট করা", "Satisfaction", "সন্তুষ্টি", "Satisfy", "তৃপ্ত করা", "Satisfactory", "সন্তোষজনক", "Satisfactorily", "সন্তোষজনকভাবে", "Contented", "তৃপ্ত", "Dissatisfied", "অসন্তুষ্ট", "২য় পত্র • Prefix-Suffix"],
-            ["Social", "সামাজিক", "Socialization", "সামাজিকীকরণ", "Socialize", "মেলামেশা করা", "Social", "সামাজিক", "Socially", "সামাজিকভাবে", "Communal", "সমষ্টিগত", "Antisocial", "অসামাজিক", "১ম পত্র • Unit 6"],
-            ["Success", "সাফল্য", "Success", "সফলতা", "Succeed", "সফল হওয়া", "Successful", "সফল", "Successfully", "সফলভাবে", "Triumphant", "বিজয়ী", "Unsuccessful", "ব্যর্থ", "১ম পত্র • Unit 10"],
-            ["Tolerance", "সহনশীলতা", "Toleration", "সহিষ্ণুতা", "Tolerate", "সহ্য করা", "Tolerant", "সহনশীল", "Tolerantly", "সহনশীলভাবে", "Forbearing", "ধৈর্যশীল", "Intolerant", "অসহিষ্ণু", "১ম পত্র • Unit 6"],
-            ["Truth", "সত্য", "Truthfulness", "সত্যবাদিতা", "Verify", "সত্যতা যাচাই করা", "Truthful", "সত্যবাদী", "Truthfully", "সত্যভাবে", "Honest", "সৎ", "Untruthful", "মিথ্যাবাদী", "২য় পত্র • Prefix-Suffix"],
-            ["Use", "ব্যবহার", "Usefulness", "উপকারিতা", "Utilize", "কাজে লাগানো", "Useful", "উপকারী", "Usefully", "উপকারীভাবে", "Beneficial", "লাভজনক", "Useless", "অকেজো", "১ম পত্র • Unit 11"],
-            ["Value", "মূল্য", "Valuation", "মূল্যায়ন", "Evaluate", "মূল্যায়ন করা", "Valuable", "মূল্যবান", "Valuably", "মূল্যবানভাবে", "Precious", "অমূল্য", "Valueless", "মূল্যহীন", "১ম পত্র • Unit 12"],
-            ["Visible", "দৃশ্যমান", "Visibility", "দৃশ্যমানতা", "Visualize", "কল্পনায় দেখা", "Visible", "দৃশ্যমান", "Visibly", "স্পষ্টভাবে", "Perceptible", "দৃষ্টিগোচর", "Invisible", "অদৃশ্য", "২য় পত্র • Prefix-Suffix"],
-            ["Wise", "জ্ঞানী", "Wisdom", "প্রজ্ঞা", "Enlighten", "আলোকিত করা", "Wise", "বিচক্ষণ", "Wisely", "বিচক্ষণতার সাথে", "Prudent", "দূরদর্শী", "Unwise", "অবিবেচক", "১ম পত্র • Unit 14"],
-            ["Wonder", "বিস্ময়", "Wonderment", "বিস্ময়বোধ", "Wonder", "অবাক হওয়া", "Wonderful", "চমৎকার", "Wonderfully", "চমৎকারভাবে", "Marvellous", "অপূর্ব", "Terrible", "ভয়ানক", "১ম পত্র • Unit 8"]
-        ];
-
-        function getIndefiniteArticle(phrase) {
-            const first = phrase.trim().split(/\s+/)[0].toLowerCase();
-            if (/^(honest|honour|hour|heir)/.test(first)) return 'an';
-            if (/^(uni|use|useful|usual|eu)/.test(first)) return 'a';
-            return /^[aeiou]/.test(first) ? 'an' : 'a';
-        }
-
-        function buildVerifiedDataset() {
-            const list = [];
-            const seenWords = new Set();
-            let idCounter = 1;
-
-            function addEntry(entry) {
-                const key = entry.word.trim().toLowerCase();
-                if (seenWords.has(key)) return;
-                seenWords.add(key);
-                list.push({ id: idCounter++, ...entry });
-            }
-
-            CORE_NCTB_TUPLES.forEach(t => {
-                addEntry({
-                    word: t[0], pos: t[1], paper: t[2], unit: t[3], bangla: t[4],
-                    synList: t[5],
-                    antList: t[6],
-                    syn: t[5][0][0], synBn: t[5][0][1],
-                    ant: t[6][0][0], antBn: t[6][0][1],
-                    synSent: t[7], synSentBn: t[8], antSent: t[9], antSentBn: t[10],
-                    grammar: t[11]
-                });
-            });
-
-            AFFIX_FAMILIES.forEach(f => {
-                const [base, baseBn, nounW, nounBn, verbW, verbBn, adjW, adjBn, advW, advBn, synAdj, synAdjBn, antAdj, antAdjBn, unitTag] = f;
-                const paperCode = unitTag.startsWith("১ম") ? "1ST" : "2ND";
-
-                // 1. Positive Adjective
-                const synArt = getIndefiniteArticle(synAdj);
-                const synArtCap = synArt.charAt(0).toUpperCase() + synArt.slice(1);
-                addEntry({
-                    word: adjW, pos: "Adj", paper: paperCode, unit: unitTag, bangla: adjBn,
-                    synList: [[synAdj, synAdjBn], [adjW, adjBn]],
-                    antList: [[antAdj, antAdjBn]],
-                    syn: synAdj, synBn: synAdjBn,
-                    ant: antAdj, antBn: antAdjBn,
-                    synSent: `${synArtCap} ${synAdj.toLowerCase()} attitude brings positive results in daily life.`,
-                    synSentBn: `দৈনন্দিন জীবনে একটি ${synAdjBn} মনোভাব ইতিবাচক ফলাফল বয়ে আনে।`,
-                    antSent: `We should always avoid ${antAdj.toLowerCase()} behaviour in society.`,
-                    antSentBn: `সমাজে আমাদের সর্বদা ${antAdjBn} আচরণ এড়িয়ে চলা উচিত।`,
-                    grammar: `মূল শব্দ '${base}' (${baseBn}) থেকে গঠিত Adjective; Noun-এর পূর্বে বা Linking Verb-এর পরে বসে।`
-                });
-
-                // 2. Abstract / Derived Noun
-                addEntry({
-                    word: nounW, pos: "Noun", paper: paperCode, unit: unitTag, bangla: nounBn,
-                    synList: [[`${synAdj} quality`, `${synAdjBn} গুণ`], [`${base} spirit`, `${baseBn} চেতনা`]],
-                    antList: [[`Lack of ${nounW.toLowerCase()}`, `${nounBn}-এর অভাব`], [`${antAdj} state`, `${antAdjBn} অবস্থা`]],
-                    syn: `${synAdj} quality`, synBn: `${synAdjBn} গুণ`,
-                    ant: `Lack of ${nounW.toLowerCase()}`, antBn: `${nounBn}-এর অভাব`,
-                    synSent: `${nounW} plays a vital role in building a better society.`,
-                    synSentBn: `একটি সুন্দর সমাজ গঠনে ${nounBn} গুরুত্বপূর্ণ ভূমিকা পালন করে।`,
-                    antSent: `Lack of ${nounW.toLowerCase()} often leads to social problems.`,
-                    antSentBn: `${nounBn}-এর অভাব প্রায়ই সামাজিক সমস্যার সৃষ্টি করে।`,
-                    grammar: `Suffix যুক্ত হয়ে গঠিত Noun; বাক্যের Subject বা Object হিসেবে বসে এবং সাধারণত Singular Verb গ্রহণ করে।`
-                });
-
-                // 3. Derived Verb (only when distinct from base/noun/adj)
-                if (verbW !== base && verbW !== nounW && verbW !== adjW) {
-                    const relationNote = (verbW === "Acknowledge" || verbW === "Enlighten")
-                        ? `'${base}' (${baseBn}) ধারণার সাথে সম্পর্কিত ক্রিয়াপদ (Verb)`
-                        : `মূল শব্দ '${base}' (${baseBn}) থেকে গঠিত Verb`;
-                    addEntry({
-                        word: verbW, pos: "Verb", paper: paperCode, unit: unitTag, bangla: verbBn,
-                        synList: [[`Promote ${nounW.toLowerCase()}`, `${nounBn} বৃদ্ধি করা`], [`Foster ${base.toLowerCase()}`, `${baseBn} গড়ে তোলা`]],
-                        antList: [[`Hinder ${nounW.toLowerCase()}`, `${nounBn}-এ বাধা দেওয়া`], [`Discourage ${base.toLowerCase()}`, `${baseBn} নিরুৎসাহিত করা`]],
-                        syn: `Promote ${nounW.toLowerCase()}`, synBn: `${nounBn} বৃদ্ধি করা`,
-                        ant: `Hinder ${nounW.toLowerCase()}`, antBn: `${nounBn}-এ বাধা দেওয়া`,
-                        synSent: `Good habits help us ${verbW.toLowerCase()} positive values in life.`,
-                        synSentBn: `ভালো অভ্যাস আমাদের জীবনে ইতিবাচক মূল্যবোধ ${verbBn} করতে সাহায্য করে।`,
-                        antSent: `Negligence can hinder our efforts to ${verbW.toLowerCase()} society.`,
-                        antSentBn: `অবহেলা সমাজকে ${verbBn} করার প্রচেষ্টায় বাধা সৃষ্টি করতে পারে।`,
-                        grammar: `${relationNote}; 'to' Infinitive বা Modal Verb (can, should, must)-এর পর মূল রূপ (V1) বসে।`
-                    });
-                }
-
-                // 4. Adverb
-                const antArt = getIndefiniteArticle(antAdj);
-                addEntry({
-                    word: advW, pos: "Adv", paper: "2ND", unit: "২য় পত্র • Adverb & Suffix", bangla: advBn,
-                    synList: [[`In ${synArt} ${synAdj.toLowerCase()} way`, `${synAdjBn} উপায়ে`]],
-                    antList: [[`In ${antArt} ${antAdj.toLowerCase()} way`, `${antAdjBn} উপায়ে`]],
-                    syn: `In ${synArt} ${synAdj.toLowerCase()} way`, synBn: `${synAdjBn} উপায়ে`,
-                    ant: `In ${antArt} ${antAdj.toLowerCase()} way`, antBn: `${antAdjBn} উপায়ে`,
-                    synSent: `Students should perform their duties ${advW.toLowerCase()}.`,
-                    synSentBn: `শিক্ষার্থীদের তাদের কর্তব্য ${advBn} পালন করা উচিত।`,
-                    antSent: `Important tasks fail when done in ${antArt} ${antAdj.toLowerCase()} way.`,
-                    antSentBn: `গুরুত্বপূর্ণ কাজ ${antAdjBn} উপায়ে করলে তা ব্যর্থ হয়।`,
-                    grammar: `Adjective থেকে '-ly' suffix যুক্ত হয়ে গঠিত Adverb; এটি Verb, Adjective বা পুরো বাক্যকে Modify করে।`
-                });
-
-                // 5. Prefix / Opposite Adjective
-                const antAdjArt = getIndefiniteArticle(antAdj);
-                const antAdjArtCap = antAdjArt.charAt(0).toUpperCase() + antAdjArt.slice(1);
-                const adjArt = getIndefiniteArticle(adjW);
-                addEntry({
-                    word: antAdj, pos: "Adj", paper: "2ND", unit: "২য় পত্র • Prefix Antonym", bangla: antAdjBn,
-                    synList: [[`Not ${adjW.toLowerCase()}`, `${adjBn} নয় এমন`]],
-                    antList: [[adjW, adjBn], [synAdj, synAdjBn]],
-                    syn: `Not ${adjW.toLowerCase()}`, synBn: `${adjBn} নয় এমন`,
-                    ant: adjW, antBn: adjBn,
-                    synSent: `${antAdjArtCap} ${antAdj.toLowerCase()} decision often causes regret later.`,
-                    synSentBn: `একটি ${antAdjBn} সিদ্ধান্ত প্রায়ই পরে অনুশোচনার কারণ হয়।`,
-                    antSent: `Everyone admires ${adjArt} ${adjW.toLowerCase()} person in the community.`,
-                    antSentBn: `সমাজে প্রত্যেকেই একজন ${adjBn} ব্যক্তিকে প্রশংসা করেন।`,
-                    grammar: `Prefix বা বিপরীতার্থক রূপে গঠিত Adjective (বিপরীত শব্দ: ${adjW} = ${adjBn})।`
-                });
-            });
-
-            return list;
-        }
-
-        const VOCAB_DATA = buildVerifiedDataset();
-
-        const PASSAGES = [
-            {
-                title: "SSC Board Drill • Environment & Sustainability",
-                text: "Indiscriminate cutting of trees makes the environment hostile to living beings. We must mitigate pollution and plant trees to protect natural habitats.",
-                questions: [
-                    { word: "Indiscriminate", type: "SYNONYM", answer: "Unselective", options: ["Unselective", "Selective", "Careful", "Prudent"] },
-                    { word: "Hostile", type: "ANTONYM", answer: "Friendly", options: ["Friendly", "Unfriendly", "Adverse", "Harsh"] },
-                    { word: "Mitigate", type: "SYNONYM", answer: "Alleviate", options: ["Alleviate", "Aggravate", "Worsen", "Intensify"] }
-                ]
-            },
-            {
-                title: "SSC Board Drill • Hard Work & Patriotism",
-                text: "Diligent students show sincere devotion to their studies and country. Obstacles cannot stop those who act with courage and perseverance.",
-                questions: [
-                    { word: "Diligent", type: "SYNONYM", answer: "Industrious", options: ["Industrious", "Indolent", "Idle", "Slothful"] },
-                    { word: "Obstacles", type: "ANTONYM", answer: "Facilities", options: ["Facilities", "Hindrances", "Barriers", "Hurdles"] },
-                    { word: "Perseverance", type: "SYNONYM", answer: "Persistence", options: ["Persistence", "Hesitation", "Quitting", "Delay"] }
-                ]
-            }
-        ];
-
-        // Audio Synthesizer for Game Feedback
-        let audioCtx = null;
-        function chime(type) {
-            try {
-                if (!audioCtx) {
-                    const Ctx = window.AudioContext || window.webkitAudioContext;
-                    audioCtx = new Ctx();
-                }
-                const osc = audioCtx.createOscillator();
-                const gain = audioCtx.createGain();
-                osc.connect(gain);
-                gain.connect(audioCtx.destination);
-                const now = audioCtx.currentTime;
-                if (type === 'ok') {
-                    osc.frequency.setValueAtTime(587.33, now);
-                    osc.frequency.setValueAtTime(880, now + 0.08);
-                    gain.gain.setValueAtTime(0.12, now);
-                    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.22);
-                    osc.start(now); osc.stop(now + 0.22);
-                } else if (type === 'bad') {
-                    osc.type = 'triangle';
-                    osc.frequency.setValueAtTime(240, now);
-                    osc.frequency.linearRampToValueAtTime(160, now + 0.18);
-                    gain.gain.setValueAtTime(0.12, now);
-                    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.2);
-                    osc.start(now); osc.stop(now + 0.2);
-                } else if (type === 'win') {
-                    [523.25, 659.25, 783.99, 1046.5].forEach((freq, i) => {
-                        const o = audioCtx.createOscillator();
-                        const g = audioCtx.createGain();
-                        o.connect(g); g.connect(audioCtx.destination);
-                        o.frequency.setValueAtTime(freq, now + i * 0.08);
-                        g.gain.setValueAtTime(0.11, now + i * 0.08);
-                        g.gain.exponentialRampToValueAtTime(0.001, now + i * 0.08 + 0.25);
-                        o.start(now + i * 0.08); o.stop(now + i * 0.08 + 0.25);
-                    });
-                } else {
-                    osc.frequency.setValueAtTime(440, now);
-                    gain.gain.setValueAtTime(0.06, now);
-                    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.06);
-                    osc.start(now); osc.stop(now + 0.06);
-                }
-            } catch (_) {
-                // Ignore audio errors on restricted devices
-            }
-        }
-
-        // Application State
-        const app = {
-            mode: 'flashcards',
-            paperFilter: 'ALL',
-            bankFilter: 'ALL',
-            deck: [],
-            cardIdx: 0,
-            isFlipped: false,
+        // State Management with LocalStorage Persistence
+        let state = {
             xp: Number(localStorage.getItem('nctb_xp') || 0),
             streak: Number(localStorage.getItem('nctb_streak') || 1),
-            favIds: JSON.parse(localStorage.getItem('nctb_favs') || '[]'),
-            bankLimit: 25,
-            bScore: 0,
-            bCombo: 1,
-            bRounds: 0,
-            bTime: 15,
-            bTimerRef: null,
-            bCurrent: null
+            paperFilter: 'ALL',
+            unitFilter: 'ALL_UNITS',
+            fcDeck: [...NCTB_WORDS],
+            fcIndex: Number(localStorage.getItem('nctb_last_fc_idx') || 0),
+            favorites: JSON.parse(localStorage.getItem('nctb_favs') || '[]'),
+            battleDeck: [...NCTB_WORDS],
+            battleIndex: Number(localStorage.getItem('nctb_last_battle_idx') || 0),
+            battleScore: 0,
+            battleCombo: 1,
+            boardIndex: 0,
+            examQuestions: []
         };
 
-        function syncHUD() {
-            localStorage.setItem('nctb_xp', String(app.xp));
-            localStorage.setItem('nctb_streak', String(app.streak));
-            localStorage.setItem('nctb_favs', JSON.stringify(app.favIds));
-            document.getElementById('hud-xp').textContent = app.xp;
-            document.getElementById('hud-streak').textContent = app.streak;
-            const c1 = VOCAB_DATA.filter(x => x.paper === '1ST').length;
-            const c2 = VOCAB_DATA.filter(x => x.paper === '2ND').length;
-            document.getElementById('hdr-total-words').textContent = VOCAB_DATA.length.toLocaleString();
-            document.getElementById('cnt-all').textContent = VOCAB_DATA.length;
-            document.getElementById('cnt-1st').textContent = c1;
-            document.getElementById('cnt-2nd').textContent = c2;
+        function initApp() {
+            document.getElementById('hdr-total-words').textContent = NCTB_WORDS.length;
+            document.getElementById('cnt-all').textContent = NCTB_WORDS.length;
+            document.getElementById('cnt-1st').textContent = NCTB_WORDS.filter(w => w[2] === '1ST').length;
+            document.getElementById('cnt-2nd').textContent = NCTB_WORDS.filter(w => w[2] === '2ND').length;
+            updateHUD();
+            applyFilters(true);
+            loadBattleRound();
+            loadBoardDrill();
+            renderBank();
+        }
+
+        function updateHUD() {
+            document.getElementById('hud-xp').textContent = state.xp;
+            document.getElementById('hud-streak').textContent = state.streak;
+            localStorage.setItem('nctb_xp', state.xp);
         }
 
         function toggleTheme() {
@@ -968,665 +542,364 @@
         }
 
         function switchMode(mode) {
-            app.mode = mode;
-            clearInterval(app.bTimerRef);
-            clearInterval(examState.timerRef);
-
-            ['flashcards', 'battle', 'battle-end', 'board', 'bank', 'exam'].forEach(id => {
-                const el = document.getElementById(`view-${id}`);
-                if (el) el.classList.add('hidden');
+            ['flashcards', 'battle', 'board', 'bank', 'exam'].forEach(m => {
+                document.getElementById('view-' + m).classList.add('hidden');
+                const dtab = document.getElementById('dtab-' + m);
+                if (dtab) {
+                    dtab.className = 'd-tab flex-1 py-2 px-3 rounded-xl text-xs font-bold bg-white/85 dark:bg-emerald-950/45 text-emerald-900 dark:text-emerald-200 hover:bg-emerald-100/80 transition';
+                }
+                const mtab = document.getElementById('mtab-' + m);
+                if (mtab) {
+                    mtab.className = 'm-tab flex flex-col items-center py-1 px-2 rounded-xl text-emerald-900/60 dark:text-emerald-200/60 font-bold text-[10px]';
+                }
             });
-
-            document.querySelectorAll('.d-tab').forEach(el => {
-                el.className = 'd-tab flex-1 py-2 px-3 rounded-xl text-xs font-bold bg-white/85 dark:bg-emerald-950/45 text-emerald-900 dark:text-emerald-200 hover:bg-emerald-100/80 transition';
-            });
-            const dActive = document.getElementById(`dtab-${mode}`);
-            if (dActive) {
-                dActive.className = 'd-tab flex-1 py-2 px-3 rounded-xl text-xs font-bold bg-emerald-600 text-white shadow-sm transition';
-            }
-
-            document.querySelectorAll('.m-tab').forEach(el => {
-                el.className = 'm-tab flex flex-col items-center justify-center py-1 px-2 rounded-xl text-emerald-950/55 dark:text-emerald-200/55 font-semibold';
-            });
-            const mActive = document.getElementById(`mtab-${mode}`);
-            if (mActive) {
-                mActive.className = 'm-tab flex flex-col items-center justify-center py-1 px-2 rounded-xl text-emerald-600 dark:text-emerald-400 font-bold';
-            }
-
-            if (mode === 'flashcards') {
-                document.getElementById('view-flashcards').classList.remove('hidden');
-                renderCard();
-            } else if (mode === 'battle') {
-                document.getElementById('view-battle').classList.remove('hidden');
-                startBattle();
-            } else if (mode === 'board') {
-                document.getElementById('view-board').classList.remove('hidden');
-                loadPassage();
-            } else if (mode === 'bank') {
-                document.getElementById('view-bank').classList.remove('hidden');
-                resetAndRenderBank();
-            } else if (mode === 'exam') {
-                document.getElementById('view-exam').classList.remove('hidden');
-            }
+            document.getElementById('view-' + mode).classList.remove('hidden');
+            const activeD = document.getElementById('dtab-' + mode);
+            if (activeD) activeD.className = 'd-tab flex-1 py-2 px-3 rounded-xl text-xs font-bold bg-emerald-600 text-white shadow-sm transition';
+            const activeM = document.getElementById('mtab-' + mode);
+            if (activeM) activeM.className = 'm-tab flex flex-col items-center py-1 px-2 rounded-xl text-emerald-600 font-extrabold text-[10px]';
         }
 
-        // 1. FLASHCARDS ENGINE
+        // --- FLASHCARD FILTERS & JUMP FEATURE ---
         function setPaperFilter(paper) {
-            app.paperFilter = paper;
+            state.paperFilter = paper;
             ['ALL', '1ST', '2ND'].forEach(p => {
-                const btn = document.getElementById(`pf-${p}`);
+                const btn = document.getElementById('pf-' + p);
                 btn.className = p === paper
-                    ? 'pf-btn px-3 py-1 rounded-xl text-xs font-bold bg-emerald-600 text-white'
-                    : 'pf-btn px-3 py-1 rounded-xl text-xs font-bold text-emerald-900 dark:text-emerald-200';
+                    ? 'pf-btn px-2.5 py-1 rounded-lg text-xs font-bold bg-emerald-600 text-white'
+                    : 'pf-btn px-2.5 py-1 rounded-lg text-xs font-bold text-emerald-900 dark:text-emerald-200';
             });
-            rebuildDeck();
+            const unitSelect = document.getElementById('fc-unit-select');
+            if (paper === '2ND') {
+                unitSelect.value = 'ALL_UNITS';
+                state.unitFilter = 'ALL_UNITS';
+                unitSelect.disabled = true;
+            } else {
+                unitSelect.disabled = false;
+            }
+            applyFilters(false);
         }
 
-        function rebuildDeck() {
-            app.deck = app.paperFilter === 'ALL'
-                ? [...VOCAB_DATA]
-                : VOCAB_DATA.filter(item => item.paper === app.paperFilter);
-            app.cardIdx = 0;
-            app.isFlipped = false;
+        function setUnitFilter(unit) {
+            state.unitFilter = unit;
+            if (unit !== 'ALL_UNITS' && state.paperFilter === '2ND') {
+                setPaperFilter('1ST');
+                return;
+            }
+            applyFilters(false);
+        }
+
+        function applyFilters(preserveSavedIndex) {
+            let filtered = NCTB_WORDS.filter(w => {
+                const paperOk = state.paperFilter === 'ALL' || w[2] === state.paperFilter;
+                const unitOk = state.unitFilter === 'ALL_UNITS' || w[3].includes(state.unitFilter);
+                return paperOk && unitOk;
+            });
+            if (filtered.length === 0) filtered = [...NCTB_WORDS];
+            state.fcDeck = filtered;
+            if (!preserveSavedIndex || state.fcIndex >= state.fcDeck.length) {
+                state.fcIndex = 0;
+            }
+            renderFlashcard();
+        }
+
+        function jumpToCard() {
+            const input = document.getElementById('fc-jump-input');
+            const num = parseInt(input.value, 10);
+            if (isNaN(num) || num < 1 || num > state.fcDeck.length) {
+                alert(`অনুগ্রহ করে ১ থেকে ${state.fcDeck.length} এর মধ্যে একটি সঠিক নম্বর লিখুন।`);
+                return;
+            }
+            state.fcIndex = num - 1;
             document.getElementById('flashcard').classList.remove('is-flipped');
-            renderCard();
+            renderFlashcard();
+            input.value = '';
+        }
+
+        function resetOrder() {
+            applyFilters(false);
         }
 
         function shuffleDeck() {
-            chime('tap');
-            for (let i = app.deck.length - 1; i > 0; i--) {
+            for (let i = state.fcDeck.length - 1; i > 0; i--) {
                 const j = Math.floor(Math.random() * (i + 1));
-                [app.deck[i], app.deck[j]] = [app.deck[j], app.deck[i]];
+                [state.fcDeck[i], state.fcDeck[j]] = [state.fcDeck[j], state.fcDeck[i]];
             }
-            app.cardIdx = 0;
-            app.isFlipped = false;
+            state.fcIndex = 0;
             document.getElementById('flashcard').classList.remove('is-flipped');
-            renderCard();
+            renderFlashcard();
+        }
+
+        function renderFlashcard() {
+            const item = state.fcDeck[state.fcIndex];
+            if (!item) return;
+
+            localStorage.setItem('nctb_last_fc_idx', state.fcIndex);
+            document.getElementById('fc-index').textContent = state.fcIndex + 1;
+            document.getElementById('fc-total').textContent = state.fcDeck.length;
+            document.getElementById('fc-card-number').textContent = state.fcIndex + 1;
+
+            document.getElementById('fc-unit').textContent = item[3];
+            document.getElementById('fc-pos').textContent = item[1];
+            document.getElementById('fc-pos-back').textContent = item[1];
+            document.getElementById('fc-word-front').textContent = item[0];
+            document.getElementById('fc-bangla-front').textContent = item[4];
+
+            document.getElementById('fc-word-back').textContent = item[0];
+            document.getElementById('fc-bangla-mini').textContent = `(${item[4]})`;
+
+            const synContainer = document.getElementById('fc-syn-list');
+            synContainer.innerHTML = item[5].map(s =>
+                `<span class="bangla px-2.5 py-1 rounded-xl bg-white dark:bg-emerald-900/70 border border-emerald-200 dark:border-emerald-700 text-xs font-bold text-emerald-900 dark:text-emerald-100">${s[0]} <span class="text-emerald-600 dark:text-emerald-300 font-medium">(${s[1]})</span></span>`
+            ).join('');
+
+            const antContainer = document.getElementById('fc-ant-list');
+            antContainer.innerHTML = item[6].map(a =>
+                `<span class="bangla px-2.5 py-1 rounded-xl bg-white dark:bg-rose-900/50 border border-rose-200 dark:border-rose-700 text-xs font-bold text-rose-900 dark:text-rose-100">${a[0]} <span class="text-rose-600 dark:text-rose-300 font-medium">(${a[1]})</span></span>`
+            ).join('');
+
+            document.getElementById('fc-syn-sent').textContent = item[7];
+            document.getElementById('fc-syn-sent-bn').textContent = item[8];
+            document.getElementById('fc-ant-sent').textContent = item[9];
+            document.getElementById('fc-ant-sent-bn').textContent = item[10];
+            document.getElementById('fc-grammar-back').innerHTML = `<i class="fa-solid fa-lightbulb text-amber-500 mr-1"></i> ${item[11]}`;
+
+            const isFav = state.favorites.includes(item[0]);
+            document.getElementById('fc-fav-icon').className = isFav ? 'fa-solid fa-heart text-rose-600 mr-1' : 'fa-regular fa-heart mr-1';
         }
 
         function flipCard() {
-            chime('tap');
-            app.isFlipped = !app.isFlipped;
-            document.getElementById('flashcard').classList.toggle('is-flipped', app.isFlipped);
+            document.getElementById('flashcard').classList.toggle('is-flipped');
         }
 
         function nextCard() {
-            if (!app.deck.length) return;
-            app.isFlipped = false;
             document.getElementById('flashcard').classList.remove('is-flipped');
-            app.cardIdx = (app.cardIdx + 1) % app.deck.length;
-            setTimeout(renderCard, 120);
+            state.fcIndex = (state.fcIndex + 1) % state.fcDeck.length;
+            renderFlashcard();
         }
 
         function prevCard() {
-            if (!app.deck.length) return;
-            app.isFlipped = false;
             document.getElementById('flashcard').classList.remove('is-flipped');
-            app.cardIdx = (app.cardIdx - 1 + app.deck.length) % app.deck.length;
-            setTimeout(renderCard, 120);
+            state.fcIndex = (state.fcIndex - 1 + state.fcDeck.length) % state.fcDeck.length;
+            renderFlashcard();
         }
 
         function toggleFavoriteCurrent() {
-            const item = app.deck[app.cardIdx];
-            if (!item) return;
-            toggleFavoriteById(item.id);
-            renderCard();
-        }
-
-        function toggleFavoriteById(id) {
-            const idx = app.favIds.indexOf(id);
-            if (idx >= 0) app.favIds.splice(idx, 1);
-            else app.favIds.push(id);
-            syncHUD();
-        }
-
-        function renderCard() {
-            if (!app.deck.length) return;
-            const item = app.deck[app.cardIdx];
-            document.getElementById('fc-index').textContent = app.cardIdx + 1;
-            document.getElementById('fc-total').textContent = app.deck.length;
-            document.getElementById('fc-unit').textContent = item.unit;
-            document.getElementById('fc-pos').textContent = item.pos;
-            document.getElementById('fc-word-front').textContent = item.word;
-            document.getElementById('fc-bangla-front').textContent = item.bangla;
-
-            const isFav = app.favIds.includes(item.id);
-            document.getElementById('fc-fav-icon').className = `${isFav ? 'fa-solid' : 'fa-regular'} fa-heart mr-1`;
-
-            document.getElementById('fc-word-back').textContent = item.word;
-            document.getElementById('fc-bangla-mini').textContent = `(${item.bangla})`;
-
-            document.getElementById('fc-syn-list').innerHTML = (item.synList || [[item.syn, item.synBn]]).map(([w, bn]) => `
-                <span class="px-2.5 py-1 rounded-xl bg-white/95 dark:bg-emerald-900/60 border border-emerald-200/80 dark:border-emerald-700/50 text-xs font-extrabold text-emerald-950 dark:text-emerald-100">
-                    ${w} <span class="bangla font-semibold text-emerald-700 dark:text-emerald-300">(${bn})</span>
-                </span>
-            `).join('');
-            document.getElementById('fc-syn-sent').textContent = `"${item.synSent}"`;
-            document.getElementById('fc-syn-sent-bn').textContent = `বাংলা অর্থ: ${item.synSentBn}`;
-
-            document.getElementById('fc-ant-list').innerHTML = (item.antList || [[item.ant, item.antBn]]).map(([w, bn]) => `
-                <span class="px-2.5 py-1 rounded-xl bg-white/95 dark:bg-rose-950/60 border border-rose-200/80 dark:border-rose-800/50 text-xs font-extrabold text-rose-950 dark:text-rose-100">
-                    ${w} <span class="bangla font-semibold text-rose-700 dark:text-rose-300">(${bn})</span>
-                </span>
-            `).join('');
-            document.getElementById('fc-ant-sent').textContent = `"${item.antSent}"`;
-            document.getElementById('fc-ant-sent-bn').textContent = `বাংলা অর্থ: ${item.antSentBn}`;
-
-            document.getElementById('fc-grammar-back').innerHTML = `<i class="fa-solid fa-leaf mr-1 text-emerald-600"></i> ${item.grammar}`;
-        }
-
-        // Touch Swipe on Flashcards
-        let touchStartX = 0;
-        const swipeZone = document.getElementById('fc-swipe-zone');
-        swipeZone.addEventListener('touchstart', e => {
-            touchStartX = e.changedTouches[0].screenX;
-        }, { passive: true });
-        swipeZone.addEventListener('touchend', e => {
-            const diff = e.changedTouches[0].screenX - touchStartX;
-            if (Math.abs(diff) > 55) {
-                if (diff < 0) nextCard();
-                else prevCard();
+            const word = state.fcDeck[state.fcIndex][0];
+            if (state.favorites.includes(word)) {
+                state.favorites = state.favorites.filter(w => w !== word);
+            } else {
+                state.favorites.push(word);
             }
-        }, { passive: true });
-
-        // 2. CARD BATTLE MODE (Uses full verified VOCAB_DATA pool with distinct options)
-        function startBattle() {
-            clearInterval(app.bTimerRef);
-            app.bScore = 0;
-            app.bCombo = 1;
-            app.bRounds = 0;
-            document.getElementById('b-score').textContent = '0';
-            document.getElementById('b-combo').textContent = 'x1';
-            nextBattleRound();
+            localStorage.setItem('nctb_favs', JSON.stringify(state.favorites));
+            renderFlashcard();
         }
 
-        function nextBattleRound() {
-            clearInterval(app.bTimerRef);
-            if (app.bRounds >= 10) {
-                document.getElementById('view-battle').classList.add('hidden');
-                document.getElementById('view-battle-end').classList.remove('hidden');
-                document.getElementById('be-summary').textContent = `তোমার মোট স্কোর: ${app.bScore} পয়েন্ট (${app.bRounds} রাউন্ড)`;
-                chime('win');
+        // --- CARD GAME (BATTLE) WITH JUMP & UNIT FILTER ---
+        function setBattleUnitFilter(val) {
+            if (val === 'ALL_UNITS') state.battleDeck = [...NCTB_WORDS];
+            else if (val === '1ST' || val === '2ND') state.battleDeck = NCTB_WORDS.filter(w => w[2] === val);
+            else state.battleDeck = NCTB_WORDS.filter(w => w[3].includes(val));
+
+            if (state.battleDeck.length === 0) state.battleDeck = [...NCTB_WORDS];
+            state.battleIndex = 0;
+            loadBattleRound();
+        }
+
+        function jumpToBattleCard() {
+            const inp = document.getElementById('b-jump-input');
+            const num = parseInt(inp.value, 10);
+            if (isNaN(num) || num < 1 || num > state.battleDeck.length) {
+                alert(`অনুগ্রহ করে ১ থেকে ${state.battleDeck.length} এর মধ্যে নম্বর লিখুন।`);
                 return;
             }
-            app.bRounds++;
-            app.bTime = 15;
-            document.getElementById('b-timer').textContent = app.bTime;
-            document.getElementById('b-feedback').classList.add('hidden');
-
-            const target = VOCAB_DATA[Math.floor(Math.random() * VOCAB_DATA.length)];
-            const askType = Math.random() > 0.5 ? 'SYNONYM' : 'ANTONYM';
-            const correct = askType === 'SYNONYM' ? target.syn : target.ant;
-            const opposite = askType === 'SYNONYM' ? target.ant : target.syn;
-
-            const excluded = new Set([
-                target.word.toLowerCase(),
-                ...(target.synList || []).map(x => x[0].toLowerCase()),
-                ...(target.antList || []).map(x => x[0].toLowerCase())
-            ]);
-
-            const opts = [correct];
-            if (opposite && opposite.toLowerCase() !== correct.toLowerCase()) opts.push(opposite);
-
-            let guard = 0;
-            while (opts.length < 4 && guard < 300) {
-                guard++;
-                const rand = VOCAB_DATA[Math.floor(Math.random() * VOCAB_DATA.length)];
-                const cand = Math.random() > 0.5 ? rand.syn : rand.ant;
-                if (cand && !excluded.has(cand.toLowerCase()) && !opts.some(o => o.toLowerCase() === cand.toLowerCase())) {
-                    opts.push(cand);
-                }
-            }
-            opts.sort(() => Math.random() - 0.5);
-
-            app.bCurrent = { target, askType, correct, answered: false };
-            const badge = document.getElementById('b-ask-badge');
-            badge.textContent = askType === 'SYNONYM' ? 'SYNONYM MATCH' : 'ANTONYM MATCH';
-            badge.className = askType === 'SYNONYM'
-                ? 'inline-block px-3.5 py-1 rounded-full text-xs font-black uppercase tracking-wider bg-emerald-600 text-white'
-                : 'inline-block px-3.5 py-1 rounded-full text-xs font-black uppercase tracking-wider bg-rose-600 text-white';
-
-            document.getElementById('b-word').textContent = target.word;
-            document.getElementById('b-bangla').textContent = `(${target.bangla})`;
-
-            document.getElementById('b-options').innerHTML = opts.map(opt => `
-                <button type="button" onclick="answerBattle('${opt.replace(/'/g, "\\'")}')" class="option-pill p-3.5 rounded-2xl border-2 border-emerald-200/80 dark:border-emerald-800/60 bg-white dark:bg-[#162922] font-extrabold text-sm text-emerald-950 dark:text-emerald-100">
-                    ${opt}
-                </button>
-            `).join('');
-
-            app.bTimerRef = setInterval(() => {
-                app.bTime--;
-                document.getElementById('b-timer').textContent = app.bTime;
-                if (app.bTime <= 0) {
-                    clearInterval(app.bTimerRef);
-                    answerBattle(null);
-                }
-            }, 1000);
+            state.battleIndex = num - 1;
+            inp.value = '';
+            loadBattleRound();
         }
 
-        function answerBattle(choice) {
-            if (!app.bCurrent || app.bCurrent.answered) return;
-            app.bCurrent.answered = true;
-            clearInterval(app.bTimerRef);
+        function loadBattleRound() {
+            if (state.battleIndex >= state.battleDeck.length) state.battleIndex = 0;
+            localStorage.setItem('nctb_last_battle_idx', state.battleIndex);
 
-            const isRight = choice === app.bCurrent.correct;
+            const item = state.battleDeck[state.battleIndex];
+            document.getElementById('b-card-idx').textContent = state.battleIndex + 1;
+            document.getElementById('b-card-total').textContent = state.battleDeck.length;
+            document.getElementById('b-pos').textContent = item[1];
+            document.getElementById('b-unit-badge').textContent = item[3];
+            document.getElementById('b-word').textContent = item[0];
+            document.getElementById('b-bangla').textContent = `(${item[4]})`;
+            document.getElementById('b-feedback').classList.add('hidden');
+
+            const isSyn = Math.random() > 0.45;
+            const badge = document.getElementById('b-ask-badge');
+            badge.textContent = isSyn ? 'SYNONYM (সমার্থক শব্দ বাছাই করো)' : 'ANTONYM (বিপরীত শব্দ বাছাই করো)';
+            badge.className = isSyn
+                ? 'bangla inline-block px-3.5 py-1 rounded-full text-xs font-extrabold bg-emerald-600 text-white'
+                : 'bangla inline-block px-3.5 py-1 rounded-full text-xs font-extrabold bg-rose-600 text-white';
+
+            const correctObj = isSyn ? item[5][0] : item[6][0];
+            const distractors = [];
+            while (distractors.length < 3) {
+                const randWord = NCTB_WORDS[Math.floor(Math.random() * NCTB_WORDS.length)];
+                const cand = isSyn ? randWord[5][0] : randWord[6][0];
+                if (cand[0] !== correctObj[0] && !distractors.some(d => d[0] === cand[0])) {
+                    distractors.push(cand);
+                }
+            }
+
+            const options = [correctObj, ...distractors].sort(() => Math.random() - 0.5);
+            const optBox = document.getElementById('b-options');
+            optBox.innerHTML = options.map(opt => `
+                <button type="button" onclick="checkBattleAnswer('${opt[0]}', '${correctObj[0]}', ${isSyn})" class="option-pill p-3.5 rounded-2xl bg-emerald-50/70 dark:bg-emerald-950/50 border border-emerald-200 dark:border-emerald-800 text-left hover:border-emerald-500">
+                    <div class="font-extrabold text-sm text-emerald-950 dark:text-white">${opt[0]}</div>
+                    <div class="bangla text-xs text-emerald-700 dark:text-emerald-300">${opt[1]}</div>
+                </button>
+            `).join('');
+        }
+
+        function checkBattleAnswer(chosen, correct, isSyn) {
+            const item = state.battleDeck[state.battleIndex];
             const fb = document.getElementById('b-feedback');
             const title = document.getElementById('b-feedback-title');
             const detail = document.getElementById('b-feedback-detail');
-            const target = app.bCurrent.target;
-
-            if (isRight) {
-                chime('ok');
-                app.bScore += 10 * app.bCombo;
-                app.bCombo = Math.min(4, app.bCombo + 1);
-                app.xp += 10;
-                syncHUD();
-                title.className = 'font-extrabold text-sm text-emerald-700 dark:text-emerald-300';
-                title.textContent = `সঠিক উত্তর! (${app.bCurrent.correct})`;
-            } else {
-                chime('bad');
-                app.bCombo = 1;
-                title.className = 'font-extrabold text-sm text-rose-700 dark:text-rose-300';
-                title.textContent = `সঠিক উত্তর ছিল: ${app.bCurrent.correct}`;
-            }
-
-            detail.innerHTML = `<strong>${target.word}</strong> (${target.bangla})<br>
-                <span class="text-emerald-800 dark:text-emerald-300">Synonyms: <strong>${(target.synList || [[target.syn, target.synBn]]).map(x => `${x[0]} (${x[1]})`).join(', ')}</strong></span><br>
-                <span class="text-rose-800 dark:text-rose-300">Antonyms: <strong>${(target.antList || [[target.ant, target.antBn]]).map(x => `${x[0]} (${x[1]})`).join(', ')}</strong></span><br>
-                <span class="block mt-1 font-semibold">"${target.synSent}"</span>
-                <span class="block text-emerald-900 dark:text-emerald-200">বাংলা বাক্য: ${target.synSentBn}</span>
-                <span class="block mt-1 font-semibold">"${target.antSent}"</span>
-                <span class="block text-rose-900 dark:text-rose-200">বাংলা বাক্য: ${target.antSentBn}</span>
-                <span class="block text-[11px] opacity-85 mt-1"><i class="fa-solid fa-leaf mr-1"></i>${target.grammar}</span>`;
-            document.getElementById('b-score').textContent = app.bScore;
-            document.getElementById('b-combo').textContent = `x${app.bCombo}`;
             fb.classList.remove('hidden');
+
+            if (chosen === correct) {
+                state.battleScore += 10 * state.battleCombo;
+                state.battleCombo = Math.min(5, state.battleCombo + 1);
+                state.xp += 10;
+                updateHUD();
+                title.innerHTML = `<span class="text-emerald-700 dark:text-emerald-300"><i class="fa-solid fa-circle-check mr-1"></i> সঠিক উত্তর! (+১০ XP)</span>`;
+            } else {
+                state.battleCombo = 1;
+                title.innerHTML = `<span class="text-rose-600 dark:text-rose-400"><i class="fa-solid fa-circle-xmark mr-1"></i> ভুল হয়েছে! সঠিক উত্তর: ${correct}</span>`;
+            }
+            document.getElementById('b-score').textContent = state.battleScore;
+            document.getElementById('b-combo').textContent = 'x' + state.battleCombo;
+            detail.textContent = `${item[0]} (${item[1]}) — ${item[11]}`;
         }
 
-        // 3. SSC BOARD PASSAGE DRILL
-        function loadPassage() {
-            const p = PASSAGES[Math.floor(Math.random() * PASSAGES.length)];
-            document.getElementById('bp-title').textContent = p.title;
-            document.getElementById('bp-text').textContent = p.text;
-            const qBox = document.getElementById('bp-questions');
-            qBox.innerHTML = p.questions.map((q, qIdx) => `
-                <div class="p-3.5 rounded-2xl border border-emerald-200/75 dark:border-emerald-800/50 bg-white dark:bg-[#162922] space-y-2">
-                    <div class="text-xs font-extrabold text-emerald-950 dark:text-emerald-100">
-                        ${qIdx + 1}. "${q.word}" — <span class="px-2 py-0.5 rounded-full ${q.type === 'SYNONYM' ? 'bg-emerald-100 text-emerald-800' : 'bg-rose-100 text-rose-800'}">${q.type}</span>
+        function nextBattleRound() {
+            state.battleIndex = (state.battleIndex + 1) % state.battleDeck.length;
+            loadBattleRound();
+        }
+
+        // --- BOARD PASSAGE DRILL ---
+        function loadBoardDrill() {
+            const item = NCTB_WORDS[state.boardIndex % NCTB_WORDS.length];
+            document.getElementById('bd-pos').textContent = item[1];
+            document.getElementById('bd-feedback').classList.add('hidden');
+            const sent = item[7];
+            const synWord = item[5][0][0];
+            const highlighted = sent.replace(new RegExp(synWord, 'i'), `<span class="px-2 py-0.5 rounded bg-amber-200 dark:bg-amber-800 font-black underline">${synWord}</span>`);
+            document.getElementById('bd-passage').innerHTML = `
+                <p class="mb-2">${highlighted}</p>
+                <p class="bangla text-xs text-emerald-700 dark:text-emerald-300 font-bold">প্রশ্ন: আন্ডারলাইন করা শব্দটির (<strong>${synWord}</strong>) সঠিক Antonym (বিপরীত শব্দ) কোনটি?</p>
+            `;
+            const correct = item[6][0][0];
+            const opts = [correct];
+            while (opts.length < 4) {
+                const r = NCTB_WORDS[Math.floor(Math.random() * NCTB_WORDS.length)][6][0][0];
+                if (!opts.includes(r)) opts.push(r);
+            }
+            opts.sort(() => Math.random() - 0.5);
+            document.getElementById('bd-options').innerHTML = opts.map(o => `
+                <button type="button" onclick="checkBoardAns('${o}', '${correct}')" class="p-3 rounded-2xl bg-emerald-50 dark:bg-emerald-950/60 border border-emerald-200 dark:border-emerald-800 font-bold text-sm text-left hover:border-emerald-500">${o}</button>
+            `).join('');
+        }
+
+        function checkBoardAns(chosen, correct) {
+            const fb = document.getElementById('bd-feedback');
+            fb.classList.remove('hidden');
+            document.getElementById('bd-fb-text').textContent = chosen === correct
+                ? `চমৎকার! '${correct}' হলো সঠিক বিপরীতার্থক শব্দ।`
+                : `সঠিক উত্তর হলো '${correct}'।`;
+            if (chosen === correct) {
+                state.xp += 15;
+                updateHUD();
+            }
+        }
+
+        function nextBoardDrill() {
+            state.boardIndex++;
+            loadBoardDrill();
+        }
+
+        // --- VOCABULARY BANK ---
+        function renderBank() {
+            const q = (document.getElementById('bank-search').value || '').toLowerCase().trim();
+            const unit = document.getElementById('bank-unit').value;
+            const list = document.getElementById('bank-list');
+
+            const filtered = NCTB_WORDS.map((w, idx) => ({ w, num: idx + 1 })).filter(({ w, num }) => {
+                const matchUnit = unit === 'ALL' || w[2] === unit || w[3].includes(unit);
+                const matchQuery = !q || String(num) === q || w[0].toLowerCase().includes(q) || w[4].includes(q);
+                return matchUnit && matchQuery;
+            });
+
+            list.innerHTML = filtered.map(({ w, num }) => `
+                <div class="p-4 rounded-2xl bg-white/95 dark:bg-[#13241e] border border-emerald-200/80 dark:border-emerald-800/60 space-y-1.5">
+                    <div class="flex items-center justify-between">
+                        <span class="text-xs font-extrabold text-emerald-600">#${num} • ${w[3]}</span>
+                        <span class="px-2 py-0.5 rounded-full bg-rose-50 dark:bg-rose-950/60 text-rose-700 dark:text-rose-300 text-[11px] font-extrabold">${w[1]}</span>
                     </div>
-                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
-                        ${q.options.map(opt => `
-                            <button type="button" onclick="checkPassageAns(this, '${opt.replace(/'/g, "\\'")}', '${q.answer.replace(/'/g, "\\'")}')" class="py-2 px-2.5 rounded-xl border border-emerald-200 dark:border-emerald-800 text-xs font-bold hover:bg-emerald-50 dark:hover:bg-emerald-950">
-                                ${opt}
-                            </button>
+                    <div class="text-lg font-black text-emerald-950 dark:text-white">${w[0]} <span class="bangla text-sm font-bold text-emerald-700 dark:text-emerald-300">(${w[4]})</span></div>
+                    <div class="bangla text-xs text-emerald-800 dark:text-emerald-200"><strong>Syn:</strong> ${w[5].map(s => s[0]).join(', ')}</div>
+                    <div class="bangla text-xs text-rose-700 dark:text-rose-300"><strong>Ant:</strong> ${w[6].map(a => a[0]).join(', ')}</div>
+                </div>
+            `).join('');
+        }
+
+        // --- MODEL EXAM ---
+        function startExam() {
+            const pool = [...NCTB_WORDS].sort(() => Math.random() - 0.5).slice(0, 10);
+            state.examQuestions = pool.map((w, idx) => {
+                const askSyn = idx % 2 === 0;
+                const ans = askSyn ? w[5][0][0] : w[6][0][0];
+                const opts = [ans];
+                while (opts.length < 4) {
+                    const rand = NCTB_WORDS[Math.floor(Math.random() * NCTB_WORDS.length)];
+                    const cand = askSyn ? rand[5][0][0] : rand[6][0][0];
+                    if (!opts.includes(cand)) opts.push(cand);
+                }
+                opts.sort(() => Math.random() - 0.5);
+                return { word: w[0], pos: w[1], askSyn, ans, opts };
+            });
+
+            document.getElementById('exam-result').classList.add('hidden');
+            document.getElementById('exam-submit-btn').classList.remove('hidden');
+            document.getElementById('exam-container').innerHTML = state.examQuestions.map((q, i) => `
+                <div class="p-3.5 rounded-2xl bg-emerald-50/70 dark:bg-emerald-950/40 border border-emerald-200/70 space-y-2">
+                    <div class="flex items-center justify-between">
+                        <span class="bangla text-xs font-extrabold">${i + 1}. <strong>${q.word}</strong> এর ${q.askSyn ? 'Synonym' : 'Antonym'} কোনটি?</span>
+                        <span class="px-2 py-0.5 rounded-full bg-rose-50 text-rose-700 text-[10px] font-extrabold">${q.pos}</span>
+                    </div>
+                    <div class="grid grid-cols-2 gap-2">
+                        ${q.opts.map(o => `
+                            <label class="flex items-center gap-2 p-2 rounded-xl bg-white dark:bg-[#13241e] border border-emerald-200/70 text-xs font-bold cursor-pointer">
+                                <input type="radio" name="eq_${i}" value="${o}"> <span>${o}</span>
+                            </label>
                         `).join('')}
                     </div>
                 </div>
             `).join('');
         }
 
-        function checkPassageAns(btn, chosen, correct) {
-            const parent = btn.parentElement;
-            parent.querySelectorAll('button').forEach(b => b.disabled = true);
-            if (chosen === correct) {
-                chime('ok');
-                btn.className = 'py-2 px-2.5 rounded-xl bg-emerald-600 text-white text-xs font-extrabold';
-                app.xp += 10;
-                syncHUD();
-            } else {
-                chime('bad');
-                btn.className = 'py-2 px-2.5 rounded-xl bg-rose-600 text-white text-xs font-extrabold';
-            }
-        }
-
-        // 4. VOCABULARY WORD BANK
-        let filteredBank = [];
-        function setBankFilter(f) {
-            app.bankFilter = f;
-            ['ALL', '1ST', '2ND', 'FAV'].forEach(key => {
-                const btn = document.getElementById(`bf-${key}`);
-                btn.className = key === f
-                    ? 'bf-btn px-3 py-2 rounded-xl text-xs font-bold bg-emerald-600 text-white'
-                    : 'bf-btn px-3 py-2 rounded-xl text-xs font-bold bg-emerald-50 dark:bg-emerald-950 text-emerald-900 dark:text-emerald-200';
-            });
-            resetAndRenderBank();
-        }
-
-        function resetAndRenderBank() {
-            app.bankLimit = 25;
-            const q = (document.getElementById('bank-search').value || '').trim().toLowerCase();
-            filteredBank = VOCAB_DATA.filter(item => {
-                if (app.bankFilter === '1ST' && item.paper !== '1ST') return false;
-                if (app.bankFilter === '2ND' && item.paper !== '2ND') return false;
-                if (app.bankFilter === 'FAV' && !app.favIds.includes(item.id)) return false;
-                if (!q) return true;
-                return item.word.toLowerCase().includes(q)
-                    || item.bangla.toLowerCase().includes(q)
-                    || item.syn.toLowerCase().includes(q)
-                    || item.ant.toLowerCase().includes(q);
-            });
-            renderBankChunk();
-        }
-
-        function loadMoreBank() {
-            app.bankLimit += 30;
-            renderBankChunk();
-        }
-
-        function renderBankChunk() {
-            const listEl = document.getElementById('bank-list');
-            const slice = filteredBank.slice(0, app.bankLimit);
-
-            listEl.innerHTML = slice.map(item => {
-                const synBadges = (item.synList || [[item.syn, item.synBn]]).map(s => `${s[0]} (${s[1]})`).join(' • ');
-                const antBadges = (item.antList || [[item.ant, item.antBn]]).map(a => `${a[0]} (${a[1]})`).join(' • ');
-                return `
-                <div class="p-3.5 rounded-2xl bg-white/95 dark:bg-[#13241e] border border-emerald-200/80 dark:border-emerald-800/50 space-y-2">
-                    <div class="flex items-start justify-between gap-2">
-                        <div>
-                            <div class="flex flex-wrap items-baseline gap-2">
-                                <span class="text-base sm:text-lg font-extrabold text-emerald-950 dark:text-white">${item.word}</span>
-                                <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-100 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-300">${item.pos}</span>
-                                <span class="text-[10px] font-semibold text-emerald-600/80 dark:text-emerald-400/80">${item.unit}</span>
-                            </div>
-                            <p class="bangla text-sm font-bold text-emerald-700 dark:text-emerald-300 mt-0.5">${item.bangla}</p>
-                        </div>
-                        <button type="button" onclick="toggleFavoriteById(${item.id}); resetAndRenderBank();" class="w-8 h-8 rounded-full bg-rose-50 dark:bg-rose-950/50 text-rose-500 flex items-center justify-center text-xs shrink-0">
-                            <i class="${app.favIds.includes(item.id) ? 'fa-solid' : 'fa-regular'} fa-heart"></i>
-                        </button>
-                    </div>
-
-                    <div class="text-xs space-y-1">
-                        <p class="bangla text-emerald-900 dark:text-emerald-200">
-                            <strong class="text-emerald-700 dark:text-emerald-400">Synonyms:</strong> ${synBadges}
-                        </p>
-                        <p class="bangla text-rose-900 dark:text-rose-200">
-                            <strong class="text-rose-700 dark:text-rose-400">Antonyms:</strong> ${antBadges}
-                        </p>
-                    </div>
-
-                    <div class="p-2.5 rounded-xl bg-emerald-50/75 dark:bg-emerald-950/40 text-xs space-y-1 border border-emerald-100 dark:border-emerald-900/40">
-                        <p class="font-semibold text-slate-800 dark:text-slate-100">"${item.synSent}"</p>
-                        <p class="bangla text-emerald-800 dark:text-emerald-300">বাংলা অর্থ: ${item.synSentBn}</p>
-                        <p class="font-semibold text-slate-800 dark:text-slate-100 pt-1">"${item.antSent}"</p>
-                        <p class="bangla text-rose-800 dark:text-rose-300">বাংলা অর্থ: ${item.antSentBn}</p>
-                        <p class="bangla text-[11px] text-emerald-900/80 dark:text-emerald-200/80 pt-1 border-t border-emerald-200/50 dark:border-emerald-800/40">
-                            <i class="fa-solid fa-leaf text-emerald-500 mr-1"></i>${item.grammar}
-                        </p>
-                    </div>
-                </div>
-            `;
-            }).join('');
-
-            const loadMoreBtn = document.getElementById('btn-load-more');
-            loadMoreBtn.style.display = app.bankLimit < filteredBank.length ? 'block' : 'none';
-        }
-
-        // 5. EXAM MODE & GMAIL RESULT CARD DISPATCH (akashtalukder1998@gmail.com)
-        const EXAM_RECIPIENT_EMAIL = 'akashtalukder1998@gmail.com';
-        let examState = {
-            studentName: '',
-            rollNo: '',
-            className: '',
-            questions: [],
-            answers: {},
-            currentIdx: 0,
-            secondsLeft: 900,
-            timerRef: null,
-            lastSummaryText: ''
-        };
-
-        function beginExam() {
-            const nameInput = document.getElementById('exam-name').value.trim();
-            const rollInput = document.getElementById('exam-roll').value.trim();
-            const classVal = document.getElementById('exam-class').value;
-            const qCount = parseInt(document.getElementById('exam-qcount').value, 10) || 20;
-            const errBox = document.getElementById('exam-form-error');
-
-            if (!nameInput || !rollInput) {
-                errBox.classList.remove('hidden');
-                return;
-            }
-            errBox.classList.add('hidden');
-
-            const pool = [...VOCAB_DATA].sort(() => Math.random() - 0.5).slice(0, qCount);
-            const questions = pool.map((target, idx) => {
-                const askType = idx % 2 === 0 ? 'SYNONYM' : 'ANTONYM';
-                const correctAns = askType === 'SYNONYM' ? target.syn : target.ant;
-                const distractorOpp = askType === 'SYNONYM' ? target.ant : target.syn;
-
-                const excluded = new Set([
-                    target.word.toLowerCase(),
-                    ...(target.synList || []).map(x => x[0].toLowerCase()),
-                    ...(target.antList || []).map(x => x[0].toLowerCase())
-                ]);
-
-                const opts = [correctAns];
-                if (distractorOpp && distractorOpp.toLowerCase() !== correctAns.toLowerCase()) {
-                    opts.push(distractorOpp);
-                }
-
-                let guard = 0;
-                while (opts.length < 4 && guard < 300) {
-                    guard++;
-                    const randWord = VOCAB_DATA[Math.floor(Math.random() * VOCAB_DATA.length)];
-                    const cand = Math.random() > 0.5 ? randWord.syn : randWord.ant;
-                    if (cand && !excluded.has(cand.toLowerCase()) && !opts.some(o => o.toLowerCase() === cand.toLowerCase())) {
-                        opts.push(cand);
-                    }
-                }
-                opts.sort(() => Math.random() - 0.5);
-                return { target, askType, correctAns, opts };
-            });
-
-            examState = {
-                studentName: nameInput,
-                rollNo: rollInput,
-                className: classVal,
-                questions,
-                answers: {},
-                currentIdx: 0,
-                secondsLeft: qCount * 45,
-                timerRef: null,
-                lastSummaryText: ''
-            };
-
-            document.getElementById('exam-setup-card').classList.add('hidden');
-            document.getElementById('exam-result-card').classList.add('hidden');
-            document.getElementById('exam-runner-card').classList.remove('hidden');
-            document.getElementById('ex-badge-info').textContent = `নাম: ${nameInput} | রোল: ${rollInput} | ${classVal}`;
-            document.getElementById('ex-q-total').textContent = questions.length;
-
-            renderExamQuestion();
-            updateExamClock();
-            examState.timerRef = setInterval(() => {
-                examState.secondsLeft--;
-                updateExamClock();
-                if (examState.secondsLeft <= 0) {
-                    submitExam();
-                }
-            }, 1000);
-        }
-
-        function updateExamClock() {
-            const mins = Math.floor(Math.max(0, examState.secondsLeft) / 60);
-            const secs = Math.max(0, examState.secondsLeft) % 60;
-            document.getElementById('ex-clock').textContent = `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
-        }
-
-        function renderExamQuestion() {
-            const q = examState.questions[examState.currentIdx];
-            if (!q) return;
-            document.getElementById('ex-q-num').textContent = examState.currentIdx + 1;
-            document.getElementById('ex-ask-label').textContent = q.askType === 'SYNONYM'
-                ? 'SYNONYM (সমার্থক শব্দ) বাছাই করো'
-                : 'ANTONYM (বিপরীতার্থক শব্দ) বাছাই করো';
-            document.getElementById('ex-word').textContent = q.target.word;
-            document.getElementById('ex-bangla').textContent = `(${q.target.bangla})`;
-
-            const chosen = examState.answers[examState.currentIdx];
-            const labels = ['ক', 'খ', 'গ', 'ঘ'];
-            document.getElementById('ex-options').innerHTML = q.opts.map((opt, i) => {
-                const selected = chosen === opt;
-                return `
-                    <button type="button" onclick="selectExamOption('${opt.replace(/'/g, "\\'")}')" class="option-pill p-3.5 rounded-2xl border-2 flex items-center gap-3 text-left ${selected
-                        ? 'border-emerald-600 bg-emerald-50 dark:bg-emerald-950/60'
-                        : 'border-emerald-200/80 dark:border-emerald-800/60 bg-white dark:bg-[#162922]'}">
-                        <span class="bangla w-7 h-7 rounded-lg bg-emerald-100 dark:bg-emerald-950 text-emerald-800 dark:text-emerald-300 font-extrabold text-xs flex items-center justify-center shrink-0">${labels[i]}</span>
-                        <span class="text-sm font-extrabold text-emerald-950 dark:text-emerald-100">${opt}</span>
-                    </button>
-                `;
-            }).join('');
-
-            const isLast = examState.currentIdx === examState.questions.length - 1;
-            document.getElementById('ex-btn-prev').disabled = examState.currentIdx === 0;
-            document.getElementById('ex-btn-next').classList.toggle('hidden', isLast);
-            document.getElementById('ex-btn-submit').classList.toggle('hidden', !isLast);
-        }
-
-        function selectExamOption(opt) {
-            chime('tap');
-            examState.answers[examState.currentIdx] = opt;
-            renderExamQuestion();
-        }
-
-        function prevExamQuestion() {
-            if (examState.currentIdx > 0) {
-                examState.currentIdx--;
-                renderExamQuestion();
-            }
-        }
-
-        function nextExamQuestion() {
-            if (examState.currentIdx < examState.questions.length - 1) {
-                examState.currentIdx++;
-                renderExamQuestion();
-            }
-        }
-
-        function calculateGrade(pct) {
-            if (pct >= 80) return 'A+';
-            if (pct >= 70) return 'A';
-            if (pct >= 60) return 'A-';
-            if (pct >= 50) return 'B';
-            if (pct >= 40) return 'C';
-            if (pct >= 33) return 'D';
-            return 'F';
-        }
-
         function submitExam() {
-            clearInterval(examState.timerRef);
-            const total = examState.questions.length;
-            let correct = 0;
-            examState.questions.forEach((q, idx) => {
-                if (examState.answers[idx] === q.correctAns) correct++;
+            let score = 0;
+            state.examQuestions.forEach((q, i) => {
+                const selected = document.querySelector(`input[name="eq_${i}"]:checked`);
+                if (selected && selected.value === q.ans) score++;
             });
-
-            const pct = total > 0 ? Math.round((correct / total) * 100) : 0;
-            const grade = calculateGrade(pct);
-            app.xp += correct * 20;
-            syncHUD();
-            if (pct >= 70) {
-                chime('win');
-                confetti({ particleCount: 55, spread: 60, origin: { y: 0.7 } });
-            }
-
-            const nowStr = new Date().toLocaleString('en-GB');
-            document.getElementById('exam-runner-card').classList.add('hidden');
-            document.getElementById('exam-result-card').classList.remove('hidden');
-
-            document.getElementById('rc-name').textContent = examState.studentName;
-            document.getElementById('rc-roll').textContent = examState.rollNo;
-            document.getElementById('rc-class').textContent = examState.className;
-            document.getElementById('rc-score').textContent = `${correct}/${total} (${pct}%)`;
-            document.getElementById('rc-grade').textContent = grade;
-            document.getElementById('rc-timestamp').textContent = `Submitted on: ${nowStr} • Recipient: ${EXAM_RECIPIENT_EMAIL}`;
-
-            const summaryText = [
-                '=== NCTB Class 9-10 Vocab Arena Result Card ===',
-                `Student Name: ${examState.studentName}`,
-                `Roll Number: ${examState.rollNo}`,
-                `Class: ${examState.className}`,
-                `Score: ${correct}/${total} (${pct}%)`,
-                `Grade: ${grade}`,
-                `Date & Time: ${nowStr}`
-            ].join('\n');
-            examState.lastSummaryText = summaryText;
-
-            const subject = encodeURIComponent(`NCTB Vocab Result Card - ${examState.studentName} (Roll: ${examState.rollNo}) [${grade}]`);
-            const body = encodeURIComponent(summaryText);
-            document.getElementById('rc-gmail-link').href = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(EXAM_RECIPIENT_EMAIL)}&su=${subject}&body=${body}`;
+            state.xp += score * 5;
+            updateHUD();
+            const res = document.getElementById('exam-result');
+            res.classList.remove('hidden');
+            res.textContent = `আপনার প্রাপ্ত নম্বর: ${score} / ${state.examQuestions.length} (+${score * 5} XP অর্জিত!)`;
         }
 
-        function downloadResultCardPNG() {
-            const canvas = document.createElement('canvas');
-            canvas.width = 760;
-            canvas.height = 440;
-            const ctx = canvas.getContext('2d');
-
-            const grad = ctx.createLinearGradient(0, 0, 760, 440);
-            grad.addColorStop(0, '#eef7f1');
-            grad.addColorStop(1, '#fdf4f0');
-            ctx.fillStyle = grad;
-            ctx.fillRect(0, 0, 760, 440);
-
-            ctx.strokeStyle = '#36755a';
-            ctx.lineWidth = 4;
-            ctx.strokeRect(18, 18, 724, 404);
-
-            ctx.fillStyle = '#1f4e3b';
-            ctx.font = 'bold 26px sans-serif';
-            ctx.fillText('NCTB Class 9-10 Vocab Arena — Result Card', 45, 75);
-
-            ctx.fillStyle = '#36755a';
-            ctx.font = 'bold 48px sans-serif';
-            ctx.fillText(`Grade: ${document.getElementById('rc-grade').textContent}`, 520, 85);
-
-            ctx.fillStyle = '#183329';
-            ctx.font = 'bold 22px sans-serif';
-            ctx.fillText(`Student Name : ${examState.studentName}`, 45, 155);
-            ctx.fillText(`Roll Number  : ${examState.rollNo}`, 45, 205);
-            ctx.fillText(`Class        : ${examState.className}`, 45, 255);
-            ctx.fillText(`Score        : ${document.getElementById('rc-score').textContent}`, 45, 305);
-
-            ctx.fillStyle = '#527365';
-            ctx.font = '16px sans-serif';
-            ctx.fillText(`Sent to: ${EXAM_RECIPIENT_EMAIL} • ${new Date().toLocaleString()}`, 45, 375);
-
-            const link = document.createElement('a');
-            link.download = `ResultCard_${examState.studentName.replace(/\s+/g, '_')}_Roll_${examState.rollNo}.png`;
-            link.href = canvas.toDataURL('image/png');
-            link.click();
-
-            const msg = document.getElementById('rc-action-msg');
-            msg.textContent = 'রেজাল্ট কার্ডের PNG ছবি ডাউনলোড হয়েছে!';
-            msg.classList.remove('hidden');
-        }
-
-        function copyResultSummary() {
-            const temp = document.createElement('textarea');
-            temp.value = examState.lastSummaryText;
-            document.body.appendChild(temp);
-            temp.select();
-            document.execCommand('copy');
-            document.body.removeChild(temp);
-
-            const msg = document.createElement('p');
-            const actionMsg = document.getElementById('rc-action-msg');
-            actionMsg.textContent = 'রেজাল্ট কার্ডের তথ্য কপি করা হয়েছে!';
-            actionMsg.classList.remove('hidden');
-        }
-
-        function resetExamForm() {
-            document.getElementById('exam-result-card').classList.add('hidden');
-            document.getElementById('exam-setup-card').classList.remove('hidden');
-            document.getElementById('rc-action-msg').classList.add('hidden');
-        }
-
-        // Initial Boot
-        syncHUD();
-        rebuildDeck();
+        window.addEventListener('DOMContentLoaded', initApp);
     </script>
 </body>
 </html>
