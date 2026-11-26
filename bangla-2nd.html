@@ -688,7 +688,7 @@
             স্ব-মূল্যায়ন পরীক্ষা (Test Yourself)
           </p>
           <h2 class="text-xl sm:text-2xl font-bold text-[#16241C] dark:text-white">
-            পূর্ণাঙ্গ বই (PDF + TXT) অথবা অধ্যায়ভিত্তিক পরীক্ষা দিন
+            পূর্ণাঙ্গ বই অথবা অধ্যায়ভিত্তিক পরীক্ষা দিন
           </h2>
           <p class="text-xs sm:text-sm text-[#557160] dark:text-[#9CB5A6]">
             পরীক্ষা শেষে গ্রেড ও মার্কসহ রেজাল্ট কার্ড, ভুল-সঠিক প্রতিটি প্রশ্নের বাংলা ব্যাখ্যা এবং ইমেইলে (<span class="font-mono-num">akashtalukder1998@gmail.com</span>) ফলাফল পাঠানোর সুবিধা পাবেন।
@@ -1395,13 +1395,13 @@
       });
 
       if (state.datasetMode === "PDF_CHAPTER" || state.datasetMode === "PDF_FULL") {
-        labelEl.textContent = "অংশ বা পরিচ্ছেদ নির্বাচন করুন (শুধুমাত্র PDF)";
+        labelEl.textContent = "অংশ বা পরিচ্ছেদ নির্বাচন করুন";
         hintEl.textContent = "PDF ONLY (" + PDF_MCQS.length + ")";
       } else if (state.datasetMode === "TXT_EXTRA") {
-        labelEl.textContent = "টপিক নির্বাচন করুন (শুধুমাত্র TXT)";
+        labelEl.textContent = "টপিক নির্বাচন করুন";
         hintEl.textContent = "TXT ONLY (" + TXT_MCQS.length + ")";
       } else {
-        labelEl.textContent = "অধ্যায় বা টপিক নির্বাচন করুন (PDF + TXT)";
+        labelEl.textContent = "অধ্যায় বা টপিক নির্বাচন করুন";
         hintEl.textContent = "MERGED (" + MERGED_ALL_MCQS.length + ")";
       }
 
